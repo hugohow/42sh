@@ -1,4 +1,15 @@
-#include "ft_execute_cmd.h"
+#include "shell.h"
+
+
+static int ft_list_size(char **list)
+{
+    int size;
+
+    size = 0;
+    while (list[size])
+        size++;
+    return (size);
+}
 
 char *search_path_exe(char *cmd, char *path, char ***p_environ)
 {

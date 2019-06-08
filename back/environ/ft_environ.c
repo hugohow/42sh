@@ -1,4 +1,4 @@
-#include "ft_environ.h"
+#include "shell.h"
 
 char **copy_environ(char **str)
 {

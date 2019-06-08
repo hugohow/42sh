@@ -1,5 +1,5 @@
-#include "ft_cd.h"
-
+#include "shell.h"
+#define BUF_SIZE 20
 
 int is_file(char *path)
 {

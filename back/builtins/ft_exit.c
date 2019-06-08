@@ -1,4 +1,4 @@
-#include "ft_exit.h"
+#include "shell.h"
 
 
 int is_exit(char *cmd)

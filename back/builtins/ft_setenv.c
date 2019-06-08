@@ -1,5 +1,14 @@
-#include "ft_setenv.h"
+#include "shell.h"
 
+static int ft_list_size(char **list)
+{
+    int size;
+
+    size = 0;
+    while (list[size])
+        size++;
+    return (size);
+}
 
 void ft_setenv_args(char *prefix, char *line, char ***p_environ)
 {

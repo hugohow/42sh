@@ -3,7 +3,7 @@ NAME=minishell
 
 all:
 	make -C libft/
-	gcc  -lncurses -Wall -Wextra -Werror -I includes libft/libft.a shell.c front/*.c back/*.c back/builtins/*.c back/$(NAME)/*.c -o $(NAME)
+	gcc  -lncurses -Wall -Wextra -Werror -I includes libft/libft.a shell.c front/21sh/*.c back/*.c back/builtins/*.c back/environ/*.c back/$(NAME)/*.c -o $(NAME)
 
 clean:
 	make clean -C libft/
