@@ -16,7 +16,7 @@ enum editorKey
 
 int     my_outc(int c)
 {
-    write (1, &c, sizeof(c));
+    write (0, &c, sizeof(c));
     return (0);
 }
 
