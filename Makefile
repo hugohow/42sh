@@ -1,5 +1,5 @@
 .PHONY: all test clean test
-NAME=21sh
+NAME=minishell
 
 all:
 	make -C libft/

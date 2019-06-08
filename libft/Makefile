@@ -6,7 +6,7 @@
 #    By: hhow-cho <hhow-cho@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2019/06/05 23:41:00 by hhow-cho          #+#    #+#              #
-#    Updated: 2019/06/08 15:23:15 by hhow-cho         ###   ########.fr        #
+#    Updated: 2019/06/08 23:32:50 by hhow-cho         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -165,7 +165,12 @@ SRCS	=	core/ft_memset.c					\
 		avlt/ft_avlt_is_valid.c		\
 		avlt/ft_avlt_left_rot.c		\
 		avlt/ft_avlt_right_rot.c	\
-		get_next_line/get_next_line.c
+		get_next_line/get_next_line.c \
+		hash_table/ft_ht_free.c		\
+		hash_table/ft_ht_add.c		\
+		hash_table/ft_ht_create.c		\
+		hash_table/ft_ht_get.c		\
+		hash_table/ft_ht_get_hash.c
 
 
 OBJS	=	$(SRCS:.c=.o)
