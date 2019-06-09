@@ -6,7 +6,7 @@
 /*   By: hhow-cho <hhow-cho@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/06/09 00:32:39 by hhow-cho          #+#    #+#             */
-/*   Updated: 2019/06/09 15:00:58 by hhow-cho         ###   ########.fr       */
+/*   Updated: 2019/06/09 15:10:45 by hhow-cho         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -70,7 +70,7 @@ void    ft_setenv_args(char *prefix, char *line, char ***p_environ);
 int     ft_echo(int argc, char **argv, char ***p_environ, int fd0, int fd1, int fd2);
 int     ft_cd(int argc, char **argv, char ***p_environ);
 int     ft_setenv(int argc, char **argv, char ***p_environ);
-int ft_env(int argc, char **argv, char ***p_environ);
+int ft_env(int argc, char **argv, char ***p_environ, t_ht *table_bins);
 int ft_unsetenv(int argc, char **argv, char ***p_environ);
 void ft_print_env(char **str);
 int delete_line_env(char *key, char ***p_environ);
@@ -88,10 +88,10 @@ int ft_ask_command(int fd, char **command);
 void ft_exit(char *cmd, int success);
 char **copy_environ(char **str);
 char **get_paths(char **copy_env);
-int ft_exe_bin(char *cmd, char **paths, char ***p_environ, int fd0, int fd1, int fd2);
+int ft_exe_bin(char *cmd, t_ht *table_bins, char ***p_environ, int fd0, int fd1, int fd2);
 int is_exit(char *cmd);
 int ft_get_cmd(int fd, char **command);
-void    execute_tree(t_node *node, char **paths, char ***p_environ, int fd0, int fd1, int fd2, int *p_success);
+void    execute_tree(t_node *node, t_ht *table_bins, char ***p_environ, int fd0, int fd1, int fd2, int *p_success);
 t_node **ft_get_semi_colon_child(char *cmd);
 char *search_path_exe(char *cmd, char *path, char ***p_environ);
 #endif

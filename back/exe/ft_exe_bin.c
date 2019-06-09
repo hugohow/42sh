@@ -6,7 +6,7 @@
 /*   By: hhow-cho <hhow-cho@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/06/09 01:40:14 by hhow-cho          #+#    #+#             */
-/*   Updated: 2019/06/09 14:23:47 by hhow-cho         ###   ########.fr       */
+/*   Updated: 2019/06/09 15:14:42 by hhow-cho         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -63,7 +63,7 @@ int is_path(char *cmd)
     return (0);
 }
 
-int ft_exe_bin(char *cmd, char **paths, char ***p_environ, int fd0, int fd1, int fd2)
+int ft_exe_bin(char *cmd, t_ht *table_bins, char ***p_environ, int fd0, int fd1, int fd2)
 {
     int i;
     int result;
@@ -71,7 +71,6 @@ int ft_exe_bin(char *cmd, char **paths, char ***p_environ, int fd0, int fd1, int
     char **cmd_list;
     char *command;
     char *new_path;
-    char *d_name;
 
     cmd_list = ft_strsplit(cmd, ' ');
     if (cmd_list[0] == NULL)
@@ -106,21 +105,17 @@ int ft_exe_bin(char *cmd, char **paths, char ***p_environ, int fd0, int fd1, int
     }
     if (ft_strcmp(command, "env") == 0)
     {
-        return (ft_env(ft_list_size(cmd_list), cmd_list, p_environ));
+        return (ft_env(ft_list_size(cmd_list), cmd_list, p_environ, table_bins));
     }
-    while (paths[i])
-    {
-        if ((d_name = search_path_exe(command, paths[i], p_environ)) != NULL)
-        {
-            new_path = ft_strjoin(paths[i], "/");
-            new_path = ft_strjoin(new_path, d_name);
-            cmd_list[0] = d_name;
-            result = ft_exe_path(new_path, cmd_list, p_environ, fd0, fd1, fd2);
-            return (result);
-        }
-        i++;
-    }
-    if (paths[i] == 0)
+	t_node_ht *node;
+	node = ft_ht_get(table_bins, command);
+	if (node && (char *)(node->datum))
+	{
+		new_path = (char *)(node->datum);
+		result = ft_exe_path(new_path, cmd_list, p_environ, fd0, fd1, fd2);
+		return (result);
+	}
+    else
     {
         ft_putstr_fd("shell: command not found: ", fd2);
         ft_putstr_fd(cmd, fd2);
