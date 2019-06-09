@@ -1,6 +1,6 @@
 #include "shell.h"
 
-char *get_line_env(char *str, char ***p_environ)
+char *ft_get_line_env(char *str, char ***p_environ)
 {
     size_t i;
     size_t j;
@@ -24,7 +24,7 @@ char *get_line_env(char *str, char ***p_environ)
     return (NULL);
 }
 
-int change_line_env(char *key, char *line, char ***p_environ)
+int ft_change_line_env(char *key, char *line, char ***p_environ)
 {
     size_t i;
     size_t j;
@@ -53,7 +53,7 @@ int change_line_env(char *key, char *line, char ***p_environ)
     return (0);
 }
 
-int delete_line_env(char *key, char ***p_environ)
+int ft_delete_line_env(char *key, char ***p_environ)
 {
     size_t i;
     size_t j;

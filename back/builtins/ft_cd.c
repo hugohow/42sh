@@ -34,11 +34,11 @@ char *get_path(size_t size)
     return (path);
 }
 
-int change_env(char *new_pwd_line, char *old_pwd_line, char ***p_environ)
+static int ft_change_env(char *new_pwd_line, char *old_pwd_line, char ***p_environ)
 {
-    if (change_line_env("OLDPWD", old_pwd_line, p_environ) == 0)
+    if (ft_change_line_env("OLDPWD", old_pwd_line, p_environ) == 0)
         return (-1);
-    if (change_line_env("PWD", ft_strjoin("PWD=", new_pwd_line), p_environ) == 0)
+    if (ft_change_line_env("PWD", ft_strjoin("PWD=", new_pwd_line), p_environ) == 0)
         return (-1);
     return (0);
 }
@@ -48,7 +48,7 @@ int go_to_root(char *old_pwd_line, char ***p_environ)
     while (ft_strcmp(get_path(BUF_SIZE), "/") != 0)
         chdir("..");
 
-    if (change_env("/", old_pwd_line, p_environ) < 0)
+    if (ft_change_env("/", old_pwd_line, p_environ) < 0)
         return (-1);
     return (0);
 }
@@ -112,13 +112,13 @@ int ft_change_dir(char *element, char ***p_environ)
         if (ft_strcmp(element, "/") == 0 || ft_strcmp(element, "/.") == 0)
             return (go_to_root(old_pwd_line, p_environ));
         if (ft_strcmp(element, "-") == 0)
-            abs_path = get_line_env("OLDPWD", p_environ) + 7;
+            abs_path = ft_get_line_env("OLDPWD", p_environ) + 7;
         else
             abs_path = get_absolute_path(element);
     }
     else
     {
-        abs_path = get_line_env("HOME", p_environ) + 5;
+        abs_path = ft_get_line_env("HOME", p_environ) + 5;
     }
 
 
@@ -128,8 +128,8 @@ int ft_change_dir(char *element, char ***p_environ)
 
     // change env et return
     if (is_symlink(abs_path) == 1)
-        return (change_env(abs_path, old_pwd_line, p_environ));
-    return (change_env(get_path(BUF_SIZE), old_pwd_line, p_environ));
+        return (ft_change_env(abs_path, old_pwd_line, p_environ));
+    return (ft_change_env(get_path(BUF_SIZE), old_pwd_line, p_environ));
 }
 
 int ft_cd(int argc, char **argv, char ***p_environ)

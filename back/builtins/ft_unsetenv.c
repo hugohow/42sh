@@ -13,7 +13,7 @@ int ft_unsetenv(int argc, char **argv, char ***p_environ)
     i = 1;
     while (i < argc)
     {
-        delete_line_env(argv[i], p_environ);
+        ft_delete_line_env(argv[i], p_environ);
         i++;
     }    
 
