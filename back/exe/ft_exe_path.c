@@ -7,7 +7,12 @@ int ft_exe_path(char *path, char **argv, char ***p_environ, int fd0, int fd1, in
     int waitstatus;
     int i;
     i = 0;
-    if (stat(path, &fileStat) < 0)
+
+	if (p_environ && fd0 && fd1)
+	{
+
+	}
+    if (lstat(path, &fileStat) < 0)
     {
         ft_putstr_fd("Command not found\n", fd2);
         return (-1);
@@ -25,25 +30,27 @@ int ft_exe_path(char *path, char **argv, char ***p_environ, int fd0, int fd1, in
     }
     if (pid == 0)
     {
-        if (fd0 != 0)
-        {
-            dup2(fd0, STDIN_FILENO);    
-            close(fd0);
-        }
-        if (fd1 != 1)
-        {
-            dup2(fd1, STDOUT_FILENO);
-            close(fd1);
-        }
+    //     if (fd0 != 0)
+    //     {
+    //         dup2(fd0, STDIN_FILENO);    
+    //         close(fd0);
+    //     }
+    //     if (fd1 != 1)
+    //     {
+    //         dup2(fd1, STDOUT_FILENO);
+    //         close(fd1);
+    //     }
         if (execve(path, argv, *p_environ) < 0)
             ft_putstr_fd("erreure\n", fd2);
         exit(0);
     }
-    if (fd0 != 0)
-        close(fd0);
-    if (fd1 != 1)
-        close(fd1);
-    do {
+	else
+	{
+    // if (fd0 != 0)
+    //     close(fd0);
+    // if (fd1 != 1)
+    //     close(fd1);
+    // do {
         int w;
         w = waitpid(pid, &waitstatus, WUNTRACED | WCONTINUED);
         if (w == -1) {
@@ -51,17 +58,18 @@ int ft_exe_path(char *path, char **argv, char ***p_environ, int fd0, int fd1, in
             exit(EXIT_FAILURE);
         }
 
-        if (WIFEXITED(waitstatus)) {
-            // printf("terminé, code=%d\n", WEXITSTATUS(waitstatus));
-        } else if (WIFSIGNALED(waitstatus)) {
-            printf("tué par le signal %d\n", WTERMSIG(waitstatus));
-        } else if (WIFSTOPPED(waitstatus)) {
-            printf("arrêté par le signal %d\n", WSTOPSIG(waitstatus));
-        } else if (WIFCONTINUED(waitstatus)) {
-            printf("relancé\n");
-        }
-    } while (!WIFEXITED(waitstatus) && !WIFSIGNALED(waitstatus));
-    // parent
+    //     if (WIFEXITED(waitstatus)) {
+    //         printf("terminé, code=%d\n", WEXITSTATUS(waitstatus));
+    //     } else if (WIFSIGNALED(waitstatus)) {
+    //         printf("tué par le signal %d\n", WTERMSIG(waitstatus));
+    //     } else if (WIFSTOPPED(waitstatus)) {
+    //         printf("arrêté par le signal %d\n", WSTOPSIG(waitstatus));
+    //     } else if (WIFCONTINUED(waitstatus)) {
+    //         printf("relancé\n");
+    //     }
+    // } while (!WIFEXITED(waitstatus) && !WIFSIGNALED(waitstatus));
+	}
+	// parent
     i = WEXITSTATUS(waitstatus);
 
     return (i);

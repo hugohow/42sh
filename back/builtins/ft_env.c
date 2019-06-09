@@ -210,7 +210,7 @@ void print_token_ls(t_token_env **token_ls)
     i = 0;
     while (token_ls[i] != 0)
     {
-        ft_printf("type : %s \t flag: %c \t string : %s\n", token_ls[i]->type, token_ls[i]->flag_type, token_ls[i]->string);
+        ft_printf("type : %ld \t flag: %c \t string : %s\n", token_ls[i]->type, token_ls[i]->flag_type, token_ls[i]->string);
         i++;
     }
 }
@@ -234,7 +234,7 @@ int ft_env(int argc, char **argv, char ***p_environ)
     {
         token_ls = tokenize_argv(argc, argv);
         // permet de vérfier si il y a des anomalies
-        // print_token_ls(token_ls);
+        print_token_ls(token_ls);
         status = execute_ls(token_ls, p_environ);
         exit(status);
     }

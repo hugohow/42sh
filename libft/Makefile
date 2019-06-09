@@ -6,7 +6,7 @@
 #    By: hhow-cho <hhow-cho@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2019/06/05 23:41:00 by hhow-cho          #+#    #+#              #
-#    Updated: 2019/06/08 23:32:50 by hhow-cho         ###   ########.fr        #
+#    Updated: 2019/06/09 10:36:20 by hhow-cho         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -80,6 +80,7 @@ SRCS	=	core/ft_memset.c					\
 			core/ft_lstpeek.c				\
 			core/ft_lstpush.c				\
 			core/ft_lstlen.c					\
+			core/ft_brackets_is_valid.c     \
 			bigint/ft_bigint_add.c				\
 			bigint/ft_bigint_divide_by_two.c	\
 			bigint/ft_bigint_get_index.c		\

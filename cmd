@@ -1,1 +1,3 @@
 ls
+echo a
+exit
