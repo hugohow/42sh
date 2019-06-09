@@ -197,7 +197,15 @@ int execute_ls(t_token_env **token_ls, char ***p_environ)
         i++;
     }
     if (i > 0 && ft_strcmp(token_ls[i - 1]->type, "utility") == 0)
-        return (ft_parse_cmd(token_ls[i - 1]->string, &copy_env, 0));
+	{
+		t_node **root;
+		int success;
+
+		root = ft_parse_cmd(token_ls[i - 1]->string);
+		success = 0;
+    	execute_tree(*root, get_paths(copy_env), &copy_env,  0, 1, 2, &success);
+		return (success);
+	}
     else
         ft_print_env(copy_env);
     return (0);
@@ -210,7 +218,7 @@ void print_token_ls(t_token_env **token_ls)
     i = 0;
     while (token_ls[i] != 0)
     {
-        ft_printf("type : %ld \t flag: %c \t string : %s\n", token_ls[i]->type, token_ls[i]->flag_type, token_ls[i]->string);
+        // ft_printf("type : %ld \t flag: %c \t string : %s\n", token_ls[i]->type, token_ls[i]->flag_type, token_ls[i]->string);
         i++;
     }
 }

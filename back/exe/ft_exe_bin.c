@@ -6,7 +6,7 @@
 /*   By: hhow-cho <hhow-cho@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/06/09 01:40:14 by hhow-cho          #+#    #+#             */
-/*   Updated: 2019/06/09 14:18:14 by hhow-cho         ###   ########.fr       */
+/*   Updated: 2019/06/09 14:23:47 by hhow-cho         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -73,14 +73,12 @@ int ft_exe_bin(char *cmd, char **paths, char ***p_environ, int fd0, int fd1, int
     char *new_path;
     char *d_name;
 
-	printf("cmd : %s\n", cmd);
     cmd_list = ft_strsplit(cmd, ' ');
     if (cmd_list[0] == NULL)
         return 0;
     command = ft_strtrim(cmd_list[0]);
     result = 0;
     new_path = NULL;
-	printf("command : %s\n", command);
     if (is_path(command) == 1)
     {
         cmd_list[0] = "name";

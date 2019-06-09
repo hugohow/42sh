@@ -6,7 +6,7 @@
 /*   By: hhow-cho <hhow-cho@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/06/09 00:32:39 by hhow-cho          #+#    #+#             */
-/*   Updated: 2019/06/09 03:04:51 by hhow-cho         ###   ########.fr       */
+/*   Updated: 2019/06/09 15:00:58 by hhow-cho         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,6 +23,7 @@
 #include <sys/stat.h>
 #include <termios.h>
 #include "libft.h"
+#include "ht.h"
 
 # define TYPE_BASE (2 << 0)
 # define TYPE_CMD (2 << 1)
@@ -81,7 +82,7 @@ void print_cmd(char *cmd);
 void add_to_stdout(char **p_cmd, int c, int *index);
 void delete_n_lines(int n);
 int count_nb_line(char *cmd);
-int ft_parse_cmd(char *cmd, char ***copy_env, int prev_res);
+t_node **ft_parse_cmd(char *cmd);
 int ft_exe_path(char *path, char **argv, char ***p_environ, int fd0, int fd1, int fd2);
 int ft_ask_command(int fd, char **command);
 void ft_exit(char *cmd, int success);
@@ -92,4 +93,5 @@ int is_exit(char *cmd);
 int ft_get_cmd(int fd, char **command);
 void    execute_tree(t_node *node, char **paths, char ***p_environ, int fd0, int fd1, int fd2, int *p_success);
 t_node **ft_get_semi_colon_child(char *cmd);
+char *search_path_exe(char *cmd, char *path, char ***p_environ);
 #endif

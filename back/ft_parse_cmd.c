@@ -6,7 +6,7 @@
 /*   By: hhow-cho <hhow-cho@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/06/09 01:47:49 by hhow-cho          #+#    #+#             */
-/*   Updated: 2019/06/09 13:40:27 by hhow-cho         ###   ########.fr       */
+/*   Updated: 2019/06/09 14:53:45 by hhow-cho         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,19 +47,15 @@ t_node **get_child(char *cmd)
 
 
 
-int ft_parse_cmd(char *cmd, char ***copy_env, int prev_res)
+t_node **ft_parse_cmd(char *cmd)
 {
     t_node **root;
-    int success;
 
 	if (cmd == NULL || ft_strlen(cmd) == 0)
 		return (0);
     root = malloc(sizeof(t_node *));
     *root = create_node(TYPE_BASE, cmd);
 
-    success = prev_res;
 
-    execute_tree(*root, get_paths(*copy_env), copy_env,  0, 1, 2, &success);
-
-    return (success);
+    return (root);
 }
