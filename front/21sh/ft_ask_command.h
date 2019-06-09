@@ -4,7 +4,7 @@
 
 int     get_next_line(const int fd, char **line);
 int     ft_get_pos(int *y, int *x);
-void    ft_exit_terminal(struct termios *orig_termios);
+void    ft_exit_terminal(void);
 void    ft_putstr(char const *str);
 char    *ft_strjoin(char const *str1, char const *str2);
 void add_to_stdout(char **p_cmd, int c, int *index);

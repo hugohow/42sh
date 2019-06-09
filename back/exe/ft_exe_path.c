@@ -1,6 +1,6 @@
 #include "shell.h"
 
-int ft_execute_path(char *path, char **argv, char ***p_environ, int fd0, int fd1, int fd2)
+int ft_exe_path(char *path, char **argv, char ***p_environ, int fd0, int fd1, int fd2)
 {
     pid_t pid;
     struct stat fileStat;

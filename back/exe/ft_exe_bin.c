@@ -1,3 +1,16 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   ft_exe_bin.c                                       :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: hhow-cho <hhow-cho@student.42.fr>          +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2019/06/09 01:40:14 by hhow-cho          #+#    #+#             */
+/*   Updated: 2019/06/09 01:40:40 by hhow-cho         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
+
 #include "shell.h"
 
 
@@ -51,7 +64,7 @@ int is_path(char *cmd)
     return (0);
 }
 
-int execute_command(char *cmd, char **paths, char ***p_environ, struct termios *p_orig_termios, int fd0, int fd1, int fd2)
+int ft_exe_bin(char *cmd, char **paths, char ***p_environ, int fd0, int fd1, int fd2)
 {
     int i;
     int result;
@@ -70,7 +83,7 @@ int execute_command(char *cmd, char **paths, char ***p_environ, struct termios *
     if (is_path(command) == 1)
     {
         cmd_list[0] = "name";
-        result = ft_execute_path(command, cmd_list, p_environ, fd0, fd1, fd2);
+        result = ft_exe_path(command, cmd_list, p_environ, fd0, fd1, fd2);
         return (result);
     }
     if (ft_strcmp(command, "echo") == 0)
@@ -94,7 +107,7 @@ int execute_command(char *cmd, char **paths, char ***p_environ, struct termios *
     }
     if (ft_strcmp(command, "env") == 0)
     {
-        return (ft_env(ft_list_size(cmd_list), cmd_list, p_environ, p_orig_termios));
+        return (ft_env(ft_list_size(cmd_list), cmd_list, p_environ));
     }
     while (paths[i])
     {
@@ -103,7 +116,7 @@ int execute_command(char *cmd, char **paths, char ***p_environ, struct termios *
             new_path = ft_strjoin(paths[i], "/");
             new_path = ft_strjoin(new_path, d_name);
             cmd_list[0] = d_name;
-            result = ft_execute_path(new_path, cmd_list, p_environ, fd0, fd1, fd2);
+            result = ft_exe_path(new_path, cmd_list, p_environ, fd0, fd1, fd2);
             return (result);
         }
         i++;

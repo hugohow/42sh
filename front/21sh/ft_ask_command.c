@@ -25,7 +25,7 @@ int is_quote_closed(char *cmd)
 }
 
 
-int ft_ask_command(int fd, char **command, struct termios *p_orig_termios)
+int ft_ask_command(int fd, char **command)
 {
     int key;
     char *cmd;
@@ -42,7 +42,7 @@ int ft_ask_command(int fd, char **command, struct termios *p_orig_termios)
         k = malloc(sizeof(int));
         *k = 0;
     }
-    if (fd == 0 && isatty(0) == 1)
+    if (0 == 1)
     {
         cmd = malloc(sizeof(char) * 2);
         cmd = "";
@@ -67,7 +67,7 @@ int ft_ask_command(int fd, char **command, struct termios *p_orig_termios)
                 }
             }
             if (key == ('i' & 0x1f))
-                ft_exit_terminal(p_orig_termios);
+                ft_exit_terminal();
             if (key == ARROW_UP && historic_index - 1 >= 0)
             {
                 // to clean
