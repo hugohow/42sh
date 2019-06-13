@@ -20,9 +20,7 @@ char		*ft_str_insert(char *str, char c, int index)
 {
 	char	*tmp;
 	char	*output;
-	int		j;
 
-	j = 0;
 	if (str == NULL)
 		return (NULL);
 	tmp = (char *)ft_memalloc((index + 2) * sizeof(*tmp));

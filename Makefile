@@ -3,7 +3,7 @@ NAME=minishell
 
 all:
 	make -C libft/
-	gcc  -lncurses -Wall -Wextra -Werror -g -I includes libft/libft.a shell.c front/*.c back/*.c back/*/*.c -o $(NAME)
+	gcc  -Wall -Wextra -Werror -g front/*.c back/*.c back/*/*.c shell.c -I includes libft/libft.a -o $(NAME)
 
 clean:
 	make clean -C libft/
@@ -15,5 +15,4 @@ fclean: clean
 re: fclean all
 
 test: re
-	bash ~/42ShellTester/42ShellTester.sh /Users/hugohow-choong/42/minishell_21sh_42sh/$(NAME) --reference "bash" --filter $(NAME) > error | cat
-	cat error | less
+	bash 42ShellTester/42ShellTester.sh $(PWD)/$(NAME) --reference "bash" --filter $(NAME) > error | cat

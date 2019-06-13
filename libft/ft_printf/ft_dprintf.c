@@ -14,11 +14,9 @@
 
 static int	ft_parseprint(char *flag_line, va_list *p_ap, size_t *p_len, int fd)
 {
-	int		len;
 	t_flag	*flag;
 	char	*output;
 
-	len = 0;
 	if (!(flag = ft_create_flag(flag_line)))
 		return (-1);
 	output = ft_printf_arg(p_ap, flag);

@@ -22,6 +22,7 @@
 #include <fcntl.h>
 #include <sys/stat.h>
 #include <termios.h>
+#include <sys/wait.h>
 #include "libft.h"
 #include "ht.h"
 

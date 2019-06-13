@@ -14,11 +14,9 @@
 
 static int	ft_parse_cat(char *f, va_list *pap, size_t *plen, char *str)
 {
-	int		len;
 	t_flag	*flag;
 	char	*output;
 
-	len = 0;
 	if (!(flag = ft_create_flag(f)))
 		return (-1);
 	output = ft_printf_arg(pap, flag);

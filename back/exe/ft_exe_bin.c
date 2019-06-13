@@ -27,9 +27,7 @@ char *search_path_exe(char *cmd, char *path, char ***p_environ)
 {
     DIR *pDir;
     struct dirent *pDirent;
-    int result;
 
-    result = 0;
     (void)p_environ;
     if (path == NULL)
         return (NULL);
@@ -53,6 +51,8 @@ int is_path(char *cmd)
 {
     int i;
 
+    if (cmd == NULL)
+        return (-1);
     i = 0;
     while (cmd[i])
     {
@@ -65,9 +65,7 @@ int is_path(char *cmd)
 
 int ft_exe_bin(char *cmd, t_ht *table_bins, char ***p_environ, int fd0, int fd1, int fd2)
 {
-    int i;
     int result;
-    i = 0;
     char **cmd_list;
     char *command;
     char *new_path;
