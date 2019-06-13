@@ -6,7 +6,7 @@
 /*   By: hhow-cho <hhow-cho@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/06/13 19:57:57 by hhow-cho          #+#    #+#             */
-/*   Updated: 2019/06/13 21:17:50 by hhow-cho         ###   ########.fr       */
+/*   Updated: 2019/06/13 22:07:47 by hhow-cho         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,6 +49,8 @@ char *get_path(size_t size)
 
 static int ft_change_env(char *new_pwd_line, char *old_pwd_line, char ***p_environ)
 {
+	// printf("new_pwd_line %s \n", new_pwd_line);
+	// printf("old_pwd_line %s \n\n", old_pwd_line);
     if (ft_change_line_env("OLDPWD", old_pwd_line, p_environ) == 0)
         return (-1);
     if (ft_change_line_env("PWD", ft_strjoin("PWD=", new_pwd_line), p_environ) == 0)
@@ -111,8 +113,10 @@ int ft_change_dir(char *element, char ***p_environ, long long flag)
     char *abs_path;
     char *old_pwd_line;
 
-    old_pwd_line = ft_strjoin("OLDPWD=", get_path(BUF_SIZE));
+    old_pwd_line = ft_strjoin("OLDPWD=", ft_get_line_env("PWD", p_environ) + 4);
 
+	// printf("ancien pwd, get_path %s \n", get_path(BUF_SIZE));
+	// printf("ancien pwd, PWD %s \n\n", ft_get_line_env("PWD", p_environ) + 4);
     // définition du chemin absolu
     if (element)
     {
