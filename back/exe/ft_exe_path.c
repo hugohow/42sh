@@ -6,7 +6,7 @@
 /*   By: hhow-cho <hhow-cho@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/06/09 14:28:12 by hhow-cho          #+#    #+#             */
-/*   Updated: 2019/06/09 14:28:13 by hhow-cho         ###   ########.fr       */
+/*   Updated: 2019/06/13 18:11:54 by hhow-cho         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,6 +25,11 @@ int ft_exe_path(char *path, char **argv, char ***p_environ, int fd0, int fd1, in
 	{
 
 	}
+    if (stat(path, &fileStat) < 0)
+    {
+        ft_putstr_fd("Too many symbolic links\n", fd2);
+        return (-1);
+    }
     if (lstat(path, &fileStat) < 0)
     {
         ft_putstr_fd("Command not found\n", fd2);

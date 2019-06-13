@@ -1,4 +1,4 @@
-.PHONY: all test clean test
+# .PHONY: all test clean test
 NAME=minishell
 
 all:
@@ -15,4 +15,4 @@ fclean: clean
 re: fclean all
 
 test: re
-	bash 42ShellTester/42ShellTester.sh $(PWD)/$(NAME) --reference "bash" --filter $(NAME) > error | cat
+	bash 42ShellTester/42ShellTester.sh $(PWD)/$(NAME) --reference "bash" --filter $(NAME) > log

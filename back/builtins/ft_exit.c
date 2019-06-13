@@ -40,14 +40,11 @@ void ft_exit(char *cmd, int success)
             if (ft_isdigit(cmd_list[1][i]) == 0)
             {
                 ft_putstr_fd("Numeric argument required", 2);
-                ft_exit_terminal();
                 exit(-1);
             }
             i++;
         }
-        ft_exit_terminal();
         exit(ft_atoi(cmd_list[1]));
     }   
-    ft_exit_terminal();
     exit(success);
 }

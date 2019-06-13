@@ -1,6 +1,19 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   ft_cd.c                                            :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: hhow-cho <hhow-cho@student.42.fr>          +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2019/06/13 19:57:57 by hhow-cho          #+#    #+#             */
+/*   Updated: 2019/06/13 21:17:50 by hhow-cho         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "shell.h"
 #define BUF_SIZE 20
-
+# define FLAG_P (2 << 1)
+# define FLAG_L (2 << 2)
 int is_file(char *path)
 {
     struct stat fileStat;
@@ -68,38 +81,32 @@ int ft_go_to(char *abs_path)
 {
     struct stat fileStat;
 
-    if (chdir(abs_path) < 0)
-    {
-        // si y'a un pb et que c'est un symbolic link
-        if (stat(abs_path, &fileStat) < 0)
-        {
-            if (lstat(abs_path, &fileStat) == 0)
-            {
-                ft_putstr_fd("No such file or directory or Too many symbolic links\n", 2);
-                return (-1);
-            }
-            else
-            {
-                ft_putstr_fd("No such file or directory\n", 2);
-                return (-1);
-            }
-        }
-        // is it a directory ?
-        if (S_ISDIR(fileStat.st_mode) == 0)
-        {
-            ft_putstr_fd("not a directory !!!!! \n", 2);
-            return (-1);
-        }
-        else
-        {
-            ft_putstr_fd("is a directory, but permission denied \n", 2);
-            return (-1);
-        }
-    }
-    return (0);
+
+	if (stat(abs_path, &fileStat))
+	{
+		lstat(abs_path, &fileStat);
+		if (S_ISLNK(fileStat.st_mode) && access(abs_path, X_OK))
+		{
+			ft_putstr_fd("Too many symbolic links\n", 2);
+			return (-1);
+		}
+		ft_putstr_fd("No such file or directory\n", 2);
+		return (-1);
+	}
+	else if (!S_ISDIR(fileStat.st_mode) && !S_ISLNK(fileStat.st_mode))
+	{
+		ft_putstr_fd("not a directory !!!!! \n", 2);
+		return (-1);
+	}
+	else if (access(abs_path, X_OK))
+	{
+		ft_putstr_fd("permission denied \n", 2);
+		return (-1);
+	}
+    return (chdir(abs_path));
 }
 
-int ft_change_dir(char *element, char ***p_environ)
+int ft_change_dir(char *element, char ***p_environ, long long flag)
 {
     char *abs_path;
     char *old_pwd_line;
@@ -122,12 +129,11 @@ int ft_change_dir(char *element, char ***p_environ)
     }
 
 
-    // aller vers le chemin
     if (ft_go_to(abs_path) < 0)
         return (-1);
 
     // change env et return
-    if (is_symlink(abs_path) == 1)
+    if (is_symlink(abs_path) == 1 && (flag & FLAG_P) == 0)
         return (ft_change_env(abs_path, old_pwd_line, p_environ));
     return (ft_change_env(get_path(BUF_SIZE), old_pwd_line, p_environ));
 }
@@ -135,10 +141,24 @@ int ft_change_dir(char *element, char ***p_environ)
 int ft_cd(int argc, char **argv, char ***p_environ)
 {
     char *element;
+	long long flag;
 
     element = NULL;
+	flag = 0;
     if (argc > 1)
-        element = argv[1];
+	{
+		if (ft_strcmp(argv[1], "-P") == 0)
+		{
+			flag |= FLAG_P;
+			argv++;
+		}
+		else if (ft_strcmp(argv[1], "-L") == 0)
+		{
+			flag |= FLAG_L;
+			argv++;
+		}
+		element = argv[1];
+	}
 
-    return (ft_change_dir(element, p_environ));
+    return (ft_change_dir(element, p_environ, flag));
 }

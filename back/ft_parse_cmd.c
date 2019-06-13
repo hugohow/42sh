@@ -6,7 +6,7 @@
 /*   By: hhow-cho <hhow-cho@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/06/09 01:47:49 by hhow-cho          #+#    #+#             */
-/*   Updated: 2019/06/09 14:53:45 by hhow-cho         ###   ########.fr       */
+/*   Updated: 2019/06/13 20:42:20 by hhow-cho         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,10 +19,12 @@ t_node *create_node(long type, char *cmd)
     node = ft_memalloc(sizeof(t_node));
     node->type = type;
     node->cmd = ft_strdup(cmd);
+	node->args = NULL;
     // if type pipe;
     // only 2 child
     if (type & TYPE_CMD)
     {
+		node->args = ft_strsplit(cmd, ' ');
         node->child = NULL;
         return (node);
     }
