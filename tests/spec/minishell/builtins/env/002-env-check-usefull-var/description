@@ -1,0 +1,2 @@
+The purpose of this test is to check that basic environment variables are well stored.
+We add a special variable to the environment before the execution.

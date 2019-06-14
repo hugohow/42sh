@@ -1,0 +1,3 @@
+rm -f "./symbolic_link"
+mkdir -p "./sub_directory"
+ln -s "./sub_directory" "./symbolic_link"

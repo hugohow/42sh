@@ -1,0 +1,4 @@
+mkdir -p "./virtual_path"
+rm -f "./virtual_path/write_on_stdout"
+cp "./write_on_stdout" "./virtual_path/write_on_stdout"
+export PATH=""

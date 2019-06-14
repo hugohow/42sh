@@ -1,0 +1,2 @@
+${GLOBAL_TMP_DIRECTORY}/write_on_stdout ${GLOBAL_TOKEN}_1
+${GLOBAL_TMP_DIRECTORY}/virtual_path/write_on_stdout ${GLOBAL_TOKEN}_2

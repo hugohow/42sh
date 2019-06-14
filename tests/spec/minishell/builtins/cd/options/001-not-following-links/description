@@ -1,0 +1,1 @@
+The purpose of this test is to check that using symbolic links twice with the builtin `cd` and the option `-P` results in a correct environment variable PWD. The option `-P` makes the Shell to resolve symbolic links.

@@ -1,0 +1,2 @@
+The purpose of this test is to check that using a file path `simple_text_file` within the STDIN redirection `<` results in the ability of the child process to read on this file through the file descriptor STDIN.
+The file path is specified in a separated field.

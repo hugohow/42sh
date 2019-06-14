@@ -1,0 +1,6 @@
+expected_to match_regex "d@"
+expected_to match_regex "e@"
+expected_to match_regex "f@"
+expected_to_not match_regex "def@"
+
+might match_regex "^d@e@f@$"

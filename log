@@ -13,11 +13,11 @@
 
   STDIN:
 [38;5;239m  01: cd ./enoent_symlink
-  02: /Users/hugohow-choong/42/minishell_21sh_42sh/42ShellTester/tmp/display_pwd[0m
+  02: /Users/hugohow-choong/42/42sh/tests/tmp/display_pwd[0m
 
   STDOUT:
-[31m[38;5;34m  SUCCESS    expected_to match_regex `PWD:/Users/hugohow-choong/42/minishell_21sh_42sh/42ShellTester/tmp:PWD`[0m
-[38;5;239m  01: PWD:/Users/hugohow-choong/42/minishell_21sh_42sh/42ShellTester/tmp:PWD[0m
+[31m[38;5;34m  SUCCESS    expected_to match_regex `PWD:/Users/hugohow-choong/42/42sh/tests/tmp:PWD`[0m
+[38;5;239m  01: PWD:/Users/hugohow-choong/42/42sh/tests/tmp:PWD[0m
 
   STDERR:
 [31m[38;5;34m  SUCCESS    expected_to_not be_empty[0m

@@ -1,0 +1,2 @@
+cd not_a_directory
+${GLOBAL_TMP_DIRECTORY}/display_pwd

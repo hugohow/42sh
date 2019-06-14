@@ -1,0 +1,4 @@
+expected_to match_regex "PATH=${PATH}"
+expected_to match_regex "PWD=${PWD}"
+expected_to match_regex "HOME=${HOME}"
+expected_to match_regex "TEST_42SHTEST=${GLOBAL_TOKEN}"

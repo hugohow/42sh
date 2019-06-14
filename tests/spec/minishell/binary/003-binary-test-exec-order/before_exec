@@ -1,0 +1,4 @@
+mkdir -p "./virtual_path_1" "./virtual_path_2"
+cp "./write_on_stdout" "./virtual_path_1/fake_echo"
+cp "./write_on_stderr" "./virtual_path_2/fake_echo"
+export PATH="${GLOBAL_TMP_DIRECTORY}/virtual_path_1:${GLOBAL_TMP_DIRECTORY}/virtual_path_2"

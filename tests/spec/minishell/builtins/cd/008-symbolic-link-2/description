@@ -1,0 +1,1 @@
+The purpose of this test is to check that using a symbolic link as first argument with the builtin `cd` results in moving to the linked directory. In this test, the directory is linked with to chained symbolic links.
