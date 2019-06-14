@@ -1,50 +1,47 @@
 #include "shell.h"
 
-char *ft_get_line_env(char *str, char ***p_environ)
+char *ft_get_line_env(char *str, char **cpy_environ)
 {
     size_t i;
     size_t j;
 
     i = 0;
-    while ((*p_environ)[i])
+    while (cpy_environ[i])
     {
 
-        if ((*p_environ)[i][0] == str[0])
+        if (cpy_environ[i][0] == str[0])
         {
             j = 0;
-            while (str[j] && (*p_environ)[i][j] && (*p_environ)[i][j] == str[j])
+            while (str[j] && cpy_environ[i][j] && cpy_environ[i][j] == str[j])
             {
                 j++;
             }
             if (j == ft_strlen(str))
-                return ((*p_environ)[i]);
+                return (cpy_environ[i]);
         }
         i++;
     }
     return (NULL);
 }
 
-int ft_change_line_env(char *key, char *line, char ***p_environ)
+int ft_change_line_env(char *key, char *line, char **cpy_environ)
 {
     size_t i;
     size_t j;
-    char **envp;
 
-    envp = *p_environ;
     i = 0;
-    while (envp[i])
+    while (cpy_environ[i])
     {
-        if (envp[i][0] == key[0])
+        if (cpy_environ[i][0] == key[0])
         {
             j = 0;
-            while (key[j] && envp[i][j] && envp[i][j] == key[j])
+            while (key[j] && cpy_environ[i][j] && cpy_environ[i][j] == key[j])
             {
                 j++;
             }
             if (j == ft_strlen(key))
             {
-                *(envp + i) = line;
-                *p_environ = envp;
+                cpy_environ[i] = line;
                 return (1);
             }
         }
@@ -53,40 +50,36 @@ int ft_change_line_env(char *key, char *line, char ***p_environ)
     return (0);
 }
 
-int ft_delete_line_env(char *key, char ***p_environ)
+int ft_delete_line_env(char *key, char **cpy_environ)
 {
     size_t i;
     size_t j;
     size_t k;
-    char **envp;
 
-    envp = *p_environ;
     i = 0;
-    while (envp[i])
+    while (cpy_environ[i])
     {
 
-        if (envp[i][0] == key[0])
+        if (cpy_environ[i][0] == key[0])
         {
             j = 0;
-            while (key[j] && envp[i][j] && envp[i][j] == key[j])
+            while (key[j] && cpy_environ[i][j] && cpy_environ[i][j] == key[j])
             {
                 j++;
             }
             if (j == ft_strlen(key))
             {
                 k = i + 1;
-                while (envp[k])
+                while (cpy_environ[k])
                 {
-                    envp[k - 1] = envp[k];
+                    cpy_environ[k - 1] = cpy_environ[k];
                     k++;
                 }
-                envp[k - 1] = envp[k];
-                *p_environ = envp;
+                cpy_environ[k - 1] = cpy_environ[k];
                 return (1);
             }
         }
         i++;
     }
-    *p_environ = envp;
     return (0);
 }

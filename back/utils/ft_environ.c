@@ -24,9 +24,9 @@ char **get_paths(char **copy_env)
     char *path_line;
     char **paths;
 
-    path_line = ft_get_line_env("PATH", &copy_env);
+    path_line = ft_get_line_env("PATH", copy_env);
     if (path_line)
-        path_line = ft_strjoin(ft_get_line_env("PATH", &copy_env), ":.") + 5;
+        path_line = ft_strjoin(ft_get_line_env("PATH", copy_env), ":.") + 5;
     else
         path_line = "/usr/sbin:/usr/bin:/sbin:/bin:.";
     paths = ft_strsplit(path_line, ':');
