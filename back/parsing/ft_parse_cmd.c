@@ -6,7 +6,7 @@
 /*   By: hhow-cho <hhow-cho@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/06/09 01:47:49 by hhow-cho          #+#    #+#             */
-/*   Updated: 2019/06/13 20:42:20 by hhow-cho         ###   ########.fr       */
+/*   Updated: 2019/06/14 14:26:46 by hhow-cho         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,7 +24,7 @@ t_node *create_node(long type, char *cmd)
     // only 2 child
     if (type & TYPE_CMD)
     {
-		node->args = ft_strsplit(cmd, ' ');
+		node->args = ft_get_args(cmd);
         node->child = NULL;
         return (node);
     }

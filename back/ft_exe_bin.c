@@ -6,7 +6,7 @@
 /*   By: hhow-cho <hhow-cho@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/06/09 01:40:14 by hhow-cho          #+#    #+#             */
-/*   Updated: 2019/06/13 20:45:54 by hhow-cho         ###   ########.fr       */
+/*   Updated: 2019/06/14 14:28:19 by hhow-cho         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -89,7 +89,7 @@ int ft_exe_bin(t_node *node, t_ht *table_bins, char ***p_environ, int fd0, int f
     }
     if (ft_strcmp(command, "cd") == 0)
     {
-        return (ft_cd(ft_list_size(args), args, p_environ));
+        return (ft_cd(ft_list_size(args), args, *p_environ));
     }
     if (ft_strcmp(command, "setenv") == 0)
     {

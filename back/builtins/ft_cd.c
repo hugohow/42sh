@@ -6,7 +6,7 @@
 /*   By: hhow-cho <hhow-cho@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/06/13 19:57:57 by hhow-cho          #+#    #+#             */
-/*   Updated: 2019/06/13 22:07:47 by hhow-cho         ###   ########.fr       */
+/*   Updated: 2019/06/14 13:02:41 by hhow-cho         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -142,7 +142,7 @@ int ft_change_dir(char *element, char ***p_environ, long long flag)
     return (ft_change_env(get_path(BUF_SIZE), old_pwd_line, p_environ));
 }
 
-int ft_cd(int argc, char **argv, char ***p_environ)
+int ft_cd(int argc, char **argv, char **cpy_environ)
 {
     char *element;
 	long long flag;
@@ -164,5 +164,5 @@ int ft_cd(int argc, char **argv, char ***p_environ)
 		element = argv[1];
 	}
 
-    return (ft_change_dir(element, p_environ, flag));
+    return (ft_change_dir(element, &cpy_environ, flag));
 }

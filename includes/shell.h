@@ -6,7 +6,7 @@
 /*   By: hhow-cho <hhow-cho@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/06/09 00:32:39 by hhow-cho          #+#    #+#             */
-/*   Updated: 2019/06/13 20:45:31 by hhow-cho         ###   ########.fr       */
+/*   Updated: 2019/06/14 14:27:15 by hhow-cho         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -97,7 +97,7 @@ void    print_normal(int fd);
 int     ft_change_line_env(char *key, char *line, char ***p_environ);
 void    ft_setenv_args(char *prefix, char *line, char ***p_environ);
 int     ft_echo(int argc, char **argv, char ***p_environ, int fd0, int fd1, int fd2);
-int     ft_cd(int argc, char **argv, char ***p_environ);
+int     ft_cd(int argc, char **argv, char **cpy_environ);
 int     ft_setenv(int argc, char **argv, char ***p_environ);
 int ft_env(int argc, char **argv, char ***p_environ, t_ht *table_bins);
 int ft_unsetenv(int argc, char **argv, char ***p_environ);
@@ -124,4 +124,5 @@ void    execute_tree(t_node *node, t_ht *table_bins, char ***p_environ, int fd0,
 t_node **ft_get_semi_colon_child(char *cmd);
 char *search_path_exe(char *cmd, char *path, char ***p_environ);
 t_ht *ft_create_table_bins(char **copy_env);
+char **ft_get_args(char *cmd);
 #endif
