@@ -6,14 +6,14 @@
 /*   By: hhow-cho <hhow-cho@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/06/09 14:28:12 by hhow-cho          #+#    #+#             */
-/*   Updated: 2019/06/13 18:11:54 by hhow-cho         ###   ########.fr       */
+/*   Updated: 2019/06/14 15:31:36 by hhow-cho         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 
 #include "shell.h"
 
-int ft_exe_path(char *path, char **argv, char ***p_environ, int fd0, int fd1, int fd2)
+int ft_exe_path(char *path, char **argv, char **cpy_environ, int fds[])
 {
     pid_t pid;
     struct stat fileStat;
@@ -21,29 +21,25 @@ int ft_exe_path(char *path, char **argv, char ***p_environ, int fd0, int fd1, in
     int i;
     i = 0;
 
-	if (p_environ && fd0 && fd1)
-	{
-
-	}
     if (stat(path, &fileStat) < 0)
     {
-        ft_putstr_fd("Too many symbolic links\n", fd2);
+        ft_putstr_fd("Too many symbolic links\n", fds[2]);
         return (-1);
     }
     if (lstat(path, &fileStat) < 0)
     {
-        ft_putstr_fd("Command not found\n", fd2);
+        ft_putstr_fd("Command not found\n", fds[2]);
         return (-1);
     }
     if (access(path, X_OK) == -1)
     {
-        ft_putstr_fd("Permission denied\n", fd2);
+        ft_putstr_fd("Permission denied\n", fds[2]);
         return (-1);
     }
     pid = fork();
     if (pid < 0) 
     {
-        ft_putstr_fd("Failed to fork process 1\n", fd2);
+        ft_putstr_fd("Failed to fork process 1\n", fds[2]);
         exit(1);
     }
     if (pid == 0)
@@ -58,8 +54,8 @@ int ft_exe_path(char *path, char **argv, char ***p_environ, int fd0, int fd1, in
     //         dup2(fd1, STDOUT_FILENO);
     //         close(fd1);
     //     }
-        if (execve(path, argv, *p_environ) < 0)
-            ft_putstr_fd("erreure\n", fd2);
+        if (execve(path, argv, cpy_environ) < 0)
+            ft_putstr_fd("erreure\n", fds[2]);
         exit(0);
     }
 	else

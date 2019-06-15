@@ -6,7 +6,7 @@
 /*   By: hhow-cho <hhow-cho@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/06/09 00:32:39 by hhow-cho          #+#    #+#             */
-/*   Updated: 2019/06/14 14:35:32 by hhow-cho         ###   ########.fr       */
+/*   Updated: 2019/06/15 17:16:50 by hhow-cho         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -78,8 +78,8 @@ typedef struct s_node
 }              t_node;
 
 
-t_node **get_child(char *cmd);
-t_node *create_node(long type, char *cmd);
+t_node **get_child(char *cmd, char **copy_env);
+t_node *create_node(long type, char *cmd, char **copy_env);
 void    print_tree(t_node *node);
 
 int is_separator(char *str);
@@ -92,16 +92,17 @@ int     get_next_line(const int fd, char **line);
 int     ft_printf(const char* format, ...);
 
 
-char *ft_get_line_env(char *str, char **cpy_environ);
+char *ft_get_line_env(char **cpy_environ, char *str);
+char *ft_get_line_env_n(char **cpy_environ, char *str, size_t n);
 void    print_normal(int fd);
 int ft_change_line_env(char *key, char *line, char **cpy_environ);
 void    ft_setenv_args(char *prefix, char *line, char ***p_environ);
-int     ft_echo(int argc, char **argv, char ***p_environ, int fd0, int fd1, int fd2);
-int     ft_cd(int argc, char **argv, char **cpy_environ);
-int     ft_setenv(int argc, char **argv, char ***p_environ);
-int ft_env(int argc, char **argv, char ***p_environ, t_ht *table_bins);
-int ft_unsetenv(int argc, char **argv, char ***p_environ);
-void ft_print_env(char **str);
+int     ft_echo(int argc, char **argv, char **cpy_environ, int fds[]);
+int     ft_cd(int argc, char **argv, char **cpy_environ, int fds[]);
+int     ft_setenv(int argc, char **argv, char ***p_environ, int fds[]);
+int ft_env(int argc, char **argv, char ***p_environ, int fds[], t_ht *table_bins);
+int ft_unsetenv(int argc, char **argv, char **cpy_environ, int fds[]);
+void ft_print_env(char **str, int fds[]);
 int ft_delete_line_env(char *key, char **cpy_environ);
 void    ft_exit_terminal(void);
 int     ft_init_terminal(struct termios *orig_termios, struct termios *new_termios);
@@ -110,18 +111,17 @@ void print_cmd(char *cmd);
 void add_to_stdout(char **p_cmd, int c, int *index);
 void delete_n_lines(int n);
 int count_nb_line(char *cmd);
-t_node **ft_parse_cmd(char *cmd);
-int ft_exe_path(char *path, char **argv, char ***p_environ, int fd0, int fd1, int fd2);
+t_node **ft_parse_cmd(char *cmd, char **copy_env);
+int ft_exe_path(char *path, char **argv, char **cpy_environ, int fds[]);
 int ft_ask_command(int fd, char **command);
 void ft_exit(char *cmd, int success);
 char **copy_environ(char **str);
 char **get_paths(char **copy_env);
-int ft_exe_bin(t_node *node, t_ht *table_bins, char ***p_environ, int fd0, int fd1, int fd2);
+int ft_exe_bin(t_node *node, t_ht *table_bins, char ***p_environ, int fds[]);
 int is_exit(char *cmd);
 int ft_get_cmd(int fd, char **command);
-void    execute_tree(t_node *node, t_ht *table_bins, char ***p_environ, int fd0, int fd1, int fd2, int *p_success);
-t_node **ft_get_semi_colon_child(char *cmd);
-char *search_path_exe(char *cmd, char *path, char ***p_environ);
+void    execute_tree(t_node *node, t_ht *table_bins, char ***p_environ, int fds[], int *p_success);
+t_node **ft_get_semi_colon_child(char *cmd, char **copy_env);
 t_ht *ft_create_table_bins(char **copy_env);
-char **ft_get_args(char *cmd);
+char **ft_get_args(char *cmd, char **copy_env);
 #endif

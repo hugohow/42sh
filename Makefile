@@ -14,5 +14,5 @@ fclean: clean
 re: fclean all
 
 test: re
-	bash tests/42ShellTester.sh $(PWD)/$(NAME) --reference "bash" --filter $(NAME) > log
+	bash tests/42ShellTester.sh $(PWD)/$(NAME) --show-success --reference "bash" --filter $(NAME)
 .PHONY: all re clean fclean test

@@ -6,7 +6,7 @@
 /*   By: hhow-cho <hhow-cho@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/06/13 19:57:57 by hhow-cho          #+#    #+#             */
-/*   Updated: 2019/06/14 14:35:39 by hhow-cho         ###   ########.fr       */
+/*   Updated: 2019/06/15 17:15:39 by hhow-cho         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -114,7 +114,7 @@ int ft_change_dir(char *element, char ***p_environ, long long flag)
     char *abs_path;
     char *old_pwd_line;
 
-    old_pwd_line = ft_strjoin("OLDPWD=", ft_get_line_env("PWD", *p_environ) + 4);
+    old_pwd_line = ft_strjoin("OLDPWD=", ft_get_line_env(*p_environ, "PWD") + 4);
 
 	// printf("ancien pwd, get_path %s \n", get_path(BUF_SIZE));
 	// printf("ancien pwd, PWD %s \n\n", ft_get_line_env("PWD", p_environ) + 4);
@@ -124,13 +124,13 @@ int ft_change_dir(char *element, char ***p_environ, long long flag)
         if (ft_strcmp(element, "/") == 0 || ft_strcmp(element, "/.") == 0)
             return (go_to_root(old_pwd_line, p_environ));
         if (ft_strcmp(element, "-") == 0)
-            abs_path = ft_get_line_env("OLDPWD", *p_environ) + 7;
+            abs_path = ft_get_line_env(*p_environ, "OLDPWD") + 7;
         else
             abs_path = get_absolute_path(element);
     }
     else
     {
-        abs_path = ft_get_line_env("HOME", *p_environ) + 5;
+        abs_path = ft_get_line_env(*p_environ, "HOME") + 5;
     }
 
 
@@ -143,13 +143,17 @@ int ft_change_dir(char *element, char ***p_environ, long long flag)
     return (ft_change_env(get_path(BUF_SIZE), old_pwd_line, p_environ));
 }
 
-int ft_cd(int argc, char **argv, char **cpy_environ)
+int ft_cd(int argc, char **argv, char **cpy_environ, int fds[])
 {
     char *element;
 	long long flag;
 
     element = NULL;
 	flag = 0;
+	if (fds)
+	{
+		
+	}
     if (argc > 1)
 	{
 		if (ft_strcmp(argv[1], "-P") == 0)

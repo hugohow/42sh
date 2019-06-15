@@ -1,6 +1,6 @@
 #include "shell.h"
 
-char *ft_get_line_env(char *str, char **cpy_environ)
+char *ft_get_line_env(char **cpy_environ, char *str)
 {
     size_t i;
     size_t j;
@@ -17,6 +17,30 @@ char *ft_get_line_env(char *str, char **cpy_environ)
                 j++;
             }
             if (j == ft_strlen(str))
+                return (cpy_environ[i]);
+        }
+        i++;
+    }
+    return (NULL);
+}
+
+char *ft_get_line_env_n(char **cpy_environ, char *str, size_t n)
+{
+    size_t i;
+    size_t j;
+
+    i = 0;
+    while (cpy_environ[i])
+    {
+
+        if (cpy_environ[i][0] == str[0])
+        {
+            j = 0;
+            while (str[j] && cpy_environ[i][j] && cpy_environ[i][j] == str[j] && j < n)
+            {
+                j++;
+            }
+            if (j == n)
                 return (cpy_environ[i]);
         }
         i++;

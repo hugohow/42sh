@@ -37,21 +37,21 @@ void ft_setenv_args(char *prefix, char *line, char ***p_environ)
     }
 }
 
-int ft_setenv(int argc, char **argv, char ***p_environ)
+int ft_setenv(int argc, char **argv, char ***p_environ, int fds[])
 {
     if (argc > 3)
     {
-        ft_putstr_fd("setenv: Too many arguments.\n", 2);
+        ft_putstr_fd("setenv: Too many arguments.\n", fds[2]);
         return (0);
     }
     if (argc == 1)
     {
-        ft_print_env(*p_environ);
+        ft_print_env(*p_environ, fds);
         return (0);
     }
     if (ft_isdigit(argv[1][0]))
     {
-        ft_putstr_fd("not valid. must begin with a letter\n", 2);
+        ft_putstr_fd("not valid. must begin with a letter\n", fds[2]);
         return (-1);
     }
     if (argc == 2)

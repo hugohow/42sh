@@ -8,15 +8,15 @@ typedef struct s_token_env
     char *string;
 }               t_token_env;
 
-void ft_print_env(char **str)
+void ft_print_env(char **str, int fds[])
 {
     int i;
 
     i = 0;
     while (str[i])
     {
-        ft_putstr(str[i]);
-        ft_putstr("\n");
+        ft_putstr_fd(str[i], fds[1]);
+        ft_putstr_fd("\n", fds[1]);
         i++;
     }
 }
@@ -170,7 +170,7 @@ int has_i(t_token_env **token_ls)
     return (0);
 }
 
-static int execute_ls(t_token_env **token_ls, char ***p_environ, t_ht *table_bins)
+static int execute_ls(t_token_env **token_ls, char **cpy_environ, int fds[], t_ht *table_bins)
 {
     int i;
     int j;
@@ -181,7 +181,7 @@ static int execute_ls(t_token_env **token_ls, char ***p_environ, t_ht *table_bin
     if (has_i(token_ls))
         copy_env = clear_environ();
     else
-        copy_env = copy_environ(*p_environ);
+        copy_env = copy_environ(cpy_environ);
     while (token_ls[i])
     {
         if (ft_strcmp(token_ls[i]->type, "option") == 0)
@@ -200,14 +200,18 @@ static int execute_ls(t_token_env **token_ls, char ***p_environ, t_ht *table_bin
 	{
 		t_node **root;
 		int success;
+		int fds[3];
 
-		root = ft_parse_cmd(token_ls[i - 1]->string);
+		fds[0] = 0;
+		fds[1] = 1;
+		fds[2] = 2;
+		root = ft_parse_cmd(token_ls[i - 1]->string, cpy_environ);
 		success = 0;
-    	execute_tree(*root, table_bins, &copy_env,  0, 1, 2, &success);
+    	execute_tree(*root, table_bins, &copy_env, fds, &success);
 		return (success);
 	}
     else
-        ft_print_env(copy_env);
+        ft_print_env(copy_env, fds);
     return (0);
 }
 
@@ -223,7 +227,7 @@ void print_token_ls(t_token_env **token_ls)
     }
 }
 
-int ft_env(int argc, char **argv, char ***p_environ, t_ht *table_bins)
+int ft_env(int argc, char **argv, char ***p_environ, int fds[], t_ht *table_bins)
 {
     pid_t pid;
     int status;
@@ -231,9 +235,13 @@ int ft_env(int argc, char **argv, char ***p_environ, t_ht *table_bins)
     int waitstatus;
     int i;
 
+	if (fds)
+	{
+		
+	}
     if (argc == 1)
     {
-        ft_print_env(*p_environ);
+        ft_print_env(*p_environ, fds);
         return (0);
     }
     status = 0;
@@ -243,12 +251,12 @@ int ft_env(int argc, char **argv, char ***p_environ, t_ht *table_bins)
         token_ls = tokenize_argv(argc, argv);
         // permet de vérfier si il y a des anomalies
         print_token_ls(token_ls);
-        status = execute_ls(token_ls, p_environ, table_bins);
+        status = execute_ls(token_ls, *p_environ, fds, table_bins);
         exit(status);
     }
     else if (pid < 0)
     {
-        ft_printf("erreur pid");
+        ft_putstr_fd("erreur pid", fds[2]);
         exit(-1);
     }
     else

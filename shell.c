@@ -6,7 +6,7 @@
 /*   By: hhow-cho <hhow-cho@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/06/08 15:56:47 by hhow-cho          #+#    #+#             */
-/*   Updated: 2019/06/09 15:24:00 by hhow-cho         ###   ########.fr       */
+/*   Updated: 2019/06/15 17:00:40 by hhow-cho         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,13 +29,19 @@ int main(int argc, char **argv)
     success = 0;
     copy_env = copy_environ((char **)environ);
 	table_bins = ft_create_table_bins(copy_env);
+	int fds[3];
+
+	fds[0] = 0;
+	fds[1] = 1;
+	fds[2] = 2;
+
     if (argc > 1 || isatty(0) == 0)
     {
         fd = isatty(0) == 0 ? 0 : open(argv[1], O_RDONLY);
         while (ft_get_cmd(fd, &command) != 0)
         {
-            root = ft_parse_cmd(command);
-    		execute_tree(*root, table_bins, &copy_env,  0, 1, 2, &success);
+            root = ft_parse_cmd(command, copy_env);
+    		execute_tree(*root, table_bins, &copy_env,  fds, &success);
 	    }
     }
     else
@@ -44,8 +50,8 @@ int main(int argc, char **argv)
         {
 			ft_putstr_fd("$> ", 0);
             ft_get_cmd(0, &command);
-            root = ft_parse_cmd(command);
-    		execute_tree(*root, table_bins, &copy_env,  0, 1, 2, &success);
+            root = ft_parse_cmd(command, copy_env);
+    		execute_tree(*root, table_bins, &copy_env,  fds, &success);
         }
     }
     return (success);
