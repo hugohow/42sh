@@ -1,1 +1,1 @@
-/bin/bash: line 1: cd: symbolic_link1: Too many levels of symbolic links
+/usr/local/bin/bash: line 1: cd: symbolic_link1: Too many levels of symbolic links

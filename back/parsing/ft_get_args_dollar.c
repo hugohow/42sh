@@ -6,35 +6,30 @@
 /*   By: hhow-cho <hhow-cho@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/06/16 13:42:37 by hhow-cho          #+#    #+#             */
-/*   Updated: 2019/06/16 18:01:39 by hhow-cho         ###   ########.fr       */
+/*   Updated: 2019/06/16 20:59:48 by hhow-cho         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "shell.h"
 
 
-// static int	ft_is_special_param(char *str, int j)
-// {
-// 	char c;
-
-// 	c = str[j];
-// 	if (str[j + 1] && (str[j + 1] == '}' || str[j + 1] == ' '))
-// 	if (c == '*' || c == '@' || c == '#' || c == '?'|| c == '-' || c == '$' || c == '!' || c == '0'|| c == '_')
-// 		return (1);
-	
-// 	return (0);
-// }
-
-static void print_n(char *str, int i, int j)
+static int	ft_is_special_param(char c)
 {
-	ft_putstr("macro : ");
-	while (i < j)
-	{
-		ft_putchar(str[i]);
-		i++;
-	}
-	ft_putchar('\n');
+	if (c == '*' || c == '@' || c == '#' || c == '?'|| c == '-' || c == '$' || c == '!' || c == '0'|| c == '_')
+		return (1);
+	return (0);
 }
+
+// static void print_n(char *str, int i, int j)
+// {
+// 	ft_putstr("macro : ");
+// 	while (i < j)
+// 	{
+// 		ft_putchar(str[i]);
+// 		i++;
+// 	}
+// 	ft_putchar('\n');
+// }
 
 static int get_expansion_length(char *str)
 {
@@ -53,8 +48,18 @@ static int get_expansion_length(char *str)
 	}
 	else
 	{
-		while (str[ret] && str[ret] != '/' && ft_isalnum(str[ret]))
+		while (str[ret] && str[ret] != '/')
+		{
+			if (ft_is_special_param(str[ret]))
+			{
+				if (ret == 1)
+					ret++;
+				break;
+			}
+			else if (ft_isalnum(str[ret]) == 0)
+				break ;
 			ret++;
+		}
 	}
 	return (ret);
 }
@@ -63,16 +68,16 @@ static char *get_expansion(char *str, int i, int j, t_env **copy_env)
 {
 	char *line;
 
-	print_n(str, i, j);
+	// print_n(str, i, j);
 
 	i++;
 
 	if (str[i] == '{')
 	{
 		line = ft_env_get_line_n(copy_env, str + i + 1, j - 2 - i);
-		print_n(str + i + 1, 0, j - 2 - i);
+		// print_n(str + i + 1, 0, j - 2 - i);
 		if (line)
-			return (ft_strdup(line) + j - i + 1);
+			return (ft_strdup(line) + j - i -1);
 		else
 			return (ft_strdup(""));
 	}

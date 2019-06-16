@@ -6,7 +6,7 @@
 /*   By: hhow-cho <hhow-cho@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/06/09 00:32:39 by hhow-cho          #+#    #+#             */
-/*   Updated: 2019/06/16 15:32:04 by hhow-cho         ###   ########.fr       */
+/*   Updated: 2019/06/16 20:44:19 by hhow-cho         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -104,7 +104,7 @@ char *ft_env_get_line_n(t_env **cpy_environ, char *str, size_t n);
 int ft_env_delete_line(char *key, t_env **cpy_environ);
 int ft_env_change_line(char *key, char *line, t_env **cpy_environ);
 char **ft_env_raw(t_env **cpy_environ);
-t_env **ft_env_copy_raw(char **str);
+t_env **ft_env_copy_raw(char **str, char **argv);
 char **ft_env_paths(t_env **copy_env);
 void ft_env_add(char *prefix, char *line, t_env ***p_environ);
 
