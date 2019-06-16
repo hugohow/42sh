@@ -6,7 +6,7 @@
 /*   By: hhow-cho <hhow-cho@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/06/13 19:57:57 by hhow-cho          #+#    #+#             */
-/*   Updated: 2019/06/16 15:04:19 by hhow-cho         ###   ########.fr       */
+/*   Updated: 2019/06/17 01:36:52 by hhow-cho         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -70,14 +70,76 @@ int go_to_root(char *old_pwd_line, t_env ***p_environ)
     return (0);
 }
 
-char *get_absolute_path(char *element)
+char *ft_path_trim(char *path)
+{
+	int i;
+	int j;
+	char **list;
+	char *new_path;
+
+	list = ft_strsplit(path, '/');
+	new_path = ft_memalloc((sizeof(char) * (ft_strlen(path) + 1)));
+	i = 0;
+	while (list[i])
+	{
+		if (ft_strcmp(list[i], ".") == 0)
+		{
+			j = i + 1;
+			while (list[j])
+			{
+				list[j - 1] = list[j];
+				j++;
+			}
+			list[j - 1] = 0;
+		}
+		else if (ft_strcmp(list[i], "..") == 0)
+		{
+			if (i > 0)
+			{
+				j = i + 1;
+				while (list[j])
+				{
+					list[j - 2] = list[j];
+					j++;
+				}
+				list[j - 2] = 0;
+				i--;
+			}
+			else
+			{
+				j = i + 1;
+				while (list[j])
+				{
+					list[j - 1] = list[j];
+					j++;
+				}
+				list[j - 1] = 0;
+			}
+		}
+		else
+			i++;
+	}
+	i = 0;
+	ft_strcat(new_path, "/");
+	while (list[i])
+	{
+		ft_strcat(new_path, list[i]);
+		if (list[i + 1] != 0)
+			ft_strcat(new_path, "/");
+		i++;
+	}
+	return (new_path);
+}
+
+char *get_absolute_path(t_env ***p_environ, char *element)
 {
     char *path;
 
     if (element[0] && element[0] == '/')
         return (element);
-    path = ft_strjoin(get_path(BUF_SIZE), "/");
+    path = ft_strjoin(ft_env_get_line(*p_environ, "PWD") + 4, "/");
     path = ft_strjoin(path, element);
+	path = ft_path_trim(path);
     return (path);
 }
 
@@ -127,7 +189,7 @@ int ft_change_dir(char *element, t_env ***p_environ, long long flag)
         if (ft_strcmp(element, "-") == 0)
             abs_path = ft_env_get_line(*p_environ, "OLDPWD") + 7;
         else
-            abs_path = get_absolute_path(element);
+            abs_path = get_absolute_path(p_environ, element);
     }
     else
     {
@@ -139,9 +201,13 @@ int ft_change_dir(char *element, t_env ***p_environ, long long flag)
         return (-1);
 
     // change env et return
-    if (is_symlink(abs_path) == 1 && (flag & FLAG_P) == 0)
-        return (ft_change_env(abs_path, old_pwd_line, p_environ));
-    return (ft_change_env(get_path(BUF_SIZE), old_pwd_line, p_environ));
+	if (flag)
+	{
+		
+	}
+    if (is_symlink(abs_path) == 1 && flag & FLAG_P)
+        return (ft_change_env(get_path(BUF_SIZE), old_pwd_line, p_environ));
+    return (ft_change_env(abs_path, old_pwd_line, p_environ));
 }
 
 int ft_cd(int argc, char **argv, t_env **cpy_environ, int fds[])
