@@ -6,13 +6,13 @@
 /*   By: hhow-cho <hhow-cho@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/06/09 01:41:29 by hhow-cho          #+#    #+#             */
-/*   Updated: 2019/06/14 15:30:18 by hhow-cho         ###   ########.fr       */
+/*   Updated: 2019/06/16 14:27:57 by hhow-cho         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "shell.h"
 
-void    execute_tree(t_node *node, t_ht *table_bins, char ***p_environ, int fds[], int *p_success)
+void    execute_tree(t_node *node, t_ht *table_bins, t_env ***p_environ, int fds[], int *p_success)
 {
 	if (node == NULL)
 		return ;

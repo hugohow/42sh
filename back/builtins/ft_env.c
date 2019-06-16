@@ -8,24 +8,24 @@ typedef struct s_token_env
     char *string;
 }               t_token_env;
 
-void ft_print_env(char **str, int fds[])
+void ft_print_env(t_env **cpy_env, int fds[])
 {
     int i;
 
     i = 0;
-    while (str[i])
+    while (cpy_env[i])
     {
-        ft_putstr_fd(str[i], fds[1]);
+        ft_putstr_fd(cpy_env[i]->line, fds[1]);
         ft_putstr_fd("\n", fds[1]);
         i++;
     }
 }
 
-char **clear_environ(void)
+t_env **clear_environ(void)
 {
-    char **output;
+    t_env **output;
 
-    output = malloc(sizeof(char *));
+    output = malloc(sizeof(t_env *));
     output[0] = 0;
     return (output);
 }
@@ -170,11 +170,11 @@ int has_i(t_token_env **token_ls)
     return (0);
 }
 
-static int execute_ls(t_token_env **token_ls, char **cpy_environ, int fds[], t_ht *table_bins)
+static int execute_ls(t_token_env **token_ls, t_env **cpy_environ, int fds[], t_ht *table_bins)
 {
     int i;
     int j;
-    char **copy_env;
+    t_env **copy_env;
     char *tmp;
 
     i = 0;
@@ -227,7 +227,7 @@ void print_token_ls(t_token_env **token_ls)
     }
 }
 
-int ft_env(int argc, char **argv, char ***p_environ, int fds[], t_ht *table_bins)
+int ft_env(int argc, char **argv, t_env ***p_environ, int fds[], t_ht *table_bins)
 {
     pid_t pid;
     int status;

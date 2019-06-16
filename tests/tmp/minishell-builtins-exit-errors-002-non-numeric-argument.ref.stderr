@@ -1,1 +1,1 @@
-/usr/local/bin/bash: line 1: exit: abc: numeric argument required
+/bin/bash: line 1: exit: abc: numeric argument required

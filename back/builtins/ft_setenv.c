@@ -1,6 +1,6 @@
 #include "shell.h"
 
-static int ft_list_size(char **list)
+static int ft_list_size(t_env **list)
 {
     int size;
 
@@ -10,9 +10,9 @@ static int ft_list_size(char **list)
     return (size);
 }
 
-void ft_setenv_args(char *prefix, char *line, char ***p_environ)
+void ft_setenv_args(char *prefix, char *line, t_env ***p_environ)
 {
-    char **new_environ;
+    t_env **new_environ;
     char *env_line;
     int i;
 
@@ -24,20 +24,23 @@ void ft_setenv_args(char *prefix, char *line, char ***p_environ)
         env_line = ft_strjoin(env_line, line);
     if (ft_change_line_env(prefix, env_line, *p_environ) == 0)
     {
-        new_environ = (char **)malloc((ft_list_size(*p_environ) + 2) * sizeof(char *));
+        new_environ = (t_env **)malloc((ft_list_size(*p_environ) + 2) * sizeof(t_env *));
         i = 0;
         while (i < ft_list_size(*p_environ))
         {
             new_environ[i] = (*p_environ)[i];
             i++;
         }
-        new_environ[i++] = env_line;
+        new_environ[i] = ft_memalloc(sizeof(t_env));
+        new_environ[i]->line = env_line;
+        new_environ[i]->special = 0;
+        i++;
         new_environ[i] = 0;
         *p_environ = new_environ;
     }
 }
 
-int ft_setenv(int argc, char **argv, char ***p_environ, int fds[])
+int ft_setenv(int argc, char **argv, t_env ***p_environ, int fds[])
 {
     if (argc > 3)
     {

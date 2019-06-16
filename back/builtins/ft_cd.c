@@ -6,7 +6,7 @@
 /*   By: hhow-cho <hhow-cho@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/06/13 19:57:57 by hhow-cho          #+#    #+#             */
-/*   Updated: 2019/06/15 17:15:39 by hhow-cho         ###   ########.fr       */
+/*   Updated: 2019/06/16 14:19:06 by hhow-cho         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,6 +14,7 @@
 #define BUF_SIZE 20
 # define FLAG_P (2 << 1)
 # define FLAG_L (2 << 2)
+
 int is_file(char *path)
 {
     struct stat fileStat;
@@ -48,7 +49,7 @@ char *get_path(size_t size)
     return (path);
 }
 
-static int ft_change_env(char *new_pwd_line, char *old_pwd_line, char ***p_environ)
+static int ft_change_env(char *new_pwd_line, char *old_pwd_line, t_env ***p_environ)
 {
 	// printf("new_pwd_line %s \n", new_pwd_line);
 	// printf("old_pwd_line %s \n\n", old_pwd_line);
@@ -59,7 +60,7 @@ static int ft_change_env(char *new_pwd_line, char *old_pwd_line, char ***p_envir
     return (0);
 }
 
-int go_to_root(char *old_pwd_line, char ***p_environ)
+int go_to_root(char *old_pwd_line, t_env ***p_environ)
 {
     while (ft_strcmp(get_path(BUF_SIZE), "/") != 0)
         chdir("..");
@@ -109,7 +110,7 @@ int ft_go_to(char *abs_path)
     return (chdir(abs_path));
 }
 
-int ft_change_dir(char *element, char ***p_environ, long long flag)
+int ft_change_dir(char *element, t_env ***p_environ, long long flag)
 {
     char *abs_path;
     char *old_pwd_line;
@@ -143,7 +144,7 @@ int ft_change_dir(char *element, char ***p_environ, long long flag)
     return (ft_change_env(get_path(BUF_SIZE), old_pwd_line, p_environ));
 }
 
-int ft_cd(int argc, char **argv, char **cpy_environ, int fds[])
+int ft_cd(int argc, char **argv, t_env **cpy_environ, int fds[])
 {
     char *element;
 	long long flag;

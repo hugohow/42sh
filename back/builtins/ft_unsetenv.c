@@ -6,7 +6,7 @@
 /*   By: hhow-cho <hhow-cho@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/06/14 14:49:18 by hhow-cho          #+#    #+#             */
-/*   Updated: 2019/06/14 17:46:43 by hhow-cho         ###   ########.fr       */
+/*   Updated: 2019/06/16 14:00:08 by hhow-cho         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 #include "shell.h"
 
 
-int ft_unsetenv(int argc, char **argv, char **cpy_environ, int fds[])
+int ft_unsetenv(int argc, char **argv, t_env **cpy_environ, int fds[])
 {
     int i;
 

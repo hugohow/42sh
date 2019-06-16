@@ -1,11 +1,11 @@
 ------------------------------
-PWD=/Users/hugohow-choong/42/42sh/tests/tmp
+PWD=/nfs/2018/h/hhow-cho/42/42sh/tests/tmp
 SHLVL=1
 _=./display_env
 ------------------------------
 TOTAL ENVIRONMENT VARIABLES: 3
 ------------------------------
-PWD=/Users/hugohow-choong/42/42sh/tests/tmp
+PWD=/nfs/2018/h/hhow-cho/42/42sh/tests/tmp
 SHLVL=1
 _=./display_env
 ------------------------------

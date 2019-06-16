@@ -6,7 +6,7 @@
 /*   By: hhow-cho <hhow-cho@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/06/09 01:40:14 by hhow-cho          #+#    #+#             */
-/*   Updated: 2019/06/15 20:24:21 by hhow-cho         ###   ########.fr       */
+/*   Updated: 2019/06/16 14:11:23 by hhow-cho         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,7 +39,7 @@ int is_path(char *cmd)
     return (0);
 }
 
-int ft_exe_bin(t_node *node, t_ht *table_bins, char ***p_environ, int fds[])
+int ft_exe_bin(t_node *node, t_ht *table_bins, t_env ***p_environ, int fds[])
 {
     int result;
     char *command;

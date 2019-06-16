@@ -2,7 +2,7 @@
 
 
 
-int ft_echo(int argc, char **argv, char **cpy_environ, int fds[])
+int ft_echo(int argc, char **argv, t_env **cpy_environ, int fds[])
 {
     int i;
     int flag_n;

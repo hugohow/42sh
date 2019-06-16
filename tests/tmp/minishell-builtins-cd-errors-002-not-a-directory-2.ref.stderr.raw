@@ -1,1 +1,1 @@
-/usr/local/bin/bash: line 1: cd: not_a_directory: Not a directory
+/bin/bash: line 1: cd: not_a_directory: Not a directory

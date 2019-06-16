@@ -6,13 +6,13 @@
 /*   By: hhow-cho <hhow-cho@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/06/09 15:24:14 by hhow-cho          #+#    #+#             */
-/*   Updated: 2019/06/09 15:24:20 by hhow-cho         ###   ########.fr       */
+/*   Updated: 2019/06/16 14:05:56 by hhow-cho         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "shell.h"
 
-t_ht *ft_create_table_bins(char **copy_env)
+t_ht *ft_create_table_bins(t_env **copy_env)
 {
 	char **paths;
     char *new_path;

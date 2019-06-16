@@ -6,13 +6,13 @@
 /*   By: hhow-cho <hhow-cho@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/06/09 01:47:49 by hhow-cho          #+#    #+#             */
-/*   Updated: 2019/06/15 17:09:02 by hhow-cho         ###   ########.fr       */
+/*   Updated: 2019/06/16 14:15:02 by hhow-cho         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "shell.h"
 
-t_node *create_node(long type, char *cmd, char **copy_env)
+t_node *create_node(long type, char *cmd, t_env **copy_env)
 {
     t_node *node;
 
@@ -38,7 +38,7 @@ t_node *create_node(long type, char *cmd, char **copy_env)
     return (node);
 }
 
-t_node **get_child(char *cmd, char **copy_env)
+t_node **get_child(char *cmd, t_env **copy_env)
 {
     t_node **child;
 
@@ -49,7 +49,7 @@ t_node **get_child(char *cmd, char **copy_env)
 
 
 
-t_node **ft_parse_cmd(char *cmd, char **copy_env)
+t_node **ft_parse_cmd(char *cmd, t_env **copy_env)
 {
     t_node **root;
 
