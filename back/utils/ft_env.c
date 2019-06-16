@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   ft_env.c                                           :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: hhow-cho <hhow-cho@student.42.fr>          +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2019/06/15 23:23:34 by hhow-cho          #+#    #+#             */
+/*   Updated: 2019/06/15 23:27:23 by hhow-cho         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "shell.h"
 
 char *ft_get_line_env(char **cpy_environ, char *str)
@@ -9,14 +21,14 @@ char *ft_get_line_env(char **cpy_environ, char *str)
     while (cpy_environ[i])
     {
 
-        if (cpy_environ[i][0] == str[0])
+        if (ft_toupper(cpy_environ[i][0]) == ft_toupper(str[0]))
         {
             j = 0;
-            while (str[j] && cpy_environ[i][j] && cpy_environ[i][j] == str[j])
+            while (str[j] && cpy_environ[i][j] && ft_toupper(cpy_environ[i][j]) == ft_toupper(str[j]))
             {
                 j++;
             }
-            if (j == ft_strlen(str))
+            if (j == ft_strlen(str) && cpy_environ[i][j] == '=')
                 return (cpy_environ[i]);
         }
         i++;
@@ -32,15 +44,14 @@ char *ft_get_line_env_n(char **cpy_environ, char *str, size_t n)
     i = 0;
     while (cpy_environ[i])
     {
-
-        if (cpy_environ[i][0] == str[0])
+        if (ft_toupper(cpy_environ[i][0]) == ft_toupper(str[0]))
         {
             j = 0;
-            while (str[j] && cpy_environ[i][j] && cpy_environ[i][j] == str[j] && j < n)
+            while (str[j] && cpy_environ[i][j] && ft_toupper(cpy_environ[i][j]) == ft_toupper(str[j]))
             {
                 j++;
             }
-            if (j == n)
+            if (j == n && cpy_environ[i][j] == '=')
                 return (cpy_environ[i]);
         }
         i++;
