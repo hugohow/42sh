@@ -7,3 +7,4 @@
 
 ## 42sh
 
+Implementation of https://www.gnu.org/software/bash/manual/bash.pdf
