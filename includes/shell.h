@@ -6,7 +6,7 @@
 /*   By: hhow-cho <hhow-cho@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/06/09 00:32:39 by hhow-cho          #+#    #+#             */
-/*   Updated: 2019/06/16 15:14:25 by hhow-cho         ###   ########.fr       */
+/*   Updated: 2019/06/16 15:32:04 by hhow-cho         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -106,13 +106,15 @@ int ft_env_change_line(char *key, char *line, t_env **cpy_environ);
 char **ft_env_raw(t_env **cpy_environ);
 t_env **ft_env_copy_raw(char **str);
 char **ft_env_paths(t_env **copy_env);
+void ft_env_add(char *prefix, char *line, t_env ***p_environ);
+
 
 void    print_normal(int fd);
 void    ft_setenv_args(char *prefix, char *line, t_env ***p_environ);
 int     ft_echo(int argc, char **argv, t_env **cpy_environ, int fds[]);
 int     ft_cd(int argc, char **argv, t_env **cpy_environ, int fds[]);
-int     ft_setenv(int argc, char **argv, t_env ***p_environ, int fds[]);
-int ft_env(int argc, char **argv, t_env ***p_environ, int fds[], t_ht *table_bins);
+int ft_setenv(int argc, char **argv, t_env ***p_environ, int fds[]);
+int ft_env(int argc, char **argv, t_env **cpy_environ, int fds[], t_ht *table_bins);
 int ft_unsetenv(int argc, char **argv, t_env **cpy_environ, int fds[]);
 void ft_print_env(t_env **str, int fds[]);
 void    ft_exit_terminal(void);

@@ -1,1 +1,1 @@
-./lib/main.sh: line 102:  5442 Segmentation fault: 11  /nfs/2018/h/hhow-cho/42/42sh/minishell
+./lib/main.sh: line 102:  6857 Segmentation fault: 11  /nfs/2018/h/hhow-cho/42/42sh/minishell

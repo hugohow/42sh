@@ -18,7 +18,7 @@ HOMEBREW_CACHE=/tmp/hhow-cho/Homebrew/Caches
 MFLAGS=
 LSCOLORS=Gxfxcxdxbxegedabagacad
 PATH=/nfs/2018/h/hhow-cho/.brew/bin:/usr/bin:/bin:/usr/sbin:/sbin:/usr/local/bin:/Applications/VMware Fusion.app/Contents/Public/:/Library/Frameworks/Mono.framework/Versions/Current/Commands:/usr/local/munki
-PWD=/nfs/2018/h/hhow-cho/42/42sh/tests/tmp/TOKEN201906161428/TOKEN201906161428
+PWD=/nfs/2018/h/hhow-cho/42/42sh/tests/tmp/TOKEN201906161803/TOKEN201906161803
 LANG=en_US.UTF-8
 ITERM_PROFILE=Default
 XPC_FLAGS=0x0
@@ -31,7 +31,7 @@ LOGNAME=hhow-cho
 LESS=-R
 LC_CTYPE=en_US.UTF-8
 COLORTERM=truecolor
-OLDPWD=/nfs/2018/h/hhow-cho/42/42sh/tests/tmp/TOKEN201906161428
+OLDPWD=/nfs/2018/h/hhow-cho/42/42sh/tests/tmp/TOKEN201906161803
 _=/nfs/2018/h/hhow-cho/42/42sh/minishell
 ------------------------------
 TOTAL ENVIRONMENT VARIABLES: 34
