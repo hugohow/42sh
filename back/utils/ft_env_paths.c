@@ -1,34 +1,30 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_unsetenv.c                                      :+:      :+:    :+:   */
+/*   ft_env_paths.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: hhow-cho <hhow-cho@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2019/06/14 14:49:18 by hhow-cho          #+#    #+#             */
-/*   Updated: 2019/06/16 15:03:56 by hhow-cho         ###   ########.fr       */
+/*   Created: 2019/06/16 15:14:14 by hhow-cho          #+#    #+#             */
+/*   Updated: 2019/06/16 15:14:15 by hhow-cho         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
+
 
 
 #include "shell.h"
 
 
-int ft_unsetenv(int argc, char **argv, t_env **cpy_environ, int fds[])
+char **ft_env_paths(t_env **copy_env)
 {
-    int i;
+    char *path_line;
+    char **paths;
 
-    if (argc == 1)
-    {
-        ft_putstr_fd("unsetenv: Too few arguments.\n", fds[2]);
-        return (0);
-    }
-    i = 1;
-    while (i < argc)
-    {
-        ft_env_delete_line(argv[i], cpy_environ);
-        i++;
-    }    
-
-    return (0);
+    path_line = ft_env_get_line(copy_env, "PATH");
+    if (path_line)
+        path_line = ft_strjoin(ft_env_get_line(copy_env, "PATH"), ":.") + 5;
+    else
+        path_line = "/usr/sbin:/usr/bin:/sbin:/bin:.";
+    paths = ft_strsplit(path_line, ':');
+    return (paths);
 }

@@ -6,7 +6,7 @@
 /*   By: hhow-cho <hhow-cho@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/06/16 13:42:37 by hhow-cho          #+#    #+#             */
-/*   Updated: 2019/06/16 13:55:53 by hhow-cho         ###   ########.fr       */
+/*   Updated: 2019/06/16 14:59:13 by hhow-cho         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,7 +46,7 @@ char *ft_get_args_dollar(char *str, t_env **copy_env)
 					// str[i - 1] = ' ';
 					char *line;
 
-					line = ft_get_line_env_n(copy_env, str + i, len);
+					line = ft_env_get_line_n(copy_env, str + i, len);
 					if (line)
 					{
 						char *tmp;

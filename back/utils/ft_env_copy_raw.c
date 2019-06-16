@@ -1,34 +1,35 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_unsetenv.c                                      :+:      :+:    :+:   */
+/*   ft_env_copy_raw.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: hhow-cho <hhow-cho@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2019/06/14 14:49:18 by hhow-cho          #+#    #+#             */
-/*   Updated: 2019/06/16 15:03:56 by hhow-cho         ###   ########.fr       */
+/*   Created: 2019/06/16 15:12:28 by hhow-cho          #+#    #+#             */
+/*   Updated: 2019/06/16 15:12:31 by hhow-cho         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 
 #include "shell.h"
 
-
-int ft_unsetenv(int argc, char **argv, t_env **cpy_environ, int fds[])
+t_env **ft_env_copy_raw(char **str)
 {
+    t_env **copy;
     int i;
 
-    if (argc == 1)
-    {
-        ft_putstr_fd("unsetenv: Too few arguments.\n", fds[2]);
-        return (0);
-    }
-    i = 1;
-    while (i < argc)
-    {
-        ft_env_delete_line(argv[i], cpy_environ);
+    i = 0;
+    while (str[i])
         i++;
-    }    
-
-    return (0);
+    copy = (t_env **)ft_memalloc((i + 1) * sizeof(t_env *));
+    i = 0;
+    while (str[i])
+    {
+        copy[i] = ft_memalloc(sizeof(t_env));
+        copy[i]->line = ft_strdup(str[i]);
+        copy[i]->special = 0;
+        i++;
+    }
+    copy[i] = 0;
+    return (copy);
 }

@@ -1,18 +1,18 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_create_table_bins.c                             :+:      :+:    :+:   */
+/*   ft_bins_table_create.c                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: hhow-cho <hhow-cho@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/06/09 15:24:14 by hhow-cho          #+#    #+#             */
-/*   Updated: 2019/06/16 14:05:56 by hhow-cho         ###   ########.fr       */
+/*   Updated: 2019/06/16 15:14:55 by hhow-cho         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "shell.h"
 
-t_ht *ft_create_table_bins(t_env **copy_env)
+t_ht *ft_bins_table_create(t_env **copy_env)
 {
 	char **paths;
     char *new_path;
@@ -21,7 +21,7 @@ t_ht *ft_create_table_bins(t_env **copy_env)
 	t_ht *table_bins;
 
 	table_bins = ft_ht_create();
-	paths = get_paths(copy_env);
+	paths = ft_env_paths(copy_env);
 	i = 0;
     while (paths[i])
     {

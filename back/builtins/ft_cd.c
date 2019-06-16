@@ -6,7 +6,7 @@
 /*   By: hhow-cho <hhow-cho@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/06/13 19:57:57 by hhow-cho          #+#    #+#             */
-/*   Updated: 2019/06/16 14:19:06 by hhow-cho         ###   ########.fr       */
+/*   Updated: 2019/06/16 15:04:19 by hhow-cho         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,9 +53,9 @@ static int ft_change_env(char *new_pwd_line, char *old_pwd_line, t_env ***p_envi
 {
 	// printf("new_pwd_line %s \n", new_pwd_line);
 	// printf("old_pwd_line %s \n\n", old_pwd_line);
-    if (ft_change_line_env("OLDPWD", old_pwd_line, *p_environ) == 0)
+    if (ft_env_change_line("OLDPWD", old_pwd_line, *p_environ) == 0)
         return (-1);
-    if (ft_change_line_env("PWD", ft_strjoin("PWD=", new_pwd_line), *p_environ) == 0)
+    if (ft_env_change_line("PWD", ft_strjoin("PWD=", new_pwd_line), *p_environ) == 0)
         return (-1);
     return (0);
 }
@@ -115,23 +115,23 @@ int ft_change_dir(char *element, t_env ***p_environ, long long flag)
     char *abs_path;
     char *old_pwd_line;
 
-    old_pwd_line = ft_strjoin("OLDPWD=", ft_get_line_env(*p_environ, "PWD") + 4);
+    old_pwd_line = ft_strjoin("OLDPWD=", ft_env_get_line(*p_environ, "PWD") + 4);
 
 	// printf("ancien pwd, get_path %s \n", get_path(BUF_SIZE));
-	// printf("ancien pwd, PWD %s \n\n", ft_get_line_env("PWD", p_environ) + 4);
+	// printf("ancien pwd, PWD %s \n\n", ft_env_get_line("PWD", p_environ) + 4);
     // définition du chemin absolu
     if (element)
     {
         if (ft_strcmp(element, "/") == 0 || ft_strcmp(element, "/.") == 0)
             return (go_to_root(old_pwd_line, p_environ));
         if (ft_strcmp(element, "-") == 0)
-            abs_path = ft_get_line_env(*p_environ, "OLDPWD") + 7;
+            abs_path = ft_env_get_line(*p_environ, "OLDPWD") + 7;
         else
             abs_path = get_absolute_path(element);
     }
     else
     {
-        abs_path = ft_get_line_env(*p_environ, "HOME") + 5;
+        abs_path = ft_env_get_line(*p_environ, "HOME") + 5;
     }
 
 

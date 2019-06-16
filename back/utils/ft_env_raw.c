@@ -1,34 +1,32 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_unsetenv.c                                      :+:      :+:    :+:   */
+/*   ft_env_raw.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: hhow-cho <hhow-cho@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2019/06/14 14:49:18 by hhow-cho          #+#    #+#             */
-/*   Updated: 2019/06/16 15:03:56 by hhow-cho         ###   ########.fr       */
+/*   Created: 2019/06/15 23:23:34 by hhow-cho          #+#    #+#             */
+/*   Updated: 2019/06/16 15:10:36 by hhow-cho         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-
 #include "shell.h"
 
-
-int ft_unsetenv(int argc, char **argv, t_env **cpy_environ, int fds[])
+char **ft_env_raw(t_env **cpy_environ)
 {
-    int i;
+    char **tab;
+    int len;
 
-    if (argc == 1)
+    len = 0;
+    while (cpy_environ[len])
+        len++;
+    tab = ft_memalloc((len + 1) * sizeof(char *));
+    len = 0;
+    while (cpy_environ[len])
     {
-        ft_putstr_fd("unsetenv: Too few arguments.\n", fds[2]);
-        return (0);
+        tab[len] = cpy_environ[len]->line;
+        len++;
     }
-    i = 1;
-    while (i < argc)
-    {
-        ft_env_delete_line(argv[i], cpy_environ);
-        i++;
-    }    
-
-    return (0);
+    tab[len] = 0;
+    return (tab);
 }

@@ -15,8 +15,11 @@ void ft_print_env(t_env **cpy_env, int fds[])
     i = 0;
     while (cpy_env[i])
     {
-        ft_putstr_fd(cpy_env[i]->line, fds[1]);
-        ft_putstr_fd("\n", fds[1]);
+        if (cpy_env[i]->special == 0)
+        {
+            ft_putstr_fd(cpy_env[i]->line, fds[1]);
+            ft_putstr_fd("\n", fds[1]);
+        }
         i++;
     }
 }
@@ -181,7 +184,7 @@ static int execute_ls(t_token_env **token_ls, t_env **cpy_environ, int fds[], t_
     if (has_i(token_ls))
         copy_env = clear_environ();
     else
-        copy_env = copy_environ(cpy_environ);
+        copy_env = ft_env_copy(cpy_environ);
     while (token_ls[i])
     {
         if (ft_strcmp(token_ls[i]->type, "option") == 0)

@@ -22,7 +22,7 @@ void ft_setenv_args(char *prefix, char *line, t_env ***p_environ)
         env_line = ft_strjoin(env_line, "");
     else
         env_line = ft_strjoin(env_line, line);
-    if (ft_change_line_env(prefix, env_line, *p_environ) == 0)
+    if (ft_env_change_line(prefix, env_line, *p_environ) == 0)
     {
         new_environ = (t_env **)malloc((ft_list_size(*p_environ) + 2) * sizeof(t_env *));
         i = 0;
