@@ -6,22 +6,16 @@
 /*   By: hhow-cho <hhow-cho@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/06/08 15:56:47 by hhow-cho          #+#    #+#             */
-/*   Updated: 2019/06/17 23:50:24 by hhow-cho         ###   ########.fr       */
+/*   Updated: 2019/06/18 00:08:46 by hhow-cho         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "shell.h"
 
-int interrupt = 0;
-
-void signal_callback_handler(int nb)
+void signal_callback_handler(int signum)
 {
-	if (nb)
-	{
-		
-	}
-	interrupt = 1;
-	ft_putstr_fd("\n$> ", 0);
+	if (signum == SIGINT)
+		ft_putstr_fd("\n$> ", 0);
 }
 
 
