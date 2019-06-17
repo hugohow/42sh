@@ -1,8 +1,8 @@
-echo $OLDPWD $PWD $PATH $PATH/abc bb$PATH/abc
+echo $OLDPWD $PATH $PATH/abc bb$PATH/abc
 cd /
-echo $OLDPWD $PWD $PATH $PATH/abc bb$PATH/abc
-echo ${OLDPWD} ${PWD} ${PATH} ${PATH}/{abc} bb${PATH}
-echo ${OLDPWD} ${PWD}
+echo $OLDPWD $PATH $PATH/abc bb$PATH/abc
+echo ${OLDPWD} ${PATH} ${PATH}/{abc} bb${PATH}
+echo ${OLDPWD}
 echo $PP*A $PP_A*BB
 echo $PP*A $PP_A
 echo $PP*A $PP_A
