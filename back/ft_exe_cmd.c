@@ -6,7 +6,7 @@
 /*   By: hhow-cho <hhow-cho@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/06/09 01:41:29 by hhow-cho          #+#    #+#             */
-/*   Updated: 2019/06/16 14:27:57 by hhow-cho         ###   ########.fr       */
+/*   Updated: 2019/06/17 18:10:40 by hhow-cho         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,10 @@ void    execute_tree(t_node *node, t_ht *table_bins, t_env ***p_environ, int fds
         if (is_exit(node->cmd) == 1)
             ft_exit(node->cmd, *p_success);
         else
-            *p_success = ft_exe_bin(node, table_bins, p_environ, fds);
+		{
+			*p_success = ft_exe_bin(node, table_bins, p_environ, fds);
+			ft_env_change_line("?", ft_strjoin("?=", ft_itoa(*p_success)), *p_environ);
+		}
     }
     if (node->child)
     {

@@ -1,2 +1,1 @@
-cd ./TOKEN201906171345_SUBDIRECTORY
-/Users/hugohow-choong/42/42sh/tests/tmp/write_on_stdout ~-TOKEN201906171345_OTHERDIRECTORY
+./display_env

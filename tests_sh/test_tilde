@@ -1,0 +1,16 @@
+echo ~/$PWD
+cd /
+echo ~/$PWD
+echo ALLEZ=~/$PWD
+echo ALLEZ:~/$PWD
+echo ~+/$PWD
+cd /
+echo ~+/$PWD
+echo ALLEZ=~+/$PWD
+echo ALLEZ:~+/$PWD
+echo ~-/$PWD
+cd /
+echo ~-/$PWD
+echo ALLEZ=~-/$PWD
+echo ALLEZ:~-/$PWD
+exit

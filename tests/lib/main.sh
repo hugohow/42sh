@@ -245,19 +245,23 @@ run_main()
 
           GLOBAL_LOG="$(printf "  %s\n\n  STDIN:\n${C_GREY}%s${C_CLEAR}" "${GLOBAL_LOG}" "$(awk '{printf "  %02s: %s\n", NR, $0}' "${GLOBAL_TMP_DIRECTORY}/stdin")")"
 
-          if [ "${LOG_CURRENT_TEST_STDOUT}" != "" ]
-          then
-            GLOBAL_LOG="$(printf "%s\n\n  STDOUT:\n%s\n${C_GREY}%s${C_CLEAR}" "${GLOBAL_LOG}" "${LOG_CURRENT_TEST_STDOUT}" "$(awk '{printf "  %02s: %s\n", NR, $0} END {if (NR==0) { print "  (no output)" }}' "${RESPONSE_STDOUT}")")"
-          else
-            GLOBAL_LOG="$(printf "%s\n\n  STDOUT:\n${C_GREY}%s${C_CLEAR}" "${GLOBAL_LOG}" "$(awk '{printf "  %02s: %s\n", NR, $0} END {if (NR==0) { print "  (no output)" }}' "${RESPONSE_STDOUT}")")"
-          fi
 
-          if [ "${LOG_CURRENT_TEST_STDERR}" != "" ]
-          then
-            GLOBAL_LOG="$(printf "%s\n\n  STDERR:\n%s\n${C_GREY}%s${C_CLEAR}" "${GLOBAL_LOG}" "${LOG_CURRENT_TEST_STDERR}" "$(awk '{printf "  %02s: %s\n", NR, $0} END {if (NR==0) { print "  (no output)" }}' "${RESPONSE_STDERR}")")"
-          else
-            GLOBAL_LOG="$(printf "%s\n\n  STDERR:\n${C_GREY}%s${C_CLEAR}" "${GLOBAL_LOG}" "$(awk '{printf "  %02s: %s\n", NR, $0} END {if (NR==0) { print "  (no output)" }}' "${RESPONSE_STDERR}")")"
-          fi
+		if [ "${TEST_STATUS}" != "0" ]
+		then
+			if [ "${LOG_CURRENT_TEST_STDOUT}" != "" ]
+			then
+				GLOBAL_LOG="$(printf "%s\n\n  STDOUT:\n%s\n${C_GREY}%s${C_CLEAR}" "${GLOBAL_LOG}" "${LOG_CURRENT_TEST_STDOUT}" "$(awk '{printf "  %02s: %s\n", NR, $0} END {if (NR==0) { print "  (no output)" }}' "${RESPONSE_STDOUT}")")"
+			else
+				GLOBAL_LOG="$(printf "%s\n\n  STDOUT:\n${C_GREY}%s${C_CLEAR}" "${GLOBAL_LOG}" "$(awk '{printf "  %02s: %s\n", NR, $0} END {if (NR==0) { print "  (no output)" }}' "${RESPONSE_STDOUT}")")"
+			fi
+
+			if [ "${LOG_CURRENT_TEST_STDERR}" != "" ]
+			then
+				GLOBAL_LOG="$(printf "%s\n\n  STDERR:\n%s\n${C_GREY}%s${C_CLEAR}" "${GLOBAL_LOG}" "${LOG_CURRENT_TEST_STDERR}" "$(awk '{printf "  %02s: %s\n", NR, $0} END {if (NR==0) { print "  (no output)" }}' "${RESPONSE_STDERR}")")"
+			else
+				GLOBAL_LOG="$(printf "%s\n\n  STDERR:\n${C_GREY}%s${C_CLEAR}" "${GLOBAL_LOG}" "$(awk '{printf "  %02s: %s\n", NR, $0} END {if (NR==0) { print "  (no output)" }}' "${RESPONSE_STDERR}")")"
+			fi
+		fi
 
           [ "${LOG_CURRENT_TEST_MISC}" != "" ] && GLOBAL_LOG="$(printf "%s\n\n  MISC:\n%s" "${GLOBAL_LOG}" "${LOG_CURRENT_TEST_MISC}")"
 

@@ -6,7 +6,7 @@
 /*   By: hhow-cho <hhow-cho@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/06/16 13:42:37 by hhow-cho          #+#    #+#             */
-/*   Updated: 2019/06/17 12:21:46 by hhow-cho         ###   ########.fr       */
+/*   Updated: 2019/06/17 17:07:04 by hhow-cho         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,7 @@
 
 static int	ft_is_special_param(char c)
 {
-	if (c == '*' || c == '@' || c == '#' || c == '?'|| c == '-' || c == '$' || c == '!' || c == '_')
+	if (c == '*' || c == '@' || c == '#' || c == '?'|| c == '-' || c == '$' || c == '!')
 		return (1);
 	return (0);
 }
@@ -38,8 +38,15 @@ static int get_expansion_length(char *str)
 	ret = 1;
 	if (str[ret] == '{')
 	{
+		ret++;
 		while (str[ret] && str[ret] != '}')
+		{
+			if (ft_is_special_param(str[ret]) && ret != 2)
+				return (-1);
+			if (ft_is_special_param(str[ret]) == 0 && ft_isalnum(str[ret]) == 0 && str[ret] != '_')
+				return (-1);
 			ret++;
+		}
 		if (str[ret] == 0)
 		{
 			return (-1);
@@ -56,7 +63,7 @@ static int get_expansion_length(char *str)
 					ret++;
 				break;
 			}
-			else if (ft_isalnum(str[ret]) == 0)
+			else if (ft_isalnum(str[ret]) == 0 && str[ret] != '_')
 				break ;
 			ret++;
 		}
@@ -111,7 +118,7 @@ char *ft_get_args_dollar(char *str, t_env **copy_env)
 			if (ret == -1)
 			{
 				ft_putstr_fd("bad substitution\n", 2);
-				break ;
+				return (NULL);
 			}
 			j = ret + i;
 			char *tmp;
