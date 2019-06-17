@@ -6,7 +6,7 @@
 /*   By: hhow-cho <hhow-cho@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/06/09 00:32:39 by hhow-cho          #+#    #+#             */
-/*   Updated: 2019/06/17 13:11:46 by hhow-cho         ###   ########.fr       */
+/*   Updated: 2019/06/17 23:48:50 by hhow-cho         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,6 +30,7 @@
 # define TYPE_CMD (2 << 1)
 # define TYPE_SEPARATOR (2 << 1)
 
+// interrupt = 0;
 // # define FLAG_A (2 << 0)
 // # define FLAG_B (2 << 1)
 // # define FLAG_C (2 << 2)

@@ -6,7 +6,7 @@
 /*   By: hhow-cho <hhow-cho@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/06/09 01:47:49 by hhow-cho          #+#    #+#             */
-/*   Updated: 2019/06/16 14:15:02 by hhow-cho         ###   ########.fr       */
+/*   Updated: 2019/06/17 22:02:29 by hhow-cho         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,7 +29,7 @@ t_node *create_node(long type, char *cmd, t_env **copy_env)
         return (node);
     }
     node->child = get_child(cmd, copy_env);
-    if (node->child == NULL)
+    if (node->child == NULL && ft_strcmp(cmd, ";") != 0)
     {
         node->child = malloc(sizeof(t_node *) * 2);
         node->child[0] = create_node(TYPE_CMD, cmd, copy_env);

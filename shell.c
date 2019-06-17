@@ -6,11 +6,24 @@
 /*   By: hhow-cho <hhow-cho@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/06/08 15:56:47 by hhow-cho          #+#    #+#             */
-/*   Updated: 2019/06/16 20:43:54 by hhow-cho         ###   ########.fr       */
+/*   Updated: 2019/06/17 23:50:24 by hhow-cho         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "shell.h"
+
+int interrupt = 0;
+
+void signal_callback_handler(int nb)
+{
+	if (nb)
+	{
+		
+	}
+	interrupt = 1;
+	ft_putstr_fd("\n$> ", 0);
+}
+
 
 int main(int argc, char **argv)
 {
@@ -22,8 +35,8 @@ int main(int argc, char **argv)
     t_node **root;
     // if ((ft_init_terminal(&orig_termios, &new_termios)) < 0)
     //     return (-1);
-    // if (signal(SIGPIPE, signal_callback_handler) == SIG_ERR)
-    //     printf("\ncan't catch SIGWINCH\n");
+    if (signal(SIGINT, signal_callback_handler) == SIG_ERR)
+        printf("\ncan't catch SIGINT\n");
 
 
     success = 0;
@@ -41,7 +54,8 @@ int main(int argc, char **argv)
         while (ft_get_cmd(fd, &command) != 0)
         {
             root = ft_parse_cmd(command, copy_env);
-    		execute_tree(*root, table_bins, &copy_env,  fds, &success);
+			if (root)
+    			execute_tree(*root, table_bins, &copy_env,  fds, &success);
 	    }
     }
     else
@@ -49,9 +63,10 @@ int main(int argc, char **argv)
         while (42)
         {
 			ft_putstr_fd("$> ", 0);
-            ft_get_cmd(0, &command);
+			ft_get_cmd(0, &command);
             root = ft_parse_cmd(command, copy_env);
-    		execute_tree(*root, table_bins, &copy_env,  fds, &success);
+			if (root)
+    			execute_tree(*root, table_bins, &copy_env,  fds, &success);
         }
     }
     return (success);
