@@ -6,7 +6,7 @@
 /*   By: hhow-cho <hhow-cho@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/06/09 01:40:14 by hhow-cho          #+#    #+#             */
-/*   Updated: 2019/06/16 15:31:58 by hhow-cho         ###   ########.fr       */
+/*   Updated: 2019/06/17 13:44:39 by hhow-cho         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,6 +30,8 @@ int is_path(char *cmd)
     if (cmd == NULL)
         return (-1);
     i = 0;
+	if (ft_strchr(cmd, '='))
+		return (0);
     while (cmd[i])
     {
         if (cmd[i] == '/')
@@ -69,6 +71,13 @@ int ft_exe_bin(t_node *node, t_ht *table_bins, t_env ***p_environ, int fds[])
     }
     if (ft_strcmp(command, "setenv") == 0)
     {
+        ft_setenv(ft_list_size(args), args, p_environ, fds);
+        return 0;
+    }
+    if (ft_strchr(command, '='))
+    {
+		args[1] = ft_strdup(command);
+		args[2] = 0;
         ft_setenv(ft_list_size(args), args, p_environ, fds);
         return 0;
     }

@@ -6,7 +6,7 @@
 /*   By: hhow-cho <hhow-cho@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/06/14 14:25:36 by hhow-cho          #+#    #+#             */
-/*   Updated: 2019/06/16 13:55:50 by hhow-cho         ###   ########.fr       */
+/*   Updated: 2019/06/17 12:46:24 by hhow-cho         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,6 +46,7 @@ char **ft_get_args(char *cmd, t_env **copy_env)
 	while (args[i])
 	{
 		args[i] = ft_get_args_dollar(args[i], copy_env);
+		args[i] = ft_get_args_tilde(args[i], copy_env);
 		// while (ft_strchr(args[i], '~'))
 		// 	args[i] = ft_replace_tilde(args[i]);
 		i++;

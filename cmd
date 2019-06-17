@@ -1,3 +1,1 @@
-ls
-echo a
-exit
+TOKEN201906171319=~
