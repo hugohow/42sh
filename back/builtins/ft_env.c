@@ -17,7 +17,7 @@ void ft_print_env(t_env **cpy_env, int fds[])
     {
         if (cpy_env[i]->special == 0)
         {
-            ft_putstr_fd(cpy_env[i]->line, fds[1]);
+			ft_putstr_fd(cpy_env[i]->line, fds[1]);
             ft_putstr_fd("\n", fds[1]);
         }
         i++;

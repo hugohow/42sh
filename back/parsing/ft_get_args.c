@@ -6,29 +6,13 @@
 /*   By: hhow-cho <hhow-cho@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/06/14 14:25:36 by hhow-cho          #+#    #+#             */
-/*   Updated: 2019/06/17 16:51:59 by hhow-cho         ###   ########.fr       */
+/*   Updated: 2019/06/18 13:50:45 by hhow-cho         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "shell.h"
 
 
-// ~
-// The value of $HOME
-// ~/foo
-// $HOME/foo
-// ~fred/foo
-// The subdirectory foo of the home directory of the user fred
-// ~+/foo
-// $PWD/foo
-// ~-/foo
-// ${OLDPWD-'~-'}/foo
-// ~N
-// The string that would be displayed by ‘dirs +N’
-// ~+N
-// The string that would be displayed by ‘dirs +N’
-// ~-N
-// The string that would be displayed by ‘dirs -N’
 
 
 char **ft_get_args(char *cmd, t_env **copy_env)

@@ -6,7 +6,7 @@
 /*   By: hhow-cho <hhow-cho@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/06/13 19:57:57 by hhow-cho          #+#    #+#             */
-/*   Updated: 2019/06/17 01:36:52 by hhow-cho         ###   ########.fr       */
+/*   Updated: 2019/06/18 13:18:21 by hhow-cho         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -143,7 +143,7 @@ char *get_absolute_path(t_env ***p_environ, char *element)
     return (path);
 }
 
-int ft_go_to(char *abs_path)
+int ft_go_to(char *abs_path, int fds[])
 {
     struct stat fileStat;
 
@@ -153,26 +153,26 @@ int ft_go_to(char *abs_path)
 		lstat(abs_path, &fileStat);
 		if (S_ISLNK(fileStat.st_mode) && access(abs_path, X_OK))
 		{
-			ft_putstr_fd("Too many symbolic links\n", 2);
+			ft_putstr_fd("Too many symbolic links\n", fds[2]);
 			return (-1);
 		}
-		ft_putstr_fd("No such file or directory\n", 2);
+		ft_putstr_fd("No such file or directory\n", fds[2]);
 		return (-1);
 	}
 	else if (!S_ISDIR(fileStat.st_mode) && !S_ISLNK(fileStat.st_mode))
 	{
-		ft_putstr_fd("not a directory !!!!! \n", 2);
+		ft_putstr_fd("not a directory !!!!! \n", fds[2]);
 		return (-1);
 	}
 	else if (access(abs_path, X_OK))
 	{
-		ft_putstr_fd("permission denied \n", 2);
+		ft_putstr_fd("permission denied \n", fds[2]);
 		return (-1);
 	}
     return (chdir(abs_path));
 }
 
-int ft_change_dir(char *element, t_env ***p_environ, long long flag)
+int ft_change_dir(char *element, t_env ***p_environ, long long flag, int fds[])
 {
     char *abs_path;
     char *old_pwd_line;
@@ -197,7 +197,7 @@ int ft_change_dir(char *element, t_env ***p_environ, long long flag)
     }
 
 
-    if (ft_go_to(abs_path) < 0)
+    if (ft_go_to(abs_path, fds) < 0)
         return (-1);
 
     // change env et return
@@ -236,5 +236,5 @@ int ft_cd(int argc, char **argv, t_env **cpy_environ, int fds[])
 		element = argv[1];
 	}
 
-    return (ft_change_dir(element, &cpy_environ, flag));
+    return (ft_change_dir(element, &cpy_environ, flag, fds));
 }

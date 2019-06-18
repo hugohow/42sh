@@ -16,6 +16,6 @@ re: fclean all
 test: re
 	bash tests/42ShellTester.sh $(PWD)/$(NAME) --hard --show-success --reference "bash" --filter "tilde-expansion"
 	bash tests/42ShellTester.sh $(PWD)/$(NAME) --hard --show-success --reference "bash" --filter $(NAME)
-	# bash test.sh
+	bash test.sh
 
 .PHONY: all re clean fclean test

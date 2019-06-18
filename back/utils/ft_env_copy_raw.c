@@ -6,7 +6,7 @@
 /*   By: hhow-cho <hhow-cho@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/06/16 15:12:28 by hhow-cho          #+#    #+#             */
-/*   Updated: 2019/06/17 18:05:07 by hhow-cho         ###   ########.fr       */
+/*   Updated: 2019/06/18 14:34:06 by hhow-cho         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,8 @@ t_env **ft_env_copy_raw(char **str, char **argv)
     i = 0;
     while (str[i])
         i++;
-    copy = (t_env **)ft_memalloc((i + 20) * sizeof(t_env *));
+    if (!(copy = (t_env **)ft_memalloc((i + 20) * sizeof(t_env *))))
+		return (NULL);
     i = 0;
     while (str[i])
     {

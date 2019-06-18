@@ -19,7 +19,7 @@ int is_exit(char *cmd)
 }
 
 
-void ft_exit(char *cmd, int success)
+void ft_exit(char *cmd, int success, int fds[])
 {
     char **cmd_list;
     int i;
@@ -29,7 +29,7 @@ void ft_exit(char *cmd, int success)
     {
         if (cmd_list[2])
         {
-            ft_putstr_fd("Too many arguments Argument list too long", 2);
+            ft_putstr_fd("Too many arguments Argument list too long", fds[2]);
             return ;
         }
         i = 0;
@@ -39,7 +39,7 @@ void ft_exit(char *cmd, int success)
         {
             if (ft_isdigit(cmd_list[1][i]) == 0)
             {
-                ft_putstr_fd("Numeric argument required", 2);
+                ft_putstr_fd("Numeric argument required", fds[2]);
                 exit(-1);
             }
             i++;

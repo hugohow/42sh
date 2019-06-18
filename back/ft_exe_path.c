@@ -6,7 +6,7 @@
 /*   By: hhow-cho <hhow-cho@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/06/09 14:28:12 by hhow-cho          #+#    #+#             */
-/*   Updated: 2019/06/16 15:10:49 by hhow-cho         ###   ########.fr       */
+/*   Updated: 2019/06/18 13:05:18 by hhow-cho         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -68,7 +68,7 @@ int ft_exe_path(char *path, char **argv, t_env **cpy_environ, int fds[])
         int w;
         w = waitpid(pid, &waitstatus, WUNTRACED | WCONTINUED);
         if (w == -1) {
-            perror("waitpid");
+            // perror("waitpid");
             exit(EXIT_FAILURE);
         }
 

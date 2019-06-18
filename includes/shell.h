@@ -6,7 +6,7 @@
 /*   By: hhow-cho <hhow-cho@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/06/09 00:32:39 by hhow-cho          #+#    #+#             */
-/*   Updated: 2019/06/18 12:37:42 by hhow-cho         ###   ########.fr       */
+/*   Updated: 2019/06/18 14:25:49 by hhow-cho         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -82,6 +82,7 @@ typedef struct s_node
 typedef struct s_env
 {
     char *prefix;
+	char *postfix;
     char *line;
     int special;
 }               t_env;
@@ -129,7 +130,7 @@ int count_nb_line(char *cmd);
 t_node **ft_parse_cmd(char *cmd, t_env **copy_env);
 int ft_exe_path(char *path, char **argv, t_env **cpy_environ, int fds[]);
 int ft_ask_command(int fd, char **command);
-void ft_exit(char *cmd, int success);
+void ft_exit(char *cmd, int success, int fds[]);
 t_env **ft_env_copy(t_env **str);
 int ft_exe_bin(t_node *node, t_ht *table_bins, t_env ***p_environ, int fds[]);
 int is_exit(char *cmd);

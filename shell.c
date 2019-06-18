@@ -6,7 +6,7 @@
 /*   By: hhow-cho <hhow-cho@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/06/08 15:56:47 by hhow-cho          #+#    #+#             */
-/*   Updated: 2019/06/18 12:36:29 by hhow-cho         ###   ########.fr       */
+/*   Updated: 2019/06/18 14:35:07 by hhow-cho         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,7 +34,11 @@ int main(int argc, char **argv)
 
 
     success = 0;
-    copy_env = ft_env_copy_raw((char **)environ, argv);
+    if (!(copy_env = ft_env_copy_raw((char **)environ, argv)))
+	{
+		ft_putstr_fd("Failed to copy env\n", 2);
+		return (0);
+	}
 	table_bins = ft_bins_table_create(copy_env);
 	int fds[3];
 
