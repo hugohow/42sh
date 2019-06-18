@@ -28,8 +28,7 @@ t_env **clear_environ(void)
 {
     t_env **output;
 
-    output = malloc(sizeof(t_env *));
-    output[0] = 0;
+    output = (t_env **)ft_memalloc(sizeof(t_env *));
     return (output);
 }
 
@@ -37,7 +36,8 @@ t_token_env *create_token_env(char *type, char flag_type, char *string)
 {
     t_token_env *token_env;
 
-    token_env = malloc(sizeof(t_token_env));
+    if (!(token_env = ft_memalloc(sizeof(t_token_env))))
+		return (NULL);
     token_env->type = type;
     token_env->flag_type = flag_type;
     token_env->string = string;   
@@ -66,7 +66,8 @@ t_token_env **tokenize_argv(int argc, char **argv)
     t_token_env **list;
     char *utility;
 
-    list = (t_token_env **)malloc((argc + 3) * sizeof(t_token_env *));
+    if (!(list = (t_token_env **)ft_memalloc((argc + 3) * sizeof(t_token_env *))))
+		return (NULL);
     i = 0;
     k = 0;
     utility = "";
@@ -185,6 +186,11 @@ static int execute_ls(t_token_env **token_ls, t_env **cpy_environ, int fds[])
         copy_env = clear_environ();
     else
         copy_env = ft_env_copy(cpy_environ);
+	if (copy_env == NULL)
+	{
+		ft_putstr_fd("Error copy env", 2);
+		return (-1);
+	}
     while (token_ls[i])
     {
         if (ft_strcmp(token_ls[i]->type, "option") == 0)
