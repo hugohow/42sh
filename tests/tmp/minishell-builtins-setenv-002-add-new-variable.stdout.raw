@@ -28,7 +28,7 @@ __CF_USER_TEXT_ENCODING=0x1F5:0x0:0x1
 TERM_PROGRAM=Apple_Terminal
 OLDPWD=/Users/hugohow-choong/42/42sh/tests
 _=/Users/hugohow-choong/42/42sh/minishell
-TESTVAR1=VALUE_TOKEN201906181555
+TESTVAR1=VALUE_TOKEN201906181652
 ------------------------------
 TOTAL ENVIRONMENT VARIABLES: 30
 ------------------------------
@@ -61,6 +61,6 @@ __CF_USER_TEXT_ENCODING=0x1F5:0x0:0x1
 TERM_PROGRAM=Apple_Terminal
 OLDPWD=/Users/hugohow-choong/42/42sh/tests
 _=/Users/hugohow-choong/42/42sh/minishell
-TESTVAR1=VALUE_TOKEN201906181555
+TESTVAR1=VALUE_TOKEN201906181652
 ------------------------------
 TOTAL ENVIRONMENT VARIABLES: 30
