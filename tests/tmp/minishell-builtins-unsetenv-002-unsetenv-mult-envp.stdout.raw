@@ -1,4 +1,5 @@
 ------------------------------
 _=/Users/hugohow-choong/42/42sh/minishell
+PATH=/usr/sbin:/usr/bin:/sbin:/bin
 ------------------------------
-TOTAL ENVIRONMENT VARIABLES: 1
+TOTAL ENVIRONMENT VARIABLES: 2

@@ -6,7 +6,7 @@
 /*   By: hhow-cho <hhow-cho@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/06/09 00:32:39 by hhow-cho          #+#    #+#             */
-/*   Updated: 2019/06/18 14:25:49 by hhow-cho         ###   ########.fr       */
+/*   Updated: 2019/06/18 15:06:37 by hhow-cho         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -84,6 +84,7 @@ typedef struct s_env
     char *prefix;
 	char *postfix;
     char *line;
+	t_ht *table;
     int special;
 }               t_env;
 
@@ -110,14 +111,14 @@ char **ft_env_raw(t_env **cpy_environ);
 t_env **ft_env_copy_raw(char **str, char **argv);
 char **ft_env_paths(t_env **copy_env);
 void ft_env_add(char *prefix, char *line, t_env ***p_environ);
-
+int ft_env_cmp_prefix(char *prefix, char *line);
 
 void    print_normal(int fd);
 void    ft_setenv_args(char *prefix, char *line, t_env ***p_environ);
 int     ft_echo(int argc, char **argv, t_env **cpy_environ, int fds[]);
 int     ft_cd(int argc, char **argv, t_env **cpy_environ, int fds[]);
 int ft_setenv(int argc, char **argv, t_env ***p_environ, int fds[]);
-int ft_env(int argc, char **argv, t_env **cpy_environ, int fds[], t_ht *table_bins);
+int ft_env(int argc, char **argv, t_env **cpy_environ, int fds[]);
 int ft_unsetenv(int argc, char **argv, t_env **cpy_environ, int fds[]);
 void ft_print_env(t_env **str, int fds[]);
 void    ft_exit_terminal(void);
@@ -132,12 +133,12 @@ int ft_exe_path(char *path, char **argv, t_env **cpy_environ, int fds[]);
 int ft_ask_command(int fd, char **command);
 void ft_exit(char *cmd, int success, int fds[]);
 t_env **ft_env_copy(t_env **str);
-int ft_exe_bin(t_node *node, t_ht *table_bins, t_env ***p_environ, int fds[]);
+int ft_exe_bin(t_node *node, t_env ***p_environ, int fds[]);
 int is_exit(char *cmd);
 int ft_get_cmd(int fd, char **command);
-void    execute_tree(t_node *node, t_ht *table_bins, t_env ***p_environ, int fds[], int *p_success);
+void    execute_tree(t_node *node, t_env ***p_environ, int fds[], int *p_success);
 t_node **ft_get_semi_colon_child(char *cmd, t_env **copy_env);
-t_ht *ft_bins_table_create(t_env **copy_env);
+t_ht *ft_bins_table_create(char *line);
 char **ft_get_args(char *cmd, t_env **copy_env);
 char *ft_get_args_dollar(char *str, t_env **copy_env);
 char *ft_get_args_tilde(char *str, t_env **copy_env);

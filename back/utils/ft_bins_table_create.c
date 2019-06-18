@@ -6,13 +6,13 @@
 /*   By: hhow-cho <hhow-cho@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/06/09 15:24:14 by hhow-cho          #+#    #+#             */
-/*   Updated: 2019/06/18 14:21:43 by hhow-cho         ###   ########.fr       */
+/*   Updated: 2019/06/18 15:46:04 by hhow-cho         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "shell.h"
 
-t_ht *ft_bins_table_create(t_env **copy_env)
+t_ht *ft_bins_table_create(char *line)
 {
 	char **paths;
     char *new_path;
@@ -23,7 +23,10 @@ t_ht *ft_bins_table_create(t_env **copy_env)
 	struct dirent *pDirent;
 
 	table_bins = ft_ht_create();
-	paths = ft_env_paths(copy_env);
+	if (line == NULL || ft_strlen(line + 5) == 0)
+		paths = ft_strsplit("/usr/sbin:/usr/bin:/sbin:/bin:.", ':');
+	else
+		paths = ft_strsplit(line + 5, ':');
 	i = 0;
     while (paths[i])
     {
@@ -41,6 +44,5 @@ t_ht *ft_bins_table_create(t_env **copy_env)
 		closedir (pDir);
         i++;
     }
-
 	return (table_bins);
 }

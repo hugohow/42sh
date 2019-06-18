@@ -6,7 +6,7 @@
 /*   By: hhow-cho <hhow-cho@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/06/08 15:56:47 by hhow-cho          #+#    #+#             */
-/*   Updated: 2019/06/18 14:35:07 by hhow-cho         ###   ########.fr       */
+/*   Updated: 2019/06/18 15:04:56 by hhow-cho         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,10 +25,8 @@ int main(int argc, char **argv)
     t_env **copy_env;
     int fd;
     int success;
-	t_ht *table_bins;
     t_node **root;
-    // if ((ft_init_terminal(&orig_termios, &new_termios)) < 0)
-    //     return (-1);
+
     if (signal(SIGINT, signal_callback_handler) == SIG_ERR)
         printf("\ncan't catch SIGINT\n");
 
@@ -39,7 +37,6 @@ int main(int argc, char **argv)
 		ft_putstr_fd("Failed to copy env\n", 2);
 		return (0);
 	}
-	table_bins = ft_bins_table_create(copy_env);
 	int fds[3];
 
 	fds[0] = 0;
@@ -53,7 +50,7 @@ int main(int argc, char **argv)
         {
             root = ft_parse_cmd(command, copy_env);
 			if (root)
-    			execute_tree(*root, table_bins, &copy_env,  fds, &success);
+    			execute_tree(*root, &copy_env,  fds, &success);
 	    }
     }
     else
@@ -64,7 +61,7 @@ int main(int argc, char **argv)
 			ft_get_cmd(0, &command);
             root = ft_parse_cmd(command, copy_env);
 			if (root)
-    			execute_tree(*root, table_bins, &copy_env,  fds, &success);
+    			execute_tree(*root, &copy_env,  fds, &success);
         }
     }
     return (success);
