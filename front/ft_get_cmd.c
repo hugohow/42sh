@@ -6,7 +6,7 @@
 /*   By: hhow-cho <hhow-cho@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/06/09 01:53:37 by hhow-cho          #+#    #+#             */
-/*   Updated: 2019/06/18 00:34:22 by hhow-cho         ###   ########.fr       */
+/*   Updated: 2019/06/18 12:36:37 by hhow-cho         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,7 +24,7 @@ int ft_get_cmd(int fd, char **command)
 	char *command_tmp1;
 
     command_tmp = ft_memalloc(9999*sizeof(char));
-	if (fd == 0 && isatty(0))
+	if (fd == 0 && ft_isatty(0))
 	{
 		char buff[100];
 
@@ -35,9 +35,11 @@ int ft_get_cmd(int fd, char **command)
 			{
 				break;
 			}
-
-			buff[ret] = 0;
-			command_tmp = ft_strcat(command_tmp, buff);
+			if (ret == 1)
+			{
+				buff[ret] = 0;
+				command_tmp = ft_strcat(command_tmp, buff);
+			}
 		}
 		*command = command_tmp;
 	}

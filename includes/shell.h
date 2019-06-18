@@ -6,7 +6,7 @@
 /*   By: hhow-cho <hhow-cho@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/06/09 00:32:39 by hhow-cho          #+#    #+#             */
-/*   Updated: 2019/06/17 23:48:50 by hhow-cho         ###   ########.fr       */
+/*   Updated: 2019/06/18 12:37:42 by hhow-cho         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,6 +23,7 @@
 #include <sys/stat.h>
 #include <termios.h>
 #include <sys/wait.h>
+#include <termios.h>
 #include "libft.h"
 #include "ht.h"
 
@@ -139,4 +140,5 @@ t_ht *ft_bins_table_create(t_env **copy_env);
 char **ft_get_args(char *cmd, t_env **copy_env);
 char *ft_get_args_dollar(char *str, t_env **copy_env);
 char *ft_get_args_tilde(char *str, t_env **copy_env);
+int	ft_isatty(int fd);
 #endif

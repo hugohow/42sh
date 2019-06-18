@@ -6,7 +6,7 @@
 /*   By: hhow-cho <hhow-cho@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/06/08 15:56:47 by hhow-cho          #+#    #+#             */
-/*   Updated: 2019/06/18 00:08:46 by hhow-cho         ###   ########.fr       */
+/*   Updated: 2019/06/18 12:36:29 by hhow-cho         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,9 +42,9 @@ int main(int argc, char **argv)
 	fds[1] = 1;
 	fds[2] = 2;
 
-    if (argc > 1 || isatty(0) == 0)
+    if (argc > 1 || ft_isatty(0) == 0)
     {
-        fd = isatty(0) == 0 ? 0 : open(argv[1], O_RDONLY);
+        fd = ft_isatty(0) == 0 ? 0 : open(argv[1], O_RDONLY);
         while (ft_get_cmd(fd, &command) != 0)
         {
             root = ft_parse_cmd(command, copy_env);
@@ -56,7 +56,7 @@ int main(int argc, char **argv)
     {
         while (42)
         {
-			ft_putstr_fd("$> ", 0);
+			ft_putstr_fd("\r$> ", 0);
 			ft_get_cmd(0, &command);
             root = ft_parse_cmd(command, copy_env);
 			if (root)
