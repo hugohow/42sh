@@ -5,8 +5,8 @@ LESS=-R
 XPC_FLAGS=0x0
 TERM_PROGRAM_VERSION=388.1.3
 SSH_AUTH_SOCK=/private/tmp/com.apple.launchd.1mMa91litE/Listeners
-TERM_SESSION_ID=47CF8EB0-C690-45E2-9F32-BF7414ED07C1
-PWD=/Users/hugohow-choong/42/42sh/tests/tmp/TOKEN201906192113/TOKEN201906192113
+TERM_SESSION_ID=9180A2BF-968A-4C7E-BB2F-6420A7E89024
+PWD=/Users/hugohow-choong/42/42sh/tests/tmp/TOKEN201906192344/TOKEN201906192344
 LOGNAME=hugohow-choong
 HOME=/Users/hugohow-choong
 LANG=en_US.UTF-8
@@ -26,7 +26,7 @@ Apple_PubSub_Socket_Render=/private/tmp/com.apple.launchd.aLw2PvgC71/Render
 PATH=/usr/local/bin:/usr/bin:/bin:/usr/sbin:/sbin:/Applications/Wireshark.app/Contents/MacOS
 __CF_USER_TEXT_ENCODING=0x1F5:0x0:0x1
 TERM_PROGRAM=Apple_Terminal
-OLDPWD=/Users/hugohow-choong/42/42sh/tests/tmp/TOKEN201906192113
+OLDPWD=/Users/hugohow-choong/42/42sh/tests/tmp/TOKEN201906192344
 _=/Users/hugohow-choong/42/42sh/minishell
 ------------------------------
 TOTAL ENVIRONMENT VARIABLES: 29

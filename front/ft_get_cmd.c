@@ -6,7 +6,7 @@
 /*   By: hhow-cho <hhow-cho@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/06/09 01:53:37 by hhow-cho          #+#    #+#             */
-/*   Updated: 2019/06/18 12:59:56 by hhow-cho         ###   ########.fr       */
+/*   Updated: 2019/06/19 23:43:47 by hhow-cho         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,31 +30,41 @@ int ft_get_cmd(int fd, char **command)
 
 		while (ft_strchr(command_tmp, '\n') == NULL)
 		{
-			ret = read(fd, buff, 1);
-			if (buff[0] != '\x1b') 
-			{
-				if (buff[0] == '\n')
+			ret = ft_read_key();
+			char c;
+			c = (char)ret;
+
+				if (ret == 10)
 				{
 					break;
 				}
-				if (ret == 1)
+				if (ret != 9)
 				{
-					buff[ret] = 0;
+					write(0, &c, 1);
+					buff[0] = (char)ret;
+					buff[1] = 0;
 					command_tmp = ft_strcat(command_tmp, buff);
 				}
-			}
-			else
-			{
-				if (read(STDIN_FILENO, buff, 1) != 1)
+				else
 				{
 
 				}
-				if (read(STDIN_FILENO, buff, 1) != 1)
-				{
+			// if (ret != '\x1b') 
+			// {
+			// }
+			// else
+			// {
+			// 	if (read(STDIN_FILENO, buff, 1) != 1)
+			// 	{
 
-				}
-			}
+			// 	}
+			// 	if (read(STDIN_FILENO, buff, 1) != 1)
+			// 	{
+
+			// 	}
+			// }
 		}
+		ft_putchar_fd('\n', 0);
 		*command = command_tmp;
 	}
 	else

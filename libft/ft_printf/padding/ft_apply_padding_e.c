@@ -6,7 +6,7 @@
 /*   By: hhow-cho <hhow-cho@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/06/04 18:57:47 by hhow-cho          #+#    #+#             */
-/*   Updated: 2019/06/06 13:30:16 by hhow-cho         ###   ########.fr       */
+/*   Updated: 2019/06/19 23:16:30 by hhow-cho         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,7 +51,7 @@ static char			*str_to_fill(char *str, t_flag *flag, int sign, char *expo)
 	i = 0;
 	while (to_add_len + ft_strlen(str) + i < flag->width)
 	{
-		if (flag->key & KEY_F)
+		if (flag->key & KEY_FL)
 			to_add[i] = ft_can_fill_with_zeros_float(flag, sign) ? '0' : ' ';
 		else
 			to_add[i] = ft_can_fill_with_zeros(flag, sign) ? '0' : ' ';
@@ -86,7 +86,7 @@ char				*ft_apply_padding_e(char *str, t_flag *f, int sign, int e)
 		f->hash = 0;
 	to_add = str_to_fill(str, f, sign, expo);
 	if (ft_can_fill_with_zeros(f, sign) || \
-		(f->key & KEY_F && ft_can_fill_with_zeros_float(f, sign)))
+		(f->key & KEY_FL && ft_can_fill_with_zeros_float(f, sign)))
 	{
 		str = ft_str_join(to_add, str, f);
 		str = ft_add_sign(str, f, sign);

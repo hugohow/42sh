@@ -6,17 +6,17 @@
 /*   By: hhow-cho <hhow-cho@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/06/08 15:56:47 by hhow-cho          #+#    #+#             */
-/*   Updated: 2019/06/19 20:48:42 by hhow-cho         ###   ########.fr       */
+/*   Updated: 2019/06/19 23:36:01 by hhow-cho         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "shell.h"
 
-void signal_callback_handler(int signum)
-{
-	if (signum == SIGINT)
-		ft_putstr_fd("\n$> ", 0);
-}
+// void signal_callback_handler(int signum)
+// {
+// 	if (signum == SIGINT)
+// 		ft_putstr_fd("\n$> ", 0);
+// }
 
 
 int main(int argc, char **argv)
@@ -27,8 +27,8 @@ int main(int argc, char **argv)
     int success;
     t_node **root;
 
-    if (signal(SIGINT, signal_callback_handler) == SIG_ERR)
-        printf("\ncan't catch SIGINT\n");
+    // if (signal(SIGINT, signal_callback_handler) == SIG_ERR)
+    //     printf("\ncan't catch SIGINT\n");
 
 
     success = 0;
@@ -55,6 +55,14 @@ int main(int argc, char **argv)
     }
     else
     {
+
+		t_config old_config;
+		t_config new_config;
+
+
+	
+
+		ft_terminal_init(&old_config, &new_config);
         while (42)
         {
 			ft_putstr_fd("$> ", 0);
@@ -63,6 +71,10 @@ int main(int argc, char **argv)
 			if (root)
     			execute_tree(*root, &copy_env,  fds, &success);
         }
+		ft_terminal_exit(&old_config);
+
+
+
     }
     return (success);
 }

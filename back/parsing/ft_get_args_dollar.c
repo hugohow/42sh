@@ -6,7 +6,7 @@
 /*   By: hhow-cho <hhow-cho@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/06/16 13:42:37 by hhow-cho          #+#    #+#             */
-/*   Updated: 2019/06/17 17:07:04 by hhow-cho         ###   ########.fr       */
+/*   Updated: 2019/06/19 22:59:44 by hhow-cho         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -71,7 +71,7 @@ static int get_expansion_length(char *str)
 	return (ret);
 }
 
-static char *get_expansion(char *str, int i, int j, t_env **copy_env)
+static char *resolve_expansion(char *str, int i, int j, t_env **copy_env)
 {
 	char *line;
 
@@ -117,13 +117,13 @@ char *ft_get_args_dollar(char *str, t_env **copy_env)
 			ret = get_expansion_length(str + i);
 			if (ret == -1)
 			{
-				ft_putstr_fd("bad substitution\n", 2);
+				ft_putstr_fd("bad substitution", 2);
 				return (NULL);
 			}
 			j = ret + i;
 			char *tmp;
 
-			tmp = get_expansion(str, i, j, copy_env);
+			tmp = resolve_expansion(str, i, j, copy_env);
 			tmp = ft_strjoin(tmp, str + j);
 			str[i] = 0;
 			str = ft_strjoin(str, tmp);

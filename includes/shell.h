@@ -6,7 +6,7 @@
 /*   By: hhow-cho <hhow-cho@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/06/09 00:32:39 by hhow-cho          #+#    #+#             */
-/*   Updated: 2019/06/19 21:09:11 by hhow-cho         ###   ########.fr       */
+/*   Updated: 2019/06/19 23:23:38 by hhow-cho         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,9 +24,20 @@
 #include <termios.h>
 #include <sys/wait.h>
 #include <termios.h>
+
+#include <sys/ioctl.h>
+#include <signal.h>
+#include <curses.h>
+#include <sys/uio.h>
+#include <curses.h>
+#include <term.h>
+
 #include "libft.h"
 #include "ht.h"
 #include "ft_printf.h"
+
+typedef struct termios t_config;
+
 
 # define TYPE_BASE (2 << 0)
 # define TYPE_CMD (2 << 1)
@@ -36,6 +47,9 @@
 # define FLAG_CD_P (2 << 0)
 # define FLAG_CD_L (2 << 1)
 # define FLAG_ECHO_N (2 << 0)
+# define EXIT_SUCCESS 0
+# define EXIT_FAIL 1
+# define EXIT_UTILITY_NOT_FOUND 127
 
 // interrupt = 0;
 // # define FLAG_A (2 << 0)
@@ -87,8 +101,6 @@ typedef struct s_node
 
 typedef struct s_env
 {
-    char *prefix;
-	char *postfix;
     char *line;
 	t_ht *table;
     int special;
@@ -110,11 +122,11 @@ int     get_next_line(const int fd, char **line);
 
 char *ft_env_get_line(t_env **cpy_environ, char *str);
 char *ft_env_get_line_n(t_env **cpy_environ, char *str, size_t n);
+char *ft_env_get_value(t_env **cpy_environ, char *key);
 int ft_env_delete_line(char *key, t_env **cpy_environ);
 int ft_env_change_line(char *key, char *line, t_env **cpy_environ);
 char **ft_env_raw(t_env **cpy_environ);
 t_env **ft_env_copy_raw(char **str, char **argv);
-char **ft_env_paths(t_env **copy_env);
 void ft_env_add(char *prefix, char *line, t_env ***p_environ);
 int ft_env_cmp_prefix(char *prefix, char *line);
 
@@ -127,14 +139,14 @@ int     ft_cd(int argc, char **argv, t_env **cpy_environ, int fds[]);
 int ft_setenv(int argc, char **argv, t_env ***p_environ, int fds[]);
 int ft_env(int argc, char **argv, t_env **cpy_environ, int fds[]);
 int ft_unsetenv(int argc, char **argv, t_env **cpy_environ, int fds[]);
-void ft_exit(int argc, char **argv, t_env **cpy_environ, int fds[]);
+int ft_exit(int argc, char **argv, t_env **cpy_environ, int fds[]);
 
 
 
 void ft_print_env(t_env **str, int fds[]);
-void    ft_exit_terminal(void);
-int     ft_init_terminal(struct termios *orig_termios, struct termios *new_termios);
-int     ft_read_key();
+int ft_terminal_init(struct termios *orig_termios, struct termios *new_termios);
+int ft_read_key();
+void ft_terminal_exit(struct termios *orig_termios);
 void print_cmd(char *cmd);
 void add_to_stdout(char **p_cmd, int c, int *index);
 void delete_n_lines(int n);

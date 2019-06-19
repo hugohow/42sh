@@ -6,11 +6,29 @@
 /*   By: hhow-cho <hhow-cho@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/06/16 14:58:53 by hhow-cho          #+#    #+#             */
-/*   Updated: 2019/06/18 16:51:19 by hhow-cho         ###   ########.fr       */
+/*   Updated: 2019/06/19 22:08:41 by hhow-cho         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "shell.h"
+
+char *ft_env_get_value(t_env **cpy_environ, char *key)
+{
+    size_t i;
+
+    i = 0;
+    while (cpy_environ[i])
+    {
+		if (ft_env_cmp_prefix(key, cpy_environ[i]->line) == 0)
+		{
+			if (ft_strlen(cpy_environ[i]->line + ft_strlen(key) + 1) == 0)
+				return (NULL);
+			return (cpy_environ[i]->line + ft_strlen(key) + 1);
+		}
+        i++;
+    }
+    return (NULL);
+}
 
 char *ft_env_get_line(t_env **cpy_environ, char *key)
 {

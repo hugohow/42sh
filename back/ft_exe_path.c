@@ -6,7 +6,7 @@
 /*   By: hhow-cho <hhow-cho@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/06/09 14:28:12 by hhow-cho          #+#    #+#             */
-/*   Updated: 2019/06/18 13:05:18 by hhow-cho         ###   ########.fr       */
+/*   Updated: 2019/06/19 22:41:26 by hhow-cho         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,8 +54,15 @@ int ft_exe_path(char *path, char **argv, t_env **cpy_environ, int fds[])
     //         dup2(fd1, STDOUT_FILENO);
     //         close(fd1);
     //     }
-        if (execve(path, argv, ft_env_raw(cpy_environ)) < 0)
-            ft_putstr_fd("erreure\n", fds[2]);
+		char **cpy_env_raw;
+
+		cpy_env_raw = ft_env_raw(cpy_environ);
+		if (cpy_env_raw)
+		{
+			if (execve(path, argv, cpy_env_raw) < 0)
+				ft_putstr_fd("erreure\n", fds[2]);
+		}
+		ft_memdel((void **)(cpy_env_raw));
         exit(0);
     }
 	else

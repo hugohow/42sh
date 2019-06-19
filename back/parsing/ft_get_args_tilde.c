@@ -6,7 +6,7 @@
 /*   By: hhow-cho <hhow-cho@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/06/17 12:46:29 by hhow-cho          #+#    #+#             */
-/*   Updated: 2019/06/17 18:04:18 by hhow-cho         ###   ########.fr       */
+/*   Updated: 2019/06/19 22:10:09 by hhow-cho         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,33 +30,42 @@ char *ft_get_args_tilde(char *str, t_env **copy_env)
 			}
 			else if (str[i + 1] == 0 || str[i + 1] == '/')
 			{
-				line = ft_env_get_line(copy_env, "HOME") + 5;
-				str[i] = 0;
-				if (str[i + 1] == '/')
-					line = ft_strjoin(line, str + i + 1);
-				str = ft_strjoin(str, line);
-				return (ft_get_args_tilde(str, copy_env));
+				line = ft_env_get_value(copy_env, "HOME");
+				if (line)
+				{
+					str[i] = 0;
+					if (str[i + 1] == '/')
+						line = ft_strjoin(line, str + i + 1);
+					str = ft_strjoin(str, line);
+					return (ft_get_args_tilde(str, copy_env));
+				}
 			}
 			else if (str[i + 1] == '-' && (str[i + 2] == 0 || str[i + 2] == '/'))
 			{
-				line = ft_env_get_line(copy_env, "OLDPWD") + 7;
-				str[i] = 0;
-				str[i + 1] = 0;
-				if (str[i + 2] == '/')
-					line = ft_strjoin(line, str + i + 2);
-				line = ft_strjoin(line, str + i + 1);
-				str = ft_strjoin(str, line);
-				return (ft_get_args_tilde(str, copy_env));
+				line = ft_env_get_value(copy_env, "OLDPWD");
+				if (line)
+				{
+					str[i] = 0;
+					str[i + 1] = 0;
+					if (str[i + 2] == '/')
+						line = ft_strjoin(line, str + i + 2);
+					line = ft_strjoin(line, str + i + 1);
+					str = ft_strjoin(str, line);
+					return (ft_get_args_tilde(str, copy_env));
+				}
 			}
 			else if (str[i + 1] == '+' && (str[i + 2] == 0 || str[i + 2] == '/'))
 			{
-				line = ft_env_get_line(copy_env, "PWD") + 4;
-				str[i] = 0;
-				str[i + 1] = 0;
-				if (str[i + 2] == '/')
-					line = ft_strjoin(line, str + i + 2);
-				str = ft_strjoin(str, line);
-				return (ft_get_args_tilde(str, copy_env));
+				line = ft_env_get_value(copy_env, "PWD");
+				if (line)
+				{
+					str[i] = 0;
+					str[i + 1] = 0;
+					if (str[i + 2] == '/')
+						line = ft_strjoin(line, str + i + 2);
+					str = ft_strjoin(str, line);
+					return (ft_get_args_tilde(str, copy_env));
+				}
 			}
 		}
 		i++;

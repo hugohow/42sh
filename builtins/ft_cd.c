@@ -6,7 +6,7 @@
 /*   By: hhow-cho <hhow-cho@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/06/13 19:57:57 by hhow-cho          #+#    #+#             */
-/*   Updated: 2019/06/19 21:13:15 by hhow-cho         ###   ########.fr       */
+/*   Updated: 2019/06/19 21:25:12 by hhow-cho         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -264,7 +264,7 @@ int ft_change_dir(char *element, t_env ***p_environ, long long flag, int fds[])
     }
     else
     {
-		if (!(curpath = ft_env_get_line(*p_environ, "HOME")) || ft_strlen(curpath) == 0)
+		if (!(curpath = ft_env_get_line(*p_environ, "HOME")) || ft_strlen(curpath + 5) == 0)
 		{
 			ft_putstr_fd("shell: cd: HOME not set\n", 2);
 			return (1);
@@ -279,7 +279,7 @@ int ft_change_dir(char *element, t_env ***p_environ, long long flag, int fds[])
 	int ret;
     if ((ret = ft_go_to(curpath, fds)) != 0)
         return (ret);
-    if (is_symlink(curpath) == 1 && flag & FLAG_CD_P)
+    if (flag & FLAG_CD_P)
         return (ft_change_env(getcwd(NULL, 0), old_pwd, p_environ));
     return (ft_change_env(curpath, old_pwd, p_environ));
 }

@@ -6,7 +6,7 @@
 /*   By: hhow-cho <hhow-cho@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/06/16 15:19:11 by hhow-cho          #+#    #+#             */
-/*   Updated: 2019/06/16 15:31:37 by hhow-cho         ###   ########.fr       */
+/*   Updated: 2019/06/19 21:33:28 by hhow-cho         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,17 +18,17 @@ int ft_setenv(int argc, char **argv, t_env ***p_environ, int fds[])
     if (argc > 3)
     {
         ft_putstr_fd("setenv: Too many arguments.\n", fds[2]);
-        return (0);
+        return (EXIT_FAIL);
     }
     if (argc == 1)
     {
         ft_print_env(*p_environ, fds);
-        return (0);
+        return (EXIT_SUCCESS);
     }
     if (ft_isdigit(argv[1][0]))
     {
         ft_putstr_fd("not valid. must begin with a letter\n", fds[2]);
-        return (-1);
+        return (EXIT_FAIL);
     }
     if (argc == 2)
     {
@@ -44,5 +44,5 @@ int ft_setenv(int argc, char **argv, t_env ***p_environ, int fds[])
         ft_env_add(argv[1], argv[2], p_environ);
     }
 
-    return (0);
+    return (EXIT_SUCCESS);
 }

@@ -6,7 +6,7 @@
 /*   By: hhow-cho <hhow-cho@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/04/17 20:03:54 by hhow-cho          #+#    #+#             */
-/*   Updated: 2019/06/04 16:43:13 by hhow-cho         ###   ########.fr       */
+/*   Updated: 2019/06/19 23:16:36 by hhow-cho         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,7 +31,7 @@ int			ft_flag_get_key(char *flag)
 	else if (c == 's' || c == 'S')
 		return (KEY_S);
 	else if (c == 'f')
-		return (KEY_F);
+		return (KEY_FL);
 	else if (c == 'e')
 		return (KEY_E);
 	else
