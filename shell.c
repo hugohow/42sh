@@ -6,7 +6,7 @@
 /*   By: hhow-cho <hhow-cho@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/06/08 15:56:47 by hhow-cho          #+#    #+#             */
-/*   Updated: 2019/06/18 15:04:56 by hhow-cho         ###   ########.fr       */
+/*   Updated: 2019/06/19 20:48:42 by hhow-cho         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,7 +57,7 @@ int main(int argc, char **argv)
     {
         while (42)
         {
-			ft_putstr_fd("\r$> ", 0);
+			ft_putstr_fd("$> ", 0);
 			ft_get_cmd(0, &command);
             root = ft_parse_cmd(command, copy_env);
 			if (root)

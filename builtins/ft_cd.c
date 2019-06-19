@@ -6,7 +6,7 @@
 /*   By: hhow-cho <hhow-cho@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/06/13 19:57:57 by hhow-cho          #+#    #+#             */
-/*   Updated: 2019/06/19 18:12:54 by hhow-cho         ###   ########.fr       */
+/*   Updated: 2019/06/19 21:13:15 by hhow-cho         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -128,25 +128,25 @@ int ft_is_possible_to_go_to(char *abs_path)
 
 char *get_absolute_path(t_env ***p_environ, char *element, int fds[])
 {
-    char *path;
+    char *curpath;
 	char *cd_path;
 
     if (ft_strncmp("/", element, 1) == 0)
         return (element);
     if (ft_strcmp(".", element) == 0 || ft_strcmp("..", element) == 0)
 	{
-		path = ft_strjoin(ft_env_get_line(*p_environ, "PWD") + 4, "/");
-		path = ft_strjoin(path, element);
-		path = ft_path_trim(path);
-		return (path);
+		curpath = ft_strjoin(ft_env_get_line(*p_environ, "PWD") + 4, "/");
+		curpath = ft_strjoin(curpath, element);
+		curpath = ft_path_trim(curpath);
+		return (curpath);
 	}
 	cd_path = ft_env_get_line(*p_environ, "CDPATH");
 	if (cd_path == NULL || ft_strlen(cd_path + 7) == 0)
 	{
-		path = ft_strjoin(ft_env_get_line(*p_environ, "PWD") + 4, "/");
-		path = ft_strjoin(path, element);
-		path = ft_path_trim(path);
-		return (path);
+		curpath = ft_strjoin(ft_env_get_line(*p_environ, "PWD") + 4, "/");
+		curpath = ft_strjoin(curpath, element);
+		curpath = ft_path_trim(curpath);
+		return (curpath);
 	}
 	else
 	{
@@ -159,35 +159,35 @@ char *get_absolute_path(t_env ***p_environ, char *element, int fds[])
 		{
 			// il faut gerer le cas ou y'a un slash
 
-			path = ft_strjoin(list[0], "/");
-			path = ft_strjoin(path, element);
-			if (ft_is_possible_to_go_to(path) == 1)
+			curpath = ft_strjoin(list[0], "/");
+			curpath = ft_strjoin(curpath, element);
+			if (ft_is_possible_to_go_to(curpath) == 1)
 			{
-				ft_putstr_fd(path, fds[1]);
+				ft_putstr_fd(curpath, fds[1]);
 				ft_putstr_fd("\n", fds[1]);
-				return (path);
+				return (curpath);
 			}
-			path = NULL;
+			curpath = NULL;
 		}
-		path = ft_strjoin("./", element);
-		if (ft_is_possible_to_go_to(path) == 1)
-			return (path);
-		path = NULL;
+		curpath = ft_strjoin("./", element);
+		if (ft_is_possible_to_go_to(curpath) == 1)
+			return (curpath);
+		curpath = NULL;
 
 		int i;
 
 		i = 1;
 		while (list[i])
 		{
-			path = ft_strjoin(list[i], "/");
-			path = ft_strjoin(path, element);
-			if (ft_is_possible_to_go_to(path) == 1)
+			curpath = ft_strjoin(list[i], "/");
+			curpath = ft_strjoin(curpath, element);
+			if (ft_is_possible_to_go_to(curpath) == 1)
 			{
-				ft_putstr_fd(path, fds[1]);
+				ft_putstr_fd(curpath, fds[1]);
 				ft_putstr_fd("\n", fds[1]);
-				return (path);
+				return (curpath);
 			}
-			path = NULL;
+			curpath = NULL;
 			i++;
 		}
 	}
@@ -195,37 +195,38 @@ char *get_absolute_path(t_env ***p_environ, char *element, int fds[])
 }
 
 
-int ft_go_to(char *abs_path, int fds[])
+int ft_go_to(char *curpath, int fds[])
 {
     struct stat fileStat;
 
 
-	if (stat(abs_path, &fileStat))
+	if (stat(curpath, &fileStat))
 	{
-		lstat(abs_path, &fileStat);
-		if (S_ISLNK(fileStat.st_mode) && access(abs_path, X_OK))
+		lstat(curpath, &fileStat);
+		if (S_ISLNK(fileStat.st_mode) && access(curpath, X_OK))
 		{
 			ft_putstr_fd("Too many symbolic links\n", fds[2]);
 			return (-1);
 		}
 		ft_putstr_fd("No such file or directory\n", fds[2]);
-		return (-1);
+		return (127);
 	}
 	else if (!S_ISDIR(fileStat.st_mode) && !S_ISLNK(fileStat.st_mode))
 	{
 		ft_putstr_fd("not a directory !!!!! \n", fds[2]);
 		return (-1);
 	}
-	else if (access(abs_path, X_OK))
+	else if (access(curpath, X_OK))
 	{
 		ft_putstr_fd("permission denied \n", fds[2]);
 		return (-1);
 	}
-    return (chdir(abs_path));
+    return (chdir(curpath));
 }
+
 int ft_change_dir(char *element, t_env ***p_environ, long long flag, int fds[])
 {
-    char *abs_path;
+    char *curpath;
     char *old_pwd;
 
 	if (ft_env_get_line(*p_environ, "PWD"))
@@ -242,19 +243,19 @@ int ft_change_dir(char *element, t_env ***p_environ, long long flag, int fds[])
             return (go_to_root(old_pwd, p_environ));
         if (ft_strcmp(element, "-") == 0)
 		{
-			if (!(abs_path = ft_env_get_line(*p_environ, "OLDPWD")))
+			if (!(curpath = ft_env_get_line(*p_environ, "OLDPWD")))
 			{
 				ft_putstr_fd("shell: cd: OLDPWD not set\n", fds[2]);
 				return (1);
 			}
-			abs_path = ft_env_get_line(*p_environ, "OLDPWD") + 7;
-			ft_putstr_fd(abs_path, fds[1]);
+			curpath = ft_env_get_line(*p_environ, "OLDPWD") + 7;
+			ft_putstr_fd(curpath, fds[1]);
 			ft_putstr_fd("\n", fds[1]);
 		}
         else
 		{
-			abs_path = get_absolute_path(p_environ, element, fds);
-			if (abs_path == NULL)
+			curpath = get_absolute_path(p_environ, element, fds);
+			if (curpath == NULL)
 			{
 				ft_putstr_fd("No such file or directory\n", fds[2]);
 				return (1);
@@ -263,18 +264,24 @@ int ft_change_dir(char *element, t_env ***p_environ, long long flag, int fds[])
     }
     else
     {
-		if (!(abs_path = ft_env_get_line(*p_environ, "HOME")) || ft_strlen(abs_path) == 0)
+		if (!(curpath = ft_env_get_line(*p_environ, "HOME")) || ft_strlen(curpath) == 0)
 		{
 			ft_putstr_fd("shell: cd: HOME not set\n", 2);
 			return (1);
 		}
-		abs_path = abs_path + 5;
+		curpath = curpath + 5;
     }
-    if (ft_go_to(abs_path, fds) < 0)
-        return (1);
-    if (is_symlink(abs_path) == 1 && flag & FLAG_CD_P)
+	if (ft_strlen(curpath) > PATH_MAX)
+	{
+		ft_putstr_fd("shell: cd: path too long\n", 2);
+		return (1);
+	}
+	int ret;
+    if ((ret = ft_go_to(curpath, fds)) != 0)
+        return (ret);
+    if (is_symlink(curpath) == 1 && flag & FLAG_CD_P)
         return (ft_change_env(getcwd(NULL, 0), old_pwd, p_environ));
-    return (ft_change_env(abs_path, old_pwd, p_environ));
+    return (ft_change_env(curpath, old_pwd, p_environ));
 }
 
 static int parse_input(int *p_argc, char ***p_argv)

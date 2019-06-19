@@ -6,7 +6,7 @@
 /*   By: hhow-cho <hhow-cho@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/06/09 01:40:14 by hhow-cho          #+#    #+#             */
-/*   Updated: 2019/06/18 15:39:48 by hhow-cho         ###   ########.fr       */
+/*   Updated: 2019/06/19 21:04:51 by hhow-cho         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -74,6 +74,10 @@ int ft_exe_bin(t_node *node, t_env ***p_environ, int fds[])
         result = ft_exe_path(command, args, *p_environ, fds);
         return (result);
     }
+	if (ft_strcmp(command, "exit") == 0)
+	{
+		ft_exit(ft_list_size(args), args, *p_environ, fds);
+	}
     if (ft_strcmp(command, "echo") == 0)
     {
         ft_echo(ft_list_size(args), args, *p_environ, fds);
