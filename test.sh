@@ -8,8 +8,8 @@ LOG_2=${TMP_DIR_LOG}/log_2
 RESULT_2=${TMP_DIR_LOG}/result_2
 
 
-mkdir "${TMP_DIR}"
-mkdir "${TMP_DIR_LOG}"
+mkdir ${TMP_DIR}
+mkdir ${TMP_DIR_LOG}
 
 quit()
 {

@@ -6,23 +6,11 @@
 /*   By: hhow-cho <hhow-cho@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/06/13 19:57:57 by hhow-cho          #+#    #+#             */
-/*   Updated: 2019/06/18 13:18:21 by hhow-cho         ###   ########.fr       */
+/*   Updated: 2019/06/19 18:12:54 by hhow-cho         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "shell.h"
-#define BUF_SIZE 20
-# define FLAG_P (2 << 1)
-# define FLAG_L (2 << 2)
-
-int is_file(char *path)
-{
-    struct stat fileStat;
-
-    if (stat(path, &fileStat) < 0)
-        return (-1);
-    return (0);
-}
 
 
 int is_symlink(char *path)
@@ -36,23 +24,9 @@ int is_symlink(char *path)
     return (0);
 }
 
-char *get_path(size_t size)
-{
-    char *path;
-    char *cwd;
-
-    path = malloc((size) * sizeof(char));
-
-    cwd = getcwd(path, size);
-    if (cwd == NULL)
-        return (get_path(size * 2));
-    return (path);
-}
 
 static int ft_change_env(char *new_pwd_line, char *old_pwd_line, t_env ***p_environ)
 {
-	// printf("new_pwd_line %s \n", new_pwd_line);
-	// printf("old_pwd_line %s \n\n", old_pwd_line);
     if (ft_env_change_line("OLDPWD", old_pwd_line, *p_environ) == 0)
         return (-1);
     if (ft_env_change_line("PWD", ft_strjoin("PWD=", new_pwd_line), *p_environ) == 0)
@@ -62,7 +36,7 @@ static int ft_change_env(char *new_pwd_line, char *old_pwd_line, t_env ***p_envi
 
 int go_to_root(char *old_pwd_line, t_env ***p_environ)
 {
-    while (ft_strcmp(get_path(BUF_SIZE), "/") != 0)
+    while (ft_strcmp(getcwd(NULL, 0), "/") != 0)
         chdir("..");
 
     if (ft_change_env("/", old_pwd_line, p_environ) < 0)
@@ -131,17 +105,95 @@ char *ft_path_trim(char *path)
 	return (new_path);
 }
 
-char *get_absolute_path(t_env ***p_environ, char *element)
+int ft_is_possible_to_go_to(char *abs_path)
+{
+    struct stat fileStat;
+
+
+	if (stat(abs_path, &fileStat))
+	{
+		return (-1);
+	}
+	else if (!S_ISDIR(fileStat.st_mode) && !S_ISLNK(fileStat.st_mode))
+	{
+		return (-1);
+	}
+	else if (access(abs_path, X_OK))
+	{
+		return (-1);
+	}
+    return (1);
+}
+
+
+char *get_absolute_path(t_env ***p_environ, char *element, int fds[])
 {
     char *path;
+	char *cd_path;
 
-    if (element[0] && element[0] == '/')
+    if (ft_strncmp("/", element, 1) == 0)
         return (element);
-    path = ft_strjoin(ft_env_get_line(*p_environ, "PWD") + 4, "/");
-    path = ft_strjoin(path, element);
-	path = ft_path_trim(path);
-    return (path);
+    if (ft_strcmp(".", element) == 0 || ft_strcmp("..", element) == 0)
+	{
+		path = ft_strjoin(ft_env_get_line(*p_environ, "PWD") + 4, "/");
+		path = ft_strjoin(path, element);
+		path = ft_path_trim(path);
+		return (path);
+	}
+	cd_path = ft_env_get_line(*p_environ, "CDPATH");
+	if (cd_path == NULL || ft_strlen(cd_path + 7) == 0)
+	{
+		path = ft_strjoin(ft_env_get_line(*p_environ, "PWD") + 4, "/");
+		path = ft_strjoin(path, element);
+		path = ft_path_trim(path);
+		return (path);
+	}
+	else
+	{
+		char **list;
+
+		cd_path = cd_path + 7;
+		list = ft_strsplit(cd_path, ':');
+
+		if (list && list[0])
+		{
+			// il faut gerer le cas ou y'a un slash
+
+			path = ft_strjoin(list[0], "/");
+			path = ft_strjoin(path, element);
+			if (ft_is_possible_to_go_to(path) == 1)
+			{
+				ft_putstr_fd(path, fds[1]);
+				ft_putstr_fd("\n", fds[1]);
+				return (path);
+			}
+			path = NULL;
+		}
+		path = ft_strjoin("./", element);
+		if (ft_is_possible_to_go_to(path) == 1)
+			return (path);
+		path = NULL;
+
+		int i;
+
+		i = 1;
+		while (list[i])
+		{
+			path = ft_strjoin(list[i], "/");
+			path = ft_strjoin(path, element);
+			if (ft_is_possible_to_go_to(path) == 1)
+			{
+				ft_putstr_fd(path, fds[1]);
+				ft_putstr_fd("\n", fds[1]);
+				return (path);
+			}
+			path = NULL;
+			i++;
+		}
+	}
+	return (NULL);
 }
+
 
 int ft_go_to(char *abs_path, int fds[])
 {
@@ -171,70 +223,106 @@ int ft_go_to(char *abs_path, int fds[])
 	}
     return (chdir(abs_path));
 }
-
 int ft_change_dir(char *element, t_env ***p_environ, long long flag, int fds[])
 {
     char *abs_path;
-    char *old_pwd_line;
+    char *old_pwd;
 
-    old_pwd_line = ft_strjoin("OLDPWD=", ft_env_get_line(*p_environ, "PWD") + 4);
-
-	// printf("ancien pwd, get_path %s \n", get_path(BUF_SIZE));
-	// printf("ancien pwd, PWD %s \n\n", ft_env_get_line("PWD", p_environ) + 4);
-    // définition du chemin absolu
+	if (ft_env_get_line(*p_environ, "PWD"))
+	{
+		old_pwd = ft_strjoin("OLDPWD=", ft_env_get_line(*p_environ, "PWD") + 4);
+	}
+	else
+	{
+		old_pwd = ft_strjoin("OLDPWD=", getcwd(NULL, 0));
+	}
     if (element)
     {
         if (ft_strcmp(element, "/") == 0 || ft_strcmp(element, "/.") == 0)
-            return (go_to_root(old_pwd_line, p_environ));
+            return (go_to_root(old_pwd, p_environ));
         if (ft_strcmp(element, "-") == 0)
-            abs_path = ft_env_get_line(*p_environ, "OLDPWD") + 7;
+		{
+			if (!(abs_path = ft_env_get_line(*p_environ, "OLDPWD")))
+			{
+				ft_putstr_fd("shell: cd: OLDPWD not set\n", fds[2]);
+				return (1);
+			}
+			abs_path = ft_env_get_line(*p_environ, "OLDPWD") + 7;
+			ft_putstr_fd(abs_path, fds[1]);
+			ft_putstr_fd("\n", fds[1]);
+		}
         else
-            abs_path = get_absolute_path(p_environ, element);
+		{
+			abs_path = get_absolute_path(p_environ, element, fds);
+			if (abs_path == NULL)
+			{
+				ft_putstr_fd("No such file or directory\n", fds[2]);
+				return (1);
+			}
+		}
     }
     else
     {
-        abs_path = ft_env_get_line(*p_environ, "HOME") + 5;
+		if (!(abs_path = ft_env_get_line(*p_environ, "HOME")) || ft_strlen(abs_path) == 0)
+		{
+			ft_putstr_fd("shell: cd: HOME not set\n", 2);
+			return (1);
+		}
+		abs_path = abs_path + 5;
     }
-
-
     if (ft_go_to(abs_path, fds) < 0)
-        return (-1);
+        return (1);
+    if (is_symlink(abs_path) == 1 && flag & FLAG_CD_P)
+        return (ft_change_env(getcwd(NULL, 0), old_pwd, p_environ));
+    return (ft_change_env(abs_path, old_pwd, p_environ));
+}
 
-    // change env et return
-	if (flag)
+static int parse_input(int *p_argc, char ***p_argv)
+{
+	int flag;
+	int j;
+
+	flag = FLAG_CD_L;
+	while (**p_argv && (**p_argv)[0] == '-')
 	{
-		
+		j = 1;
+		if ((**p_argv)[j] == 0)
+			return (flag);
+		while ((**p_argv)[j])
+		{
+			if ((**p_argv)[j] == 'L')
+				flag = FLAG_CD_L;
+			else if ((**p_argv)[j] == 'P')
+				flag = FLAG_CD_P;
+			else
+			{
+				ft_dprintf(2, "42sh: cd: -%c: invalid option\n", (**p_argv)[j]);
+				return (1);
+			}
+			j++;
+		}
+		*p_argv = *p_argv + 1;
+		*p_argc = *p_argc - 1;
 	}
-    if (is_symlink(abs_path) == 1 && flag & FLAG_P)
-        return (ft_change_env(get_path(BUF_SIZE), old_pwd_line, p_environ));
-    return (ft_change_env(abs_path, old_pwd_line, p_environ));
+	return (flag);
 }
 
 int ft_cd(int argc, char **argv, t_env **cpy_environ, int fds[])
 {
-    char *element;
-	long long flag;
+	int		flag;
 
-    element = NULL;
-	flag = 0;
-	if (fds)
+	argv++;
+	argc--;
+	flag = parse_input(&argc, &argv);
+	if (flag == -1)
 	{
-		
+		ft_putstr_fd("cd: usage: cd [-L|[-P] [dir]\n", 2);
+		return (1);
 	}
     if (argc > 1)
 	{
-		if (ft_strcmp(argv[1], "-P") == 0)
-		{
-			flag |= FLAG_P;
-			argv++;
-		}
-		else if (ft_strcmp(argv[1], "-L") == 0)
-		{
-			flag |= FLAG_L;
-			argv++;
-		}
-		element = argv[1];
+		ft_putstr_fd("cd: too many arguments\n", 2);
+		return (1);
 	}
-
-    return (ft_change_dir(element, &cpy_environ, flag, fds));
+    return (ft_change_dir(argv[0], &cpy_environ, flag, fds));
 }

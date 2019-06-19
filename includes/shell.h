@@ -6,7 +6,7 @@
 /*   By: hhow-cho <hhow-cho@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/06/09 00:32:39 by hhow-cho          #+#    #+#             */
-/*   Updated: 2019/06/18 15:06:37 by hhow-cho         ###   ########.fr       */
+/*   Updated: 2019/06/19 14:36:47 by hhow-cho         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,10 +26,15 @@
 #include <termios.h>
 #include "libft.h"
 #include "ht.h"
+#include "ft_printf.h"
 
 # define TYPE_BASE (2 << 0)
 # define TYPE_CMD (2 << 1)
 # define TYPE_SEPARATOR (2 << 1)
+
+# define BUF_SIZE 20
+# define FLAG_CD_P (2 << 0)
+# define FLAG_CD_L (2 << 1)
 
 // interrupt = 0;
 // # define FLAG_A (2 << 0)
@@ -100,7 +105,6 @@ void print_tokens(t_token **list);
 
 
 int     get_next_line(const int fd, char **line);
-int     ft_printf(const char* format, ...);
 
 
 char *ft_env_get_line(t_env **cpy_environ, char *str);
