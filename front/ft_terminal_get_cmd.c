@@ -6,7 +6,7 @@
 /*   By: hhow-cho <hhow-cho@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/06/09 01:53:37 by hhow-cho          #+#    #+#             */
-/*   Updated: 2019/06/20 20:50:14 by hhow-cho         ###   ########.fr       */
+/*   Updated: 2019/06/20 21:49:10 by hhow-cho         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,6 +16,11 @@
 /*
 ** Read one line of stdin (it can be better to change linked list to double)
 */
+
+static int     my_outc(int c)
+{
+    return (write (STDIN_FILENO, &c, 1));
+}
 
 static char *join_nodes(t_list *head, int size)
 {
@@ -30,6 +35,38 @@ static char *join_nodes(t_list *head, int size)
 		if (node->content)
 			output = ft_strcat(output, (char *)(node->content));
 		node = node->next;
+	}
+	while (ft_strchr(output, 127))
+	{
+		int i;
+		int j;
+
+		i = 0;
+		while (output[i])
+		{
+			if (output[i] == 127 && i > 0)
+			{
+				j = i - 1;
+				while (output[j + 2])
+				{
+					output[j] = output[j + 2];
+					j++;
+				}
+				output[j] = 0;
+				break ;
+			}
+			else if (output[i] == 127 && i == 0)
+			{
+				j = i + 1;
+				while (output[j])
+				{
+					output[j - 1] = output[j];
+					j++;
+				}
+				output[j - 1] = 0;
+			}
+			i++;
+		}
 	}
 	return (output);
 }
@@ -48,7 +85,7 @@ int ft_terminal_get_cmd(char **command, t_env **copy_env)
 		ret = ft_terminal_read_key();
 		if (ret == 10)
 			break ;
-		if (ft_isprint(ret))
+		if (ft_isprint(ret) || ret == 127)
 		{
 			write(0, &ret, sizeof(int));
 			node = ft_lstnew((void *)&ret, sizeof(ret));
@@ -68,6 +105,19 @@ int ft_terminal_get_cmd(char **command, t_env **copy_env)
 				size += ft_strlen(complete);
 				ft_memdel((void **)&complete);
 			}
+		}
+		if (ret == 127)
+		{
+			// node = ft_lstnew((void *)&ret, sizeof(ret));
+			// ft_lstinsert(&head, node);
+			// size++;
+
+			ft_putstr_fd("\r", 0);
+			ft_putstr_fd(NAME, 0);
+			ft_putstr_fd(ft_strrchr(getcwd(NULL, 0), '/') + 1, 0);
+			ft_putstr_fd(PROMPT, 0);
+			tputs(tgetstr("ce", NULL), 1, my_outc);
+			ft_putstr_fd(join_nodes(head, size), 0);
 		}
 	}
 	ft_putchar_fd('\n', STDIN_FILENO);
