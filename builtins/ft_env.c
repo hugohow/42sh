@@ -6,7 +6,7 @@
 /*   By: hhow-cho <hhow-cho@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/06/20 13:58:20 by hhow-cho          #+#    #+#             */
-/*   Updated: 2019/06/20 15:02:40 by hhow-cho         ###   ########.fr       */
+/*   Updated: 2019/06/20 16:25:56 by hhow-cho         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -259,10 +259,6 @@ int ft_env(int argc, char **argv, t_env **cpy_environ, int fds[])
     int waitstatus;
     int i;
 
-	if (fds)
-	{
-		
-	}
     if (argc == 1)
     {
         ft_print_env(cpy_environ, fds);

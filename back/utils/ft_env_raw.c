@@ -6,7 +6,7 @@
 /*   By: hhow-cho <hhow-cho@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/06/15 23:23:34 by hhow-cho          #+#    #+#             */
-/*   Updated: 2019/06/19 23:21:48 by hhow-cho         ###   ########.fr       */
+/*   Updated: 2019/06/20 16:19:30 by hhow-cho         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,7 @@ char **ft_env_raw(t_env **cpy_environ)
 	k = 0;
     while (cpy_environ[len])
         len++;
-    if (!(table_env = ft_memalloc((len + 1) * sizeof(char *))))
+    if (!(table_env = (char **)ft_memalloc((len + 1) * sizeof(char *))))
 		return (NULL);
     len = 0;
     while (cpy_environ[len])

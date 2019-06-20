@@ -6,7 +6,7 @@
 /*   By: hhow-cho <hhow-cho@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/06/13 19:57:57 by hhow-cho          #+#    #+#             */
-/*   Updated: 2019/06/20 15:03:02 by hhow-cho         ###   ########.fr       */
+/*   Updated: 2019/06/20 16:31:13 by hhow-cho         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -138,15 +138,15 @@ char *get_absolute_path(t_env ***p_environ, char *element, int fds[])
         return (element);
     if (ft_strcmp(".", element) == 0 || ft_strcmp("..", element) == 0)
 	{
-		curpath = ft_strjoin(ft_env_get_line(*p_environ, "PWD") + 4, "/");
+		curpath = ft_strjoin(ft_env_get_value(*p_environ, "PWD"), "/");
 		curpath = ft_strjoin(curpath, element);
 		curpath = ft_path_trim(curpath);
 		return (curpath);
 	}
-	cd_path = ft_env_get_line(*p_environ, "CDPATH");
-	if (cd_path == NULL || ft_strlen(cd_path + 7) == 0)
+	cd_path = ft_env_get_value(*p_environ, "CDPATH");
+	if (cd_path == NULL)
 	{
-		curpath = ft_strjoin(ft_env_get_line(*p_environ, "PWD") + 4, "/");
+		curpath = ft_strjoin(ft_env_get_value(*p_environ, "PWD"), "/");
 		curpath = ft_strjoin(curpath, element);
 		curpath = ft_path_trim(curpath);
 		return (curpath);
@@ -232,9 +232,9 @@ int ft_change_dir(char *element, t_env ***p_environ, long long flag, int fds[])
     char *curpath;
     char *old_pwd;
 
-	if (ft_env_get_line(*p_environ, "PWD"))
+	if (ft_env_get_value(*p_environ, "PWD"))
 	{
-		old_pwd = ft_strjoin("OLDPWD=", ft_env_get_line(*p_environ, "PWD") + 4);
+		old_pwd = ft_strjoin("OLDPWD=", ft_env_get_value(*p_environ, "PWD"));
 	}
 	else
 	{
@@ -246,12 +246,11 @@ int ft_change_dir(char *element, t_env ***p_environ, long long flag, int fds[])
             return (go_to_root(old_pwd, p_environ));
         if (ft_strcmp(element, "-") == 0)
 		{
-			if (!(curpath = ft_env_get_line(*p_environ, "OLDPWD")))
+			if (!(curpath = ft_env_get_value(*p_environ, "OLDPWD")))
 			{
 				ft_putstr_fd("shell: cd: OLDPWD not set\n", fds[2]);
 				return (1);
 			}
-			curpath = ft_env_get_line(*p_environ, "OLDPWD") + 7;
 			ft_putstr_fd(curpath, fds[1]);
 			ft_putstr_fd("\n", fds[1]);
 		}
@@ -267,12 +266,11 @@ int ft_change_dir(char *element, t_env ***p_environ, long long flag, int fds[])
     }
     else
     {
-		if (!(curpath = ft_env_get_line(*p_environ, "HOME")) || ft_strlen(curpath + 5) == 0)
+		if (!(curpath = ft_env_get_value(*p_environ, "HOME")))
 		{
 			ft_putstr_fd("shell: cd: HOME not set\n", 2);
 			return (1);
 		}
-		curpath = curpath + 5;
     }
 	if (ft_strlen(curpath) > PATH_MAX)
 	{
