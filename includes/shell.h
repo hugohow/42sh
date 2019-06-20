@@ -6,7 +6,7 @@
 /*   By: hhow-cho <hhow-cho@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/06/09 00:32:39 by hhow-cho          #+#    #+#             */
-/*   Updated: 2019/06/20 18:01:51 by hhow-cho         ###   ########.fr       */
+/*   Updated: 2019/06/20 18:30:10 by hhow-cho         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -107,7 +107,7 @@ typedef struct s_env
 }               t_env;
 
 
-int ft_terminal_get_cmd(char **command);
+int ft_terminal_get_cmd(char **command, t_env **copy_env);
 int ft_terminal_read_key(void);
 
 int shell_terminal(t_env ***p_copy_env);
@@ -135,6 +135,7 @@ char **ft_env_raw(t_env **cpy_environ);
 t_env **ft_env_copy_raw(char **str, char **argv);
 void ft_env_add(char *prefix, char *line, t_env ***p_environ);
 int ft_env_cmp_prefix(char *prefix, char *line);
+char *ft_env_autocomplete_cmd(char *begin, t_env **copy_env);
 char *ft_path_trim(char *path);
 
 void    print_normal(int fd);

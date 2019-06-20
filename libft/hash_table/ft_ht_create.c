@@ -6,7 +6,7 @@
 /*   By: hhow-cho <hhow-cho@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/04/14 19:55:02 by hhow-cho          #+#    #+#             */
-/*   Updated: 2019/06/20 00:02:21 by hhow-cho         ###   ########.fr       */
+/*   Updated: 2019/06/20 18:25:44 by hhow-cho         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,6 @@ t_ht			*ft_ht_create(void)
 		return (NULL);
 	hash_table->size = CLUSTER_SIZE;
 	hash_table->count = 0;
-	hash_table->node = NULL;
 	hash_table->list = (t_node_ht **)ft_memalloc(\
 		hash_table->size * sizeof(t_node_ht *));
 	return (hash_table);

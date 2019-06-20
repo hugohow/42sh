@@ -6,7 +6,7 @@
 /*   By: hhow-cho <hhow-cho@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/04/17 16:05:12 by hhow-cho          #+#    #+#             */
-/*   Updated: 2019/06/20 00:02:32 by hhow-cho         ###   ########.fr       */
+/*   Updated: 2019/06/20 18:22:28 by hhow-cho         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,7 +28,6 @@ typedef struct			s_ht
 {
 	size_t				size;
 	size_t				count;
-	struct s_node_ht	*node;
 	t_node_ht			**list;
 }				t_ht;
 

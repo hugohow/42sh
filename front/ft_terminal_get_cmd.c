@@ -6,7 +6,7 @@
 /*   By: hhow-cho <hhow-cho@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/06/09 01:53:37 by hhow-cho          #+#    #+#             */
-/*   Updated: 2019/06/20 18:02:08 by hhow-cho         ###   ########.fr       */
+/*   Updated: 2019/06/20 19:28:07 by hhow-cho         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,7 +34,7 @@ static char *join_nodes(t_list *head, int size)
 	return (output);
 }
 
-int ft_terminal_get_cmd(char **command)
+int ft_terminal_get_cmd(char **command, t_env **copy_env)
 {	
     int ret;
 	int size;
@@ -48,12 +48,25 @@ int ft_terminal_get_cmd(char **command)
 		ret = ft_terminal_read_key();
 		if (ret == 10)
 			break ;
-		if (ret != 9 && ft_isprint(ret))
+		if (ft_isprint(ret))
 		{
 			write(0, &ret, sizeof(int));
 			node = ft_lstnew((void *)&ret, sizeof(ret));
 			ft_lstinsert(&head, node);
 			size++;
+		}
+		if (ret == 9)
+		{
+			char *complete;
+
+			complete = ft_env_autocomplete_cmd(join_nodes(head, size), copy_env);
+			if (complete)
+			{
+				write(0, complete, ft_strlen(complete));
+				node = ft_lstnew((void *)complete, ft_strlen(complete));
+				ft_lstinsert(&head, node);
+				size += ft_strlen(complete);
+			}
 		}
 	}
 	ft_putchar_fd('\n', STDIN_FILENO);
