@@ -6,7 +6,7 @@
 /*   By: hhow-cho <hhow-cho@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/06/09 00:32:39 by hhow-cho          #+#    #+#             */
-/*   Updated: 2019/06/20 15:24:42 by hhow-cho         ###   ########.fr       */
+/*   Updated: 2019/06/20 16:56:03 by hhow-cho         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -135,6 +135,7 @@ char **ft_env_raw(t_env **cpy_environ);
 t_env **ft_env_copy_raw(char **str, char **argv);
 void ft_env_add(char *prefix, char *line, t_env ***p_environ);
 int ft_env_cmp_prefix(char *prefix, char *line);
+char *ft_path_trim(char *path);
 
 void    print_normal(int fd);
 void    ft_setenv_args(char *prefix, char *line, t_env ***p_environ);
@@ -156,7 +157,7 @@ void print_cmd(char *cmd);
 void add_to_stdout(char **p_cmd, int c, int *index);
 void delete_n_lines(int n);
 int count_nb_line(char *cmd);
-t_node **ft_parse_cmd(char *cmd, t_env **copy_env);
+t_node **ft_syntax_tree_create(char *cmd, t_env **copy_env);
 int ft_exe_path(char *path, char **argv, t_env **cpy_environ, int fds[]);
 int ft_ask_command(int fd, char **command);
 

@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_parse_cmd.c                                     :+:      :+:    :+:   */
+/*   ft_syntax_tree_create.c                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: hhow-cho <hhow-cho@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2019/06/09 01:47:49 by hhow-cho          #+#    #+#             */
-/*   Updated: 2019/06/18 14:19:34 by hhow-cho         ###   ########.fr       */
+/*   Created: 2019/06/20 16:55:53 by hhow-cho          #+#    #+#             */
+/*   Updated: 2019/06/20 16:56:35 by hhow-cho         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,7 +46,7 @@ t_node **get_child(char *cmd, t_env **copy_env)
 
 
 
-t_node **ft_parse_cmd(char *cmd, t_env **copy_env)
+t_node **ft_syntax_tree_create(char *cmd, t_env **copy_env)
 {
     t_node **root;
 

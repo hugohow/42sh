@@ -6,7 +6,7 @@
 /*   By: hhow-cho <hhow-cho@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/06/16 13:42:37 by hhow-cho          #+#    #+#             */
-/*   Updated: 2019/06/19 22:59:44 by hhow-cho         ###   ########.fr       */
+/*   Updated: 2019/06/20 16:43:56 by hhow-cho         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,17 +19,6 @@ static int	ft_is_special_param(char c)
 		return (1);
 	return (0);
 }
-
-// static void print_n(char *str, int i, int j)
-// {
-// 	ft_putstr("macro : ");
-// 	while (i < j)
-// 	{
-// 		ft_putchar(str[i]);
-// 		i++;
-// 	}
-// 	ft_putchar('\n');
-// }
 
 static int get_expansion_length(char *str)
 {

@@ -6,7 +6,7 @@
 /*   By: hhow-cho <hhow-cho@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/06/09 01:40:14 by hhow-cho          #+#    #+#             */
-/*   Updated: 2019/06/19 21:35:35 by hhow-cho         ###   ########.fr       */
+/*   Updated: 2019/06/20 16:48:56 by hhow-cho         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -138,9 +138,7 @@ int ft_exe_bin(t_node *node, t_env ***p_environ, int fds[])
 			}
 		}
 		closedir (pDir);
-        ft_putstr_fd("shell: command not found: ", fds[2]);
-        ft_putstr_fd(args[0], fds[2]);
-        ft_putstr_fd("\n", fds[2]);
+		ft_dprintf(fds[2], "shell: command not found: %s\n", args[0]);
         return (1);
     }
     return (1);

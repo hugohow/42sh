@@ -6,7 +6,7 @@
 /*   By: hhow-cho <hhow-cho@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/06/20 13:58:20 by hhow-cho          #+#    #+#             */
-/*   Updated: 2019/06/20 16:25:56 by hhow-cho         ###   ########.fr       */
+/*   Updated: 2019/06/20 16:56:10 by hhow-cho         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -229,7 +229,7 @@ static int execute_ls(t_token_env **token_ls, t_env **cpy_environ, int fds[])
 		fds[0] = 0;
 		fds[1] = 1;
 		fds[2] = 2;
-		root = ft_parse_cmd(token_ls[i - 1]->string, cpy_environ);
+		root = ft_syntax_tree_create(token_ls[i - 1]->string, cpy_environ);
 		success = 0;
     	execute_tree(*root, &copy_env, fds, &success);
 		return (success);

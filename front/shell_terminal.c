@@ -6,7 +6,7 @@
 /*   By: hhow-cho <hhow-cho@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/06/20 15:07:19 by hhow-cho          #+#    #+#             */
-/*   Updated: 2019/06/20 16:11:51 by hhow-cho         ###   ########.fr       */
+/*   Updated: 2019/06/20 17:04:31 by hhow-cho         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,13 +33,17 @@ int shell_terminal(t_env ***p_copy_env)
 	fds[2] = 2;
 	success = 0;
     if (signal(SIGINT, signal_callback_handler) == SIG_ERR)
-        printf("\ncan't catch SIGINT\n");		
-	ft_terminal_init(&old_config, &new_config);
+        ft_putstr_fd("can't catch SIGINT\n", 2);
+	if (ft_terminal_init(&old_config, &new_config) < 0)
+	{
+		ft_putstr_fd("Init termcaps failed\n", 2);
+		exit(EXIT_FAIL);
+	}
 	while (42)
 	{
 		ft_putstr_fd("$> ", 0);
 		ft_terminal_get_cmd(&command);
-		root = ft_parse_cmd(command, *p_copy_env);
+		root = ft_syntax_tree_create(command, *p_copy_env);
 		if (root)
 			execute_tree(*root, p_copy_env,  fds, &success);
 	}
