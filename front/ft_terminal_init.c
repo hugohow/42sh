@@ -6,11 +6,16 @@
 /*   By: hhow-cho <hhow-cho@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/06/19 23:08:39 by hhow-cho          #+#    #+#             */
-/*   Updated: 2019/06/19 23:09:08 by hhow-cho         ###   ########.fr       */
+/*   Updated: 2019/06/20 14:24:40 by hhow-cho         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "shell.h"
+
+/*
+** Init temrcaps config
+*/
+
 
 int ft_terminal_init(t_config *old_config, t_config *new_config)
 {

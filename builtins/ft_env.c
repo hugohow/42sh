@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   ft_env.c                                           :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: hhow-cho <hhow-cho@student.42.fr>          +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2019/06/20 13:58:20 by hhow-cho          #+#    #+#             */
+/*   Updated: 2019/06/20 14:46:11 by hhow-cho         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "shell.h"
 
 
@@ -185,7 +197,7 @@ static int execute_ls(t_token_env **token_ls, t_env **cpy_environ, int fds[])
     if (has_i(token_ls))
         copy_env = clear_environ();
     else
-        copy_env = ft_env_copy(cpy_environ);
+        copy_env = ft_env_deep_copy(cpy_environ);
 	if (copy_env == NULL)
 	{
 		ft_putstr_fd("Error copy env", 2);

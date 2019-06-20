@@ -6,7 +6,7 @@
 /*   By: hhow-cho <hhow-cho@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/06/09 00:32:39 by hhow-cho          #+#    #+#             */
-/*   Updated: 2019/06/19 23:23:38 by hhow-cho         ###   ########.fr       */
+/*   Updated: 2019/06/20 14:49:59 by hhow-cho         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -155,9 +155,10 @@ t_node **ft_parse_cmd(char *cmd, t_env **copy_env);
 int ft_exe_path(char *path, char **argv, t_env **cpy_environ, int fds[]);
 int ft_ask_command(int fd, char **command);
 
-t_env **ft_env_copy(t_env **str);
+t_env **ft_env_deep_copy(t_env **str);
+void ft_env_free(t_env ***p_cpy_environ);
 int ft_exe_bin(t_node *node, t_env ***p_environ, int fds[]);
-int ft_get_cmd(int fd, char **command);
+int ft_get_cmd(char **command);
 void    execute_tree(t_node *node, t_env ***p_environ, int fds[], int *p_success);
 t_node **ft_get_semi_colon_child(char *cmd, t_env **copy_env);
 t_ht *ft_bins_table_create(char *line);

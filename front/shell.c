@@ -6,17 +6,17 @@
 /*   By: hhow-cho <hhow-cho@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/06/08 15:56:47 by hhow-cho          #+#    #+#             */
-/*   Updated: 2019/06/19 23:36:01 by hhow-cho         ###   ########.fr       */
+/*   Updated: 2019/06/20 14:50:05 by hhow-cho         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "shell.h"
 
-// void signal_callback_handler(int signum)
-// {
-// 	if (signum == SIGINT)
-// 		ft_putstr_fd("\n$> ", 0);
-// }
+void signal_callback_handler(int signum)
+{
+	if (signum == SIGINT)
+		ft_putstr_fd("\n$> ", 0);
+}
 
 
 int main(int argc, char **argv)
@@ -27,8 +27,8 @@ int main(int argc, char **argv)
     int success;
     t_node **root;
 
-    // if (signal(SIGINT, signal_callback_handler) == SIG_ERR)
-    //     printf("\ncan't catch SIGINT\n");
+    if (signal(SIGINT, signal_callback_handler) == SIG_ERR)
+        printf("\ncan't catch SIGINT\n");
 
 
     success = 0;
@@ -46,7 +46,7 @@ int main(int argc, char **argv)
     if (argc > 1 || ft_isatty(0) == 0)
     {
         fd = ft_isatty(0) == 0 ? 0 : open(argv[1], O_RDONLY);
-        while (ft_get_cmd(fd, &command) != 0)
+        while (get_next_line(fd, &command) != 0)
         {
             root = ft_parse_cmd(command, copy_env);
 			if (root)
@@ -66,7 +66,7 @@ int main(int argc, char **argv)
         while (42)
         {
 			ft_putstr_fd("$> ", 0);
-			ft_get_cmd(0, &command);
+			ft_get_cmd(&command);
             root = ft_parse_cmd(command, copy_env);
 			if (root)
     			execute_tree(*root, &copy_env,  fds, &success);
@@ -76,5 +76,6 @@ int main(int argc, char **argv)
 
 
     }
+	ft_env_free(&copy_env);
     return (success);
 }

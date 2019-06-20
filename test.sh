@@ -43,7 +43,7 @@ execute()
 
 
 
-for filename in $(ls tests_sh); do
+for filename in $(ls tests/tests_sh); do
     echo Test tests_sh/${filename}
 	execute tests_sh/${filename}
 done

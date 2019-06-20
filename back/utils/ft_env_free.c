@@ -1,34 +1,31 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_env_copy.c                                      :+:      :+:    :+:   */
+/*   ft_env_free.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: hhow-cho <hhow-cho@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2019/06/16 15:08:11 by hhow-cho          #+#    #+#             */
-/*   Updated: 2019/06/18 15:55:21 by hhow-cho         ###   ########.fr       */
+/*   Created: 2019/06/20 14:39:27 by hhow-cho          #+#    #+#             */
+/*   Updated: 2019/06/20 14:49:50 by hhow-cho         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "shell.h"
 
-t_env **ft_env_copy(t_env **cp_env)
+void ft_env_free(t_env ***p_cpy_environ)
 {
-    t_env **copy;
-    int i;
+    size_t i;
 
     i = 0;
-    while (cp_env[i])
-        i++;
-    if (!(copy = (t_env **)ft_memalloc((i + 1) * sizeof(t_env *))))
-		return (NULL);
-    i = 0;
-    while (cp_env[i])
+    while ((*p_cpy_environ)[i])
     {
-        copy[i] = ft_memalloc(sizeof(t_env));
-        copy[i] = cp_env[i];
+		if (ft_env_cmp_prefix("PATH", (*p_cpy_environ)[i]->line) == 0)
+		{
+			ft_ht_free(&((*p_cpy_environ)[i]->table));
+		}
+		ft_memdel((void **)(&((*p_cpy_environ)[i]->line)));
+		ft_memdel((void **)(&((*p_cpy_environ)[i])));
         i++;
     }
-    copy[i] = 0;
-    return (copy);
+	*p_cpy_environ = NULL;
 }

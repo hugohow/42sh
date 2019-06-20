@@ -1,25 +1,34 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_terminal_exit.c                                 :+:      :+:    :+:   */
+/*   ft_env_deep_copy.c                                 :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: hhow-cho <hhow-cho@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2019/06/19 23:23:04 by hhow-cho          #+#    #+#             */
-/*   Updated: 2019/06/20 14:32:39 by hhow-cho         ###   ########.fr       */
+/*   Created: 2019/06/16 15:08:11 by hhow-cho          #+#    #+#             */
+/*   Updated: 2019/06/20 14:45:50 by hhow-cho         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-
 #include "shell.h"
 
-/*
-** Terminal exit and configure the former config
-*/
-
-
-void ft_terminal_exit(t_config *old_config)
+t_env **ft_env_deep_copy(t_env **cp_env)
 {
-    tcsetattr(STDIN_FILENO, TCSAFLUSH, old_config);
-	exit(EXIT_SUCCESS);
+    t_env **copy;
+    int i;
+
+    i = 0;
+    while (cp_env[i])
+        i++;
+    if (!(copy = (t_env **)ft_memalloc((i + 1) * sizeof(t_env *))))
+		return (NULL);
+    i = 0;
+    while (cp_env[i])
+    {
+        copy[i] = ft_memalloc(sizeof(t_env));
+        copy[i] = cp_env[i];
+        i++;
+    }
+    copy[i] = 0;
+    return (copy);
 }
