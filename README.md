@@ -1,7 +1,8 @@
 ## minishell
 [![Build Status](https://travis-ci.org/hugohow/42sh.svg?branch=master)](https://travis-ci.org/hugohow/42sh)
 
-![drawing](screen.png)
+<img src="screen.png" alt="Valid input solution" width="500" />
+
 
 # TODO
 
