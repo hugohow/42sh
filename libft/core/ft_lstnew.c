@@ -6,7 +6,7 @@
 /*   By: hhow-cho <hhow-cho@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/04/02 17:13:35 by hhow-cho          #+#    #+#             */
-/*   Updated: 2019/04/02 18:47:10 by hhow-cho         ###   ########.fr       */
+/*   Updated: 2019/06/20 15:50:01 by hhow-cho         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,9 +17,9 @@ t_list		*ft_lstnew(void const *content, size_t content_size)
 	t_list	*new;
 	void	*new_content;
 
-	if (!(new = (t_list *)malloc(sizeof(*new))))
+	if (!(new = (t_list *)ft_memalloc(sizeof(*new))))
 		return (NULL);
-	new_content = (void *)malloc(content_size);
+	new_content = (void *)ft_memalloc(content_size);
 	if (content == NULL)
 	{
 		new->content = NULL;

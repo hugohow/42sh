@@ -6,7 +6,7 @@
 /*   By: hhow-cho <hhow-cho@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/06/09 00:32:39 by hhow-cho          #+#    #+#             */
-/*   Updated: 2019/06/20 14:49:59 by hhow-cho         ###   ########.fr       */
+/*   Updated: 2019/06/20 15:24:42 by hhow-cho         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -107,6 +107,12 @@ typedef struct s_env
 }               t_env;
 
 
+int ft_terminal_get_cmd(char **command);
+int ft_terminal_read_key(void);
+
+int shell_terminal(t_env ***p_copy_env);
+int shell_file(t_env ***p_copy_env, char **argv);
+
 t_node **get_child(char *cmd, t_env **copy_env);
 t_node *create_node(long type, char *cmd, t_env **copy_env);
 void    print_tree(t_node *node);
@@ -145,7 +151,6 @@ int ft_exit(int argc, char **argv, t_env **cpy_environ, int fds[]);
 
 void ft_print_env(t_env **str, int fds[]);
 int ft_terminal_init(struct termios *orig_termios, struct termios *new_termios);
-int ft_read_key();
 void ft_terminal_exit(struct termios *orig_termios);
 void print_cmd(char *cmd);
 void add_to_stdout(char **p_cmd, int c, int *index);
@@ -158,7 +163,6 @@ int ft_ask_command(int fd, char **command);
 t_env **ft_env_deep_copy(t_env **str);
 void ft_env_free(t_env ***p_cpy_environ);
 int ft_exe_bin(t_node *node, t_env ***p_environ, int fds[]);
-int ft_get_cmd(char **command);
 void    execute_tree(t_node *node, t_env ***p_environ, int fds[], int *p_success);
 t_node **ft_get_semi_colon_child(char *cmd, t_env **copy_env);
 t_ht *ft_bins_table_create(char *line);

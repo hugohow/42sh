@@ -6,7 +6,7 @@
 #    By: hhow-cho <hhow-cho@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2019/06/05 23:41:00 by hhow-cho          #+#    #+#              #
-#    Updated: 2019/06/06 00:23:48 by hhow-cho         ###   ########.fr        #
+#    Updated: 2019/06/20 16:04:44 by hhow-cho         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -78,6 +78,7 @@ SRCS	=	ft_memset.c					\
 			ft_lstpeek.c				\
 			ft_lstpush.c				\
 			ft_lstlen.c					\
+			ft_lstinsert.c				\
 			ft_bigint_add.c				\
 			ft_bigint_divide_by_two.c	\
 			ft_bigint_get_index.c		\

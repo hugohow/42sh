@@ -6,11 +6,15 @@
 /*   By: hhow-cho <hhow-cho@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/06/20 13:58:14 by hhow-cho          #+#    #+#             */
-/*   Updated: 2019/06/20 13:58:15 by hhow-cho         ###   ########.fr       */
+/*   Updated: 2019/06/20 15:02:10 by hhow-cho         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "shell.h"
+
+/*
+** Builtin to exit the shell process
+*/
 
 int ft_exit(int argc, char **argv, t_env **cpy_environ, int fds[])
 {

@@ -6,11 +6,15 @@
 /*   By: hhow-cho <hhow-cho@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/06/19 20:47:47 by hhow-cho          #+#    #+#             */
-/*   Updated: 2019/06/19 20:50:38 by hhow-cho         ###   ########.fr       */
+/*   Updated: 2019/06/20 15:02:47 by hhow-cho         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "shell.h"
+
+/*
+** Builtin to echo value
+*/
 
 int ft_echo(int argc, char **argv, t_env **cpy_environ, int fds[])
 {

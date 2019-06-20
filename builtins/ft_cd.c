@@ -6,12 +6,15 @@
 /*   By: hhow-cho <hhow-cho@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/06/13 19:57:57 by hhow-cho          #+#    #+#             */
-/*   Updated: 2019/06/19 21:25:12 by hhow-cho         ###   ########.fr       */
+/*   Updated: 2019/06/20 15:03:02 by hhow-cho         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "shell.h"
 
+/*
+** Builtin to change of directory
+*/
 
 int is_symlink(char *path)
 {

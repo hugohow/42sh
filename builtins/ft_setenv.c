@@ -6,12 +6,16 @@
 /*   By: hhow-cho <hhow-cho@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/06/16 15:19:11 by hhow-cho          #+#    #+#             */
-/*   Updated: 2019/06/19 21:33:28 by hhow-cho         ###   ########.fr       */
+/*   Updated: 2019/06/20 15:01:45 by hhow-cho         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 
 #include "shell.h"
+
+/*
+** Builtin to set env variable
+*/
 
 int ft_setenv(int argc, char **argv, t_env ***p_environ, int fds[])
 {
