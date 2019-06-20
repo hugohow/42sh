@@ -6,32 +6,29 @@
 /*   By: hhow-cho <hhow-cho@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/06/20 18:08:05 by hhow-cho          #+#    #+#             */
-/*   Updated: 2019/06/20 19:26:55 by hhow-cho         ###   ########.fr       */
+/*   Updated: 2019/06/20 19:48:56 by hhow-cho         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 
 #include "shell.h"
 
-
-char *ft_env_autocomplete_cmd(char *begin, t_env **copy_env)
+static char **ft_get_possibilities(char *begin, t_env **copy_env)
 {
-    int i;
-	int k;
+	t_ht *table;
 	char **suggestions;
-	int k_min;
+	int i;
+	int k;
 
-    i = 0;
+	i = 0;
 	k = 0;
-	suggestions = (char **)ft_memalloc((9999) * sizeof(char *));
+	suggestions = NULL;
     while (copy_env[i])
     {
 		if (ft_env_cmp_prefix("PATH", copy_env[i]->line) == 0)
 		{
-			t_ht *table;
-
 			table = copy_env[i]->table;
-			int i;
+			suggestions = (char **)ft_memalloc((table->size + 1) * sizeof(char *));
 			i = 0;
 			while (i < (int)table->size)
 			{
@@ -49,12 +46,28 @@ char *ft_env_autocomplete_cmd(char *begin, t_env **copy_env)
 				}
 				i++;
 			}
+			suggestions[k] = 0;
+			break ;
 		}
         i++;
     }
-	suggestions[k] = 0;
+	return (suggestions);
+}
+
+char *ft_env_autocomplete_cmd(char *begin, t_env **copy_env)
+{
+    int i;
+	int k;
+	char **suggestions;
+	int k_min;
+
+    i = 0;
+	k = 0;
 	k = 0;
 	k_min = 0;
+	suggestions = ft_get_possibilities(begin, copy_env);
+	if (suggestions == NULL)
+		return (NULL);
 	while (suggestions[k])
 	{
 		if (ft_strlen(suggestions[k_min]) > ft_strlen(suggestions[k]))
@@ -63,6 +76,5 @@ char *ft_env_autocomplete_cmd(char *begin, t_env **copy_env)
 	}
 	if (suggestions[k_min] == NULL)
 		return (NULL);
-	// printf("\n%s\n", suggestions[k_min]);
     return (ft_strdup(suggestions[k_min] + ft_strlen(begin)));
 }
