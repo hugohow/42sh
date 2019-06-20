@@ -6,7 +6,7 @@
 /*   By: hhow-cho <hhow-cho@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/06/20 16:55:53 by hhow-cho          #+#    #+#             */
-/*   Updated: 2019/06/20 16:56:35 by hhow-cho         ###   ########.fr       */
+/*   Updated: 2019/06/21 00:55:35 by hhow-cho         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,7 @@ t_node *create_node(long type, char *cmd, t_env **copy_env)
 	node->args = NULL;
     if (type & TYPE_CMD)
     {
-		node->args = ft_get_args(cmd, copy_env);
+		// node->args = ft_get_args(cmd, copy_env);
         node->child = NULL;
     }
 	else

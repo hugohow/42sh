@@ -6,7 +6,7 @@
 /*   By: hhow-cho <hhow-cho@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/06/09 01:40:14 by hhow-cho          #+#    #+#             */
-/*   Updated: 2019/06/20 16:48:56 by hhow-cho         ###   ########.fr       */
+/*   Updated: 2019/06/21 00:57:08 by hhow-cho         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -62,7 +62,7 @@ int ft_exe_bin(t_node *node, t_env ***p_environ, int fds[])
     char *new_path;
 	char **args;
 
-	args = node->args;
+	args = ft_get_args(node->cmd, *p_environ);
 	if (args[0] == NULL)
         return 0;
     command = ft_strtrim(args[0]);
