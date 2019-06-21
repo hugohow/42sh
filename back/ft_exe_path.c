@@ -6,7 +6,7 @@
 /*   By: hhow-cho <hhow-cho@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/06/09 14:28:12 by hhow-cho          #+#    #+#             */
-/*   Updated: 2019/06/20 16:18:35 by hhow-cho         ###   ########.fr       */
+/*   Updated: 2019/06/21 02:12:41 by hhow-cho         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,7 +29,7 @@ int ft_exe_path(char *path, char **argv, t_env **cpy_environ, int fds[])
     if (lstat(path, &fileStat) < 0)
     {
         ft_putstr_fd("Command not found\n", fds[2]);
-        return (-1);
+        return (EXIT_UTILITY_NOT_FOUND);
     }
     if (access(path, X_OK) == -1)
     {

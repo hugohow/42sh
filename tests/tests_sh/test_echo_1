@@ -1,19 +1,21 @@
 echo $OLDPWD $PWD $PATH $PATH/abc bb$PATH/abc
+echo $?
 cd /
+echo $?
 echo $OLDPWD $PWD $PATH $PATH/abc bb$PATH/abc
+echo $?
 echo ${OLDPWD} ${PWD} ${PATH} ${PATH}/{abc} bb${PATH}
+echo $?
 echo ${OLDPWD} ${PWD}
+echo $?
 echo $PP*A $PP_A*BB
-echo $PP*A $PP_A
-echo $PP*A $PP_A
-echo ${PP*A} ${PP_A*BB}
-echo ${PP*A} ${PP_A}
-echo ${PP*A }${PP_A}
-echo $*
+echo $?
+echo $?
 echo $@
+echo $?
 echo $!
 ls dzdz
 echo $?
 echo ssz${*}/ab
 echo z${@}/bbd
-exit
+exit 99

@@ -13,6 +13,7 @@ LANG=en_US.UTF-8
 SECURITYSESSIONID=186a7
 TMPDIR=/var/folders/7f/9kzlj6h169359rtzggmmg31c0000gn/T/
 MFLAGS=
+VALGRIND_STARTUP_PWD_70498_XYZZY=/Users/hugohow-choong/42/42sh
 MAKEFLAGS=
 TERM=xterm-256color
 ZSH=/Users/hugohow-choong/.oh-my-zsh
@@ -28,9 +29,9 @@ __CF_USER_TEXT_ENCODING=0x1F5:0x0:0x1
 TERM_PROGRAM=Apple_Terminal
 OLDPWD=/Users/hugohow-choong/42/42sh/tests
 _=/Users/hugohow-choong/42/42sh/minishell
-TESTVAR1=VALUE_TOKEN201906210047
+TESTVAR1=VALUE_TOKEN201906210216
 ------------------------------
-TOTAL ENVIRONMENT VARIABLES: 30
+TOTAL ENVIRONMENT VARIABLES: 31
 ------------------------------
 SHELL=/bin/zsh
 LSCOLORS=Gxfxcxdxbxegedabagacad
@@ -46,6 +47,7 @@ LANG=en_US.UTF-8
 SECURITYSESSIONID=186a7
 TMPDIR=/var/folders/7f/9kzlj6h169359rtzggmmg31c0000gn/T/
 MFLAGS=
+VALGRIND_STARTUP_PWD_70498_XYZZY=/Users/hugohow-choong/42/42sh
 MAKEFLAGS=
 TERM=xterm-256color
 ZSH=/Users/hugohow-choong/.oh-my-zsh
@@ -61,9 +63,9 @@ __CF_USER_TEXT_ENCODING=0x1F5:0x0:0x1
 TERM_PROGRAM=Apple_Terminal
 OLDPWD=/Users/hugohow-choong/42/42sh/tests
 _=/Users/hugohow-choong/42/42sh/minishell
-TESTVAR1=VALUE_TOKEN201906210047
+TESTVAR1=VALUE_TOKEN201906210216
 ------------------------------
-TOTAL ENVIRONMENT VARIABLES: 30
+TOTAL ENVIRONMENT VARIABLES: 31
 ------------------------------
 SHELL=/bin/zsh
 LSCOLORS=Gxfxcxdxbxegedabagacad
@@ -79,6 +81,7 @@ LANG=en_US.UTF-8
 SECURITYSESSIONID=186a7
 TMPDIR=/var/folders/7f/9kzlj6h169359rtzggmmg31c0000gn/T/
 MFLAGS=
+VALGRIND_STARTUP_PWD_70498_XYZZY=/Users/hugohow-choong/42/42sh
 MAKEFLAGS=
 TERM=xterm-256color
 ZSH=/Users/hugohow-choong/.oh-my-zsh
@@ -94,6 +97,6 @@ __CF_USER_TEXT_ENCODING=0x1F5:0x0:0x1
 TERM_PROGRAM=Apple_Terminal
 OLDPWD=/Users/hugohow-choong/42/42sh/tests
 _=/Users/hugohow-choong/42/42sh/minishell
-TESTVAR1=VALUE_TOKEN201906210047
+TESTVAR1=VALUE_TOKEN201906210216
 ------------------------------
-TOTAL ENVIRONMENT VARIABLES: 30
+TOTAL ENVIRONMENT VARIABLES: 31

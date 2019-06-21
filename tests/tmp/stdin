@@ -1,1 +1,2 @@
-./display_env
+TOKEN201906210228=~
+./write_on_stdout TILDE:$TOKEN201906210228

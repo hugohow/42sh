@@ -6,7 +6,7 @@
 /*   By: hhow-cho <hhow-cho@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/06/09 00:32:39 by hhow-cho          #+#    #+#             */
-/*   Updated: 2019/06/21 00:03:40 by hhow-cho         ###   ########.fr       */
+/*   Updated: 2019/06/21 02:51:33 by hhow-cho         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -138,8 +138,8 @@ int ft_exe_bin(t_node *node, t_env ***p_environ, int fds[]);
 void    execute_tree(t_node *node, t_env ***p_environ, int fds[], int *p_success);
 t_node **ft_get_semi_colon_child(char *cmd, t_env **copy_env);
 t_ht *ft_bins_table_create(char *line);
-char **ft_get_args(char *cmd, t_env **copy_env);
-char *ft_get_args_dollar(char *str, t_env **copy_env);
+char **ft_get_args(char *cmd, t_env **copy_env, int *p_result_parsing);
+char *ft_get_args_dollar(char *str, t_env **copy_env, int *p_result_parsing);
 char *ft_get_args_tilde(char *str, t_env **copy_env);
 int	ft_isatty(int fd);
 #endif

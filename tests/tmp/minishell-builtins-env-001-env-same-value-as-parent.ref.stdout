@@ -13,6 +13,7 @@ LANG=en_US.UTF-8
 SECURITYSESSIONID=186a7
 TMPDIR=/var/folders/7f/9kzlj6h169359rtzggmmg31c0000gn/T/
 MFLAGS=
+VALGRIND_STARTUP_PWD_70498_XYZZY=/Users/hugohow-choong/42/42sh
 MAKEFLAGS=
 TERM=xterm-256color
 ZSH=/Users/hugohow-choong/.oh-my-zsh

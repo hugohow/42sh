@@ -1,9 +1,15 @@
 echo ~/$PWD
+echo $?
 cd /
+echo $?
 echo ~/$PWD
+echo $?
 echo ALLEZ=~/$PWD
+echo $?
 echo ALLEZ:~/$PWD
+echo $?
 echo ~+/$PWD
+echo $?
 cd /
 echo ~+/$PWD
 echo ALLEZ=~+/$PWD
@@ -13,4 +19,5 @@ cd /
 echo ~-/$PWD
 echo ALLEZ=~-/$PWD
 echo ALLEZ:~-/$PWD
+echo $?
 exit

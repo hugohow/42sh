@@ -20,9 +20,9 @@ quit()
 
 execute()
 {
-	bash ${1} > ${RESULT} 2> ${RESULT_2}
+	(bash < ${1}) > ${RESULT} 2> ${RESULT_2}
 	OUR_RET=($?)
-	./minishell ${1} > ${LOG} 2> ${LOG_2}
+	(./minishell < ${1}) > ${LOG} 2> ${LOG_2}
 	YOUR_RET=($?)
 	if [ $OUR_RET -ne $YOUR_RET ]; then
 		printf "\r\n\033[31mError:\t\t\033[0m\033[37;1m minishell ${1}\033[0m\n\n"
@@ -44,8 +44,8 @@ execute()
 
 
 for filename in $(ls tests/tests_sh); do
-    echo Test tests_sh/${filename}
-	execute tests_sh/${filename}
+    echo Test tests/tests_sh/${filename}
+	execute tests/tests_sh/${filename}
 done
 
 rm -rf ${TMP_DIR} ${TMP_DIR_LOG}
