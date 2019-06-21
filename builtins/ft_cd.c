@@ -6,7 +6,7 @@
 /*   By: hhow-cho <hhow-cho@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/06/13 19:57:57 by hhow-cho          #+#    #+#             */
-/*   Updated: 2019/06/20 16:38:57 by hhow-cho         ###   ########.fr       */
+/*   Updated: 2019/06/21 14:49:02 by hhow-cho         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,7 +43,7 @@ int go_to_root(char *old_pwd_line, t_env ***p_environ)
         chdir("..");
 
     if (ft_change_env("/", old_pwd_line, p_environ) < 0)
-        return (-1);
+        return (1);
     return (0);
 }
 
@@ -148,7 +148,7 @@ int ft_go_to(char *curpath, int fds[])
 		if (S_ISLNK(fileStat.st_mode) && access(curpath, X_OK))
 		{
 			ft_putstr_fd("Too many symbolic links\n", fds[2]);
-			return (-1);
+			return (1);
 		}
 		ft_putstr_fd("No such file or directory\n", fds[2]);
 		return (127);
@@ -156,12 +156,12 @@ int ft_go_to(char *curpath, int fds[])
 	else if (!S_ISDIR(fileStat.st_mode) && !S_ISLNK(fileStat.st_mode))
 	{
 		ft_putstr_fd("not a directory !!!!! \n", fds[2]);
-		return (-1);
+		return (1);
 	}
 	else if (access(curpath, X_OK))
 	{
 		ft_putstr_fd("permission denied \n", fds[2]);
-		return (-1);
+		return (1);
 	}
     return (chdir(curpath));
 }

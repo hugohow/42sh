@@ -1,10 +1,3 @@
-make[2]: *** [all] Interrupt: 2
-make[1]: *** [all] Interrupt: 2
-play-env
-gcc -Wall -Werror -Wextra main.c -o "/Users/hugohow-choong/42/42sh/tests/tmp/display_env"
-make TARGET_DIR=/Users/hugohow-choong/42/42sh/tests/tmp -C ./display-program-name
-gcc -Wall -Werror -Wextra main.c -o "/Users/hugohow-choong/42/42sh/tests/tmp/display_program_name"
-make TARGET_DIR=/Users/hugohow-choong/42/42sh/tests/tmp -C ./display-pwd
-gcc -Wall -Werror -Wextra main.c -o "/Users/hugohow-choong/42/42sh/tests/tmp/display_pwd"
-make TARGET_DIR=/Users/hugohow-choong/42/42sh/tests/tmp -C ./exit-with-status
-gcc -Wall -Werror -Wextra main.c -o "/Users/hugohow-choong/42/42sh/tests/tmp/exit_with_status"
+[31m[38;5;34m  SUCCESS    expected_to match_regex `COPYENV_VAR1=TOKEN201906211451_VAR1`[0m
+[31m[38;5;34m  SUCCESS    expected_to match_regex `COPYENV_VAR2=TOKEN201906211451_VAR2`[0m
+[31m[38;5;34m  SUCCESS    expected_to match_regex `COPYENV_VAR3=TOKEN201906211451_VAR3`[0m

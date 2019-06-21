@@ -6,7 +6,7 @@
 /*   By: hhow-cho <hhow-cho@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/06/09 00:32:39 by hhow-cho          #+#    #+#             */
-/*   Updated: 2019/06/21 02:51:33 by hhow-cho         ###   ########.fr       */
+/*   Updated: 2019/06/21 13:46:52 by hhow-cho         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,14 +39,14 @@
 typedef struct termios t_config;
 
 
-# define TYPE_BASE (2 << 0)
-# define TYPE_CMD (2 << 1)
-# define TYPE_SEPARATOR (2 << 1)
+# define TYPE_BASE (1 << 0)
+# define TYPE_CMD (1 << 1)
+// # define TYPE_SEPARATOR (2 << 2)
 
 # define BUF_SIZE 20
-# define FLAG_CD_P (2 << 0)
-# define FLAG_CD_L (2 << 1)
-# define FLAG_ECHO_N (2 << 0)
+# define FLAG_CD_P (1 << 0)
+# define FLAG_CD_L (1 << 1)
+# define FLAG_ECHO_N (1 << 0)
 # define EXIT_SUCCESS 0
 # define EXIT_FAIL 1
 # define EXIT_UTILITY_NOT_FOUND 127
@@ -93,8 +93,12 @@ int is_pipe(char *str);
 void print_tokens(t_token **list);
 
 
-int     get_next_line(const int fd, char **line);
+int					get_next_line(const int fd, char **line);
 
+
+/*
+** Functions related to environnement variables
+*/
 
 char *ft_env_get_line(t_env **cpy_environ, char *str);
 char *ft_env_get_line_n(t_env **cpy_environ, char *str, size_t n);
@@ -105,6 +109,10 @@ char **ft_env_raw(t_env **cpy_environ);
 t_env **ft_env_copy_raw(char **str, char **argv);
 void ft_env_add(char *prefix, char *line, t_env ***p_environ);
 int ft_env_cmp_prefix(char *prefix, char *line);
+t_env **ft_env_deep_copy(t_env **str);
+void ft_env_free(t_env ***p_cpy_environ);
+
+
 char *ft_env_autocomplete_cmd(char *begin, t_env **copy_env);
 char *ft_path_trim(char *path);
 
@@ -128,12 +136,15 @@ void print_cmd(char *cmd);
 void add_to_stdout(char **p_cmd, int c, int *index);
 void delete_n_lines(int n);
 int count_nb_line(char *cmd);
-t_node **ft_syntax_tree_create(char *cmd, t_env **copy_env);
+
 int ft_exe_path(char *path, char **argv, t_env **cpy_environ, int fds[]);
 int ft_ask_command(int fd, char **command);
 
-t_env **ft_env_deep_copy(t_env **str);
-void ft_env_free(t_env ***p_cpy_environ);
+
+t_node **ft_syntax_tree_create(char *cmd, t_env **copy_env);
+void ft_syntax_tree_free(t_node **root);
+
+
 int ft_exe_bin(t_node *node, t_env ***p_environ, int fds[]);
 void    execute_tree(t_node *node, t_env ***p_environ, int fds[], int *p_success);
 t_node **ft_get_semi_colon_child(char *cmd, t_env **copy_env);

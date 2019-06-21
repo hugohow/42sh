@@ -6,7 +6,7 @@
 /*   By: hhow-cho <hhow-cho@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/06/20 13:58:14 by hhow-cho          #+#    #+#             */
-/*   Updated: 2019/06/20 15:02:10 by hhow-cho         ###   ########.fr       */
+/*   Updated: 2019/06/21 14:51:04 by hhow-cho         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,12 +41,12 @@ int ft_exit(int argc, char **argv, t_env **cpy_environ, int fds[])
             return (EXIT_FAIL);
         }
         exit(ft_atoi(argv[1]));
-    }   
+    }
 	char *line;
 
-	line = ft_env_get_line(cpy_environ, "?");
+	line = ft_env_get_value(cpy_environ, "?");
 	if (line)
-    	exit(ft_atoi(line + 2));
+		exit(ft_atoi(line));
 	exit(EXIT_SUCCESS);
 	return (EXIT_SUCCESS);
 }

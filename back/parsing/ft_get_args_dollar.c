@@ -6,7 +6,7 @@
 /*   By: hhow-cho <hhow-cho@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/06/16 13:42:37 by hhow-cho          #+#    #+#             */
-/*   Updated: 2019/06/21 02:52:45 by hhow-cho         ###   ########.fr       */
+/*   Updated: 2019/06/21 12:44:41 by hhow-cho         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -107,7 +107,7 @@ char *ft_get_args_dollar(char *str, t_env **copy_env, int *p_result_parsing)
 			if (ret == -1)
 			{
 				*p_result_parsing = 1;
-				ft_putstr_fd("bad substitution", 2);
+				ft_putstr_fd("bad substitution\n", 2);
 				return (NULL);
 			}
 			j = ret + i;

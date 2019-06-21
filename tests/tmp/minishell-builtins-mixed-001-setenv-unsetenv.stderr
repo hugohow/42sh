@@ -1,4 +1,1 @@
-shell: command not found: export
-shell: command not found: export
-shell: command not found: unset
-shell: command not found: unset
+./lib/main.sh: line 102: 69540 Segmentation fault: 11  /Users/hugohow-choong/42/42sh/minishell

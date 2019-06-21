@@ -6,7 +6,7 @@
 /*   By: hhow-cho <hhow-cho@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/06/20 13:58:20 by hhow-cho          #+#    #+#             */
-/*   Updated: 2019/06/21 00:24:46 by hhow-cho         ###   ########.fr       */
+/*   Updated: 2019/06/21 14:49:13 by hhow-cho         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -85,7 +85,7 @@ static int ft_execute_env(char **argv, int flag, t_env **cpy_environ, int fds[])
 	if (copy_env == NULL)
 	{
 		ft_putstr_fd("Error copy env", 2);
-		return (-1);
+		return (1);
 	}
 	ft_get_env_variable(&argv, &copy_env);
 		int success;
@@ -107,6 +107,7 @@ static int ft_execute_env(char **argv, int flag, t_env **cpy_environ, int fds[])
 		root = ft_syntax_tree_create(cmd, cpy_environ);
 		success = 0;
     	execute_tree(*root, &copy_env, fds, &success);
+		ft_syntax_tree_free(root);
 	}
     else
         ft_print_env(copy_env, fds);
@@ -136,7 +137,7 @@ static int ft_parse_input_env(char ***p_argv, int fds[])
 			{
 				ft_dprintf(fds[2], "env: illegal option -- %c\n", (*p_argv)[k][i]);
 				ft_putstr_fd("usage: env [-i] [name=value ...] [utility [argument ...]]\n", fds[2]);
-				return (-1);
+				return (1);
 			}
 				break ;
 			i++;
@@ -175,7 +176,7 @@ int ft_env(int argc, char **argv, t_env **cpy_environ, int fds[])
     else if (pid < 0)
     {
         ft_putstr_fd("erreur pid", fds[2]);
-        exit(-1);
+        exit(1);
     }
     else
     {
