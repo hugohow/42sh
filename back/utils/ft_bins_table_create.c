@@ -6,7 +6,7 @@
 /*   By: hhow-cho <hhow-cho@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/06/09 15:24:14 by hhow-cho          #+#    #+#             */
-/*   Updated: 2019/06/23 01:03:42 by hhow-cho         ###   ########.fr       */
+/*   Updated: 2019/06/23 01:06:27 by hhow-cho         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,7 +34,6 @@ t_ht *ft_bins_table_create(char *line)
 		{
 			while ((pDirent = readdir(pDir)) != NULL) 
 			{
-				printf("%s\n", pDirent->d_name);
 				d_name = pDirent->d_name;
 				new_path = ft_strjoin(paths[i], "/");
 				new_path = ft_strjoin(new_path, d_name);
