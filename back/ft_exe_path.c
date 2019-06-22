@@ -6,7 +6,7 @@
 /*   By: hhow-cho <hhow-cho@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/06/09 14:28:12 by hhow-cho          #+#    #+#             */
-/*   Updated: 2019/06/21 14:48:18 by hhow-cho         ###   ########.fr       */
+/*   Updated: 2019/06/23 00:40:18 by hhow-cho         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,11 +26,11 @@ int ft_exe_path(char *path, char **argv, t_env **cpy_environ, int fds[])
         ft_putstr_fd("Too many symbolic links\n", fds[2]);
         return (1);
     }
-    if (lstat(path, &fileStat) < 0)
-    {
-        ft_putstr_fd("Command not found\n", fds[2]);
-        return (EXIT_UTILITY_NOT_FOUND);
-    }
+    // if (lstat(path, &fileStat) < 0)
+    // {
+    //     ft_putstr_fd("Command not found\n", fds[2]);
+    //     return (EXIT_UTILITY_NOT_FOUND);
+    // }
     if (access(path, X_OK) == -1)
     {
         ft_putstr_fd("Permission denied\n", fds[2]);
