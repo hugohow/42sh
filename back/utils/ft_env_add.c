@@ -6,14 +6,14 @@
 /*   By: hhow-cho <hhow-cho@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/06/16 15:18:02 by hhow-cho          #+#    #+#             */
-/*   Updated: 2019/06/21 00:18:49 by hhow-cho         ###   ########.fr       */
+/*   Updated: 2019/06/23 00:15:49 by hhow-cho         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 
 #include "shell.h"
 
-static int ft_list_size(t_env **list)
+static int ft_env_size(t_env **list)
 {
     int size;
 
@@ -37,9 +37,9 @@ void    ft_env_add(char *prefix, char *line, t_env ***p_environ)
         env_line = ft_strjoin(env_line, line);
     if (ft_env_change_line(prefix, env_line, *p_environ) == 0)
     {
-        new_environ = (t_env **)ft_memalloc((ft_list_size(*p_environ) + 2) * sizeof(t_env *));
+        new_environ = (t_env **)ft_memalloc((ft_env_size(*p_environ) + 2) * sizeof(t_env *));
         i = 0;
-        while (i < ft_list_size(*p_environ))
+        while (i < ft_env_size(*p_environ))
         {
             new_environ[i] = (*p_environ)[i];
             i++;

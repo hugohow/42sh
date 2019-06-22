@@ -6,40 +6,12 @@
 /*   By: hhow-cho <hhow-cho@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/06/09 01:40:14 by hhow-cho          #+#    #+#             */
-/*   Updated: 2019/06/21 14:44:45 by hhow-cho         ###   ########.fr       */
+/*   Updated: 2019/06/23 00:14:26 by hhow-cho         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 
 #include "shell.h"
-
-static int ft_list_size(char **list)
-{
-    int size;
-
-    size = 0;
-    while (list[size])
-        size++;
-    return (size);
-}
-
-int is_path(char *cmd)
-{
-    int i;
-
-    if (cmd == NULL)
-        return (-1);
-    i = 0;
-	if (ft_strchr(cmd, '='))
-		return (0);
-    while (cmd[i])
-    {
-        if (cmd[i] == '/')
-            return (1);
-        i++;
-    }
-    return (0);
-}
 
 static t_ht * ft_get_table_bins(t_env **copy_environ)
 {
@@ -77,7 +49,7 @@ int ft_exe_bin(t_node *node, t_env ***p_environ, int fds[])
         return 0;
     command = ft_strtrim(args[0]);
     new_path = NULL;
-    if (is_path(command) == 1)
+    if (ft_is_path(command) == 1)
     {
 		args[0] = ft_strcpy(args[0], "name");
         result_cmd = ft_exe_path(command, args, *p_environ, fds);

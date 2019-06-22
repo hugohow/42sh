@@ -6,7 +6,7 @@
 /*   By: hhow-cho <hhow-cho@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/06/09 00:32:39 by hhow-cho          #+#    #+#             */
-/*   Updated: 2019/06/21 13:46:52 by hhow-cho         ###   ########.fr       */
+/*   Updated: 2019/06/23 00:13:56 by hhow-cho         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -113,11 +113,9 @@ t_env **ft_env_deep_copy(t_env **str);
 void ft_env_free(t_env ***p_cpy_environ);
 
 
-char *ft_env_autocomplete_cmd(char *begin, t_env **copy_env);
-char *ft_path_trim(char *path);
-
-void    print_normal(int fd);
-void    ft_setenv_args(char *prefix, char *line, t_env ***p_environ);
+/*
+** Builtins
+*/
 
 
 int     ft_echo(int argc, char **argv, t_env **cpy_environ, int fds[]);
@@ -129,6 +127,17 @@ int ft_exit(int argc, char **argv, t_env **cpy_environ, int fds[]);
 
 
 
+
+char *ft_env_autocomplete_cmd(char *begin, t_env **copy_env);
+char *ft_path_trim(char *path);
+
+void    print_normal(int fd);
+void    ft_setenv_args(char *prefix, char *line, t_env ***p_environ);
+
+
+int ft_list_size(char **list);
+
+int ft_is_path(char *cmd);
 void ft_print_env(t_env **str, int fds[]);
 int ft_terminal_init(struct termios *orig_termios, struct termios *new_termios);
 void ft_terminal_exit(struct termios *orig_termios);

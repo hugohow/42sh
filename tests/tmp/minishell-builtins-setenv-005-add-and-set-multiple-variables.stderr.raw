@@ -1,1 +1,1 @@
-./lib/main.sh: line 102: 64531 Segmentation fault: 11  /Users/hugohow-choong/42/42sh/minishell
+./lib/main.sh: line 102: 79798 Segmentation fault: 11  /Users/hugohow-choong/42/42sh/minishell

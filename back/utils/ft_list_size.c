@@ -1,38 +1,23 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_echo.c                                          :+:      :+:    :+:   */
+/*   ft_list_size.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: hhow-cho <hhow-cho@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2019/06/19 20:47:47 by hhow-cho          #+#    #+#             */
-/*   Updated: 2019/06/23 00:09:39 by hhow-cho         ###   ########.fr       */
+/*   Created: 2019/06/23 00:12:02 by hhow-cho          #+#    #+#             */
+/*   Updated: 2019/06/23 00:12:10 by hhow-cho         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "shell.h"
 
-/*
-** Builtin to echo value
-*/
-
-int ft_echo(int argc, char **argv, t_env **cpy_environ, int fds[])
+int ft_list_size(char **list)
 {
-    int i;
-    int flag;
+    int size;
 
-	(void)cpy_environ;
-	(void)argc;
-    i = 0;
-    flag = 0;
-    argv++;
-    while (argv[i])
-    {
-        ft_putstr_fd(argv[i], fds[1]);
-		if (argv[i + 1])
-        	ft_putchar_fd(' ', fds[1]);
-        i++;
-    }
-	ft_putchar_fd('\n', fds[1]);
-    return (0);
+    size = 0;
+    while (list[size])
+        size++;
+    return (size);
 }
