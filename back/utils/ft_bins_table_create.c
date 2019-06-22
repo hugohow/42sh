@@ -6,7 +6,7 @@
 /*   By: hhow-cho <hhow-cho@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/06/09 15:24:14 by hhow-cho          #+#    #+#             */
-/*   Updated: 2019/06/23 00:52:26 by hhow-cho         ###   ########.fr       */
+/*   Updated: 2019/06/23 00:54:24 by hhow-cho         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,7 +30,7 @@ t_ht *ft_bins_table_create(char *line)
 	i = 0;
     while (paths[i])
     {
-		printf("paths[i] :: %s\n", paths[i);
+		printf("paths[i] :: %s\n", paths[i]);
 		if ((pDir = opendir (paths[i])) == NULL)
 		{
 			break;
