@@ -6,7 +6,7 @@
 /*   By: hhow-cho <hhow-cho@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/06/13 19:57:57 by hhow-cho          #+#    #+#             */
-/*   Updated: 2019/06/21 14:49:02 by hhow-cho         ###   ########.fr       */
+/*   Updated: 2019/06/22 21:36:27 by hhow-cho         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,18 +15,6 @@
 /*
 ** Builtin to change of directory
 */
-
-int is_symlink(char *path)
-{
-    struct stat fileStat;
-
-    if (lstat(path, &fileStat) < 0)
-        return (0);
-    if (S_ISLNK(fileStat.st_mode))
-        return (1);
-    return (0);
-}
-
 
 static int ft_change_env(char *new_pwd_line, char *old_pwd_line, t_env ***p_environ)
 {

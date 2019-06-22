@@ -6,7 +6,7 @@
 /*   By: hhow-cho <hhow-cho@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/06/09 01:53:37 by hhow-cho          #+#    #+#             */
-/*   Updated: 2019/06/21 01:53:14 by hhow-cho         ###   ########.fr       */
+/*   Updated: 2019/06/22 23:52:23 by hhow-cho         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -77,14 +77,29 @@ int ft_terminal_get_cmd(char **command, t_env **copy_env)
 	int size;
 	t_list *head;
 	t_list *node;
-
+	if (copy_env)
+	{
+		
+	}
 	head = ft_lstnew(0, 0);
 	size = 0;
 	while (42)
 	{
 		ret = ft_terminal_read_key();
-		if (ret == 10)
+		if (ret == 13)
 			break ;
+		if (ret == 3)
+		{
+			write(0, "^C", 2);
+			ret = '\n';
+			node = ft_lstnew((void *)&ret, sizeof(ret));
+			ft_lstinsert(&head, node);
+			size++;
+			ft_putstr_fd("\n\r", 0);
+			ft_putstr_fd(NAME, 0);
+			ft_putstr_fd(ft_strrchr(getcwd(NULL, 0), '/') + 1, 0);
+			ft_putstr_fd(PROMPT, 0);
+		}
 		if (ft_isprint(ret) || ret == 127)
 		{
 			write(0, &ret, sizeof(int));
@@ -122,8 +137,12 @@ int ft_terminal_get_cmd(char **command, t_env **copy_env)
 			ft_putstr_fd(join_nodes(head, size), 0);
 		}
 	}
-	ft_putchar_fd('\n', STDIN_FILENO);
-	*command = join_nodes(head, size);
+	ft_putstr_fd("\n\r", STDIN_FILENO);
+	*command = ft_strrchr(join_nodes(head, size), '\n');
+	if (*command == NULL)
+		*command = join_nodes(head, size);
+	else
+		*command = *command + 1;
 	ft_lstfree(head);
     return (ret);
 }

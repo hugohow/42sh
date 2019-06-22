@@ -6,12 +6,23 @@
 /*   By: hhow-cho <hhow-cho@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/06/20 18:08:05 by hhow-cho          #+#    #+#             */
-/*   Updated: 2019/06/21 00:06:15 by hhow-cho         ###   ########.fr       */
+/*   Updated: 2019/06/22 23:57:40 by hhow-cho         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 
 #include "shell.h"
+
+static const	char *builtins[] =
+{
+	"cd",
+	"echo",
+	"env",
+	"exit",
+	"setenv",
+	"unsetenv",
+	0
+};
 
 static const char *ft_get_possibilities(char *begin, t_env **copy_env)
 {
@@ -52,6 +63,19 @@ static const char *ft_get_possibilities(char *begin, t_env **copy_env)
 		}
         i++;
     }
+	if (suggestion == NULL)
+	{
+		i = 0;
+		while (builtins[i])
+		{
+			if (ft_strncmp(begin, builtins[i], ft_strlen(begin)) == 0)
+			{
+				suggestion = builtins[i];
+				break ;
+			}
+			i++;
+		}
+	}
 	return (suggestion);
 }
 
