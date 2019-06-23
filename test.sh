@@ -20,27 +20,43 @@ quit()
 
 execute()
 {
-	printf "BASH\n"
-	(bash < ${1})
 	(bash < ${1}) > ${RESULT} 2> ${RESULT_2}
 	OUR_RET=($?)
-	printf "MINISHELL\n"
-	(./minishell < ${1})
 	(./minishell < ${1}) > ${LOG} 2> ${LOG_2}
 	YOUR_RET=($?)
 	if [ $OUR_RET -ne $YOUR_RET ]; then
+		printf "\nSTDIN--------------------------------------------------------------\n"
+		printf "\033[31m"
+		cat ${1}	
+		printf "\033[0m"
+		printf "\n-------------------------------------------------------------------\033[0m\n"
 		printf "\r\n\033[31mError:\t\t\033[0m\033[37;1m minishell ${1}\033[0m\n\n"
 		printf "bash return: %d | minishell return: %d\n\n" $OUR_RET $YOUR_RET
 		quit
 	elif [ $OUR_RET -ne 0 ] && !(diff  ${LOG_2} ${RESULT_2}); then
+		printf "\nSTDIN--------------------------------------------------------------\n"
+		printf "\033[31m"
+		cat ${1}	
+		printf "\033[0m"
+		printf "\n-------------------------------------------------------------------\033[0m\n"
 		printf "\r\n\033[31mError:\t\t\033[0m\033[37;1m minishell ${1}\033[0m\n\n"
 		diff  ${RESULT_2} ${LOG_2}
 		quit
 	elif !(diff  ${LOG} ${RESULT}) then
+		printf "\nSTDIN--------------------------------------------------------------\n"
+		printf "\033[31m"
+		cat ${1}	
+		printf "\033[0m"
+		printf "\n-------------------------------------------------------------------\033[0m\n"
 		printf "\r\n\033[31mError:\t\t\033[0m\033[37;1m minishell ${1}\033[0m\n\n"
 		diff  ${LOG} ${RESULT}
 		quit
 	else
+		printf "\nSTDIN--------------------------------------------------------------\n"
+		printf "\033[32m"
+		cat ${1}	
+		printf "\033[0m"
+		printf "\n-------------------------------------------------------------------\033[0m\n"
 		printf "\n\033[32mSuccess:\t\033[37;1m minishell ${1}\033[0m\n\n"
 	fi
 }

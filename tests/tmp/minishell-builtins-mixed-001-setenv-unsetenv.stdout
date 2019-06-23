@@ -1,5 +1,7 @@
 ------------------------------
 _=/Users/hugohow-choong/42/42sh/minishell
 PATH=/usr/sbin:/usr/bin:/sbin:/bin
+TERM=dumb
+PWD=/Users/hugohow-choong/42/42sh/tests/tmp
 ------------------------------
-TOTAL ENVIRONMENT VARIABLES: 2
+TOTAL ENVIRONMENT VARIABLES: 4

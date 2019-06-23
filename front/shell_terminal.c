@@ -6,7 +6,7 @@
 /*   By: hhow-cho <hhow-cho@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/06/20 15:07:19 by hhow-cho          #+#    #+#             */
-/*   Updated: 2019/06/22 22:09:48 by hhow-cho         ###   ########.fr       */
+/*   Updated: 2019/06/23 13:20:58 by hhow-cho         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,6 +20,10 @@ void signal_callback_handler(int signum)
 		ft_putstr_fd(NAME, 0);
 		ft_putstr_fd(ft_strrchr(getcwd(NULL, 0), '/') + 1, 0);
 		ft_putstr_fd(PROMPT, 0);
+	}
+	if (signum == SIGTSTP)
+	{
+		
 	}
 }
 
@@ -39,6 +43,9 @@ int shell_terminal(t_env ***p_copy_env)
 	success = 0;
     if (signal(SIGINT, signal_callback_handler) == SIG_ERR)
         ft_putstr_fd("can't catch SIGINT\n", 2);
+
+    if (signal(SIGTSTP, signal_callback_handler) == SIG_ERR)
+        ft_putstr_fd("can't catch SIGTSTP\n", 2);
 	while (42)
 	{
 		if (ft_terminal_init(&old_config, &new_config) < 0)

@@ -6,7 +6,7 @@
 /*   By: hhow-cho <hhow-cho@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/06/16 15:12:28 by hhow-cho          #+#    #+#             */
-/*   Updated: 2019/06/23 11:12:47 by hhow-cho         ###   ########.fr       */
+/*   Updated: 2019/06/23 11:33:55 by hhow-cho         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -64,7 +64,7 @@ t_env **ft_env_copy_raw(char **str, char **argv)
 	if (term_present == 0)
 	{
         copy[i] = ft_memalloc(sizeof(t_env));
-        copy[i]->line = ft_strdup("TERM=xterm-256color");
+        copy[i]->line = ft_strdup("TERM=dumb");
         copy[i]->special = 0;
         i++;
 	}

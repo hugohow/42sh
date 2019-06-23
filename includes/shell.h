@@ -6,7 +6,7 @@
 /*   By: hhow-cho <hhow-cho@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/06/09 00:32:39 by hhow-cho          #+#    #+#             */
-/*   Updated: 2019/06/23 11:19:58 by hhow-cho         ###   ########.fr       */
+/*   Updated: 2019/06/23 12:41:08 by hhow-cho         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,7 +50,7 @@ typedef struct termios t_config;
 # define EXIT_SUCCESS 0
 # define EXIT_FAIL 1
 # define EXIT_UTILITY_NOT_FOUND 127
-# define NAME "\x1b[32mMinishell \x1b[0m"
+# define NAME "\r\x1b[32mMinishell \x1b[0m"
 # define PROMPT "\x1b[36m ➜ \x1b[0m"
 
 extern char **environ;

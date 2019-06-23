@@ -6,7 +6,7 @@
 /*   By: hhow-cho <hhow-cho@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/06/19 23:08:39 by hhow-cho          #+#    #+#             */
-/*   Updated: 2019/06/23 11:20:04 by hhow-cho         ###   ########.fr       */
+/*   Updated: 2019/06/23 11:35:04 by hhow-cho         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,8 +23,9 @@ int ft_terminal_init(t_config *old_config, t_config *new_config)
     int ret;
 
     if ((term_name = getenv("TERM")) == NULL)
-        return (-1);
-
+	{
+		term_name = ft_strdup("dumb");
+	}
 	ret = tgetent(NULL, term_name);
     if (ret == -1)
     {

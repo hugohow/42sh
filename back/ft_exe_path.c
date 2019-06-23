@@ -6,7 +6,7 @@
 /*   By: hhow-cho <hhow-cho@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/06/09 14:28:12 by hhow-cho          #+#    #+#             */
-/*   Updated: 2019/06/23 00:40:18 by hhow-cho         ###   ########.fr       */
+/*   Updated: 2019/06/23 13:05:08 by hhow-cho         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -71,24 +71,25 @@ int ft_exe_path(char *path, char **argv, t_env **cpy_environ, int fds[])
     //     close(fd0);
     // if (fd1 != 1)
     //     close(fd1);
-    // do {
+    // while (!WIFEXITED(waitstatus) && !WIFSIGNALED(waitstatus))
+	// {
         int w;
         w = waitpid(pid, &waitstatus, WUNTRACED | WCONTINUED);
         if (w == -1) {
             // perror("waitpid");
-            exit(EXIT_FAILURE);
+            // exit(EXIT_FAILURE);
         }
 
-    //     if (WIFEXITED(waitstatus)) {
-    //         printf("terminé, code=%d\n", WEXITSTATUS(waitstatus));
-    //     } else if (WIFSIGNALED(waitstatus)) {
-    //         printf("tué par le signal %d\n", WTERMSIG(waitstatus));
-    //     } else if (WIFSTOPPED(waitstatus)) {
-    //         printf("arrêté par le signal %d\n", WSTOPSIG(waitstatus));
-    //     } else if (WIFCONTINUED(waitstatus)) {
-    //         printf("relancé\n");
-    //     }
-    // } while (!WIFEXITED(waitstatus) && !WIFSIGNALED(waitstatus));
+        if (WIFEXITED(waitstatus)) {
+            // printf("terminé, code=%d\n", WEXITSTATUS(waitstatus));
+        } else if (WIFSIGNALED(waitstatus)) {
+            printf("tué par le signal %d\n", WTERMSIG(waitstatus));
+        } else if (WIFSTOPPED(waitstatus)) {
+            printf("arrêté par le signal %d\n", WSTOPSIG(waitstatus));
+        } else if (WIFCONTINUED(waitstatus)) {
+            printf("relancé\n");
+        }
+	// }
 	}
 	// parent
     i = WEXITSTATUS(waitstatus);
