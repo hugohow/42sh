@@ -6,7 +6,7 @@
 /*   By: hhow-cho <hhow-cho@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/06/19 20:47:47 by hhow-cho          #+#    #+#             */
-/*   Updated: 2019/06/23 02:37:32 by hhow-cho         ###   ########.fr       */
+/*   Updated: 2019/06/23 02:41:27 by hhow-cho         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,7 +53,7 @@ int ft_echo(int argc, char **argv, t_env **cpy_environ, int fds[])
     while (argv[i])
     {
         ft_putstr_fd(argv[i], fds[1]);
-		if (argv[i + 1] && ft_strlen(argv[i + 1]) != 0)
+		if (argv[i + 1])
         	ft_putchar_fd(' ', fds[1]);
         i++;
     }

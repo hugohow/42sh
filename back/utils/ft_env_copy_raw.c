@@ -6,7 +6,7 @@
 /*   By: hhow-cho <hhow-cho@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/06/16 15:12:28 by hhow-cho          #+#    #+#             */
-/*   Updated: 2019/06/23 02:31:12 by hhow-cho         ###   ########.fr       */
+/*   Updated: 2019/06/23 11:12:47 by hhow-cho         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,6 +18,7 @@ t_env **ft_env_copy_raw(char **str, char **argv)
     t_env **copy;
 	int path_present;
 	int pwd_present;
+	int term_present;
     int i;
 
     i = 0;
@@ -28,6 +29,7 @@ t_env **ft_env_copy_raw(char **str, char **argv)
     i = 0;
 	path_present = 0;
 	pwd_present = 0;
+	term_present = 0;
     while (str[i])
     {
         copy[i] = ft_memalloc(sizeof(t_env));
@@ -43,6 +45,10 @@ t_env **ft_env_copy_raw(char **str, char **argv)
 		{
 			pwd_present = 1;
 		}
+		if (ft_env_cmp_prefix("TERM", copy[i]->line) == 0)
+		{
+			term_present = 1;
+		}
 
         copy[i]->special = 0;
         i++;
@@ -55,10 +61,17 @@ t_env **ft_env_copy_raw(char **str, char **argv)
         copy[i]->special = 0;
         i++;
 	}
+	if (term_present == 0)
+	{
+        copy[i] = ft_memalloc(sizeof(t_env));
+        copy[i]->line = ft_strdup("TERM=xterm-256color");
+        copy[i]->special = 0;
+        i++;
+	}
 	if (pwd_present == 0)
 	{
         copy[i] = ft_memalloc(sizeof(t_env));
-        copy[i]->line = ft_strdup(ft_strjoin("PWD=", getcwd(NULL, 0)));
+        copy[i]->line = ft_strjoin("PWD=", getcwd(NULL, 0));
         copy[i]->special = 0;
         i++;
 	}

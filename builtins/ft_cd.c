@@ -6,7 +6,7 @@
 /*   By: hhow-cho <hhow-cho@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/06/13 19:57:57 by hhow-cho          #+#    #+#             */
-/*   Updated: 2019/06/23 02:18:09 by hhow-cho         ###   ########.fr       */
+/*   Updated: 2019/06/23 11:21:22 by hhow-cho         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -240,7 +240,7 @@ static int parse_input(int *p_argc, char ***p_argv)
 	return (flag);
 }
 
-int ft_cd(int argc, char **argv, t_env **cpy_environ, int fds[])
+int ft_cd(int argc, char **argv, t_env ***p_cpy_environ, int fds[])
 {
 	int		flag;
 
@@ -257,5 +257,5 @@ int ft_cd(int argc, char **argv, t_env **cpy_environ, int fds[])
 		ft_putstr_fd("cd: too many arguments\n", 2);
 		return (1);
 	}
-    return (ft_change_dir(argv[0], &cpy_environ, flag, fds));
+    return (ft_change_dir(argv[0], p_cpy_environ, flag, fds));
 }
