@@ -18,12 +18,12 @@ quit()
 }
 
 
-execute()
+execute_bash()
 {
-	(bash < ${1}) > ${RESULT} 2> ${RESULT_2}
-	OUR_RET=($?)
 	(./minishell < ${1}) > ${LOG} 2> ${LOG_2}
 	YOUR_RET=($?)
+	(bash < ${1}) > ${RESULT} 2> ${RESULT_2}
+	OUR_RET=($?)
 	if [ $OUR_RET -ne $YOUR_RET ]; then
 		printf "\nSTDIN--------------------------------------------------------------\n"
 		while read line 
@@ -69,7 +69,7 @@ execute()
 
 for filename in $(ls tests/tests_sh); do
     echo Test tests/tests_sh/${filename}
-	execute tests/tests_sh/${filename}
+	execute_bash tests/tests_sh/${filename}
 done
 
 rm -rf ${TMP_DIR} ${TMP_DIR_LOG}

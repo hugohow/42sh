@@ -6,7 +6,7 @@
 /*   By: hhow-cho <hhow-cho@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/06/20 13:58:20 by hhow-cho          #+#    #+#             */
-/*   Updated: 2019/06/23 14:54:42 by hhow-cho         ###   ########.fr       */
+/*   Updated: 2019/06/24 00:24:04 by hhow-cho         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,37 +44,34 @@ t_env **clear_environ(void)
 }
 
 
-static void ft_get_env_variable(char ***p_argv, t_env ***p_copy_env, int flag, t_env **originial_env)
+static char **ft_get_env_variable(char **argv, t_env ***p_copy_env, int flag, t_env **originial_env)
 {
-	char **argv;
 	t_env **copy_env;
 	int path_present;
+	int j;
 
-	argv = *p_argv;
 	copy_env = *p_copy_env;
 	path_present = 0;
-    while (*argv)
+	j = 0;
+    while (argv[j])
     {
-        if (ft_strchr(*argv, '='))
-        {
-			int i;
-
-			i = 0;
-			while ((*argv)[i] && (*argv)[i] != '=')
-				i++;
-			if (ft_strcmp("PATH", ft_strsub(*argv, 0, i )) == 0)
-				path_present = 1;
-			ft_env_add(ft_strsub(*argv, 0, i ), (*argv + i + 1), p_copy_env, 0);
-        }
-		else
+        if (ft_strchr(argv[j], '=') == NULL)
 			break ;
-        argv++;
-		*p_argv = *p_argv + 1;
+		int i;
+
+		i = 0;
+		while ((argv[j])[i] && (argv[j])[i] != '=')
+			i++;
+		if (ft_strcmp("PATH", ft_strsub(argv[j], 0, i )) == 0)
+			path_present = 1;
+		ft_env_add(ft_strsub(argv[j], 0, i ), (argv[j] + i + 1), p_copy_env, 0);
+		j++;
     }
 	if (flag == FLAG_ENV_I && path_present == 0)
 	{
 		ft_env_add("PATH", ft_env_get_value(originial_env, "PATH"), p_copy_env, 1);
 	}
+	return (argv + j);
 }
 
 
@@ -95,27 +92,32 @@ static int ft_execute_env(char **argv, int flag, t_env **cpy_environ, int fds[])
 		ft_putstr_fd("Error copy env", 2);
 		return (1);
 	}
-	ft_get_env_variable(&argv, &copy_env, flag, cpy_environ);
+	argv = ft_get_env_variable(argv, &copy_env, flag, cpy_environ);
 		int success;
 	success = 0;
     if (*argv)
 	{
 		t_node **root;
-
+		int i;
 		char *cmd;
 
 		cmd = ft_memalloc(999 * sizeof(char));
-		while (*argv)
+		i = 0;
+		while (argv[i])
 		{
-			cmd = ft_strcat(cmd, *argv);
+			cmd = ft_strcat(cmd, argv[i]);
 			cmd = ft_strcat(cmd, " ");
-			argv++;
+			i++;
 		}
-
-		root = ft_syntax_tree_create(cmd, cpy_environ);
-		success = 0;
-    	execute_tree(*root, &copy_env, fds, &success);
-		ft_syntax_tree_free(root);
+		if (cmd)
+		{
+			root = ft_syntax_tree_create(cmd, cpy_environ);
+			success = 0;
+			execute_tree(*root, &copy_env, fds, &success);
+			ft_syntax_tree_free(root);
+		}
+		else
+			ft_print_env(copy_env, fds);	
 	}
     else
         ft_print_env(copy_env, fds);
@@ -132,18 +134,18 @@ static int ft_parse_input_env(char ***p_argv, int fds[])
 
 	k = 0;
 	flag = 0;
-	while ((*p_argv)[k])
+	while (**p_argv)
 	{
 		i = 1;
-		if ((*p_argv)[k][0] != '-')
+		if ((**p_argv)[0] != '-')
 			break ;
-		while ((*p_argv)[k][i])
+		while ((**p_argv)[i])
 		{
-			if ((*p_argv)[k][i] == 'i')
+			if ((**p_argv)[i] == 'i')
 				flag = FLAG_ENV_I;
 			else
 			{
-				ft_dprintf(fds[2], "env: illegal option -- %c\n", (*p_argv)[k][i]);
+				ft_dprintf(fds[2], "env: illegal option -- %c\n", (**p_argv)[i]);
 				ft_putstr_fd("usage: env [-i] [name=value ...] [utility [argument ...]]\n", fds[2]);
 				return (1);
 			}
@@ -151,7 +153,6 @@ static int ft_parse_input_env(char ***p_argv, int fds[])
 			i++;
 		}
 		*p_argv = *p_argv + 1;
-		k++;
 	}
 	return (flag);
 }

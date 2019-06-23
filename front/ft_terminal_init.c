@@ -6,7 +6,7 @@
 /*   By: hhow-cho <hhow-cho@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/06/19 23:08:39 by hhow-cho          #+#    #+#             */
-/*   Updated: 2019/06/23 17:19:30 by hhow-cho         ###   ########.fr       */
+/*   Updated: 2019/06/24 00:07:54 by hhow-cho         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,7 +24,7 @@ int ft_terminal_init(t_config *old_config, t_config *new_config, t_env **copy_en
 
     if ((term_name = ft_env_get_value(copy_env, "TERM")) == NULL)
 	{
-		term_name = ft_strdup("dumb");
+		term_name = ft_strdup("xterm-256color");
 	}
 	ret = tgetent(NULL, term_name);
     if (ret == -1)
