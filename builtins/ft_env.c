@@ -6,7 +6,7 @@
 /*   By: hhow-cho <hhow-cho@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/06/20 13:58:20 by hhow-cho          #+#    #+#             */
-/*   Updated: 2019/06/21 14:49:13 by hhow-cho         ###   ########.fr       */
+/*   Updated: 2019/06/23 14:54:42 by hhow-cho         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,13 +44,15 @@ t_env **clear_environ(void)
 }
 
 
-static void ft_get_env_variable(char ***p_argv, t_env ***p_copy_env)
+static void ft_get_env_variable(char ***p_argv, t_env ***p_copy_env, int flag, t_env **originial_env)
 {
 	char **argv;
 	t_env **copy_env;
+	int path_present;
 
 	argv = *p_argv;
 	copy_env = *p_copy_env;
+	path_present = 0;
     while (*argv)
     {
         if (ft_strchr(*argv, '='))
@@ -60,13 +62,19 @@ static void ft_get_env_variable(char ***p_argv, t_env ***p_copy_env)
 			i = 0;
 			while ((*argv)[i] && (*argv)[i] != '=')
 				i++;
-			ft_env_add(ft_strsub(*argv, 0, i ), (*argv + i + 1), p_copy_env);
+			if (ft_strcmp("PATH", ft_strsub(*argv, 0, i )) == 0)
+				path_present = 1;
+			ft_env_add(ft_strsub(*argv, 0, i ), (*argv + i + 1), p_copy_env, 0);
         }
 		else
 			break ;
         argv++;
 		*p_argv = *p_argv + 1;
     }
+	if (flag == FLAG_ENV_I && path_present == 0)
+	{
+		ft_env_add("PATH", ft_env_get_value(originial_env, "PATH"), p_copy_env, 1);
+	}
 }
 
 
@@ -87,7 +95,7 @@ static int ft_execute_env(char **argv, int flag, t_env **cpy_environ, int fds[])
 		ft_putstr_fd("Error copy env", 2);
 		return (1);
 	}
-	ft_get_env_variable(&argv, &copy_env);
+	ft_get_env_variable(&argv, &copy_env, flag, cpy_environ);
 		int success;
 	success = 0;
     if (*argv)
