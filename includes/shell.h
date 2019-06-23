@@ -6,7 +6,7 @@
 /*   By: hhow-cho <hhow-cho@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/06/09 00:32:39 by hhow-cho          #+#    #+#             */
-/*   Updated: 2019/06/23 14:54:19 by hhow-cho         ###   ########.fr       */
+/*   Updated: 2019/06/23 17:44:28 by hhow-cho         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -139,7 +139,7 @@ int ft_list_size(char **list);
 
 int ft_is_path(char *cmd);
 void ft_print_env(t_env **str, int fds[]);
-int ft_terminal_init(struct termios *orig_termios, struct termios *new_termios);
+int ft_terminal_init(t_config *old_config, t_config *new_config, t_env **copy_env);
 void ft_terminal_exit(struct termios *orig_termios);
 void print_cmd(char *cmd);
 void add_to_stdout(char **p_cmd, int c, int *index);

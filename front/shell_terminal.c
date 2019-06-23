@@ -6,7 +6,7 @@
 /*   By: hhow-cho <hhow-cho@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/06/20 15:07:19 by hhow-cho          #+#    #+#             */
-/*   Updated: 2019/06/23 13:20:58 by hhow-cho         ###   ########.fr       */
+/*   Updated: 2019/06/23 17:18:55 by hhow-cho         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,7 +48,7 @@ int shell_terminal(t_env ***p_copy_env)
         ft_putstr_fd("can't catch SIGTSTP\n", 2);
 	while (42)
 	{
-		if (ft_terminal_init(&old_config, &new_config) < 0)
+		if (ft_terminal_init(&old_config, &new_config, *p_copy_env) < 0)
 		{
 			ft_putstr_fd("Init termcaps failed\n", 2);
 			exit(EXIT_FAIL);
