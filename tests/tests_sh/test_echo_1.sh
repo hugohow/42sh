@@ -1,4 +1,3 @@
-env
 echo $OLDPWD $PWD $PATH $PATH/abc bb$PATH/abc
 echo $?
 cd /
