@@ -6,7 +6,7 @@
 /*   By: hhow-cho <hhow-cho@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/06/20 13:58:20 by hhow-cho          #+#    #+#             */
-/*   Updated: 2019/06/24 00:24:04 by hhow-cho         ###   ########.fr       */
+/*   Updated: 2019/06/24 01:33:48 by hhow-cho         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -112,9 +112,8 @@ static int ft_execute_env(char **argv, int flag, t_env **cpy_environ, int fds[])
 		if (cmd)
 		{
 			root = ft_syntax_tree_create(cmd, cpy_environ);
-			success = 0;
 			execute_tree(*root, &copy_env, fds, &success);
-			ft_syntax_tree_free(root);
+			// ft_syntax_tree_free(root);
 		}
 		else
 			ft_print_env(copy_env, fds);	
@@ -180,6 +179,7 @@ int ft_env(int argc, char **argv, t_env **cpy_environ, int fds[])
     if (pid == 0)
     {
         status = ft_execute_env(argv, flag, cpy_environ, fds);
+
         exit(status);
     }
     else if (pid < 0)
@@ -187,10 +187,29 @@ int ft_env(int argc, char **argv, t_env **cpy_environ, int fds[])
         ft_putstr_fd("erreur pid", fds[2]);
         exit(1);
     }
-    else
-    {
-        wait(&waitstatus);
-        i = WEXITSTATUS(waitstatus);
-    }
+	else
+	{
+
+	        int w;
+        w = waitpid(pid, &waitstatus, WUNTRACED | WCONTINUED);
+        if (w == -1) {
+            // perror("waitpid");
+            // exit(EXIT_FAILURE);
+        }
+
+        if (WIFEXITED(waitstatus)) {
+            // printf("terminé, code=%d\n", WEXITSTATUS(waitstatus));
+        } else if (WIFSIGNALED(waitstatus)) {
+            printf("tué par le signal %d\n", WTERMSIG(waitstatus));
+        } else if (WIFSTOPPED(waitstatus)) {
+            printf("arrêté par le signal %d\n", WSTOPSIG(waitstatus));
+        } else if (WIFCONTINUED(waitstatus)) {
+            printf("relancé\n");
+        }
+	// }
+	}
+	// parent
+    i = WEXITSTATUS(waitstatus);
+
     return (i);
 }

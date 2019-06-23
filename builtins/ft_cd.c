@@ -6,7 +6,7 @@
 /*   By: hhow-cho <hhow-cho@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/06/13 19:57:57 by hhow-cho          #+#    #+#             */
-/*   Updated: 2019/06/23 14:54:33 by hhow-cho         ###   ########.fr       */
+/*   Updated: 2019/06/24 01:43:14 by hhow-cho         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,7 +37,6 @@ int ft_is_possible_to_go_to(char *abs_path)
 {
     struct stat fileStat;
 
-
 	if (stat(abs_path, &fileStat))
 	{
 		return (-1);
@@ -58,12 +57,16 @@ char *get_absolute_path(t_env ***p_environ, char *element, int fds[])
 {
     char *curpath;
 	char *cd_path;
+	char *pwd;
 
     if (ft_strncmp("/", element, 1) == 0)
         return (element);
     if (ft_strcmp(".", element) == 0 || ft_strcmp("..", element) == 0)
 	{
-		curpath = ft_strjoin(ft_env_get_value(*p_environ, "PWD"), "/");
+		pwd = ft_env_get_value(*p_environ, "PWD");
+		if (pwd == NULL)
+			pwd = getcwd(NULL, 0);
+		curpath = ft_strjoin(pwd, "/");
 		curpath = ft_strjoin(curpath, element);
 		curpath = ft_path_trim(curpath);
 		return (curpath);
@@ -71,7 +74,10 @@ char *get_absolute_path(t_env ***p_environ, char *element, int fds[])
 	cd_path = ft_env_get_value(*p_environ, "CDPATH");
 	if (cd_path == NULL)
 	{
-		curpath = ft_strjoin(ft_env_get_value(*p_environ, "PWD"), "/");
+		pwd = ft_env_get_value(*p_environ, "PWD");
+		if (pwd == NULL)
+			pwd = getcwd(NULL, 0);
+		curpath = ft_strjoin(pwd, "/");
 		curpath = ft_strjoin(curpath, element);
 		curpath = ft_path_trim(curpath);
 		return (curpath);
@@ -80,15 +86,14 @@ char *get_absolute_path(t_env ***p_environ, char *element, int fds[])
 	{
 		char **list;
 
-		cd_path = cd_path + 7;
 		list = ft_strsplit(cd_path, ':');
 
 		if (list && list[0])
 		{
 			// il faut gerer le cas ou y'a un slash
-
 			curpath = ft_strjoin(list[0], "/");
 			curpath = ft_strjoin(curpath, element);
+			curpath = ft_path_trim(curpath);
 			if (ft_is_possible_to_go_to(curpath) == 1)
 			{
 				ft_putstr_fd(curpath, fds[1]);
@@ -109,6 +114,7 @@ char *get_absolute_path(t_env ***p_environ, char *element, int fds[])
 		{
 			curpath = ft_strjoin(list[i], "/");
 			curpath = ft_strjoin(curpath, element);
+			curpath = ft_path_trim(curpath);
 			if (ft_is_possible_to_go_to(curpath) == 1)
 			{
 				ft_putstr_fd(curpath, fds[1]);
@@ -134,20 +140,20 @@ int ft_go_to(char *curpath, int fds[])
 		if (S_ISLNK(fileStat.st_mode) && access(curpath, X_OK))
 		{
 			ft_putstr_fd("Too many symbolic links\n", fds[2]);
-			return (1);
+			return (EXIT_FAIL);
 		}
 		ft_putstr_fd("No such file or directory\n", fds[2]);
-		return (127);
+		return (EXIT_FAIL);
 	}
 	else if (!S_ISDIR(fileStat.st_mode) && !S_ISLNK(fileStat.st_mode))
 	{
 		ft_putstr_fd("not a directory !!!!! \n", fds[2]);
-		return (1);
+		return (EXIT_FAIL);
 	}
 	else if (access(curpath, X_OK))
 	{
 		ft_putstr_fd("permission denied \n", fds[2]);
-		return (1);
+		return (EXIT_FAIL);
 	}
     return (chdir(curpath));
 }

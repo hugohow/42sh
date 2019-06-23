@@ -20,3 +20,9 @@ env -i cd ~
 echo $?
 env -i cd -
 echo $?
+env cd dsqds
+echo $?
+env -i cd dzdz
+echo $?
+env CDPATH=/:/:/ cd Library/
+echo $?
