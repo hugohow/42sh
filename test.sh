@@ -20,12 +20,12 @@ quit()
 
 execute()
 {
-	# printf "BASH\n"
-	# (bash < ${1})
+	printf "BASH\n"
+	(bash < ${1})
 	(bash < ${1}) > ${RESULT} 2> ${RESULT_2}
 	OUR_RET=($?)
-	# printf "MINISHELL\n"
-	# (./minishell < ${1})
+	printf "MINISHELL\n"
+	(./minishell < ${1})
 	(./minishell < ${1}) > ${LOG} 2> ${LOG_2}
 	YOUR_RET=($?)
 	if [ $OUR_RET -ne $YOUR_RET ]; then

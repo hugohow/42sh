@@ -18,4 +18,5 @@ ls dzdz
 echo $?
 echo ssz${*}/ab
 echo z${@}/bbd
+echo $NULLLLL $PWD $PATH $PATH/abc bb$PATH/abc
 exit 99
