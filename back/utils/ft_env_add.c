@@ -6,7 +6,7 @@
 /*   By: hhow-cho <hhow-cho@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/06/16 15:18:02 by hhow-cho          #+#    #+#             */
-/*   Updated: 2019/06/23 14:55:26 by hhow-cho         ###   ########.fr       */
+/*   Updated: 2019/06/24 02:02:31 by hhow-cho         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,6 +18,8 @@ static int ft_env_size(t_env **list)
     int size;
 
     size = 0;
+	if (list == NULL)
+		return (-1);
     while (list[size])
         size++;
     return (size);
@@ -35,6 +37,10 @@ void    ft_env_add(char *prefix, char *line, t_env ***p_environ, int special)
         env_line = ft_strjoin(env_line, "");
     else
         env_line = ft_strjoin(env_line, line);
+	if (p_environ == NULL)
+		return ;
+	if (*p_environ == NULL)
+		return ;
     if (ft_env_change_line(prefix, env_line, *p_environ) == 0)
     {
         new_environ = (t_env **)ft_memalloc((ft_env_size(*p_environ) + 2) * sizeof(t_env *));
