@@ -6,7 +6,7 @@
 /*   By: hhow-cho <hhow-cho@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/06/09 01:53:37 by hhow-cho          #+#    #+#             */
-/*   Updated: 2019/06/24 16:55:32 by hhow-cho         ###   ########.fr       */
+/*   Updated: 2019/06/24 20:49:05 by hhow-cho         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -77,10 +77,7 @@ int ft_terminal_get_cmd(char **command, t_env **copy_env)
 	int size;
 	t_list *head;
 	t_list *node;
-	if (copy_env)
-	{
-		
-	}
+
 	head = ft_lstnew(0, 0);
 	size = 0;
 	while (42)
@@ -144,7 +141,6 @@ int ft_terminal_get_cmd(char **command, t_env **copy_env)
 			ft_putstr_fd(PROMPT, 0);
 			tputs(tgetstr("ce", NULL), 1, my_outc);
 			ft_putstr_fd(join_nodes(head, size), 0);
-			size--;
 		}
 	}
 	ft_putstr_fd("\n\r", STDIN_FILENO);
