@@ -6,7 +6,7 @@
 /*   By: hhow-cho <hhow-cho@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/06/09 14:28:12 by hhow-cho          #+#    #+#             */
-/*   Updated: 2019/06/24 16:55:03 by hhow-cho         ###   ########.fr       */
+/*   Updated: 2019/06/24 17:39:20 by hhow-cho         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,21 +21,24 @@ int ft_exe_path(char *path, char **argv, t_env **cpy_environ, int fds[])
     int i;
     i = 0;
 
-    if (stat(path, &fileStat) < 0)
-    {
-        ft_putstr_fd("Too many symbolic links\n", fds[2]);
-        return (1);
-    }
-    // if (lstat(path, &fileStat) < 0)
-    // {
-    //     ft_putstr_fd("Command not found\n", fds[2]);
-    //     return (EXIT_UTILITY_NOT_FOUND);
-    // }
-    if (access(path, X_OK) == -1)
-    {
-        ft_putstr_fd("Permission denied\n", fds[2]);
-        return (1);
-    }
+
+
+	if (stat(path, &fileStat))
+	{
+		lstat(path, &fileStat);
+		if (S_ISLNK(fileStat.st_mode) && access(path, X_OK))
+		{
+			ft_putstr_fd("Too many symbolic links\n", fds[2]);
+			return (EXIT_FAIL);
+		}
+		ft_putstr_fd("No such file or directory\n", fds[2]);
+		return (EXIT_FAIL);
+	}
+	else if (access(path, X_OK))
+	{
+		ft_putstr_fd("permission denied \n", fds[2]);
+		return (EXIT_FAIL);
+	}
     pid = fork();
     if (pid < 0) 
     {
