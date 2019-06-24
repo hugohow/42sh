@@ -6,7 +6,7 @@
 /*   By: hhow-cho <hhow-cho@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/06/20 16:55:53 by hhow-cho          #+#    #+#             */
-/*   Updated: 2019/06/21 01:04:08 by hhow-cho         ###   ########.fr       */
+/*   Updated: 2019/06/24 21:24:34 by hhow-cho         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,9 +22,7 @@ t_node *create_node(long type, char *cmd, t_env **copy_env)
     node->cmd = ft_strdup(cmd);
 	node->args = NULL;
     if (type & TYPE_CMD)
-    {
         node->child = NULL;
-    }
 	else
 	{
 		node->child = get_child(cmd, copy_env);
@@ -39,7 +37,6 @@ t_node **get_child(char *cmd, t_env **copy_env)
     t_node **child;
 
     child = ft_get_semi_colon_child(cmd, copy_env);
-
     return (child);
 }
 

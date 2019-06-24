@@ -2,7 +2,7 @@ NAME=minishell
 
 all:
 	make -C libft/
-	gcc  -Wall -Wextra -Werror -g -lncurses front/*.c builtins/*.c back/*.c back/*/*.c -I includes libft/libft.a -o $(NAME)
+	gcc  -Wall -Wextra -Werror -g -lncurses front/*.c front/*/*.c builtins/*.c back/*.c back/*/*.c -I includes libft/libft.a -o $(NAME)
 
 clean:
 	make clean -C libft/
@@ -18,4 +18,7 @@ test: re
 	bash tests/42ShellTester.sh $(PWD)/$(NAME) --hard --reference "bash" --filter $(NAME)
 	bash test.sh
 
-.PHONY: all re clean fclean test
+valgrind: re
+	valgrind --leak-check=full ./minishell tests/tests_sh/test_colon.sh
+
+.PHONY: all re clean fclean test valgrind

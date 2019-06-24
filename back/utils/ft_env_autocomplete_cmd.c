@@ -6,7 +6,7 @@
 /*   By: hhow-cho <hhow-cho@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/06/20 18:08:05 by hhow-cho          #+#    #+#             */
-/*   Updated: 2019/06/22 23:57:40 by hhow-cho         ###   ########.fr       */
+/*   Updated: 2019/06/24 21:37:51 by hhow-cho         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,14 +15,15 @@
 
 static const	char *builtins[] =
 {
-	"cd",
-	"echo",
-	"env",
-	"exit",
-	"setenv",
-	"unsetenv",
+	BUILTIN_CD,
+	BUILTIN_ECHO,
+	BUILTIN_ENV,
+	BUILTIN_EXIT,
+	BUILTIN_SETENV,
+	BUILTIN_UNSETENV,
 	0
 };
+
 
 static const char *ft_get_possibilities(char *begin, t_env **copy_env)
 {
@@ -81,19 +82,11 @@ static const char *ft_get_possibilities(char *begin, t_env **copy_env)
 
 char *ft_env_autocomplete_cmd(char *begin, t_env **copy_env)
 {
-    int i;
-	int k;
 	const char *suggestion;
 
-
-    i = 0;
-	k = 0;
-	k = 0;
 	while (*begin == ' ')
 		begin++;
 	suggestion = ft_get_possibilities(begin, copy_env);
-	if (suggestion == NULL)
-		return (NULL);
 	if (suggestion == NULL)
 		return (NULL);
 	if (ft_strlen(suggestion) == ft_strlen(begin))

@@ -6,7 +6,7 @@
 /*   By: hhow-cho <hhow-cho@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/06/14 14:25:36 by hhow-cho          #+#    #+#             */
-/*   Updated: 2019/06/24 17:23:35 by hhow-cho         ###   ########.fr       */
+/*   Updated: 2019/06/24 21:27:04 by hhow-cho         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,6 @@ char **ft_get_args(char *cmd, t_env **copy_env, int *p_result_parsing)
 	int		i;
 
 	args = ft_strsplit(cmd, ' ');
-	// return (args);
 	i = 0;	
 	while (args[i])
 	{

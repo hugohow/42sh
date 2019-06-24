@@ -6,7 +6,7 @@
 /*   By: hhow-cho <hhow-cho@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/06/09 01:53:37 by hhow-cho          #+#    #+#             */
-/*   Updated: 2019/06/24 20:49:05 by hhow-cho         ###   ########.fr       */
+/*   Updated: 2019/06/24 23:44:18 by hhow-cho         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,82 +22,22 @@ static int     my_outc(int c)
     return (write (STDIN_FILENO, &c, 1));
 }
 
-static char *join_nodes(t_list *head, int size)
-{
-	char *output;
-	t_list *node;
-
-	if (!(output = (char *)ft_memalloc((size + 1) * sizeof(char))))
-		return (NULL);
-	node = head;
-	while (node)
-	{
-		if (node->content)
-			output = ft_strcat(output, (char *)(node->content));
-		node = node->next;
-	}
-	while (ft_strchr(output, 127))
-	{
-		int i;
-		int j;
-
-		i = 0;
-		while (output[i])
-		{
-			if (output[i] == 127 && i > 0)
-			{
-				j = i - 1;
-				while (output[j + 2])
-				{
-					output[j] = output[j + 2];
-					j++;
-				}
-				output[j] = 0;
-				break ;
-			}
-			else if (output[i] == 127 && i == 0)
-			{
-				j = i + 1;
-				while (output[j])
-				{
-					output[j - 1] = output[j];
-					j++;
-				}
-				output[j - 1] = 0;
-			}
-			i++;
-		}
-	}
-	return (output);
-}
-
 int ft_terminal_get_cmd(char **command, t_env **copy_env)
 {	
     int ret;
 	int size;
 	t_list *head;
 	t_list *node;
+	char *join;
 
 	head = ft_lstnew(0, 0);
 	size = 0;
 	while (42)
 	{
 		ret = ft_terminal_read_key();
-		if (ret == 13)
+		if (ret == KEY_TERM_ENTER)
 			break ;
-		if (ret == 3)
-		{
-			write(0, "^C", 2);
-			ret = '\n';
-			node = ft_lstnew((void *)&ret, sizeof(ret));
-			ft_lstinsert(&head, node);
-			size++;
-			ft_putstr_fd("\n", 0);
-			ft_putstr_fd(NAME, 0);
-			ft_putstr_fd(ft_strrchr(getcwd(NULL, 0), '/') + 1, 0);
-			ft_putstr_fd(PROMPT, 0);
-		}
-		if (ret == 4 && size == 0)
+		if (ret == KEY_TERM_CTRL_D && size == 0)
 		{
 			write(0, "exit", 4);
 			ret = '\n';
@@ -106,21 +46,32 @@ int ft_terminal_get_cmd(char **command, t_env **copy_env)
 			size = 5;
 			break ;
 		}
-		if (ft_isprint(ret) || ret == 127)
+		if (ret == KEY_TERM_CTRL_C)
+		{
+			write(0, "^C", 2);
+			ret = '\n';
+			node = ft_lstnew((void *)&ret, sizeof(ret));
+			ft_lstinsert(&head, node);
+			size++;
+			ft_putstr_fd("\n", 0);
+			ft_terminal_prompt();
+		}
+		if (ft_isprint(ret) || ret == KEY_TERM_DEL)
 		{
 			write(0, &ret, sizeof(int));
 			node = ft_lstnew((void *)&ret, sizeof(ret));
 			ft_lstinsert(&head, node);
 			size++;
 		}
-		if (ret == 9)
+		if (ret == KEY_TERM_TAB)
 		{
 			char *complete;
 			char *cmd;
 
-			cmd = ft_strrchr(join_nodes(head, size), ';');
+			join = ft_node_join(head, size);
+			cmd = ft_strrchr(join, ';');
 			if (cmd == NULL)
-				cmd = join_nodes(head, size);
+				cmd = join;
 			else
 				cmd = cmd + 1;
 			complete = ft_env_autocomplete_cmd(cmd, copy_env);
@@ -132,23 +83,25 @@ int ft_terminal_get_cmd(char **command, t_env **copy_env)
 				size += ft_strlen(complete);
 				ft_memdel((void **)&complete);
 			}
+			ft_memdel((void **)&join);
 		}
-		if (ret == 127)
+		if (ret == KEY_TERM_DEL)
 		{
-			ft_putstr_fd("\r", 0);
-			ft_putstr_fd(NAME, 0);
-			ft_putstr_fd(ft_strrchr(getcwd(NULL, 0), '/') + 1, 0);
-			ft_putstr_fd(PROMPT, 0);
+			join = ft_node_join(head, size);
+			ft_terminal_prompt();
 			tputs(tgetstr("ce", NULL), 1, my_outc);
-			ft_putstr_fd(join_nodes(head, size), 0);
+			ft_putstr_fd(join, 0);
+			ft_memdel((void **)&join);
 		}
 	}
 	ft_putstr_fd("\n\r", STDIN_FILENO);
-	*command = ft_strrchr(join_nodes(head, size), '\n');
+	join = ft_node_join(head, size);
+	*command = ft_strrchr(join, '\n');
 	if (*command == NULL)
-		*command = join_nodes(head, size);
+		*command = ft_strdup(join);
 	else
-		*command = *command + 1;
+		*command = ft_strdup(join + 1);
+	ft_memdel((void **)&join);
 	ft_lstfree(head);
     return (ret);
 }

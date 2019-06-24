@@ -6,7 +6,7 @@
 /*   By: hhow-cho <hhow-cho@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/06/16 13:42:37 by hhow-cho          #+#    #+#             */
-/*   Updated: 2019/06/24 17:45:03 by hhow-cho         ###   ########.fr       */
+/*   Updated: 2019/06/25 00:28:41 by hhow-cho         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,6 +25,8 @@ static int get_expansion_length(char *str)
 	int ret;
 
 	ret = 1;
+	if (str[ret] == 0)
+		return (0);
 	if (str[ret] == '{')
 	{
 		ret++;
@@ -73,7 +75,7 @@ static const char *resolve_expansion(char *str, int i, int j, t_env **copy_env)
 		line = ft_env_get_line_n(copy_env, str + i + 1, j - 2 - i);
 		// print_n(str + i + 1, 0, j - 2 - i);
 		if (line)
-			return (line + j - i -1);
+			return (line + j - i - 1);
 		else
 			return ("");
 	}
@@ -96,9 +98,6 @@ char *ft_get_args_dollar(char *str, t_env **copy_env, int *p_result_parsing)
 	int ret;
 
 	i = 0;
-	if (copy_env)
-	{
-	}
 	while (str[i])
 	{
 		if (str[i] == '$')
@@ -110,12 +109,15 @@ char *ft_get_args_dollar(char *str, t_env **copy_env, int *p_result_parsing)
 				ft_putstr_fd("bad substitution\n", 2);
 				return (NULL);
 			}
-			j = ret + i;
-			char *tmp;
+			if (ret != 0)
+			{
+				j = ret + i;
+				char *tmp;
 
-			tmp = ft_strjoin(resolve_expansion(str, i, j, copy_env), str + j);
-			str[i] = 0;
-			str = ft_strjoin(str, tmp);
+				tmp = ft_strjoin(resolve_expansion(str, i, j, copy_env), str + j);
+				str[i] = 0;
+				str = ft_strjoin(str, tmp);
+			}
 		}
 		i += 1;
 	}

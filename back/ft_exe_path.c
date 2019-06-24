@@ -6,7 +6,7 @@
 /*   By: hhow-cho <hhow-cho@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/06/09 14:28:12 by hhow-cho          #+#    #+#             */
-/*   Updated: 2019/06/24 17:39:20 by hhow-cho         ###   ########.fr       */
+/*   Updated: 2019/06/25 00:11:47 by hhow-cho         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,7 +43,7 @@ int ft_exe_path(char *path, char **argv, t_env **cpy_environ, int fds[])
     if (pid < 0) 
     {
         ft_putstr_fd("Failed to fork process 1\n", fds[2]);
-        exit(1);
+        return (EXIT_FAILURE);
     }
     if (pid == 0)
     {
@@ -64,8 +64,8 @@ int ft_exe_path(char *path, char **argv, t_env **cpy_environ, int fds[])
 		{
 			if (execve(path, argv, cpy_env_raw) < 0)
 				ft_putstr_fd("erreure\n", fds[2]);
+			ft_memdel((void **)(cpy_env_raw));
 		}
-		ft_memdel((void **)(cpy_env_raw));
         exit(0);
     }
 	else
@@ -80,17 +80,17 @@ int ft_exe_path(char *path, char **argv, t_env **cpy_environ, int fds[])
         w = waitpid(pid, &waitstatus, WUNTRACED | WCONTINUED);
         if (w == -1) {
             // perror("waitpid");
-            // exit(EXIT_FAILURE);
+            exit(EXIT_FAILURE);
         }
 
         if (WIFEXITED(waitstatus)) {
             // printf("terminé, code=%d\n", WEXITSTATUS(waitstatus));
         } else if (WIFSIGNALED(waitstatus)) {
-            printf("tué par le signal %d\n", WTERMSIG(waitstatus));
+            ft_printf("tué par le signal %d\n", WTERMSIG(waitstatus));
         } else if (WIFSTOPPED(waitstatus)) {
-            printf("arrêté par le signal %d\n", WSTOPSIG(waitstatus));
+            ft_printf("arrêté par le signal %d\n", WSTOPSIG(waitstatus));
         } else if (WIFCONTINUED(waitstatus)) {
-            printf("relancé\n");
+            ft_printf("relancé\n");
         }
 	// }
 	}

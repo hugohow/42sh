@@ -28,4 +28,5 @@ echo ALLEZ:~+${GLOBAL_TOKEN}_SUBDIRECTORY
 echo $?
 echo ALLEZ:~-${GLOBAL_TOKEN}_OTHERDIRECTORY
 echo $?
+echo $
 exit

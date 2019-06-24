@@ -6,7 +6,7 @@
 /*   By: hhow-cho <hhow-cho@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/06/16 15:12:28 by hhow-cho          #+#    #+#             */
-/*   Updated: 2019/06/23 18:00:25 by hhow-cho         ###   ########.fr       */
+/*   Updated: 2019/06/24 22:46:32 by hhow-cho         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,7 +38,7 @@ t_env **ft_env_copy_raw(char **str, char **argv)
 			int nb;
 
 			nb = ft_atoi((str[i]) + 6) + 1;
-			copy[i]->line = ft_strdup(ft_strjoin("SHLVL=", ft_itoa(nb)));
+			copy[i]->line = ft_strjoin("SHLVL=", ft_itoa(nb));
 			shlvl_present = 1;
 		}
 		else

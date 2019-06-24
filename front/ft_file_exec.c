@@ -1,18 +1,18 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   shell_file.c                                       :+:      :+:    :+:   */
+/*   ft_file_exec.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: hhow-cho <hhow-cho@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2019/06/20 15:10:24 by hhow-cho          #+#    #+#             */
-/*   Updated: 2019/06/24 18:18:45 by hhow-cho         ###   ########.fr       */
+/*   Created: 2019/06/24 23:13:08 by hhow-cho          #+#    #+#             */
+/*   Updated: 2019/06/24 23:13:09 by hhow-cho         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "shell.h"
 
-int shell_file(t_env ***p_copy_env, char **argv)
+int ft_file_exec(t_env ***p_copy_env, char **argv)
 {
 	char *command;
 	t_node **root;
@@ -30,7 +30,7 @@ int shell_file(t_env ***p_copy_env, char **argv)
 		root = ft_syntax_tree_create(command, *p_copy_env);
 		if (root && *root)
 		{
-			execute_tree(*root, p_copy_env,  fds, &success);
+			execute_tree(*root, p_copy_env, fds, &success);
 			ft_syntax_tree_free(root);
 		}
 		ft_memdel((void **)&command);

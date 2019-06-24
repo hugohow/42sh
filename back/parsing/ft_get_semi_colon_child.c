@@ -6,7 +6,7 @@
 /*   By: hhow-cho <hhow-cho@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/06/09 02:45:56 by hhow-cho          #+#    #+#             */
-/*   Updated: 2019/06/24 17:31:03 by hhow-cho         ###   ########.fr       */
+/*   Updated: 2019/06/24 23:23:39 by hhow-cho         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,19 +20,6 @@ static size_t list_len(char **list)
 	while (list[i])
 		i++;
 	return (i);
-}
-
-static void free_list(char **list)
-{
-	size_t i;
-
-	i = 0;
-	while (list[i])
-	{
-		ft_memdel((void **)(&(list[i])));
-		i++;
-	}
-	ft_memdel((void **)(list));
 }
 
 t_node **ft_get_semi_colon_child(char *cmd, t_env **copy_env)
@@ -49,16 +36,18 @@ t_node **ft_get_semi_colon_child(char *cmd, t_env **copy_env)
     {
         if (!(child = (t_node **)ft_memalloc((list_len(list) + 1) * sizeof(t_node *))))
 		{
-			free_list(list);
+			ft_list_free(list);
 			return (NULL);
 		}
         while (list[k])
         {
             child[k] = create_node(TYPE_CMD, list[k], copy_env);
+			if (child[k] == NULL)
+				break ;
             k++;
         }
         child[k] = 0;
+		ft_list_free(list);
     }
-	ft_memdel((void **)(list));
     return (child);
 }
