@@ -6,7 +6,7 @@
 /*   By: hhow-cho <hhow-cho@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/06/13 19:57:57 by hhow-cho          #+#    #+#             */
-/*   Updated: 2019/06/24 01:43:14 by hhow-cho         ###   ########.fr       */
+/*   Updated: 2019/06/24 19:36:06 by hhow-cho         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -88,31 +88,45 @@ char *get_absolute_path(t_env ***p_environ, char *element, int fds[])
 
 		list = ft_strsplit(cd_path, ':');
 
-		if (list && list[0])
+		if (cd_path[0] == 0 || cd_path[0] == ':')
 		{
-			// il faut gerer le cas ou y'a un slash
-			curpath = ft_strjoin(list[0], "/");
-			curpath = ft_strjoin(curpath, element);
-			curpath = ft_path_trim(curpath);
+			curpath = ft_strjoin("./", element);
 			if (ft_is_possible_to_go_to(curpath) == 1)
 			{
-				ft_putstr_fd(curpath, fds[1]);
-				ft_putstr_fd("\n", fds[1]);
+				pwd = ft_env_get_value(*p_environ, "PWD");
+				if (pwd == NULL)
+					pwd = getcwd(NULL, 0);
+				curpath = ft_strjoin(pwd, curpath + 1);
+				curpath = ft_path_trim(curpath);
 				return (curpath);
 			}
 			curpath = NULL;
 		}
-		curpath = ft_strjoin("./", element);
-		if (ft_is_possible_to_go_to(curpath) == 1)
-			return (curpath);
-		curpath = NULL;
 
 		int i;
 
-		i = 1;
-		while (list[i])
+		i = 0;
+		while (list && list[i])
 		{
-			curpath = ft_strjoin(list[i], "/");
+			if (ft_strncmp("/", list[i], 1) == 0)
+			{
+				curpath = ft_strjoin(list[i], "/");
+				curpath = ft_strjoin(curpath, element);
+				curpath = ft_path_trim(curpath);
+				if (ft_is_possible_to_go_to(curpath) == 1)
+				{
+					ft_putstr_fd(curpath, fds[1]);
+					ft_putstr_fd("\n", fds[1]);
+					return (curpath);
+				}
+				curpath = NULL;
+			}
+			pwd = ft_env_get_value(*p_environ, "PWD");
+			if (pwd == NULL)
+				pwd = getcwd(NULL, 0);
+			curpath = ft_strjoin(pwd, "/");
+			curpath = ft_strjoin(curpath, list[i]);
+			curpath = ft_strjoin(curpath, "/");
 			curpath = ft_strjoin(curpath, element);
 			curpath = ft_path_trim(curpath);
 			if (ft_is_possible_to_go_to(curpath) == 1)

@@ -6,7 +6,7 @@
 /*   By: hhow-cho <hhow-cho@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/06/20 16:37:59 by hhow-cho          #+#    #+#             */
-/*   Updated: 2019/06/20 16:38:07 by hhow-cho         ###   ########.fr       */
+/*   Updated: 2019/06/24 18:42:49 by hhow-cho         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -62,7 +62,10 @@ char *ft_path_trim(char *path)
 			i++;
 	}
 	i = 0;
-	ft_strcat(new_path, "/");
+	if (ft_strncmp(path, "./", 2) == 0)
+		ft_strcat(new_path, "./");
+	else
+		ft_strcat(new_path, "/");
 	while (list[i])
 	{
 		ft_strcat(new_path, list[i]);

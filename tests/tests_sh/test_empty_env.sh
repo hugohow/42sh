@@ -26,3 +26,23 @@ env -i cd dzdz
 echo $?
 env CDPATH=/:/:/ cd Library/
 echo $?
+env CDPATH= cd Library/
+echo $?
+env CDPATH=/ cd Library/
+echo $?
+env CDPATH=.:/ cd Library/
+echo $?
+mkdir Library
+env CDPATH=.:/ cd Library/
+echo $?
+env CDPATH=sqdqsdsq:dsdqs:zz:dd:zq:/ cd Library/
+echo $?
+env CDPATH=:dsdqs:zz:dd:zq:/ cd Library/
+echo $?
+env CDPATH= cd Library/
+echo $?
+env CDPATH=/zs cd Library/
+echo $?
+env CDPATH=/zs:/ cd Library/
+echo $?
+rm -rf Library
