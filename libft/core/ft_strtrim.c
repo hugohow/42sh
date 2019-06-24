@@ -6,7 +6,7 @@
 /*   By: hhow-cho <hhow-cho@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/04/02 17:13:02 by hhow-cho          #+#    #+#             */
-/*   Updated: 2019/04/11 10:50:50 by hhow-cho         ###   ########.fr       */
+/*   Updated: 2019/06/24 16:47:26 by hhow-cho         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,7 +54,7 @@ char		*ft_strtrim(char const *str)
 	len = count_len_fttrim(str);
 	if (len <= 0)
 		return (ft_strdup(""));
-	if (!(output = (char *)malloc((len + 1) * sizeof(*output))))
+	if (!(output = (char *)ft_memalloc((len + 1) * sizeof(char))))
 		return (NULL);
 	i = 0;
 	k = -1;

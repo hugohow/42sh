@@ -6,7 +6,7 @@
 /*   By: hhow-cho <hhow-cho@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/06/09 01:40:14 by hhow-cho          #+#    #+#             */
-/*   Updated: 2019/06/23 11:19:00 by hhow-cho         ###   ########.fr       */
+/*   Updated: 2019/06/24 16:53:08 by hhow-cho         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,6 +49,7 @@ int ft_exe_bin(t_node *node, t_env ***p_environ, int fds[])
         return 0;
     command = ft_strtrim(args[0]);
     new_path = NULL;
+	// command = args[0];
     if (ft_is_path(command) == 1)
     {
 		args[0] = ft_strcpy(args[0], "name");
@@ -75,13 +76,13 @@ int ft_exe_bin(t_node *node, t_env ***p_environ, int fds[])
         result_cmd = ft_setenv(ft_list_size(args), args, p_environ, fds);
         return (ft_max(result_cmd, result_parsing));
     }
-    if (ft_strchr(command, '='))
-    {
-		args[1] = ft_strdup(command);
-		args[2] = 0;
-        result_cmd = ft_setenv(ft_list_size(args), args, p_environ, fds);
-        return (ft_max(result_cmd, result_parsing));
-    }
+    // if (ft_strchr(command, '='))
+    // {
+	// 	args[1] = ft_strdup(command);
+	// 	args[2] = 0;
+    //     result_cmd = ft_setenv(ft_list_size(args), args, p_environ, fds);
+    //     return (ft_max(result_cmd, result_parsing));
+    // }
     if (ft_strcmp(command, "unsetenv") == 0)
     {
         result_cmd = ft_unsetenv(ft_list_size(args), args, *p_environ, fds);
@@ -120,8 +121,8 @@ int ft_exe_bin(t_node *node, t_env ***p_environ, int fds[])
 					return (ft_max(result_cmd, result_parsing));
 				}
 			}
+			closedir (pDir);
 		}
-		closedir (pDir);
 		ft_dprintf(fds[2], "shell: command not found: %s\n", args[0]);
         return (EXIT_UTILITY_NOT_FOUND);
     }

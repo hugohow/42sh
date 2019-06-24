@@ -6,7 +6,7 @@
 /*   By: hhow-cho <hhow-cho@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/06/16 13:42:37 by hhow-cho          #+#    #+#             */
-/*   Updated: 2019/06/23 02:29:55 by hhow-cho         ###   ########.fr       */
+/*   Updated: 2019/06/24 17:17:15 by hhow-cho         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -73,7 +73,7 @@ static char *resolve_expansion(char *str, int i, int j, t_env **copy_env)
 		line = ft_env_get_line_n(copy_env, str + i + 1, j - 2 - i);
 		// print_n(str + i + 1, 0, j - 2 - i);
 		if (line)
-			return (ft_strdup(line) + j - i -1);
+			return (ft_strdup(line + j - i -1));
 		else
 			return (ft_strdup(""));
 	}
@@ -81,7 +81,7 @@ static char *resolve_expansion(char *str, int i, int j, t_env **copy_env)
 	{
 		line = ft_env_get_line_n(copy_env, str + i, j - i);
 		if (line)
-			return (ft_strdup(line) + j - i + 1);
+			return (ft_strdup(line + j - i + 1));
 		else
 			return (ft_strdup(""));
 	}
