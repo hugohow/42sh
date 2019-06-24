@@ -6,7 +6,7 @@
 /*   By: hhow-cho <hhow-cho@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/06/09 14:28:12 by hhow-cho          #+#    #+#             */
-/*   Updated: 2019/06/25 00:11:47 by hhow-cho         ###   ########.fr       */
+/*   Updated: 2019/06/25 00:57:28 by hhow-cho         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,8 +20,6 @@ int ft_exe_path(char *path, char **argv, t_env **cpy_environ, int fds[])
     int waitstatus;
     int i;
     i = 0;
-
-
 
 	if (stat(path, &fileStat))
 	{

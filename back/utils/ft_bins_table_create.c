@@ -6,7 +6,7 @@
 /*   By: hhow-cho <hhow-cho@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/06/09 15:24:14 by hhow-cho          #+#    #+#             */
-/*   Updated: 2019/06/23 18:40:25 by hhow-cho         ###   ########.fr       */
+/*   Updated: 2019/06/25 01:07:33 by hhow-cho         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,13 +16,15 @@ t_ht *ft_bins_table_create(char *line)
 {
 	char **paths;
     char *new_path;
+	char *tmp;
     char *d_name;
 	int i;
 	t_ht *table_bins;
 	DIR *pDir;
 	struct dirent *pDirent;
 
-	table_bins = ft_ht_create();
+	if (!(table_bins = ft_ht_create()))
+		return (NULL);
 	if (line == NULL)
 		paths = ft_strsplit("/usr/sbin:/usr/bin:/sbin:/bin:.", ':');
 	else
@@ -37,13 +39,16 @@ t_ht *ft_bins_table_create(char *line)
 			while ((pDirent = readdir(pDir)) != NULL) 
 			{
 				d_name = pDirent->d_name;
-				new_path = ft_strjoin(paths[i], "/");
-				new_path = ft_strjoin(new_path, d_name);
+				tmp = ft_strjoin(paths[i], "/");
+				new_path = ft_strjoin(tmp, d_name);
 				ft_ht_add(table_bins, d_name, (void *)(new_path));
+				ft_memdel((void **)&tmp);
+				ft_memdel((void **)&new_path);
 			}
 			closedir (pDir);
 		}
         i++;
     }
+	ft_list_free(paths);
 	return (table_bins);
 }

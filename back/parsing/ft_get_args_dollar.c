@@ -6,7 +6,7 @@
 /*   By: hhow-cho <hhow-cho@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/06/16 13:42:37 by hhow-cho          #+#    #+#             */
-/*   Updated: 2019/06/25 00:28:41 by hhow-cho         ###   ########.fr       */
+/*   Updated: 2019/06/25 00:44:53 by hhow-cho         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,9 +39,7 @@ static int get_expansion_length(char *str)
 			ret++;
 		}
 		if (str[ret] == 0)
-		{
 			return (-1);
-		}
 		ret++;
 	}
 	else
