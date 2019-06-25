@@ -6,7 +6,7 @@
 /*   By: hhow-cho <hhow-cho@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/06/13 19:57:57 by hhow-cho          #+#    #+#             */
-/*   Updated: 2019/06/24 19:36:06 by hhow-cho         ###   ########.fr       */
+/*   Updated: 2019/06/25 14:05:14 by hhow-cho         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,15 +23,15 @@ static int ft_change_env(char *new_pwd_line, char *old_pwd_line, t_env ***p_envi
     return (0);
 }
 
-int go_to_root(char *old_pwd_line, t_env ***p_environ)
-{
-    while (ft_strcmp(getcwd(NULL, 0), "/") != 0)
-        chdir("..");
+// int go_to_root(char *old_pwd_line, t_env ***p_environ)
+// {
+//     while (ft_strcmp(getcwd(NULL, 0), "/") != 0)
+//         chdir("..");
 
-    if (ft_change_env("/", old_pwd_line, p_environ) < 0)
-        return (1);
-    return (0);
-}
+//     if (ft_change_env("/", old_pwd_line, p_environ) < 0)
+//         return (1);
+//     return (0);
+// }
 
 int ft_is_possible_to_go_to(char *abs_path)
 {
@@ -60,7 +60,7 @@ char *get_absolute_path(t_env ***p_environ, char *element, int fds[])
 	char *pwd;
 
     if (ft_strncmp("/", element, 1) == 0)
-        return (element);
+        return (ft_path_trim(element));
     if (ft_strcmp(".", element) == 0 || ft_strcmp("..", element) == 0)
 	{
 		pwd = ft_env_get_value(*p_environ, "PWD");
@@ -187,8 +187,8 @@ int ft_change_dir(char *element, t_env ***p_environ, long long flag, int fds[])
 	}
     if (element)
     {
-        if (ft_strcmp(element, "/") == 0 || ft_strcmp(element, "/.") == 0)
-            return (go_to_root(old_pwd, p_environ));
+        // if (ft_strcmp(element, "/") == 0 || ft_strcmp(element, "/.") == 0)
+        //     return (go_to_root(old_pwd, p_environ));
         if (ft_strcmp(element, "-") == 0)
 		{
 			if (!(curpath = ft_env_get_value(*p_environ, "OLDPWD")))

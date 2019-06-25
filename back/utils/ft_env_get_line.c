@@ -6,7 +6,7 @@
 /*   By: hhow-cho <hhow-cho@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/06/16 14:58:53 by hhow-cho          #+#    #+#             */
-/*   Updated: 2019/06/24 01:55:52 by hhow-cho         ###   ########.fr       */
+/*   Updated: 2019/06/25 10:25:41 by hhow-cho         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,9 +38,7 @@ char *ft_env_get_line(t_env **cpy_environ, char *key)
     while (cpy_environ[i])
     {
 		if (ft_env_cmp_prefix(key, cpy_environ[i]->line) == 0)
-		{
 			return (cpy_environ[i]->line);
-		}
         i++;
     }
     return (NULL);

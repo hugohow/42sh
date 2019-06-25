@@ -6,7 +6,7 @@
 /*   By: hhow-cho <hhow-cho@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/06/09 00:32:39 by hhow-cho          #+#    #+#             */
-/*   Updated: 2019/06/24 23:43:59 by hhow-cho         ###   ########.fr       */
+/*   Updated: 2019/06/25 12:23:59 by hhow-cho         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -179,4 +179,5 @@ char *ft_get_args_dollar(char *str, t_env **copy_env, int *p_result_parsing);
 char *ft_get_args_tilde(char *str, t_env **copy_env);
 int	ft_isatty(int fd);
 char *ft_node_join(t_list *head, int size);
+char			**ft_str_separate(char const *str, char c);
 #endif

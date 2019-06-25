@@ -6,7 +6,7 @@
 /*   By: hhow-cho <hhow-cho@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/06/20 13:58:20 by hhow-cho          #+#    #+#             */
-/*   Updated: 2019/06/24 01:52:14 by hhow-cho         ###   ########.fr       */
+/*   Updated: 2019/06/25 09:55:12 by hhow-cho         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,6 +47,7 @@ t_env **clear_environ(void)
 static char **ft_get_env_variable(char **argv, t_env ***p_copy_env, int flag, t_env **originial_env)
 {
 	t_env **copy_env;
+	char *prefix;
 	int path_present;
 	int j;
 
@@ -62,9 +63,11 @@ static char **ft_get_env_variable(char **argv, t_env ***p_copy_env, int flag, t_
 		i = 0;
 		while ((argv[j])[i] && (argv[j])[i] != '=')
 			i++;
-		if (ft_strcmp("PATH", ft_strsub(argv[j], 0, i )) == 0)
+		prefix = ft_strsub(argv[j], 0, i);
+		if (ft_strcmp("PATH", prefix) == 0)
 			path_present = 1;
-		ft_env_add(ft_strsub(argv[j], 0, i ), (argv[j] + i + 1), p_copy_env, 0);
+		ft_env_add(prefix, (argv[j] + i + 1), p_copy_env, 0);
+		ft_memdel((void **)&prefix);
 		j++;
     }
 	if (flag == FLAG_ENV_I && path_present == 0)
@@ -113,7 +116,7 @@ static int ft_execute_env(char **argv, int flag, t_env **cpy_environ, int fds[])
 		{
 			root = ft_syntax_tree_create(cmd, cpy_environ);
 			execute_tree(*root, &copy_env, fds, &success);
-			// ft_syntax_tree_free(root);
+			ft_syntax_tree_free(root);
 		}
 		else
 			ft_print_env(copy_env, fds);	
@@ -194,7 +197,7 @@ int ft_env(int argc, char **argv, t_env **cpy_environ, int fds[])
         w = waitpid(pid, &waitstatus, WUNTRACED | WCONTINUED);
         if (w == -1) {
             // perror("waitpid");
-            // exit(EXIT_FAILURE);
+            exit(EXIT_FAILURE);
         }
 
         if (WIFEXITED(waitstatus)) {

@@ -6,7 +6,7 @@
 /*   By: hhow-cho <hhow-cho@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/06/16 13:42:37 by hhow-cho          #+#    #+#             */
-/*   Updated: 2019/06/25 01:42:04 by hhow-cho         ###   ########.fr       */
+/*   Updated: 2019/06/25 10:11:20 by hhow-cho         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -104,6 +104,7 @@ char *ft_get_args_dollar(char *str, t_env **copy_env, int *p_result_parsing)
 			{
 				*p_result_parsing = 1;
 				ft_putstr_fd("bad substitution\n", 2);
+				ft_memdel((void **)&str);
 				return (NULL);
 			}
 			if (ret != 0)
@@ -122,6 +123,9 @@ char *ft_get_args_dollar(char *str, t_env **copy_env, int *p_result_parsing)
 		i += 1;
 	}
 	if (ft_strlen(str) == 0)
+	{
+		ft_memdel((void **)&str);
 		return (ft_strdup(""));
+	}
 	return (str);
 }
