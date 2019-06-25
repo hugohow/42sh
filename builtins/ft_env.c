@@ -6,7 +6,7 @@
 /*   By: hhow-cho <hhow-cho@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/06/20 13:58:20 by hhow-cho          #+#    #+#             */
-/*   Updated: 2019/06/25 09:55:12 by hhow-cho         ###   ########.fr       */
+/*   Updated: 2019/06/25 14:52:44 by hhow-cho         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -159,7 +159,7 @@ static int ft_parse_input_env(char ***p_argv, int fds[])
 	return (flag);
 }
 
-int ft_env(int argc, char **argv, t_env **cpy_environ, int fds[])
+int ft_env(char **argv, t_env **cpy_environ, int fds[])
 {
     pid_t pid;
     int status;
@@ -167,7 +167,7 @@ int ft_env(int argc, char **argv, t_env **cpy_environ, int fds[])
     int i;
 	int flag;
 
-    if (argc == 1)
+    if (ft_list_size(argv) == 1)
     {
         ft_print_env(cpy_environ, fds);
         return (0);

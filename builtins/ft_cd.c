@@ -6,7 +6,7 @@
 /*   By: hhow-cho <hhow-cho@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/06/13 19:57:57 by hhow-cho          #+#    #+#             */
-/*   Updated: 2019/06/25 14:35:15 by hhow-cho         ###   ########.fr       */
+/*   Updated: 2019/06/25 14:54:24 by hhow-cho         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -267,12 +267,13 @@ static int parse_input(int *p_argc, char ***p_argv)
 	return (flag);
 }
 
-int ft_cd(int argc, char **argv, t_env ***p_cpy_environ, int fds[])
+int ft_cd(char **argv, t_env ***p_cpy_environ, int fds[])
 {
 	int		flag;
+	int argc;
 
 	argv++;
-	argc--;
+	argc = ft_list_size(argv) - 1;
 	flag = parse_input(&argc, &argv);
 	if (flag == -1)
 	{

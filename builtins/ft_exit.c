@@ -6,7 +6,7 @@
 /*   By: hhow-cho <hhow-cho@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/06/20 13:58:14 by hhow-cho          #+#    #+#             */
-/*   Updated: 2019/06/25 10:09:39 by hhow-cho         ###   ########.fr       */
+/*   Updated: 2019/06/25 14:52:52 by hhow-cho         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,12 +16,11 @@
 ** Builtin to exit the shell process
 */
 
-int ft_exit(int argc, char **argv, t_env **cpy_environ, int fds[])
+int ft_exit(char **argv, t_env **cpy_environ, int fds[])
 {
     int i;
 	char *line;
 
-	(void)argc;
     if (argv[1])
     {
         i = 0;
