@@ -6,7 +6,7 @@
 /*   By: hhow-cho <hhow-cho@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/06/13 19:57:57 by hhow-cho          #+#    #+#             */
-/*   Updated: 2019/06/25 14:05:14 by hhow-cho         ###   ########.fr       */
+/*   Updated: 2019/06/25 14:35:15 by hhow-cho         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -86,9 +86,9 @@ char *get_absolute_path(t_env ***p_environ, char *element, int fds[])
 	{
 		char **list;
 
-		list = ft_strsplit(cd_path, ':');
+		list = ft_str_separate(cd_path, ':');
 
-		if (cd_path[0] == 0 || cd_path[0] == ':')
+		if (ft_strlen(list[0]) == 0)
 		{
 			curpath = ft_strjoin("./", element);
 			if (ft_is_possible_to_go_to(curpath) == 1)
@@ -108,6 +108,11 @@ char *get_absolute_path(t_env ***p_environ, char *element, int fds[])
 		i = 0;
 		while (list && list[i])
 		{
+			if (ft_strlen(list[i]) == 0)
+			{
+				i++;
+				continue ;
+			}
 			if (ft_strncmp("/", list[i], 1) == 0)
 			{
 				curpath = ft_strjoin(list[i], "/");
@@ -156,7 +161,9 @@ int ft_go_to(char *curpath, int fds[])
 			ft_putstr_fd("Too many symbolic links\n", fds[2]);
 			return (EXIT_FAIL);
 		}
-		ft_putstr_fd("No such file or directory\n", fds[2]);
+		ft_putstr_fd("No such file or directory : ", fds[2]);
+		ft_putstr_fd(curpath, fds[2]);
+		ft_putstr_fd("\n", fds[2]);
 		return (EXIT_FAIL);
 	}
 	else if (!S_ISDIR(fileStat.st_mode) && !S_ISLNK(fileStat.st_mode))
