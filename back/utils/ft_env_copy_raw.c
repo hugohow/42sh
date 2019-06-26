@@ -6,7 +6,7 @@
 /*   By: hhow-cho <hhow-cho@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/06/16 15:12:28 by hhow-cho          #+#    #+#             */
-/*   Updated: 2019/06/26 16:21:20 by hhow-cho         ###   ########.fr       */
+/*   Updated: 2019/06/26 23:40:19 by hhow-cho         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,29 +17,6 @@ static t_env **exit_env(t_env **env)
 {
 	ft_env_free(&env);
 	return (NULL);
-}
-
-static char *ft_strjoin_free(char *prefix, char *to_free)
-{
-	char	*new_str;
-	size_t	len;
-	size_t	i;
-	size_t	j;
-
-	if (prefix == NULL || to_free == NULL)
-		return (NULL);
-	len = ft_strlen(prefix) + ft_strlen(to_free) + 1;
-	if (!(new_str = (char	*)ft_memalloc(len * sizeof(char))))
-		return (NULL);
-	i = -1;
-	while (prefix[++i])
-		new_str[i] = prefix[i];
-	j = -1;
-	while (to_free[++j])
-		new_str[i++] = to_free[j];
-	new_str[i] = '\0';
-	ft_memdel((void **)&to_free);
-	return (new_str);
 }
 
 static t_env **get_special_char(t_env **copy, char **argv, int i)
@@ -74,7 +51,10 @@ static t_env **get_special_char(t_env **copy, char **argv, int i)
 
 	if (!(copy[i] = ft_memalloc(sizeof(t_env))))
 		return (exit_env(copy));
-	copy[i]->line = ft_strjoin("#=", ft_itoa(k - 1));
+	if (k == 0)
+		copy[i]->line = ft_strdup("#=0");
+	else
+		copy[i]->line = ft_strjoin_free("#=", ft_itoa(k - 1));
 	copy[i++]->special = 1;
 
 
