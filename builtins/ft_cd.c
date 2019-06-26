@@ -6,7 +6,7 @@
 /*   By: hhow-cho <hhow-cho@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/06/13 19:57:57 by hhow-cho          #+#    #+#             */
-/*   Updated: 2019/06/25 14:54:24 by hhow-cho         ###   ########.fr       */
+/*   Updated: 2019/06/26 20:08:00 by hhow-cho         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -200,7 +200,7 @@ int ft_change_dir(char *element, t_env ***p_environ, long long flag, int fds[])
 		{
 			if (!(curpath = ft_env_get_value(*p_environ, "OLDPWD")))
 			{
-				ft_putstr_fd("shell: cd: OLDPWD not set\n", fds[2]);
+				ft_putstr_fd("minishell: cd: OLDPWD not set\n", fds[2]);
 				return (1);
 			}
 			ft_putstr_fd(curpath, fds[1]);
@@ -220,13 +220,13 @@ int ft_change_dir(char *element, t_env ***p_environ, long long flag, int fds[])
     {
 		if (!(curpath = ft_env_get_value(*p_environ, "HOME")))
 		{
-			ft_putstr_fd("shell: cd: HOME not set\n", 2);
+			ft_putstr_fd("minishell: cd: HOME not set\n", 2);
 			return (1);
 		}
     }
 	if (ft_strlen(curpath) > PATH_MAX)
 	{
-		ft_putstr_fd("shell: cd: path too long\n", 2);
+		ft_putstr_fd("minishell: cd: path too long\n", 2);
 		return (1);
 	}
 	int ret;

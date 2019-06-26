@@ -6,7 +6,7 @@
 /*   By: hhow-cho <hhow-cho@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/04/04 18:11:57 by hhow-cho          #+#    #+#             */
-/*   Updated: 2019/06/08 15:14:22 by hhow-cho         ###   ########.fr       */
+/*   Updated: 2019/06/26 23:30:37 by hhow-cho         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,7 @@ static t_list	*init(t_list **head, int fd)
 			return (node);
 		node = node->next;
 	}
-	node = ft_lstpush(head, "", fd);
+	node = ft_lstpush(head, NULL, fd);
 	return (node);
 }
 
@@ -33,6 +33,8 @@ static t_list	*fill(t_list *node, int fd, int *p_ret)
 	int		nb_bytes;
 	char	*to_free;
 
+	if (node->content == NULL)
+		node->content = ft_strdup("");
 	while (ft_strchr(node->content, '\n') == 0)
 	{
 		nb_bytes = read(fd, buf, BUFF_SIZE);
@@ -57,7 +59,7 @@ int				get_line(t_list *node, char **line)
 	while (((char *)node->content)[line_len] &&
 		((char *)node->content)[line_len] != '\n')
 		line_len++;
-	tmp = (char *)malloc(sizeof(char) * (line_len + 1));
+	tmp = (char *)ft_memalloc(sizeof(char) * (line_len + 1));
 	if (tmp == NULL)
 		return (-1);
 	i = -1;
