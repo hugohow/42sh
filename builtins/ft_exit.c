@@ -6,7 +6,7 @@
 /*   By: hhow-cho <hhow-cho@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/06/20 13:58:14 by hhow-cho          #+#    #+#             */
-/*   Updated: 2019/06/25 14:52:52 by hhow-cho         ###   ########.fr       */
+/*   Updated: 2019/06/27 00:18:05 by hhow-cho         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,14 +30,14 @@ int ft_exit(char **argv, t_env **cpy_environ, int fds[])
         {
             if (ft_isdigit(argv[1][i]) == 0)
             {
-                ft_putstr_fd("Numeric argument required", fds[2]);
-                exit(EXIT_FAIL);
+                ft_putstr_fd("shell: Numeric argument required\n", fds[2]);
+                exit(2);
             }
             i++;
         }
         if (argv[2])
         {
-            ft_putstr_fd("Too many arguments Argument list too long", fds[2]);
+            ft_putstr_fd("shell: exit: too many arguments\n", fds[2]);
             return (EXIT_FAIL);
         }
         exit(ft_atoi(argv[1]));

@@ -6,7 +6,7 @@
 /*   By: hhow-cho <hhow-cho@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/06/09 01:40:14 by hhow-cho          #+#    #+#             */
-/*   Updated: 2019/06/26 20:07:52 by hhow-cho         ###   ########.fr       */
+/*   Updated: 2019/06/27 00:58:48 by hhow-cho         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,6 +20,46 @@ static int ft_max(int a, int b)
 	return (b);
 }
 
+static int ft_search_and_exe_bin(char **args, t_env **cpy_environ, int fds[])
+{
+	int result_cmd;
+	char *command;
+	char *new_path;
+	t_node_ht *value;
+	t_ht *table_bins;
+
+	table_bins = ft_bins_table_get(cpy_environ);
+	command = args[0];
+	if (table_bins && (value = ft_ht_get(table_bins, args[0])) && value->datum)
+	{
+		args[0] = (char *)(value->datum);
+		result_cmd = ft_exe_path(args, cpy_environ, fds);
+	}
+	else
+	{
+		DIR *pDir;
+		struct dirent *pDirent;
+		if ((pDir = opendir (".")))
+		{
+			while ((pDirent = readdir(pDir)) != NULL) 
+			{
+				if (ft_strcmp(pDirent->d_name, args[0]) == 0)
+				{
+					new_path = ft_strjoin(getcwd(NULL, 0), "/");
+					args[0] = ft_strjoin(new_path, pDirent->d_name);
+					result_cmd = ft_exe_path(args, cpy_environ, fds);
+					closedir (pDir);
+					return (result_cmd);
+				}
+			}
+			closedir (pDir);
+		}
+		ft_dprintf(fds[2], "minishell: command not found: %s\n", args[0]);
+		result_cmd = EXIT_UTILITY_NOT_FOUND;
+	}
+	return (result_cmd);
+}
+
 
 
 int ft_exe_bin(t_node *node, t_env ***p_environ, int fds[])
@@ -27,17 +67,21 @@ int ft_exe_bin(t_node *node, t_env ***p_environ, int fds[])
     int result_parsing;
 	int result_cmd;
     char *command;
-    char *new_path;
+    char *to_free;
+	char *new_path;
 
 	result_parsing = 0;
 	node->args = ft_get_args(node->cmd, *p_environ, &result_parsing);
 	if (node->args[0] == NULL)
         return 0;
-    command = ft_strtrim(node->args[0]);
+	to_free = node->args[0];
+    node->args[0] = ft_strtrim(node->args[0]);
+	ft_memdel((void **)&to_free);
     new_path = NULL;
+	command = node->args[0];
 	result_cmd = 0;
     if (ft_is_path(command) == 1)
-		result_cmd = ft_exe_path(command, node->args, *p_environ, fds);
+		result_cmd = ft_exe_path(node->args, *p_environ, fds);
 	else if (ft_strcmp(command, BUILTIN_EXIT) == 0)
 		result_cmd = ft_exit(node->args, *p_environ, fds);
     else if (ft_strcmp(command, BUILTIN_ECHO) == 0)
@@ -51,38 +95,6 @@ int ft_exe_bin(t_node *node, t_env ***p_environ, int fds[])
     else if (ft_strcmp(command, BUILTIN_ENV) == 0)
 		result_cmd = ft_env(node->args, *p_environ, fds);
 	else
-	{
-		t_node_ht *value;
-		t_ht *table_bins;
-		table_bins = ft_bins_table_get(*p_environ);
-		if (table_bins && (value = ft_ht_get(table_bins, command)) && value->datum)
-		{
-			new_path = (char *)(value->datum);
-			result_cmd = ft_exe_path(new_path, node->args, *p_environ, fds);
-			return (ft_max(result_cmd, result_parsing));
-		}
-		else
-		{
-			DIR *pDir;
-			struct dirent *pDirent;
-			if ((pDir = opendir (".")))
-			{
-				while ((pDirent = readdir(pDir)) != NULL) 
-				{
-					if (ft_strcmp(pDirent->d_name, command) == 0)
-					{
-						new_path = ft_strjoin(getcwd(NULL, 0), "/");
-						new_path = ft_strjoin(new_path, pDirent->d_name);
-						result_cmd = ft_exe_path(new_path, node->args, *p_environ, fds);
-						closedir (pDir);
-						return (ft_max(result_cmd, result_parsing));
-					}
-				}
-				closedir (pDir);
-			}
-			ft_dprintf(fds[2], "minishell: command not found: %s\n", command);
-			result_cmd = EXIT_UTILITY_NOT_FOUND;
-		}
-	}
+		result_cmd = ft_search_and_exe_bin(node->args, *p_environ, fds);
 	return (ft_max(result_cmd, result_parsing));
 }

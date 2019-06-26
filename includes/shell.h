@@ -6,7 +6,7 @@
 /*   By: hhow-cho <hhow-cho@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/06/09 00:32:39 by hhow-cho          #+#    #+#             */
-/*   Updated: 2019/06/26 23:42:33 by hhow-cho         ###   ########.fr       */
+/*   Updated: 2019/06/27 00:48:51 by hhow-cho         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -161,7 +161,7 @@ void add_to_stdout(char **p_cmd, int c, int *index);
 void delete_n_lines(int n);
 int count_nb_line(char *cmd);
 
-int ft_exe_path(char *path, char **argv, t_env **cpy_environ, int fds[]);
+int ft_exe_path(char **argv, t_env **cpy_environ, int fds[]);
 int ft_ask_command(int fd, char **command);
 
 

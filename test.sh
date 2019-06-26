@@ -34,16 +34,6 @@ execute_bash()
 		printf "\r\n\033[31mError:\t\t\033[0m\033[37;1m minishell ${1}\033[0m\n\n"
 		printf "bash return: %d | minishell return: %d\n\n" $OUR_RET $YOUR_RET
 		quit
-	elif !(diff  ${LOG_2} ${RESULT_2}) && [ $OUR_RET -ne 0 ]; then
-		printf "\nSTDIN--------------------------------------------------------------\n"
-		while read line 
-		do 
-		echo -e "\033[31m$line\033[0m" 
-		done <  ${1}
-		printf "\033[0m-----------------------------------------------------------------\033[0m\n"
-		printf "\r\n\033[31mError:\t\t\033[0m\033[37;1m minishell ${1}\033[0m\n\n"
-		diff  ${RESULT_2} ${LOG_2}
-		quit
 	elif !(diff  ${LOG} ${RESULT}) then
 		printf "\nSTDIN--------------------------------------------------------------\n"
 		while read line 
@@ -51,17 +41,20 @@ execute_bash()
 		echo -e "\033[31m$line\033[0m" 
 		done <  ${1}
 		printf "\033[0m-----------------------------------------------------------------\033[0m\n"
-		printf "\r\n\033[31mError:\t\t\033[0m\033[37;1m minishell ${1}\033[0m\n\n"
+		printf "\r\n\033[31mError STDOUT:\t\t\033[0m\033[37;1m minishell ${1}\033[0m\n\n"
 		diff  ${LOG} ${RESULT}
 		quit
 	else
-		printf "\nSTDIN--------------------------------------------------------------\n"
+		printf "\n\033[32mSTDIN\033[0m--------------------------------------------------------------\n"
 		while read line 
 		do 
 		echo -e "\033[32m$line\033[0m" 
 		done <  ${1}
 		printf "\033[0m-----------------------------------------------------------------\033[0m\n"
 		printf "\n\033[32mSuccess:\t\033[37;1m minishell ${1}\033[0m\n\n"
+		printf "\nSTDERR--------------------------------------------------------------\n"
+		diff  ${RESULT_2} ${LOG_2}
+		printf "\n--------------------------------------------------------------------\n"
 	fi
 }
 

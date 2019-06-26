@@ -6,41 +6,43 @@
 /*   By: hhow-cho <hhow-cho@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/06/09 14:28:12 by hhow-cho          #+#    #+#             */
-/*   Updated: 2019/06/26 15:09:06 by hhow-cho         ###   ########.fr       */
+/*   Updated: 2019/06/27 00:57:19 by hhow-cho         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 
 #include "shell.h"
 
-int ft_exe_path(char *path, char **argv, t_env **cpy_environ, int fds[])
+int ft_exe_path(char **argv, t_env **cpy_environ, int fds[])
 {
     pid_t pid;
     struct stat fileStat;
     int waitstatus;
     int i;
+	char *path;
     i = 0;
 
+	path = argv[0];
 	if (stat(path, &fileStat))
 	{
 		lstat(path, &fileStat);
 		if (S_ISLNK(fileStat.st_mode) && access(path, X_OK))
 		{
-			ft_putstr_fd("Too many symbolic links\n", fds[2]);
+			ft_dprintf(fds[2], "Too many symbolic links: %s \n", path);
 			return (EXIT_FAIL);
 		}
-		ft_putstr_fd("No such file or directory\n", fds[2]);
+		ft_dprintf(fds[2], "No such file or directory: %s \n", path);
 		return (EXIT_FAIL);
 	}
 	else if (access(path, X_OK))
 	{
-		ft_putstr_fd("permission denied \n", fds[2]);
+		ft_dprintf(fds[2], "permission denied : %s \n", path);
 		return (EXIT_FAIL);
 	}
     pid = fork();
     if (pid < 0) 
     {
-        ft_putstr_fd("Failed to fork process 1\n", fds[2]);
+        ft_dprintf(fds[2], "Failed to fork process 1: %s \n", path);
         return (EXIT_FAILURE);
     }
     if (pid == 0)
