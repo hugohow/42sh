@@ -6,12 +6,12 @@
 /*   By: hhow-cho <hhow-cho@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/04/04 18:11:57 by hhow-cho          #+#    #+#             */
-/*   Updated: 2019/06/26 23:17:39 by hhow-cho         ###   ########.fr       */
+/*   Updated: 2019/06/26 23:30:37 by hhow-cho         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "get_next_line.h"
-#include <stdio.h>
+
 static t_list	*init(t_list **head, int fd)
 {
 	t_list *node;
@@ -23,7 +23,7 @@ static t_list	*init(t_list **head, int fd)
 			return (node);
 		node = node->next;
 	}
-	node = ft_lstpush(head, "", fd);
+	node = ft_lstpush(head, NULL, fd);
 	return (node);
 }
 
@@ -33,12 +33,12 @@ static t_list	*fill(t_list *node, int fd, int *p_ret)
 	int		nb_bytes;
 	char	*to_free;
 
-	// if (node->content == NULL)
-	// 	node->content = ft_strdup("");
+	if (node->content == NULL)
+		node->content = ft_strdup("");
 	while (ft_strchr(node->content, '\n') == 0)
 	{
 		nb_bytes = read(fd, buf, BUFF_SIZE);
-		if (nb_bytes <= 0)
+		if (nb_bytes == 0)
 			break ;
 		to_free = node->content;
 		buf[nb_bytes] = 0;

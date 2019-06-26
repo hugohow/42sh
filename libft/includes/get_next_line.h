@@ -6,13 +6,13 @@
 /*   By: hhow-cho <hhow-cho@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/04/04 18:12:01 by hhow-cho          #+#    #+#             */
-/*   Updated: 2019/06/26 20:20:21 by hhow-cho         ###   ########.fr       */
+/*   Updated: 2019/06/26 23:27:18 by hhow-cho         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef GET_NEXT_LINE_H
 # define GET_NEXT_LINE_H
-# define BUFF_SIZE 10
+# define BUFF_SIZE 1
 # include <unistd.h>
 # include <stdlib.h>
 # include <string.h>
