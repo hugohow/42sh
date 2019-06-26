@@ -6,7 +6,7 @@
 /*   By: hhow-cho <hhow-cho@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/06/08 15:56:47 by hhow-cho          #+#    #+#             */
-/*   Updated: 2019/06/24 23:12:11 by hhow-cho         ###   ########.fr       */
+/*   Updated: 2019/06/26 22:50:37 by hhow-cho         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,7 +25,7 @@ int main(int argc, char **argv)
 		return (0);
 	}
     if (argc > 1 || ft_isatty(0) == 0)
-		success = ft_file_exec(&copy_env, argv);
+		success = ft_stdin_exec(&copy_env, argv);
     else
 		success = ft_terminal_exec(&copy_env);
 	ft_env_free(&copy_env);

@@ -1,4 +1,4 @@
-shell: command not found: export
-shell: command not found: export
-shell: command not found: unset
-shell: command not found: unset
+minishell: command not found: export
+minishell: command not found: export
+minishell: command not found: unset
+minishell: command not found: unset

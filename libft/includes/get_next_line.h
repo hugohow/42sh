@@ -6,7 +6,7 @@
 /*   By: hhow-cho <hhow-cho@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/04/04 18:12:01 by hhow-cho          #+#    #+#             */
-/*   Updated: 2019/06/17 22:04:24 by hhow-cho         ###   ########.fr       */
+/*   Updated: 2019/06/26 23:27:18 by hhow-cho         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,4 +31,5 @@ t_list				*ft_lstpush(t_list **head, void const *d, size_t d_size);
 void				ft_lstdelone(t_list **alst, void (*del)(void *, size_t));
 void				ft_lstdelnode(t_list **head, size_t pos);
 char				*ft_strdup(const char *s1);
+void				*ft_memalloc(size_t size);
 #endif

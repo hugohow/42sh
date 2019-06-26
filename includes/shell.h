@@ -6,7 +6,7 @@
 /*   By: hhow-cho <hhow-cho@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/06/09 00:32:39 by hhow-cho          #+#    #+#             */
-/*   Updated: 2019/06/26 23:39:03 by hhow-cho         ###   ########.fr       */
+/*   Updated: 2019/06/26 23:42:33 by hhow-cho         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -95,7 +95,7 @@ int ft_terminal_read_key(void);
 
 int ft_terminal_exec(t_env ***p_copy_env);
 void ft_terminal_prompt(void);
-int ft_file_exec(t_env ***p_copy_env, char **argv);
+int ft_stdin_exec(t_env ***p_copy_env, char **argv);
 
 t_node **get_child(char *cmd, t_env **copy_env);
 t_node *create_node(long type, char *cmd, t_env **copy_env);
