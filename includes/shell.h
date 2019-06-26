@@ -6,7 +6,7 @@
 /*   By: hhow-cho <hhow-cho@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/06/09 00:32:39 by hhow-cho          #+#    #+#             */
-/*   Updated: 2019/06/25 14:55:54 by hhow-cho         ###   ########.fr       */
+/*   Updated: 2019/06/26 14:24:44 by hhow-cho         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -170,7 +170,7 @@ void ft_syntax_tree_free(t_node **root);
 
 
 int ft_exe_bin(t_node *node, t_env ***p_environ, int fds[]);
-void    execute_tree(t_node *node, t_env ***p_environ, int fds[], int *p_success);
+void    ft_execute_tree(t_node *node, t_env ***p_environ, int fds[], int *p_success);
 t_node **ft_get_semi_colon_child(char *cmd, t_env **copy_env);
 t_ht *ft_bins_table_create(char *line);
 t_ht * ft_bins_table_get(t_env **copy_environ);
