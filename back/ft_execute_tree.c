@@ -6,7 +6,7 @@
 /*   By: hhow-cho <hhow-cho@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/06/26 14:24:52 by hhow-cho          #+#    #+#             */
-/*   Updated: 2019/06/26 14:24:53 by hhow-cho         ###   ########.fr       */
+/*   Updated: 2019/06/27 01:10:41 by hhow-cho         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,6 +37,8 @@ void    ft_execute_tree(t_node *node, t_env ***p_environ, int fds[], int *p_succ
         while (*(node->child))
         {
             ft_execute_tree(*(node->child), p_environ, fds, p_success);
+			if ((*(node->child))->args == NULL)
+				return ;
             node->child++;
         }
     }
