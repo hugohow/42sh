@@ -6,7 +6,7 @@
 /*   By: hhow-cho <hhow-cho@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/06/16 15:12:28 by hhow-cho          #+#    #+#             */
-/*   Updated: 2019/06/26 23:42:50 by hhow-cho         ###   ########.fr       */
+/*   Updated: 2019/06/27 01:38:50 by hhow-cho         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -89,6 +89,13 @@ t_env **ft_env_copy_raw(char **str, char **argv)
 			int nb;
 
 			nb = ft_atoi((str[i]) + 6) + 1;
+			if (nb < 0)
+				nb = 0;
+			else if (nb >= 1000)
+			{
+				ft_dprintf(STDERR_FILENO, "shell: shell level (%d) too high, resetting to 1\n", nb);
+				nb = 1;
+			}
 			copy[i]->line = ft_strjoin_free("SHLVL=", ft_itoa(nb));
 			shlvl_present = 1;
 		}
