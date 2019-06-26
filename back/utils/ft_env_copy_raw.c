@@ -6,7 +6,7 @@
 /*   By: hhow-cho <hhow-cho@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/06/16 15:12:28 by hhow-cho          #+#    #+#             */
-/*   Updated: 2019/06/26 16:21:20 by hhow-cho         ###   ########.fr       */
+/*   Updated: 2019/06/26 23:02:52 by hhow-cho         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -74,7 +74,10 @@ static t_env **get_special_char(t_env **copy, char **argv, int i)
 
 	if (!(copy[i] = ft_memalloc(sizeof(t_env))))
 		return (exit_env(copy));
-	copy[i]->line = ft_strjoin("#=", ft_itoa(k - 1));
+	if (k == 0)
+		copy[i]->line = ft_strdup("#=1");
+	else
+		copy[i]->line = ft_strjoin("#=", ft_itoa(k - 1));
 	copy[i++]->special = 1;
 
 
@@ -94,7 +97,7 @@ t_env **ft_env_copy_raw(char **str, char **argv)
     i = 0;
     while (str[i])
         i++;
-    if (!(copy = (t_env **)ft_memalloc((i + 20) * sizeof(t_env *))))
+    if (!(copy = (t_env **)ft_memalloc((i + 20 + ft_list_size(argv)) * sizeof(t_env *))))
 		return (NULL);
     i = 0;
 	path_present = 0;
