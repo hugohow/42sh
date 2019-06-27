@@ -6,7 +6,7 @@
 /*   By: hhow-cho <hhow-cho@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/06/09 00:32:39 by hhow-cho          #+#    #+#             */
-/*   Updated: 2019/06/27 02:17:34 by hhow-cho         ###   ########.fr       */
+/*   Updated: 2019/06/27 14:11:49 by hhow-cho         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -79,6 +79,7 @@ typedef struct s_node
     long	type;
     char *cmd;
 	char **args;
+	// int				nb_child;
     struct s_node **child;
 }              t_node;
 
@@ -97,7 +98,7 @@ int ft_terminal_exec(t_env ***p_copy_env);
 void ft_terminal_prompt(void);
 int ft_stdin_exec(t_env ***p_copy_env, char **argv);
 
-t_node **get_child(char *cmd, t_env **copy_env);
+t_node **get_child(t_node *node, char *cmd, t_env **copy_env);
 t_node *create_node(long type, char *cmd, t_env **copy_env);
 void    print_tree(t_node *node);
 
@@ -171,7 +172,7 @@ void ft_syntax_tree_free(t_node **root);
 
 int ft_exe_bin(t_node *node, t_env ***p_environ, int fds[]);
 void    ft_execute_tree(t_node *node, t_env ***p_environ, int fds[], int *p_success);
-t_node **ft_get_semi_colon_child(char *cmd, t_env **copy_env);
+t_node **ft_get_semi_colon_child(t_node *node, char *cmd, t_env **copy_env);
 t_ht *ft_bins_table_create(char *line);
 t_ht * ft_bins_table_get(t_env **copy_environ);
 char **ft_get_args(char *cmd, t_env **copy_env, int *p_result_parsing);
