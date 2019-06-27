@@ -6,7 +6,7 @@
 /*   By: hhow-cho <hhow-cho@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/06/21 12:46:47 by hhow-cho          #+#    #+#             */
-/*   Updated: 2019/06/27 18:31:37 by hhow-cho         ###   ########.fr       */
+/*   Updated: 2019/06/27 18:48:24 by hhow-cho         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,5 +43,4 @@ void ft_syntax_tree_free(t_node **root)
 	if (node)
 		ft_memdel((void **)(&(node->cmd)));
 	ft_memdel((void **)&node);
-	ft_memdel((void **)&root);
 }
