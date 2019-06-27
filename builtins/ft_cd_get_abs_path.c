@@ -6,7 +6,7 @@
 /*   By: hhow-cho <hhow-cho@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/06/27 22:25:10 by hhow-cho          #+#    #+#             */
-/*   Updated: 2019/06/28 00:19:12 by hhow-cho         ###   ########.fr       */
+/*   Updated: 2019/06/28 00:19:59 by hhow-cho         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -87,7 +87,7 @@ char *ft_cd_get_abs_path(t_env ***p_environ, char *element, int fds[])
 				ft_list_free(&list);
 				return (curpath);
 			}
-			curpath = NULL;
+			ft_memdel((void **)&curpath);
 			i++;
 		}
 		ft_list_free(&list);
