@@ -6,7 +6,7 @@
 /*   By: hhow-cho <hhow-cho@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/06/20 13:58:14 by hhow-cho          #+#    #+#             */
-/*   Updated: 2019/06/27 02:29:53 by hhow-cho         ###   ########.fr       */
+/*   Updated: 2019/06/28 00:23:25 by hhow-cho         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,7 +31,7 @@ int ft_exit(char **argv, t_env ***p_cpy_environ, int fds[])
             if (ft_isdigit(argv[1][i]) == 0)
             {
                 ft_putstr_fd("shell: Numeric argument required\n", fds[2]);
-				ft_env_add("EXIT", ft_strdup("1"), p_cpy_environ, 1);
+				ft_env_add("EXIT", "1", p_cpy_environ, 1);
                 return(2);
             }
             i++;
@@ -48,6 +48,6 @@ int ft_exit(char **argv, t_env ***p_cpy_environ, int fds[])
 	line = ft_env_get_value(*p_cpy_environ, "?");
 	ft_env_add("EXIT", "1", p_cpy_environ, 1);
 	if (line)
-		return(ft_atoi(line));
+		return (ft_atoi(line));
 	return (EXIT_SUCCESS);
 }
