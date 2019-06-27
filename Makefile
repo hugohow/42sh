@@ -19,6 +19,6 @@ test: re
 	bash test.sh
 
 valgrind: re
-	valgrind --leak-check=full ./minishell tests/tests_sh/test_colon.sh
+	valgrind --leak-check=full ./minishell tests/tests_sh/test_pid.sh
 
 .PHONY: all re clean fclean test valgrind
