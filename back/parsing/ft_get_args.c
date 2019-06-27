@@ -6,7 +6,7 @@
 /*   By: hhow-cho <hhow-cho@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/06/14 14:25:36 by hhow-cho          #+#    #+#             */
-/*   Updated: 2019/06/27 01:07:10 by hhow-cho         ###   ########.fr       */
+/*   Updated: 2019/06/27 16:27:57 by hhow-cho         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,6 +25,7 @@ char **ft_get_args(char *cmd, t_env **copy_env, int *p_result_parsing)
 		if (args[i] == NULL)
 			return (NULL);
 		args[i] = ft_get_args_tilde(args[i], copy_env);
+		args[i] = ft_strtrim(args[i]);
 		i++;
 	}
 	return (args);
