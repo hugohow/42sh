@@ -6,7 +6,7 @@
 /*   By: hhow-cho <hhow-cho@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/04/02 17:04:33 by hhow-cho          #+#    #+#             */
-/*   Updated: 2019/06/20 22:02:16 by hhow-cho         ###   ########.fr       */
+/*   Updated: 2019/06/27 01:52:17 by hhow-cho         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,7 +24,7 @@ char	*ft_strrchr(const char *s, int c)
 	while (i > 0)
 	{
 		if (*(s + i) == (char)c)
-			return (char *)(s + i);
+			return (char *)(s + i + 1);
 		i--;
 	}
 	if (*s == (char)c)

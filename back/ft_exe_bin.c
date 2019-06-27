@@ -6,7 +6,7 @@
 /*   By: hhow-cho <hhow-cho@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/06/09 01:40:14 by hhow-cho          #+#    #+#             */
-/*   Updated: 2019/06/27 01:07:30 by hhow-cho         ###   ########.fr       */
+/*   Updated: 2019/06/27 02:16:54 by hhow-cho         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -85,7 +85,7 @@ int ft_exe_bin(t_node *node, t_env ***p_environ, int fds[])
     if (ft_is_path(command) == 1)
 		result_cmd = ft_exe_path(node->args, *p_environ, fds);
 	else if (ft_strcmp(command, BUILTIN_EXIT) == 0)
-		result_cmd = ft_exit(node->args, *p_environ, fds);
+		result_cmd = ft_exit(node->args, p_environ, fds);
     else if (ft_strcmp(command, BUILTIN_ECHO) == 0)
         result_cmd = ft_echo(node->args, *p_environ, fds);
     else if (ft_strcmp(command, BUILTIN_CD) == 0)

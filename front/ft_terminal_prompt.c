@@ -6,7 +6,7 @@
 /*   By: hhow-cho <hhow-cho@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/06/24 23:13:26 by hhow-cho          #+#    #+#             */
-/*   Updated: 2019/06/24 23:16:30 by hhow-cho         ###   ########.fr       */
+/*   Updated: 2019/06/27 01:52:45 by hhow-cho         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,7 @@ void ft_terminal_prompt(void)
 	pwd = getcwd(NULL, 0);
 	ft_putchar_fd('\r', 0);
 	ft_putstr_fd(NAME, 0);
-	ft_putstr_fd(ft_strrchr(pwd, '/') + 1, 0);
+	ft_putstr_fd(ft_strrchr(pwd, '/'), 0);
 	ft_putstr_fd(PROMPT, 0);
 	ft_memdel((void **)&pwd);
 }
