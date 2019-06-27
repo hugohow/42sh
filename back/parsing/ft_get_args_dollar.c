@@ -6,7 +6,7 @@
 /*   By: hhow-cho <hhow-cho@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/06/16 13:42:37 by hhow-cho          #+#    #+#             */
-/*   Updated: 2019/06/27 21:22:25 by hhow-cho         ###   ########.fr       */
+/*   Updated: 2019/06/27 22:51:27 by hhow-cho         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,9 +37,15 @@ static int get_expansion_length(char *str)
 		while (str[ret] && str[ret] != '}')
 		{
 			if (ft_is_special_param(str[ret]) && ret != 2)
+			{
+				ft_dprintf(2, "minishell: bad substitution %s\n",  str);
 				return (-1);
+			}
 			if (ft_is_special_param(str[ret]) == 0 && ft_isalnum(str[ret]) == 0 && str[ret] != '_')
+			{
+				ft_dprintf(2, "minishell: bad substitution %s\n",  str);
 				return (-1);
+			}
 			ret++;
 		}
 		if (str[ret] == 0)
@@ -127,7 +133,6 @@ char *ft_get_args_dollar(char *str, t_env **copy_env, int *p_result_parsing)
 			if (ret == -1)
 			{
 				*p_result_parsing = 1;
-				ft_putstr_fd("bad substitution\n", 2);
 				ft_memdel((void **)&str);
 				return (NULL);
 			}
