@@ -6,7 +6,7 @@
 /*   By: hhow-cho <hhow-cho@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/06/27 17:37:25 by hhow-cho          #+#    #+#             */
-/*   Updated: 2019/06/27 19:08:25 by hhow-cho         ###   ########.fr       */
+/*   Updated: 2019/06/28 01:40:58 by hhow-cho         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,7 +34,7 @@ static int	count_len_fttrim(const char *str)
 		len++;
 	}
 	i--;
-	while (str[i] && is_escapable_fttrim(str[i]))
+	while (i >= 0 && str[i] && is_escapable_fttrim(str[i]))
 	{
 		i--;
 		len--;
