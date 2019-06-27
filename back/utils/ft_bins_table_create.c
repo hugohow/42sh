@@ -6,7 +6,7 @@
 /*   By: hhow-cho <hhow-cho@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/06/09 15:24:14 by hhow-cho          #+#    #+#             */
-/*   Updated: 2019/06/27 14:15:39 by hhow-cho         ###   ########.fr       */
+/*   Updated: 2019/06/27 17:46:14 by hhow-cho         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,5 +53,6 @@ t_ht *ft_bins_table_create(char *line)
         i++;
     }
 	ft_list_free(paths);
+	ft_memdel((void **)&paths);
 	return (table_bins);
 }

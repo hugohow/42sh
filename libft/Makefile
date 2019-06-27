@@ -6,7 +6,7 @@
 #    By: hhow-cho <hhow-cho@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2019/06/05 23:41:00 by hhow-cho          #+#    #+#              #
-#    Updated: 2019/06/20 16:05:25 by hhow-cho         ###   ########.fr        #
+#    Updated: 2019/06/27 17:40:19 by hhow-cho         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -57,6 +57,7 @@ SRCS	=	core/ft_memset.c					\
 			core/ft_strsub.c					\
 			core/ft_strjoin.c				\
 			core/ft_strtrim.c				\
+			core/ft_strtrim_free.c				\
 			core/ft_strsplit.c				\
 			core/ft_itoa.c					\
 			core/ft_putchar.c				\

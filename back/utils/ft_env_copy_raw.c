@@ -6,7 +6,7 @@
 /*   By: hhow-cho <hhow-cho@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/06/16 15:12:28 by hhow-cho          #+#    #+#             */
-/*   Updated: 2019/06/27 02:09:54 by hhow-cho         ###   ########.fr       */
+/*   Updated: 2019/06/27 17:35:58 by hhow-cho         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,13 +38,19 @@ static t_env **get_special_char(t_env **copy, char **argv, int i)
 	copy[i++]->special = 1;
 
 	int k;
+	char *tmp;
+	char *nb;
 
 	k = 0;
 	while (argv[k])
 	{
 	    if (!(copy[i] = ft_memalloc(sizeof(t_env))))
 			return (exit_env(copy));
-		copy[i]->line = ft_strjoin(ft_strjoin(ft_itoa(k), "="), argv[k]);
+		nb = ft_itoa(k);
+		tmp = ft_strjoin(nb, "=");
+		copy[i]->line = ft_strjoin(tmp, argv[k]);
+		ft_memdel((void **)&nb);
+		ft_memdel((void **)&tmp);
 		copy[i++]->special = 1;
 		k++;
 	}

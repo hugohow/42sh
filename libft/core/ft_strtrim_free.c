@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_strtrim.c                                       :+:      :+:    :+:   */
+/*   ft_strtrim_free.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: hhow-cho <hhow-cho@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2019/04/02 17:13:02 by hhow-cho          #+#    #+#             */
-/*   Updated: 2019/06/27 17:37:00 by hhow-cho         ###   ########.fr       */
+/*   Created: 2019/06/27 17:37:25 by hhow-cho          #+#    #+#             */
+/*   Updated: 2019/06/27 17:40:37 by hhow-cho         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,7 +42,7 @@ static int	count_len_fttrim(const char *str)
 	return (len);
 }
 
-char		*ft_strtrim(char const *str)
+char		*ft_strtrim_free(char *str)
 {
 	char	*output;
 	int		i;
@@ -53,7 +53,10 @@ char		*ft_strtrim(char const *str)
 		return (NULL);
 	len = count_len_fttrim(str);
 	if (len <= 0)
+	{
+		ft_memdel((void **)&str);
 		return (ft_strdup(""));
+	}
 	if (!(output = (char *)ft_memalloc((len + 1) * sizeof(char))))
 		return (NULL);
 	i = 0;
@@ -63,5 +66,6 @@ char		*ft_strtrim(char const *str)
 	while (++k < len)
 		output[k] = str[i++];
 	output[k] = '\0';
+	ft_memdel((void **)&str);
 	return (output);
 }

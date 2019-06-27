@@ -6,7 +6,7 @@
 /*   By: hhow-cho <hhow-cho@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/06/09 00:32:39 by hhow-cho          #+#    #+#             */
-/*   Updated: 2019/06/27 16:51:23 by hhow-cho         ###   ########.fr       */
+/*   Updated: 2019/06/27 17:50:51 by hhow-cho         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -168,7 +168,7 @@ int ft_ask_command(int fd, char **command);
 
 
 t_node **ft_syntax_tree_create(char *cmd, t_env **copy_env);
-void ft_syntax_tree_free(t_node *root);
+void ft_syntax_tree_free(t_node **root);
 
 
 int ft_exe_bin(t_node *node, t_env ***p_environ, int fds[]);

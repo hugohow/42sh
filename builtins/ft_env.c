@@ -6,7 +6,7 @@
 /*   By: hhow-cho <hhow-cho@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/06/20 13:58:20 by hhow-cho          #+#    #+#             */
-/*   Updated: 2019/06/27 15:07:27 by hhow-cho         ###   ########.fr       */
+/*   Updated: 2019/06/27 17:50:42 by hhow-cho         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -116,7 +116,7 @@ static int ft_execute_env(char **argv, int flag, t_env **cpy_environ, int fds[])
 		{
 			root = ft_syntax_tree_create(cmd, cpy_environ);
 			ft_execute_tree(*root, &copy_env, fds, &success);
-			ft_syntax_tree_free(*root);
+			ft_syntax_tree_free(root);
 		}
 		else
 			ft_print_env(copy_env, fds);	
@@ -203,11 +203,11 @@ int ft_env(char **argv, t_env **cpy_environ, int fds[])
         if (WIFEXITED(waitstatus)) {
             // printf("terminé, code=%d\n", WEXITSTATUS(waitstatus));
         } else if (WIFSIGNALED(waitstatus)) {
-            printf("tué par le signal %d\n", WTERMSIG(waitstatus));
+            // printf("tué par le signal %d\n", WTERMSIG(waitstatus));
         } else if (WIFSTOPPED(waitstatus)) {
-            printf("arrêté par le signal %d\n", WSTOPSIG(waitstatus));
+            // printf("arrêté par le signal %d\n", WSTOPSIG(waitstatus));
         } else if (WIFCONTINUED(waitstatus)) {
-            printf("relancé\n");
+            // printf("relancé\n");
         }
 	// }
 	}
