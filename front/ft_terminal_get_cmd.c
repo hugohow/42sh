@@ -6,7 +6,7 @@
 /*   By: hhow-cho <hhow-cho@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/06/09 01:53:37 by hhow-cho          #+#    #+#             */
-/*   Updated: 2019/06/27 14:20:17 by hhow-cho         ###   ########.fr       */
+/*   Updated: 2019/06/27 14:26:04 by hhow-cho         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -95,7 +95,7 @@ int ft_terminal_get_cmd(char **command, t_env **copy_env)
 	ft_putstr_fd("\n\r", STDIN_FILENO);
 	join = ft_node_join(head, size);
 	*command = ft_strrchr(join, '\n');
-	if (join == NULL)
+	if (*command == NULL)
 		*command = ft_strdup(join);
 	else
 		*command = ft_strdup(ft_strrchr(join, '\n'));

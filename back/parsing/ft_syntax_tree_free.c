@@ -6,20 +6,20 @@
 /*   By: hhow-cho <hhow-cho@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/06/21 12:46:47 by hhow-cho          #+#    #+#             */
-/*   Updated: 2019/06/27 14:19:45 by hhow-cho         ###   ########.fr       */
+/*   Updated: 2019/06/27 16:31:06 by hhow-cho         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "shell.h"
 
-void ft_syntax_tree_free(t_node **root)
+void ft_syntax_tree_free(t_node *root)
 {
 	t_node *node;
 	int i;
 
 	if (root == NULL)
 		return ;
-	node = *root;
+	node = root;
 	if (node && node->args)
 	{
 		i = 0;
@@ -32,21 +32,18 @@ void ft_syntax_tree_free(t_node **root)
 	}
 	if (node && node->child)
 	{
-		i = 0;
-		if (node->nb_child != 0)
+		if (node->nb_child != -1)
 		{
+			i = 0;
 			while (i < node->nb_child)
 			{
-				if (node->child[i])
-					ft_syntax_tree_free(&(node->child[i]));
+				ft_syntax_tree_free(node->child[i]);
 				i++;
 			}
+			ft_memdel((void **)(&(node->child)));
 		}
-		ft_memdel((void **)(&(node->child)));
 	}
 	if (node)
-	{
 		ft_memdel((void **)(&(node->cmd)));
-	}
-	ft_memdel((void **)root);
+	ft_memdel((void **)&root);
 }

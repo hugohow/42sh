@@ -6,7 +6,7 @@
 /*   By: hhow-cho <hhow-cho@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/06/09 01:40:14 by hhow-cho          #+#    #+#             */
-/*   Updated: 2019/06/27 02:16:54 by hhow-cho         ###   ########.fr       */
+/*   Updated: 2019/06/27 16:21:16 by hhow-cho         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,7 +32,7 @@ static int ft_search_and_exe_bin(char **args, t_env **cpy_environ, int fds[])
 	command = args[0];
 	if (table_bins && (value = ft_ht_get(table_bins, args[0])) && value->datum)
 	{
-		args[0] = (char *)(value->datum);
+		args[0] = ft_strdup((char *)(value->datum));
 		result_cmd = ft_exe_path(args, cpy_environ, fds);
 	}
 	else
@@ -67,7 +67,6 @@ int ft_exe_bin(t_node *node, t_env ***p_environ, int fds[])
     int result_parsing;
 	int result_cmd;
     char *command;
-    char *to_free;
 	char *new_path;
 
 	result_parsing = 0;
@@ -76,9 +75,6 @@ int ft_exe_bin(t_node *node, t_env ***p_environ, int fds[])
 		return (1);
 	if (node->args[0] == NULL)
         return 0;
-	to_free = node->args[0];
-    node->args[0] = ft_strtrim(node->args[0]);
-	ft_memdel((void **)&to_free);
     new_path = NULL;
 	command = node->args[0];
 	result_cmd = 0;

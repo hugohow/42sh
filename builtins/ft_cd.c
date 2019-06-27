@@ -6,7 +6,7 @@
 /*   By: hhow-cho <hhow-cho@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/06/13 19:57:57 by hhow-cho          #+#    #+#             */
-/*   Updated: 2019/06/26 20:08:00 by hhow-cho         ###   ########.fr       */
+/*   Updated: 2019/06/27 16:51:58 by hhow-cho         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -68,7 +68,7 @@ char *get_absolute_path(t_env ***p_environ, char *element, int fds[])
 			pwd = getcwd(NULL, 0);
 		curpath = ft_strjoin(pwd, "/");
 		curpath = ft_strjoin(curpath, element);
-		curpath = ft_path_trim(curpath);
+		curpath = ft_path_trim_free(curpath);
 		return (curpath);
 	}
 	cd_path = ft_env_get_value(*p_environ, "CDPATH");
@@ -79,7 +79,7 @@ char *get_absolute_path(t_env ***p_environ, char *element, int fds[])
 			pwd = getcwd(NULL, 0);
 		curpath = ft_strjoin(pwd, "/");
 		curpath = ft_strjoin(curpath, element);
-		curpath = ft_path_trim(curpath);
+		curpath = ft_path_trim_free(curpath);
 		return (curpath);
 	}
 	else
@@ -97,7 +97,7 @@ char *get_absolute_path(t_env ***p_environ, char *element, int fds[])
 				if (pwd == NULL)
 					pwd = getcwd(NULL, 0);
 				curpath = ft_strjoin(pwd, curpath + 1);
-				curpath = ft_path_trim(curpath);
+				curpath = ft_path_trim_free(curpath);
 				return (curpath);
 			}
 			curpath = NULL;
@@ -117,7 +117,7 @@ char *get_absolute_path(t_env ***p_environ, char *element, int fds[])
 			{
 				curpath = ft_strjoin(list[i], "/");
 				curpath = ft_strjoin(curpath, element);
-				curpath = ft_path_trim(curpath);
+				curpath = ft_path_trim_free(curpath);
 				if (ft_is_possible_to_go_to(curpath) == 1)
 				{
 					ft_putstr_fd(curpath, fds[1]);
@@ -271,6 +271,8 @@ int ft_cd(char **argv, t_env ***p_cpy_environ, int fds[])
 {
 	int		flag;
 	int argc;
+	char *element;
+	int ret;
 
 	argv++;
 	argc = ft_list_size(argv) - 1;
@@ -285,5 +287,8 @@ int ft_cd(char **argv, t_env ***p_cpy_environ, int fds[])
 		ft_putstr_fd("cd: too many arguments\n", 2);
 		return (1);
 	}
-    return (ft_change_dir(argv[0], p_cpy_environ, flag, fds));
+	element = ft_strdup(argv[0]);
+	ret = ft_change_dir(element, p_cpy_environ, flag, fds);
+	ft_memdel((void **)&element);
+    return (ret);
 }

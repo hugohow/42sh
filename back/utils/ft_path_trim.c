@@ -6,7 +6,7 @@
 /*   By: hhow-cho <hhow-cho@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/06/20 16:37:59 by hhow-cho          #+#    #+#             */
-/*   Updated: 2019/06/25 14:06:57 by hhow-cho         ###   ########.fr       */
+/*   Updated: 2019/06/27 16:51:12 by hhow-cho         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -74,6 +74,24 @@ static char *get_new_path(char *new_path, char **list)
 
 
 char *ft_path_trim(char *abs_path)
+{
+	char **list;
+	char *new_path;
+
+	list = ft_str_separate(abs_path, '/');
+	if (list == NULL)
+		return (abs_path);
+	if (!(new_path = ft_memalloc(sizeof(char) * (ft_strlen(abs_path) + 1))))
+		return (NULL);
+	if (ft_strcmp(list[0], "") == 0)
+		ft_strcat(new_path, "/");
+	list = clean_list(list);
+	new_path = get_new_path(new_path, list);
+	ft_list_free(list);
+	return (new_path);
+}
+
+char *ft_path_trim_free(char *abs_path)
 {
 	char **list;
 	char *new_path;
