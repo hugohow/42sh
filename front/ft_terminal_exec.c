@@ -6,7 +6,7 @@
 /*   By: hhow-cho <hhow-cho@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/06/24 23:12:34 by hhow-cho          #+#    #+#             */
-/*   Updated: 2019/06/27 18:47:20 by hhow-cho         ###   ########.fr       */
+/*   Updated: 2019/06/27 18:55:29 by hhow-cho         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,7 +29,7 @@ void signal_callback_handler(int signum)
 int ft_terminal_exec(t_env ***p_copy_env)
 {
 	char *command;
-	t_node **root;
+	t_node *root;
 	t_config old_config;
 	t_config new_config;
 	int success;
@@ -56,8 +56,8 @@ int ft_terminal_exec(t_env ***p_copy_env)
 		ft_terminal_exit(&old_config);
 		if (root)
 		{
-			ft_execute_tree(*root, p_copy_env,  fds, &success);
-			ft_syntax_tree_free(root);
+			ft_execute_tree(root, p_copy_env,  fds, &success);
+			ft_syntax_tree_free(&root);
 		}
 		ft_memdel((void **)&command);
 		if (ft_env_get_value(*p_copy_env, "EXIT") && ft_strchr(ft_env_get_value(*p_copy_env, "EXIT"), '1'))

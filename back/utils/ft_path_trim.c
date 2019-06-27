@@ -6,7 +6,7 @@
 /*   By: hhow-cho <hhow-cho@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/06/20 16:37:59 by hhow-cho          #+#    #+#             */
-/*   Updated: 2019/06/27 16:51:12 by hhow-cho         ###   ########.fr       */
+/*   Updated: 2019/06/27 18:52:25 by hhow-cho         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -87,7 +87,7 @@ char *ft_path_trim(char *abs_path)
 		ft_strcat(new_path, "/");
 	list = clean_list(list);
 	new_path = get_new_path(new_path, list);
-	ft_list_free(list);
+	ft_list_free(&list);
 	return (new_path);
 }
 
@@ -106,6 +106,6 @@ char *ft_path_trim_free(char *abs_path)
 	list = clean_list(list);
 	new_path = get_new_path(new_path, list);
 	ft_memdel((void **)&abs_path);
-	ft_list_free(list);
+	ft_list_free(&list);
 	return (new_path);
 }

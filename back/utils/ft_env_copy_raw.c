@@ -6,7 +6,7 @@
 /*   By: hhow-cho <hhow-cho@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/06/16 15:12:28 by hhow-cho          #+#    #+#             */
-/*   Updated: 2019/06/27 17:35:58 by hhow-cho         ###   ########.fr       */
+/*   Updated: 2019/06/27 21:20:18 by hhow-cho         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,7 @@ static t_env **get_special_char(t_env **copy, char **argv, int i)
 {
 	if (!(copy[i] = ft_memalloc(sizeof(t_env))))
 		return (exit_env(copy));
-	copy[i]->line = ft_strjoin_free("$=", ft_itoa((int)getpid()));
+	copy[i]->line = ft_strjoin_free_second("$=", ft_itoa((int)getpid()));
 	copy[i++]->special = 1;
 
 
@@ -60,7 +60,7 @@ static t_env **get_special_char(t_env **copy, char **argv, int i)
 	if (k == 0)
 		copy[i]->line = ft_strdup("#=0");
 	else
-		copy[i]->line = ft_strjoin_free("#=", ft_itoa(k - 1));
+		copy[i]->line = ft_strjoin_free_second("#=", ft_itoa(k - 1));
 	copy[i++]->special = 1;
 
 	if (!(copy[i] = ft_memalloc(sizeof(t_env))))
@@ -107,7 +107,7 @@ t_env **ft_env_copy_raw(char **str, char **argv)
 				ft_dprintf(STDERR_FILENO, "shell: shell level (%d) too high, resetting to 1\n", nb);
 				nb = 1;
 			}
-			copy[i]->line = ft_strjoin_free("SHLVL=", ft_itoa(nb));
+			copy[i]->line = ft_strjoin_free_second("SHLVL=", ft_itoa(nb));
 			shlvl_present = 1;
 		}
 		else
@@ -139,7 +139,7 @@ t_env **ft_env_copy_raw(char **str, char **argv)
 	{
         if (!(copy[i] = ft_memalloc(sizeof(t_env))))
 			return (exit_env(copy));
-        copy[i]->line = ft_strjoin_free("PWD=", getcwd(NULL, 0));
+        copy[i]->line = ft_strjoin_free_second("PWD=", getcwd(NULL, 0));
         copy[i]->special = 0;
         i++;
 	}

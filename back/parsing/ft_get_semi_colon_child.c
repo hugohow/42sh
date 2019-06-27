@@ -6,7 +6,7 @@
 /*   By: hhow-cho <hhow-cho@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/06/09 02:45:56 by hhow-cho          #+#    #+#             */
-/*   Updated: 2019/06/27 15:00:34 by hhow-cho         ###   ########.fr       */
+/*   Updated: 2019/06/27 18:51:20 by hhow-cho         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,7 +36,7 @@ t_node **ft_get_semi_colon_child(t_node *node, char *cmd, t_env **copy_env)
     {
         if (!(child = (t_node **)ft_memalloc((list_len(list) + 1) * sizeof(t_node *))))
 		{
-			ft_list_free(list);
+			ft_list_free(&list);
 			return (NULL);
 		}
         while (list[k])
@@ -48,7 +48,7 @@ t_node **ft_get_semi_colon_child(t_node *node, char *cmd, t_env **copy_env)
         }
 		node->nb_child = k;
         child[k] = 0;
-		ft_list_free(list);
+		ft_list_free(&list);
     }
     return (child);
 }

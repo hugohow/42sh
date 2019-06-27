@@ -6,7 +6,7 @@
 /*   By: hhow-cho <hhow-cho@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/06/09 00:32:39 by hhow-cho          #+#    #+#             */
-/*   Updated: 2019/06/27 17:50:51 by hhow-cho         ###   ########.fr       */
+/*   Updated: 2019/06/27 21:19:48 by hhow-cho         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -152,7 +152,7 @@ void    ft_setenv_args(char *prefix, char *line, t_env ***p_environ);
 
 
 int ft_list_size(char **list);
-void ft_list_free(char **list);
+void ft_list_free(char ***p_list);
 
 int ft_is_path(char *cmd);
 void ft_print_env(t_env **str, int fds[]);
@@ -167,7 +167,7 @@ int ft_exe_path(char **argv, t_env **cpy_environ, int fds[]);
 int ft_ask_command(int fd, char **command);
 
 
-t_node **ft_syntax_tree_create(char *cmd, t_env **copy_env);
+t_node *ft_syntax_tree_create(char *cmd, t_env **copy_env);
 void ft_syntax_tree_free(t_node **root);
 
 
@@ -182,5 +182,6 @@ char *ft_get_args_tilde(char *str, t_env **copy_env);
 int	ft_isatty(int fd);
 char *ft_node_join(t_list *head, int size);
 char			**ft_str_separate(char const *str, char c);
-char *ft_strjoin_free(char *prefix, char *to_free);
+char *ft_strjoin_free_first(char *prefix, char *to_free);
+char *ft_strjoin_free_second(char *prefix, char *to_free);
 #endif

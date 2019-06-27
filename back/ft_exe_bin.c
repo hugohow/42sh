@@ -6,7 +6,7 @@
 /*   By: hhow-cho <hhow-cho@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/06/09 01:40:14 by hhow-cho          #+#    #+#             */
-/*   Updated: 2019/06/27 16:21:16 by hhow-cho         ###   ########.fr       */
+/*   Updated: 2019/06/27 19:20:27 by hhow-cho         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,6 +32,7 @@ static int ft_search_and_exe_bin(char **args, t_env **cpy_environ, int fds[])
 	command = args[0];
 	if (table_bins && (value = ft_ht_get(table_bins, args[0])) && value->datum)
 	{
+		ft_memdel((void **)&(args[0]));
 		args[0] = ft_strdup((char *)(value->datum));
 		result_cmd = ft_exe_path(args, cpy_environ, fds);
 	}
@@ -45,8 +46,14 @@ static int ft_search_and_exe_bin(char **args, t_env **cpy_environ, int fds[])
 			{
 				if (ft_strcmp(pDirent->d_name, args[0]) == 0)
 				{
-					new_path = ft_strjoin(getcwd(NULL, 0), "/");
+					char *pwd;
+
+					pwd = getcwd(NULL, 0);
+					new_path = ft_strjoin(pwd, "/");
+					ft_memdel((void **)&(pwd));
+					ft_memdel((void **)&(args[0]));
 					args[0] = ft_strjoin(new_path, pDirent->d_name);
+					ft_memdel((void **)&(new_path));
 					result_cmd = ft_exe_path(args, cpy_environ, fds);
 					closedir (pDir);
 					return (result_cmd);

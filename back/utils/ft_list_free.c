@@ -6,15 +6,18 @@
 /*   By: hhow-cho <hhow-cho@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/06/24 21:21:11 by hhow-cho          #+#    #+#             */
-/*   Updated: 2019/06/25 10:27:40 by hhow-cho         ###   ########.fr       */
+/*   Updated: 2019/06/27 18:52:07 by hhow-cho         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "shell.h"
 
-void ft_list_free(char **list)
+void ft_list_free(char ***p_list)
 {
 	size_t i;
+	char **list;
+
+	list = *p_list;
 
 	i = 0;
 	while (list && list[i])
@@ -22,5 +25,5 @@ void ft_list_free(char **list)
 		ft_memdel((void **)(&(list[i])));
 		i++;
 	}
-	ft_memdel((void **)(list));
+	ft_memdel((void **)(p_list));
 }

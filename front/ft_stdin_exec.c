@@ -6,7 +6,7 @@
 /*   By: hhow-cho <hhow-cho@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/06/26 22:25:42 by hhow-cho          #+#    #+#             */
-/*   Updated: 2019/06/27 17:50:45 by hhow-cho         ###   ########.fr       */
+/*   Updated: 2019/06/27 18:55:17 by hhow-cho         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,7 @@
 int ft_stdin_exec(t_env ***p_copy_env, char **argv)
 {
 	char *command;
-	t_node **root;
+	t_node *root;
 	int success;
 	int fds[3];
 	int fd;
@@ -34,10 +34,10 @@ int ft_stdin_exec(t_env ***p_copy_env, char **argv)
 	while (get_next_line(fd, &command) > 0)
 	{
 		root = ft_syntax_tree_create(command, *p_copy_env);
-		if (root && *root)
+		if (root)
 		{
-			ft_execute_tree(*root, p_copy_env, fds, &success);
-			ft_syntax_tree_free(root);
+			ft_execute_tree(root, p_copy_env, fds, &success);
+			ft_syntax_tree_free(&root);
 		}
 		ft_memdel((void **)&command);
 		if (ft_env_get_value(*p_copy_env, "EXIT") && ft_strchr(ft_env_get_value(*p_copy_env, "EXIT"), '1'))

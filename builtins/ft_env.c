@@ -6,7 +6,7 @@
 /*   By: hhow-cho <hhow-cho@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/06/20 13:58:20 by hhow-cho          #+#    #+#             */
-/*   Updated: 2019/06/27 17:50:42 by hhow-cho         ###   ########.fr       */
+/*   Updated: 2019/06/27 18:55:01 by hhow-cho         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -100,7 +100,7 @@ static int ft_execute_env(char **argv, int flag, t_env **cpy_environ, int fds[])
 	success = 0;
     if (*argv)
 	{
-		t_node **root;
+		t_node *root;
 		int i;
 		char *cmd;
 
@@ -115,8 +115,8 @@ static int ft_execute_env(char **argv, int flag, t_env **cpy_environ, int fds[])
 		if (cmd)
 		{
 			root = ft_syntax_tree_create(cmd, cpy_environ);
-			ft_execute_tree(*root, &copy_env, fds, &success);
-			ft_syntax_tree_free(root);
+			ft_execute_tree(root, &copy_env, fds, &success);
+			ft_syntax_tree_free(&root);
 		}
 		else
 			ft_print_env(copy_env, fds);	
