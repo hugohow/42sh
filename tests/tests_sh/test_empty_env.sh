@@ -26,23 +26,43 @@ env -i cd dzdz
 echo $?
 env CDPATH=/:/:/ cd Library/
 echo $?
+echo $OLDPWD
+echo $PWD
 env CDPATH= cd Library/
 echo $?
+echo $OLDPWD
+echo $PWD
 env CDPATH=/ cd Library/
 echo $?
+echo $OLDPWD
+echo $PWD
 env CDPATH=.:/ cd Library/
 echo $?
+echo $OLDPWD
+echo $PWD
 mkdir Library
 env CDPATH=.:/ cd Library/
 echo $?
+echo $OLDPWD
+echo $PWD
 env CDPATH=sqdqsdsq:dsdqs:zz:dd:zq:/ cd Library/
 echo $?
+echo $OLDPWD
+echo $PWD
 env CDPATH=:dsdqs:zz:dd:zq:/ cd Library/
 echo $?
+echo $OLDPWD
+echo $PWD
 env CDPATH= cd Library/
 echo $?
+echo $OLDPWD
+echo $PWD
 env CDPATH=/zs cd Library/
 echo $?
+echo $OLDPWD
+echo $PWD
 env CDPATH=/zs:/ cd Library/
 echo $?
+echo $OLDPWD
+echo $PWD
 rm -rf Library

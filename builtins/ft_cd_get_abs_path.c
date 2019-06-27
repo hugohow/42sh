@@ -6,41 +6,39 @@
 /*   By: hhow-cho <hhow-cho@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/06/27 22:25:10 by hhow-cho          #+#    #+#             */
-/*   Updated: 2019/06/27 22:35:25 by hhow-cho         ###   ########.fr       */
+/*   Updated: 2019/06/28 00:19:12 by hhow-cho         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "shell.h"
 
+static char*get_pwd_plus_element(t_env ***p_environ, char *element)
+{
+    char *curpath;
+	char *pwd;
+
+	pwd = ft_strdup(ft_env_get_value(*p_environ, "PWD"));
+	if (pwd == NULL)
+		pwd = getcwd(NULL, 0);
+	curpath = ft_strjoin_free_first(pwd, "/");
+	curpath = ft_strjoin_free_first(curpath, element);
+	curpath = ft_path_trim_free(curpath);
+	return (curpath);
+}
+
 char *ft_cd_get_abs_path(t_env ***p_environ, char *element, int fds[])
 {
     char *curpath;
 	char *cd_path;
-	char *pwd;
+	// char *pwd;
 
     if (ft_strncmp("/", element, 1) == 0)
         return (ft_path_trim(element));
     if (ft_strcmp(".", element) == 0 || ft_strcmp("..", element) == 0)
-	{
-		pwd = ft_env_get_value(*p_environ, "PWD");
-		if (pwd == NULL)
-			pwd = getcwd(NULL, 0);
-		curpath = ft_strjoin(pwd, "/");
-		curpath = ft_strjoin(curpath, element);
-		curpath = ft_path_trim_free(curpath);
-		return (curpath);
-	}
+		return (get_pwd_plus_element(p_environ, element));
 	cd_path = ft_env_get_value(*p_environ, "CDPATH");
 	if (cd_path == NULL)
-	{
-		pwd = ft_env_get_value(*p_environ, "PWD");
-		if (pwd == NULL)
-			pwd = getcwd(NULL, 0);
-		curpath = ft_strjoin(pwd, "/");
-		curpath = ft_strjoin(curpath, element);
-		curpath = ft_path_trim_free(curpath);
-		return (curpath);
-	}
+		return (get_pwd_plus_element(p_environ, element));
 	else
 	{
 		char **list;
@@ -49,17 +47,13 @@ char *ft_cd_get_abs_path(t_env ***p_environ, char *element, int fds[])
 
 		if (ft_strlen(list[0]) == 0)
 		{
-			curpath = ft_strjoin("./", element);
+			curpath = get_pwd_plus_element(p_environ, element);
 			if (ft_cd_can_go_to(curpath) == 1)
 			{
-				pwd = ft_env_get_value(*p_environ, "PWD");
-				if (pwd == NULL)
-					pwd = getcwd(NULL, 0);
-				curpath = ft_strjoin(pwd, curpath + 1);
-				curpath = ft_path_trim_free(curpath);
+				ft_list_free(&list);
 				return (curpath);
 			}
-			curpath = NULL;
+			ft_memdel((void **)&curpath);
 		}
 
 		int i;
@@ -72,36 +66,31 @@ char *ft_cd_get_abs_path(t_env ***p_environ, char *element, int fds[])
 				i++;
 				continue ;
 			}
-			if (ft_strncmp("/", list[i], 1) == 0)
-			{
-				curpath = ft_strjoin(list[i], "/");
-				curpath = ft_strjoin(curpath, element);
-				curpath = ft_path_trim_free(curpath);
-				if (ft_cd_can_go_to(curpath) == 1)
-				{
-					ft_putstr_fd(curpath, fds[1]);
-					ft_putstr_fd("\n", fds[1]);
-					return (curpath);
-				}
-				curpath = NULL;
-			}
-			pwd = ft_env_get_value(*p_environ, "PWD");
-			if (pwd == NULL)
-				pwd = getcwd(NULL, 0);
-			curpath = ft_strjoin(pwd, "/");
-			curpath = ft_strjoin(curpath, list[i]);
-			curpath = ft_strjoin(curpath, "/");
-			curpath = ft_strjoin(curpath, element);
-			curpath = ft_path_trim(curpath);
+			curpath = ft_strjoin(list[i], "/");
+			curpath = ft_strjoin_free_first(curpath, element);
+			curpath = ft_path_trim_free(curpath);
 			if (ft_cd_can_go_to(curpath) == 1)
 			{
-				ft_putstr_fd(curpath, fds[1]);
-				ft_putstr_fd("\n", fds[1]);
+				if (ft_strncmp("/", list[i], 1) == 0)
+				{
+					ft_dprintf(fds[1], "%s\n", curpath);
+				}
+				else
+				{
+					char *to_free;
+
+					to_free = curpath;
+					curpath = get_pwd_plus_element(p_environ, to_free);
+					ft_memdel((void **)&to_free);
+					ft_dprintf(fds[1], "%s\n", curpath);
+				}
+				ft_list_free(&list);
 				return (curpath);
 			}
 			curpath = NULL;
 			i++;
 		}
+		ft_list_free(&list);
 	}
 	return (NULL);
 }
