@@ -6,7 +6,7 @@
 /*   By: hhow-cho <hhow-cho@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/06/09 00:32:39 by hhow-cho          #+#    #+#             */
-/*   Updated: 2019/06/27 22:25:42 by hhow-cho         ###   ########.fr       */
+/*   Updated: 2019/06/28 00:55:08 by hhow-cho         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,6 +46,7 @@ typedef struct termios t_config;
 # define FLAG_CD_P (1 << 0)
 # define FLAG_CD_L (1 << 1)
 # define FLAG_ECHO_N (1 << 0)
+# define FLAG_ENV_I (2 << 0)
 # define EXIT_SUCCESS 0
 # define EXIT_FAIL 1
 # define EXIT_UTILITY_NOT_FOUND 127
@@ -141,6 +142,8 @@ int 	ft_cd_can_go_to(char *abs_path);
 char 	*ft_cd_get_abs_path(t_env ***p_environ, char *element, int fds[]);
 int 	ft_setenv(char **argv, t_env ***p_environ, int fds[]);
 int 	ft_env(char **argv, t_env **cpy_environ, int fds[]);
+int 	ft_env_parse(char ***p_argv, int fds[]);
+char 	**ft_env_complete_env(char **argv, t_env ***p_copy_env, int flag, t_env **originial_env);
 int 	ft_unsetenv(char **argv, t_env **cpy_environ, int fds[]);
 int 	ft_exit(char **argv, t_env ***p_cpy_environ, int fds[]);
 
