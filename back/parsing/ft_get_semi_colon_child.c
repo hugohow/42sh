@@ -6,7 +6,7 @@
 /*   By: hhow-cho <hhow-cho@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/06/09 02:45:56 by hhow-cho          #+#    #+#             */
-/*   Updated: 2019/06/27 14:11:10 by hhow-cho         ###   ########.fr       */
+/*   Updated: 2019/06/27 14:20:54 by hhow-cho         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,11 +46,7 @@ t_node **ft_get_semi_colon_child(t_node *node, char *cmd, t_env **copy_env)
 				break ;
             k++;
         }
-		if (node)
-		{
-			
-		}
-		// node->nb_child = k;
+		node->nb_child = k;
         child[k] = 0;
 		ft_list_free(list);
     }

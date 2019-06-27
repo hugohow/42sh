@@ -6,7 +6,7 @@
 /*   By: hhow-cho <hhow-cho@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/06/20 16:55:53 by hhow-cho          #+#    #+#             */
-/*   Updated: 2019/06/27 14:11:47 by hhow-cho         ###   ########.fr       */
+/*   Updated: 2019/06/27 14:20:44 by hhow-cho         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,7 @@ t_node *create_node(long type, char *cmd, t_env **copy_env)
     node->type = type;
     node->cmd = ft_strdup(cmd);
 	node->args = NULL;
-	// node->nb_child = 0;
+	node->nb_child = 0;
     if (type & TYPE_CMD)
 	{
 		node->child = NULL;
