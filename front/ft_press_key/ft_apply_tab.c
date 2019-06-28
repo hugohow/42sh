@@ -6,13 +6,13 @@
 /*   By: hhow-cho <hhow-cho@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/06/28 02:59:58 by hhow-cho          #+#    #+#             */
-/*   Updated: 2019/06/28 03:17:29 by hhow-cho         ###   ########.fr       */
+/*   Updated: 2019/06/28 22:33:53 by hhow-cho         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "shell.h"
 
-int ft_apply_tab(t_cmd *cmd)
+int ft_apply_tab(t_cmd *cmd, int to_write)
 {
 	char *complete;
 	char *str;
@@ -28,7 +28,8 @@ int ft_apply_tab(t_cmd *cmd)
 	complete = ft_env_autocomplete_cmd(str, cmd->copy_env);
 	if (complete)
 	{
-		write(0, complete, ft_strlen(complete));
+		if (to_write)
+			write(0, complete, ft_strlen(complete));
 		node = ft_lstnew((void *)complete, ft_strlen(complete));
 		ft_lstinsert(&head, node);
 		cmd->size = cmd->size + ft_strlen(complete);

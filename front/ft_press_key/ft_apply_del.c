@@ -6,7 +6,7 @@
 /*   By: hhow-cho <hhow-cho@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/06/28 03:05:18 by hhow-cho          #+#    #+#             */
-/*   Updated: 2019/06/28 13:55:41 by hhow-cho         ###   ########.fr       */
+/*   Updated: 2019/06/28 22:33:33 by hhow-cho         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,7 @@ static int     my_outc(int c)
     return (write (STDIN_FILENO, &c, 1));
 }
 
-int ft_apply_del(t_cmd *cmd)
+int ft_apply_del(t_cmd *cmd, int to_write)
 {
 	t_list *head;
 	t_list *node;
@@ -29,8 +29,11 @@ int ft_apply_del(t_cmd *cmd)
 	cmd->size = cmd->size + 1;
 	join = ft_node_join(head, cmd->size);
 	ft_terminal_prompt();
-	tputs(tgetstr("ce", NULL), 1, my_outc);
-	ft_putstr_fd(join, 0);
+	if (to_write)
+	{
+		tputs(tgetstr("ce", NULL), 1, my_outc);
+		ft_putstr_fd(join, 0);
+	}
 	ft_memdel((void **)&join);
 	cmd->len = cmd->len - 1;
 	if (cmd->len < 0)

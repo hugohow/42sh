@@ -6,7 +6,7 @@
 /*   By: hhow-cho <hhow-cho@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/06/09 01:53:37 by hhow-cho          #+#    #+#             */
-/*   Updated: 2019/06/28 13:14:59 by hhow-cho         ###   ########.fr       */
+/*   Updated: 2019/06/28 22:34:01 by hhow-cho         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,7 +45,7 @@ int ft_terminal_get_cmd(char **command, t_env **copy_env)
 	{
 		ret = ft_terminal_read_key();
 		cmd->last_key = ret;
-		ret = ft_apply_key(cmd);
+		ret = ft_apply_key(cmd, 1);
 		if (ret == 0)
 			break ;
 	}

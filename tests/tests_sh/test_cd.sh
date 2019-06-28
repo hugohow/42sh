@@ -37,3 +37,4 @@ cd /~
 echo $?
 cd /-
 echo $?
+exit
