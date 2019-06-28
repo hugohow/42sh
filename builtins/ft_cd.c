@@ -6,7 +6,7 @@
 /*   By: hhow-cho <hhow-cho@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/06/13 19:57:57 by hhow-cho          #+#    #+#             */
-/*   Updated: 2019/06/28 17:09:27 by hhow-cho         ###   ########.fr       */
+/*   Updated: 2019/06/28 19:05:06 by hhow-cho         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -83,16 +83,21 @@ int ft_change_dir(char *element, t_env ***p_environ, long long flag, int fds[])
 	curpath = ft_get_curpath(element, p_environ, fds);
 	if (curpath == NULL)
 	{
+		ft_memdel((void **)&curpath);
 		ft_memdel((void **)&old_pwd_val);
 		return (1);	
 	}
     if ((ret = ft_cd_go_to(curpath, fds)) != 0)
 	{
+		ft_memdel((void **)&curpath);
 		ft_memdel((void **)&old_pwd_val);
 		return (ret);
 	}
     if (flag & FLAG_CD_P)
-        return (ft_cd_change_env(NULL, old_pwd_val, p_environ));
+	{
+		ft_memdel((void **)&curpath);
+		return (ft_cd_change_env(NULL, old_pwd_val, p_environ));
+	}
     return (ft_cd_change_env(curpath, old_pwd_val, p_environ));
 }
 

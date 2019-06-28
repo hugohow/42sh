@@ -6,7 +6,7 @@
 /*   By: hhow-cho <hhow-cho@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/04/04 18:11:57 by hhow-cho          #+#    #+#             */
-/*   Updated: 2019/06/28 14:50:36 by hhow-cho         ###   ########.fr       */
+/*   Updated: 2019/06/28 21:34:03 by hhow-cho         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,22 +27,25 @@ static t_list	*init(t_list **head, int fd)
 	return (node);
 }
 
-static t_list	*fill(t_list *node, int fd, int *p_ret)
+static t_list	*fill(t_list *node, int fd, int *p_ret, int end)
 {
 	char	buf[BUFF_SIZE + 1];
 	int		nb_bytes;
 	char	*to_free;
 
-	if (node->content == NULL)
-		node->content = ft_strdup("");
-	while (ft_strchr(node->content, '\n') == 0)
+	while (ft_strchr(node->content, '\n') == 0 && end == 0)
 	{
 		nb_bytes = read(fd, buf, BUFF_SIZE);
 		if (nb_bytes == 0)
 			break ;
-		to_free = node->content;
 		buf[nb_bytes] = 0;
-		node->content = ft_strjoin(to_free, buf);
+		if ((int)ft_strlen(buf) < nb_bytes)
+			end = 1;
+		to_free = node->content;
+		if (node->content == NULL)
+			node->content = ft_strjoin("", buf);
+		else
+			node->content = ft_strjoin(to_free, buf);
 		ft_memdel((void **)(&(to_free)));
 	}
 	*p_ret = nb_bytes;
@@ -94,7 +97,10 @@ int				get_next_line(int const fd, char **line)
 	t_list			*head;
 	char			*to_free;
 	char			buf[1];
+	static int		end;
 
+	if (end != 0)
+		return (0);
 	if (fd < 0 || line == NULL || read(fd, buf, 0) < 0)
 		return (-1);
 	head = node;
@@ -102,7 +108,7 @@ int				get_next_line(int const fd, char **line)
 	if (node == NULL)
 		return (-1);
 	ret = 0;
-	node = fill(node, fd, &ret);
+	node = fill(node, fd, &ret, end);
 	buf[0] = ret == 0 ? 'F' : 'C';
 	ret = get_line(node, line);
 	if (ret == -1)

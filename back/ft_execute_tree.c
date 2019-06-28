@@ -6,7 +6,7 @@
 /*   By: hhow-cho <hhow-cho@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/06/26 14:24:52 by hhow-cho          #+#    #+#             */
-/*   Updated: 2019/06/27 15:12:49 by hhow-cho         ###   ########.fr       */
+/*   Updated: 2019/06/28 18:44:18 by hhow-cho         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,13 +14,13 @@
 
 static void	set_result(int success, t_env ***p_environ)
 {
-	char *tmp;
+	char *success_str;
 
-	tmp = ft_itoa(success);
-	if (tmp == NULL)
+	success_str = ft_itoa(success);
+	if (success_str == NULL)
 		return ;
-	ft_env_change_line("?", ft_strjoin("?=", tmp), *p_environ);
-	ft_memdel((void **)&tmp);
+	ft_env_add("?", success_str, p_environ, 1);
+	ft_memdel((void **)&success_str);
 }
 
 void    ft_execute_tree(t_node *node, t_env ***p_environ, int fds[], int *p_success)

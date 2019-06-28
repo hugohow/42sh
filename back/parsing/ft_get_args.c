@@ -6,7 +6,7 @@
 /*   By: hhow-cho <hhow-cho@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/06/14 14:25:36 by hhow-cho          #+#    #+#             */
-/*   Updated: 2019/06/28 16:28:19 by hhow-cho         ###   ########.fr       */
+/*   Updated: 2019/06/28 19:07:34 by hhow-cho         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,7 +25,7 @@ char **ft_get_args(char *cmd, t_env **copy_env, int *p_result_parsing)
 		args[i] = ft_get_args_dollar(args[i], copy_env, p_result_parsing);
 		if (args[i] == NULL)
 		{
-			j = i + 1;
+			j = i;
 			while (args[j])
 			{
 				ft_memdel((void **)&(args[j]));

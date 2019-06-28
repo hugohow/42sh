@@ -6,7 +6,7 @@
 /*   By: hhow-cho <hhow-cho@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/06/27 22:25:10 by hhow-cho          #+#    #+#             */
-/*   Updated: 2019/06/28 16:53:36 by hhow-cho         ###   ########.fr       */
+/*   Updated: 2019/06/28 19:03:27 by hhow-cho         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,7 +33,9 @@ char *ft_cd_get_abs_path(t_env ***p_environ, char *element, int fds[])
 	// char *pwd;
 
     if (ft_strncmp("/", element, 1) == 0)
-        return (ft_path_trim(element));
+	{
+		return (ft_path_trim(element));
+	}
     if (ft_strcmp(".", element) == 0 || ft_strcmp("..", element) == 0)
 		return (get_pwd_plus_element(p_environ, element));
 	cd_path = ft_env_get_value(*p_environ, "CDPATH");

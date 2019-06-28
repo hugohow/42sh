@@ -6,7 +6,7 @@
 #    By: hhow-cho <hhow-cho@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2019/06/05 23:41:00 by hhow-cho          #+#    #+#              #
-#    Updated: 2019/06/27 17:40:19 by hhow-cho         ###   ########.fr        #
+#    Updated: 2019/06/28 20:01:00 by hhow-cho         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -30,6 +30,7 @@ SRCS	=	core/ft_memset.c					\
 			core/ft_strncat.c				\
 			core/ft_strlcat.c				\
 			core/ft_strchr.c					\
+			core/ft_strchri.c					\
 			core/ft_strrchr.c				\
 			core/ft_strstr.c					\
 			core/ft_strnstr.c				\

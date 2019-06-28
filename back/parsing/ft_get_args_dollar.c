@@ -6,7 +6,7 @@
 /*   By: hhow-cho <hhow-cho@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/06/16 13:42:37 by hhow-cho          #+#    #+#             */
-/*   Updated: 2019/06/28 16:46:59 by hhow-cho         ###   ########.fr       */
+/*   Updated: 2019/06/28 18:58:29 by hhow-cho         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -109,14 +109,17 @@ static const char *resolve_expansion(char *str, int start, int end, t_env **copy
 static char *replace_expansion(char *str, int i, int ret, t_env **copy_env)
 {
 	char *tmp;
+	char *to_free;
 	int start;
 	int end;
 
 	start = i;
 	end = i + ret;
 	tmp = ft_strjoin(resolve_expansion(str, start, end, copy_env), str + end);
-	str[start] = 0;
-	str = ft_strjoin_free_first(str, tmp);
+	to_free = str;
+	to_free[start] = 0;
+	str = ft_strjoin(to_free, tmp);
+	ft_memdel((void **)&to_free);
 	ft_memdel((void **)&tmp);
 	return (str);
 }

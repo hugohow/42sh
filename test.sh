@@ -58,7 +58,12 @@ execute_bash()
 	fi
 }
 
-
+for i in `seq 1 100`;
+do
+	printf "$i "
+        ./minishell < /dev/random 2&>/dev/null
+      #  ./minishell < /dev/urandom
+done
 
 for filename in $(ls tests/tests_sh); do
     echo Test tests/tests_sh/${filename}
