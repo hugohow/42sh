@@ -6,7 +6,7 @@
 /*   By: hhow-cho <hhow-cho@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/06/09 00:32:39 by hhow-cho          #+#    #+#             */
-/*   Updated: 2019/06/28 01:08:53 by hhow-cho         ###   ########.fr       */
+/*   Updated: 2019/06/28 03:37:17 by hhow-cho         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -90,6 +90,23 @@ typedef struct s_env
 	t_ht *table;
     int special;
 }               t_env;
+
+typedef struct	s_cmd
+{
+	t_list *head;
+	int		last_key;
+	int		size;
+	int		len;
+	t_env	**copy_env;
+}				t_cmd;
+
+typedef int		(t_ft_apply)(t_cmd *);
+
+typedef struct s_fts_apply
+{
+	int  key;
+	t_ft_apply *fct;
+}				t_fts_apply;
 
 
 int ft_terminal_get_cmd(char **command, t_env **copy_env);
@@ -192,4 +209,13 @@ char *ft_node_join(t_list *head, int size);
 char			**ft_str_separate(char const *str, char c);
 char *ft_strjoin_free_first(char *prefix, char *to_free);
 char *ft_strjoin_free_second(char *prefix, char *to_free);
+
+int ft_apply_key(t_cmd *cmd);
+
+int ft_apply_tab(t_cmd *cmd);
+int ft_apply_ctrl_c(t_cmd *cmd);
+int ft_apply_ctrl_d(t_cmd *cmd);
+int ft_apply_del(t_cmd *cmd);
+int ft_apply_printable(t_cmd *cmd);
+int ft_apply_enter(t_cmd *cmd);
 #endif
