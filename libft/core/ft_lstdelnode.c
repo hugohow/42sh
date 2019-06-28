@@ -6,7 +6,7 @@
 /*   By: hhow-cho <hhow-cho@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/04/13 12:51:12 by hhow-cho          #+#    #+#             */
-/*   Updated: 2019/04/13 13:38:48 by hhow-cho         ###   ########.fr       */
+/*   Updated: 2019/06/28 14:51:18 by hhow-cho         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,12 +16,9 @@ static void	free_node(t_list *node)
 {
 	if (node)
 	{
-		if (node->content)
-			free(node->content);
-		node->content = NULL;
+		ft_memdel((void **)&(node->content));
 		node->content_size = 0;
-		free(node);
-		node = NULL;
+		ft_memdel((void **)&(node));
 	}
 }
 

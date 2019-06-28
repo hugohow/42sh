@@ -6,7 +6,7 @@
 /*   By: hhow-cho <hhow-cho@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/04/04 18:11:57 by hhow-cho          #+#    #+#             */
-/*   Updated: 2019/06/26 23:30:37 by hhow-cho         ###   ########.fr       */
+/*   Updated: 2019/06/28 14:50:36 by hhow-cho         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,8 +42,8 @@ static t_list	*fill(t_list *node, int fd, int *p_ret)
 			break ;
 		to_free = node->content;
 		buf[nb_bytes] = 0;
-		node->content = ft_strjoin(node->content, buf);
-		free(to_free);
+		node->content = ft_strjoin(to_free, buf);
+		ft_memdel((void **)(&(to_free)));
 	}
 	*p_ret = nb_bytes;
 	return (node);
@@ -109,7 +109,7 @@ int				get_next_line(int const fd, char **line)
 		return (-1);
 	to_free = node->content;
 	node->content = ft_strdup(node->content + ret);
-	free(to_free);
+	ft_memdel((void **)(&to_free));
 	if (ret == 0 && buf[0] == 'F')
 		free_node(&head, fd);
 	node = head;

@@ -6,7 +6,7 @@
 /*   By: hhow-cho <hhow-cho@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/06/27 17:37:25 by hhow-cho          #+#    #+#             */
-/*   Updated: 2019/06/28 01:59:36 by hhow-cho         ###   ########.fr       */
+/*   Updated: 2019/06/28 16:15:50 by hhow-cho         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,7 +58,10 @@ char		*ft_strtrim_free(char *str)
 		return (ft_strdup(""));
 	}
 	if (!(output = (char *)ft_memalloc((len + 1) * sizeof(char))))
+	{
+		ft_memdel((void **)&str);
 		return (NULL);
+	}
 	i = 0;
 	k = -1;
 	while (str[i] && is_escapable_fttrim(str[i]))

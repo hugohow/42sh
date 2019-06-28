@@ -1,8 +1,16 @@
 NAME=minishell
 
+
+ifeq ($(shell uname),Darwin)
+CFLAGS 		= 		 -Wall -Werror -Wextra -g -Iincludes  -l termcap 
+else
+CFLAGS 		= 		 -Wall -Wextra -g -Iincludes  -l ncurses
+endif
+
+
 all:
 	make -C libft/
-	gcc  -Wall -Wextra -Werror -g -lncurses front/*.c front/*/*.c builtins/*.c back/*.c back/*/*.c -I includes libft/libft.a -o $(NAME)
+	gcc  $(CFLAGS) front/*.c front/*/*.c builtins/*.c back/*.c back/*/*.c  libft/libft.a -o $(NAME)
 
 clean:
 	make clean -C libft/
@@ -19,6 +27,7 @@ test: re
 	bash test.sh
 
 valgrind: re
-	valgrind --leak-check=full ./minishell tests/tests_sh/test_tilde.sh
+	valgrind --track-origins=yes --show-leak-kinds=all --track-fds=yes 		\
+				--show-reachable=no --leak-check=full ./minishell tests/tests_sh/test_echo.sh
 
 .PHONY: all re clean fclean test valgrind
