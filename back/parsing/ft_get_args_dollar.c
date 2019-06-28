@@ -6,7 +6,7 @@
 /*   By: hhow-cho <hhow-cho@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/06/16 13:42:37 by hhow-cho          #+#    #+#             */
-/*   Updated: 2019/06/28 15:12:59 by hhow-cho         ###   ########.fr       */
+/*   Updated: 2019/06/28 16:46:59 by hhow-cho         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,18 +38,21 @@ static int get_expansion_length(char *str)
 		{
 			if (ft_is_special_param(str[ret]) && ret != 2)
 			{
-				ft_dprintf(2, "minishell: bad substitution %s\n",  str);
+				ft_dprintf(2, "minishell: bad substitution\n");
 				return (-1);
 			}
 			if (ft_is_special_param(str[ret]) == 0 && ft_isalnum(str[ret]) == 0 && str[ret] != '_')
 			{
-				ft_dprintf(2, "minishell: bad substitution %s\n",  str);
+				ft_dprintf(2, "minishell: bad substitution\n");
 				return (-1);
 			}
 			ret++;
 		}
 		if (str[ret] == 0)
+		{
+			ft_dprintf(2, "minishell: bad substitution\n");
 			return (-1);
+		}
 		ret++;
 	}
 	else
