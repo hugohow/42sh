@@ -6,7 +6,7 @@
 /*   By: hhow-cho <hhow-cho@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/06/09 00:32:39 by hhow-cho          #+#    #+#             */
-/*   Updated: 2019/06/28 00:55:08 by hhow-cho         ###   ########.fr       */
+/*   Updated: 2019/06/28 01:08:53 by hhow-cho         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -158,8 +158,9 @@ void    print_normal(int fd);
 void    ft_setenv_args(char *prefix, char *line, t_env ***p_environ);
 
 
-int ft_list_size(char **list);
+size_t ft_list_size(char **list);
 void ft_list_free(char ***p_list);
+void ft_list_free_n(char ***p_list, size_t len);
 
 int ft_is_path(char *cmd);
 void ft_print_env(t_env **str, int fds[]);

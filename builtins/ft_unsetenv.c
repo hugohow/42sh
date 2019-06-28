@@ -6,7 +6,7 @@
 /*   By: hhow-cho <hhow-cho@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/06/14 14:49:18 by hhow-cho          #+#    #+#             */
-/*   Updated: 2019/06/25 14:53:31 by hhow-cho         ###   ########.fr       */
+/*   Updated: 2019/06/28 01:09:20 by hhow-cho         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,7 @@ int ft_unsetenv(char **argv, t_env **cpy_environ, int fds[])
     int i;
 	int argc;
 
-	argc = ft_list_size(argv);
+	argc = (int)ft_list_size(argv);
     if (argc == 1)
     {
         ft_putstr_fd("unsetenv: Too few arguments.\n", fds[2]);

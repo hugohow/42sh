@@ -6,7 +6,7 @@
 /*   By: hhow-cho <hhow-cho@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/06/16 15:19:11 by hhow-cho          #+#    #+#             */
-/*   Updated: 2019/06/28 00:22:38 by hhow-cho         ###   ########.fr       */
+/*   Updated: 2019/06/28 01:09:17 by hhow-cho         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,7 @@ int ft_setenv(char **argv, t_env ***p_environ, int fds[])
 {
 	int argc;
 
-	argc = ft_list_size(argv);
+	argc = (int)ft_list_size(argv);
     if (argc > 3)
     {
         ft_putstr_fd("setenv: Too many arguments.\n", fds[2]);

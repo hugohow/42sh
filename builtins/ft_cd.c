@@ -6,7 +6,7 @@
 /*   By: hhow-cho <hhow-cho@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/06/13 19:57:57 by hhow-cho          #+#    #+#             */
-/*   Updated: 2019/06/27 23:59:07 by hhow-cho         ###   ########.fr       */
+/*   Updated: 2019/06/28 01:13:17 by hhow-cho         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -81,9 +81,15 @@ int ft_change_dir(char *element, t_env ***p_environ, long long flag, int fds[])
 		old_pwd_val = ft_strjoin_free_second("OLDPWD=", getcwd(NULL, 0));
 	curpath = ft_get_curpath(element, p_environ, fds);
 	if (curpath == NULL)
-		return (1);
+	{
+		ft_memdel((void **)&old_pwd_val);
+		return (1);	
+	}
     if ((ret = ft_cd_go_to(curpath, fds)) != 0)
-        return (ret);
+	{
+		ft_memdel((void **)&old_pwd_val);
+		return (ret);
+	}
     if (flag & FLAG_CD_P)
         return (ft_cd_change_env(NULL, old_pwd_val, p_environ));
     return (ft_cd_change_env(curpath, old_pwd_val, p_environ));
@@ -98,7 +104,7 @@ int ft_cd(char **argv, t_env ***p_cpy_environ, int fds[])
 	int ret;
 
 	argv++;
-	argc = ft_list_size(argv) - 1;
+	argc = (int)ft_list_size(argv) - 1;
 	flag = ft_cd_parse(&argc, &argv);
 	if (flag == -1)
 	{
