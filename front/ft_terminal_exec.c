@@ -6,7 +6,7 @@
 /*   By: hhow-cho <hhow-cho@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/06/24 23:12:34 by hhow-cho          #+#    #+#             */
-/*   Updated: 2019/06/28 13:12:06 by hhow-cho         ###   ########.fr       */
+/*   Updated: 2019/06/28 14:22:45 by hhow-cho         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,11 +54,8 @@ int ft_terminal_exec(t_env ***p_copy_env)
 		ft_terminal_get_cmd(&command, *p_copy_env);
 		ft_terminal_exit(&old_config);
 		root = ft_syntax_tree_create(command, *p_copy_env);
-		if (root)
-		{
-			ft_execute_tree(root, p_copy_env,  fds, &success);
-			ft_syntax_tree_free(&root);
-		}
+		ft_execute_tree(root, p_copy_env,  fds, &success);
+		ft_syntax_tree_free(&root);
 		ft_memdel((void **)&command);
 		if (ft_env_get_value(*p_copy_env, "EXIT") && ft_strchr(ft_env_get_value(*p_copy_env, "EXIT"), '1'))
 		{

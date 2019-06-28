@@ -6,20 +6,20 @@
 /*   By: hhow-cho <hhow-cho@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/06/21 12:46:47 by hhow-cho          #+#    #+#             */
-/*   Updated: 2019/06/27 19:03:18 by hhow-cho         ###   ########.fr       */
+/*   Updated: 2019/06/28 14:27:53 by hhow-cho         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "shell.h"
 
-void ft_syntax_tree_free(t_node **root)
+void ft_syntax_tree_free(t_node **p_root)
 {
 	t_node *node;
 	int i;
 
-	if (root == NULL)
+	if (p_root == NULL)
 		return ;
-	node = *root;
+	node = *p_root;
 	if (node && node->child)
 	{
 		i = 0;
@@ -42,5 +42,5 @@ void ft_syntax_tree_free(t_node **root)
 		}
 		ft_memdel((void **)(&(node->args)));
 	}
-	ft_memdel((void **)root);
+	ft_memdel((void **)&node);
 }
