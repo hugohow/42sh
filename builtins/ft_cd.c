@@ -6,7 +6,7 @@
 /*   By: hhow-cho <hhow-cho@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/06/13 19:57:57 by hhow-cho          #+#    #+#             */
-/*   Updated: 2019/06/28 01:13:17 by hhow-cho         ###   ########.fr       */
+/*   Updated: 2019/06/28 17:09:27 by hhow-cho         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -63,6 +63,7 @@ static char *ft_get_curpath(char *element, t_env ***p_environ, int fds[])
     }
 	if (ft_strlen(curpath) > PATH_MAX)
 	{
+		ft_memdel((void **)&curpath);
 		ft_putstr_fd("minishell: cd: path too long\n", 2);
 		return (NULL);
 	}

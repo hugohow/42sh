@@ -6,7 +6,7 @@
 /*   By: hhow-cho <hhow-cho@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/06/09 14:28:12 by hhow-cho          #+#    #+#             */
-/*   Updated: 2019/06/27 16:14:50 by hhow-cho         ###   ########.fr       */
+/*   Updated: 2019/06/28 17:12:49 by hhow-cho         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,6 +23,7 @@ int ft_exe_path(char **argv, t_env **cpy_environ, int fds[])
     i = 0;
 
 	path = argv[0];
+	ft_memset((void*)&fileStat, 0, sizeof(fileStat));
 	if (stat(path, &fileStat))
 	{
 		lstat(path, &fileStat);

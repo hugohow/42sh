@@ -28,6 +28,6 @@ test: re
 
 valgrind: re
 	valgrind --track-origins=yes --show-leak-kinds=all --track-fds=yes 		\
-				--show-reachable=no --leak-check=full ./minishell tests/tests_sh/test_echo.sh
+				--show-reachable=no --leak-check=full ./minishell tests/tests_sh/test_cd.sh
 
 .PHONY: all re clean fclean test valgrind
