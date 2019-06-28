@@ -6,7 +6,7 @@
 /*   By: hhow-cho <hhow-cho@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/06/28 03:05:18 by hhow-cho          #+#    #+#             */
-/*   Updated: 2019/06/28 03:17:16 by hhow-cho         ###   ########.fr       */
+/*   Updated: 2019/06/28 13:55:41 by hhow-cho         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,5 +33,7 @@ int ft_apply_del(t_cmd *cmd)
 	ft_putstr_fd(join, 0);
 	ft_memdel((void **)&join);
 	cmd->len = cmd->len - 1;
+	if (cmd->len < 0)
+		cmd->len = 0;
 	return (1);
 }
