@@ -1,4 +1,2 @@
-/usr/local/bin/bash: line 1: setenv: command not found
-/usr/local/bin/bash: line 2: setenv: command not found
-/usr/local/bin/bash: line 3: unsetenv: command not found
-/usr/local/bin/bash: line 4: unsetenv: command not found
+export: Command not found.
+export: Command not found.

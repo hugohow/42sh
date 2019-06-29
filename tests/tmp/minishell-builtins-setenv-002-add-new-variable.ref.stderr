@@ -1,2 +1,1 @@
-/usr/local/bin/bash: line 1: setenv: command not found
-/usr/local/bin/bash: line 4: setenv: command not found
+setenv: Variable name must contain alphanumeric characters.

@@ -1,12 +1,28 @@
 ------------------------------
-PWD=/Users/hugohow-choong/42/42sh/tests/tmp
+_=/bin/csh
+HOSTTYPE=unknown
+VENDOR=apple
+OSTYPE=darwin
+MACHTYPE=x86_64
 SHLVL=1
-_=./display_env
-------------------------------
-TOTAL ENVIRONMENT VARIABLES: 3
-------------------------------
 PWD=/Users/hugohow-choong/42/42sh/tests/tmp
-SHLVL=1
-_=./display_env
+LOGNAME=hugohow-choong
+USER=hugohow-choong
+GROUP=staff
+HOST=MBP-de-Hugo
 ------------------------------
-TOTAL ENVIRONMENT VARIABLES: 3
+TOTAL ENVIRONMENT VARIABLES: 11
+------------------------------
+_=/bin/csh
+HOSTTYPE=unknown
+VENDOR=apple
+OSTYPE=darwin
+MACHTYPE=x86_64
+SHLVL=1
+PWD=/Users/hugohow-choong/42/42sh/tests/tmp
+LOGNAME=hugohow-choong
+USER=hugohow-choong
+GROUP=staff
+HOST=MBP-de-Hugo
+------------------------------
+TOTAL ENVIRONMENT VARIABLES: 11
