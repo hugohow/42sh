@@ -6,7 +6,7 @@
 /*   By: hhow-cho <hhow-cho@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/06/26 22:25:42 by hhow-cho          #+#    #+#             */
-/*   Updated: 2019/07/02 02:26:31 by hhow-cho         ###   ########.fr       */
+/*   Updated: 2019/07/02 03:57:19 by hhow-cho         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,7 +37,6 @@ int ft_stdin_exec(char **argv)
 	while (42)
 	{
 		end = ft_stdin_get_cmd(fd, &command, *p_copy_env);
-
 		ft_cmd_exec(command, p_copy_env, fds, &success);
 		if (ft_env_get_value(*p_copy_env, "EXIT") && ft_strchr(ft_env_get_value(*p_copy_env, "EXIT"), '1'))
 			break ;

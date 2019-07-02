@@ -6,7 +6,7 @@
 /*   By: hhow-cho <hhow-cho@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/06/28 00:37:17 by hhow-cho          #+#    #+#             */
-/*   Updated: 2019/06/28 00:37:49 by hhow-cho         ###   ########.fr       */
+/*   Updated: 2019/07/02 03:58:19 by hhow-cho         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,7 +33,7 @@ int ft_env_parse(char ***p_argv, int fds[])
 			{
 				ft_dprintf(fds[2], "env: illegal option -- %c\n", (**p_argv)[i]);
 				ft_putstr_fd("usage: env [-i] [name=value ...] [utility [argument ...]]\n", fds[2]);
-				return (1);
+				return (-1);
 			}
 				break ;
 			i++;

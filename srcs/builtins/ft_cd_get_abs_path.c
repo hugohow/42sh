@@ -6,13 +6,13 @@
 /*   By: hhow-cho <hhow-cho@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/06/27 22:25:10 by hhow-cho          #+#    #+#             */
-/*   Updated: 2019/07/02 02:41:07 by hhow-cho         ###   ########.fr       */
+/*   Updated: 2019/07/02 02:58:14 by hhow-cho         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "shell.h"
 
-static char*get_pwd_plus_element(t_env ***p_environ, char *element)
+static char *get_pwd_plus_element(t_env ***p_environ, char *element)
 {
     char *curpath;
 	char *pwd;

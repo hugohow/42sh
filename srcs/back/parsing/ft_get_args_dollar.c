@@ -6,7 +6,7 @@
 /*   By: hhow-cho <hhow-cho@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/06/16 13:42:37 by hhow-cho          #+#    #+#             */
-/*   Updated: 2019/06/28 16:46:59 by hhow-cho         ###   ########.fr       */
+/*   Updated: 2019/07/02 03:10:25 by hhow-cho         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -81,12 +81,16 @@ static int get_expansion_length(char *str)
 
 static const char *resolve_expansion(char *str, int start, int end, t_env **copy_env)
 {
-	const char *line;
+	char *line;
+	char *expansion;
+	size_t len_expansion;
 
 	start++;
 	if (str[start] == '{')
 	{
-		line = ft_env_get_line_n(copy_env, str + start + 1, end - 2 - start);
+		expansion = str + start + 1;
+		len_expansion = end - 2 - start;
+		line = ft_env_get_line_n(copy_env, expansion, len_expansion);
 		if (line)
 			return (line + end - start - 1);
 		else
@@ -94,7 +98,9 @@ static const char *resolve_expansion(char *str, int start, int end, t_env **copy
 	}
 	else
 	{
-		line = ft_env_get_line_n(copy_env, str + start, end - start);
+		expansion = str + start;
+		len_expansion = end - start;
+		line = ft_env_get_line_n(copy_env, expansion, len_expansion);
 		if (line)
 			return (line + end - start + 1);
 		else

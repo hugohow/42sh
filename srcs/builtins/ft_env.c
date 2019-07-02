@@ -6,7 +6,7 @@
 /*   By: hhow-cho <hhow-cho@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/06/20 13:58:20 by hhow-cho          #+#    #+#             */
-/*   Updated: 2019/07/02 02:36:52 by hhow-cho         ###   ########.fr       */
+/*   Updated: 2019/07/02 03:52:12 by hhow-cho         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,6 @@
 /*
 ** Builtin to get the environnement of the process
 */
-
 
 void ft_print_env(t_env **cpy_env, int fds[])
 {

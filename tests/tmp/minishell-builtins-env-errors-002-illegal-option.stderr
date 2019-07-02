@@ -1,3 +1,2 @@
 env: illegal option -- w
 usage: env [-i] [name=value ...] [utility [argument ...]]
-minishell: command not found: -w

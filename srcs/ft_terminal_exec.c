@@ -6,7 +6,7 @@
 /*   By: hhow-cho <hhow-cho@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/06/24 23:12:34 by hhow-cho          #+#    #+#             */
-/*   Updated: 2019/07/02 02:26:28 by hhow-cho         ###   ########.fr       */
+/*   Updated: 2019/07/02 03:01:52 by hhow-cho         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,7 +24,6 @@ void signal_callback_handler(int signum)
 		
 	}
 }
-
 
 int ft_terminal_exec(void)
 {

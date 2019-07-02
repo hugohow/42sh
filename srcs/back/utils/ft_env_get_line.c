@@ -6,7 +6,7 @@
 /*   By: hhow-cho <hhow-cho@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/06/16 14:58:53 by hhow-cho          #+#    #+#             */
-/*   Updated: 2019/06/25 10:25:41 by hhow-cho         ###   ########.fr       */
+/*   Updated: 2019/07/02 03:56:36 by hhow-cho         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,21 +30,21 @@ char *ft_env_get_value(t_env **cpy_environ, char *key)
     return (NULL);
 }
 
-char *ft_env_get_line(t_env **cpy_environ, char *key)
+char *ft_env_get_line(t_env **cpy_environ, char *prefix)
 {
     size_t i;
 
     i = 0;
     while (cpy_environ[i])
     {
-		if (ft_env_cmp_prefix(key, cpy_environ[i]->line) == 0)
+		if (ft_env_cmp_prefix(prefix, cpy_environ[i]->line) == 0)
 			return (cpy_environ[i]->line);
         i++;
     }
     return (NULL);
 }
 
-char *ft_env_get_line_n(t_env **cpy_environ, char *str, size_t n)
+char *ft_env_get_line_n(t_env **cpy_environ, char *line, size_t n)
 {
     size_t i;
     size_t j;
@@ -54,10 +54,10 @@ char *ft_env_get_line_n(t_env **cpy_environ, char *str, size_t n)
     while (cpy_environ[i])
     {
         line_i = (cpy_environ[i])->line;
-        if (line_i && ft_toupper(line_i[0]) == ft_toupper(str[0]))
+        if (line_i && ft_toupper(line_i[0]) == ft_toupper(line[0]))
         {
             j = 0;
-            while (str[j] && line_i[j] && ft_toupper(line_i[j]) == ft_toupper(str[j]))
+            while (line[j] && line_i[j] && ft_toupper(line_i[j]) == ft_toupper(line[j]))
             {
                 j++;
             }
