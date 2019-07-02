@@ -6,7 +6,7 @@
 /*   By: hhow-cho <hhow-cho@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/06/09 01:40:14 by hhow-cho          #+#    #+#             */
-/*   Updated: 2019/06/27 19:20:27 by hhow-cho         ###   ########.fr       */
+/*   Updated: 2019/07/01 21:25:39 by hhow-cho         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,7 +24,6 @@ static int ft_search_and_exe_bin(char **args, t_env **cpy_environ, int fds[])
 {
 	int result_cmd;
 	char *command;
-	char *new_path;
 	t_node_ht *value;
 	t_ht *table_bins;
 
@@ -49,11 +48,9 @@ static int ft_search_and_exe_bin(char **args, t_env **cpy_environ, int fds[])
 					char *pwd;
 
 					pwd = getcwd(NULL, 0);
-					new_path = ft_strjoin(pwd, "/");
-					ft_memdel((void **)&(pwd));
 					ft_memdel((void **)&(args[0]));
-					args[0] = ft_strjoin(new_path, pDirent->d_name);
-					ft_memdel((void **)&(new_path));
+					args[0] = ft_strjoin_(pwd, "/", pDirent->d_name);
+					ft_memdel((void **)&pwd);
 					result_cmd = ft_exe_path(args, cpy_environ, fds);
 					closedir (pDir);
 					return (result_cmd);

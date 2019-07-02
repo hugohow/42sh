@@ -6,7 +6,7 @@
 /*   By: hhow-cho <hhow-cho@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/06/20 13:58:20 by hhow-cho          #+#    #+#             */
-/*   Updated: 2019/06/28 14:22:52 by hhow-cho         ###   ########.fr       */
+/*   Updated: 2019/07/02 02:36:52 by hhow-cho         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,6 +41,30 @@ t_env **clear_environ(void)
     return (output);
 }
 
+static char *ft_env_get_cmd(char **argv)
+{
+	int i;
+	int len;
+	char *cmd;
+	i = 0;
+	len = 0;
+	while (argv[i])
+	{
+		len += ft_strlen(argv[i]) + 2;
+		i++;
+	}
+	if (!(cmd = ft_memalloc(len * sizeof(char))))
+		return (NULL);
+	i = 0;
+	while (argv[i])
+	{
+		cmd = ft_strcat(cmd, argv[i]);
+		cmd = ft_strcat(cmd, " ");
+		i++;
+	}
+	return (cmd);
+}
+
 
 
 static int ft_execute_env(char **argv, int flag, t_env **cpy_environ, int fds[])
@@ -48,6 +72,7 @@ static int ft_execute_env(char **argv, int flag, t_env **cpy_environ, int fds[])
     int i;
 	int success;
     t_env **copy_env;
+	char *cmd;
 
     i = 0;
     if (flag == FLAG_ENV_I)
@@ -63,31 +88,8 @@ static int ft_execute_env(char **argv, int flag, t_env **cpy_environ, int fds[])
 	success = 0;
     if (*argv)
 	{
-		int i;
-		int len;
-		char *cmd;
-		t_node *root;
-
-		i = 0;
-		len = 0;
-		while (argv[i])
-		{
-			len += ft_strlen(argv[i]) + 2;
-			i++;
-		}
-		if (!(cmd = ft_memalloc(len * sizeof(char))))
-			return (-1);
-		i = 0;
-		while (argv[i])
-		{
-			cmd = ft_strcat(cmd, argv[i]);
-			cmd = ft_strcat(cmd, " ");
-			i++;
-		}
-		root = ft_syntax_tree_create(cmd, cpy_environ);
-		ft_execute_tree(root, &copy_env, fds, &success);
-		ft_syntax_tree_free(&root);	
-		ft_memdel((void **)&cmd);
+		cmd = ft_env_get_cmd(argv);
+		ft_cmd_exec(cmd, &copy_env, fds, &success);
 	}
     else
         ft_print_env(copy_env, fds);

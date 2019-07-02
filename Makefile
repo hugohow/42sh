@@ -10,7 +10,7 @@ endif
 
 all:
 	make -C libft/
-	gcc  $(CFLAGS) front/*.c front/*/*.c builtins/*.c back/*.c back/*/*.c  libft/libft.a -o $(NAME)
+	gcc  $(CFLAGS) srcs/*.c srcs/front/*.c srcs/front/*/*.c srcs/builtins/*.c srcs/variables/*.c srcs/back/*.c srcs/back/*/*.c  libft/libft.a -o $(NAME)
 
 clean:
 	make clean -C libft/

@@ -1,3 +1,3 @@
-[31m[38;5;34m  SUCCESS    expected_to match_regex `COPYENV_VAR1=TOKEN201906291218_VAR1`[0m
-[31m[38;5;34m  SUCCESS    expected_to match_regex `COPYENV_VAR2=TOKEN201906291218_VAR2`[0m
-[31m[38;5;34m  SUCCESS    expected_to match_regex `COPYENV_VAR3=TOKEN201906291218_VAR3`[0m
+[31m[38;5;34m  SUCCESS    expected_to match_regex `COPYENV_VAR1=TOKEN201907020241_VAR1`[0m
+[31m[38;5;34m  SUCCESS    expected_to match_regex `COPYENV_VAR2=TOKEN201907020241_VAR2`[0m
+[31m[38;5;34m  SUCCESS    expected_to match_regex `COPYENV_VAR3=TOKEN201907020241_VAR3`[0m

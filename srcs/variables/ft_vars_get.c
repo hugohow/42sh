@@ -1,24 +1,22 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_terminal_exit.c                                 :+:      :+:    :+:   */
+/*   ft_vars_get.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: hhow-cho <hhow-cho@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2019/06/19 23:23:04 by hhow-cho          #+#    #+#             */
-/*   Updated: 2019/06/20 16:11:47 by hhow-cho         ###   ########.fr       */
+/*   Created: 2019/07/01 23:40:30 by hhow-cho          #+#    #+#             */
+/*   Updated: 2019/07/02 00:46:30 by hhow-cho         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-
 #include "shell.h"
 
-/*
-** Terminal exit and configure the former config
-*/
-
-
-void ft_terminal_exit(t_config *old_config)
+t_vars     *ft_vars_get(void)
 {
-    tcsetattr(STDIN_FILENO, TCSAFLUSH, old_config);
+	static t_vars 	*p_vars;
+
+	if (p_vars == NULL)
+		p_vars = ft_memalloc(sizeof(t_vars));
+    return (p_vars);
 }

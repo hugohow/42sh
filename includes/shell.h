@@ -6,7 +6,7 @@
 /*   By: hhow-cho <hhow-cho@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/06/09 00:32:39 by hhow-cho          #+#    #+#             */
-/*   Updated: 2019/06/28 22:33:20 by hhow-cho         ###   ########.fr       */
+/*   Updated: 2019/07/02 02:26:00 by hhow-cho         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,7 +33,6 @@
 #include "libft.h"
 #include "ht.h"
 #include "ft_printf.h"
-typedef struct termios t_config;
 
 
 # define TYPE_BASE (1 << 0)
@@ -65,7 +64,10 @@ typedef struct termios t_config;
 # define BUILTIN_SETENV "setenv"
 # define BUILTIN_UNSETENV "unsetenv"
 
+# define FAIL_COPY_ENV "minishell: failed to copy env\n"
+
 extern char **environ;
+
 
 typedef struct s_token
 {
@@ -98,6 +100,14 @@ typedef struct	s_cmd
 	t_env	**copy_env;
 }				t_cmd;
 
+typedef struct	s_vars
+{
+	t_env	**copy_env;
+	t_env	**copy_env_special;
+	struct termios old_config;
+	struct termios new_config;
+}				t_vars;
+
 typedef int		(t_ft_apply)(t_cmd *, int);
 
 typedef struct s_fts_apply
@@ -106,13 +116,21 @@ typedef struct s_fts_apply
 	t_ft_apply *fct;
 }				t_fts_apply;
 
+/*
+** Two main functions
+*/
+
+int ft_terminal_exec(void);
+int ft_stdin_exec(char **argv);
+int ft_stdin_get_cmd(int fd, char **command, t_env **copy_env);
+
+/*
+** Functions for terminal interactions
+*/
 
 int ft_terminal_get_cmd(char **command, t_env **copy_env);
 int ft_terminal_read_key(void);
-
-int ft_terminal_exec(t_env ***p_copy_env);
 void ft_terminal_prompt(void);
-int ft_stdin_exec(t_env ***p_copy_env, char **argv);
 
 t_node **get_child(t_node *node, char *cmd, t_env **copy_env);
 t_node *create_node(long type, char *cmd, t_env **copy_env);
@@ -123,6 +141,8 @@ int is_redirection(char *str);
 int is_pipe(char *str);
 void print_tokens(t_token **list);
 
+
+void ft_cmd_exec(char *command, t_env ***p_copy_env, int fds[], int *p_success);
 
 int					get_next_line(const int fd, char **line);
 
@@ -179,8 +199,8 @@ void ft_list_free_n(char ***p_list, size_t len);
 
 int ft_is_path(char *cmd);
 void ft_print_env(t_env **str, int fds[]);
-int ft_terminal_init(t_config *old_config, t_config *new_config, t_env **copy_env);
-void ft_terminal_exit(struct termios *orig_termios);
+int ft_terminal_init();
+void ft_terminal_exit();
 void print_cmd(char *cmd);
 void add_to_stdout(char **p_cmd, int c, int *index);
 void delete_n_lines(int n);
@@ -205,6 +225,7 @@ char *ft_get_args_tilde(char *str, t_env **copy_env);
 int	ft_isatty(int fd);
 char *ft_node_join(t_list *head, int size);
 char			**ft_str_separate(char const *str, char c);
+char *ft_strjoin_(char *str1, char *str2, char *str3);
 char *ft_strjoin_free_first(char *prefix, char *to_free);
 char *ft_strjoin_free_second(char *prefix, char *to_free);
 
@@ -216,4 +237,10 @@ int ft_apply_ctrl_d(t_cmd *cmd, int to_write);
 int ft_apply_del(t_cmd *cmd, int to_write);
 int ft_apply_printable(t_cmd *cmd, int to_write);
 int ft_apply_enter(t_cmd *cmd, int to_write);
+
+t_vars     *ft_vars_get(void);
+int	ft_vars_init(char **argv);
+t_env     **ft_vars_get_copy_env(void);
+t_env     ***ft_vars_get_p_copy_env(void);
+void ft_vars_free(void);
 #endif

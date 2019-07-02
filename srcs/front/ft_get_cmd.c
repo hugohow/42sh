@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_terminal_get_cmd.c                              :+:      :+:    :+:   */
+/*   ft_get_cmd.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: hhow-cho <hhow-cho@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/06/09 01:53:37 by hhow-cho          #+#    #+#             */
-/*   Updated: 2019/06/28 22:34:01 by hhow-cho         ###   ########.fr       */
+/*   Updated: 2019/07/02 02:14:24 by hhow-cho         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,4 +60,41 @@ int ft_terminal_get_cmd(char **command, t_env **copy_env)
 	ft_lstfree(cmd->head);
 	ft_memdel((void **)&cmd);
     return (ret);
+}
+
+int ft_stdin_get_cmd(int fd, char **command, t_env **copy_env)
+{	
+    char ret;
+	t_list *head;
+	char *join;
+	t_cmd *cmd;
+	int end;
+
+	cmd = ft_cmd_init(copy_env);
+	head = cmd->head;
+	end = 0;
+	while (42)
+	{
+		if ((read(fd, &ret, sizeof(char)) == 0))
+		{
+			end = 1;
+			break ;
+		}		
+		cmd->last_key = (int)ret;
+		if (ret == '\n' || ret == '\0')
+			break ;
+		ret = ft_apply_key(cmd, 0);
+		if (ret == 0)
+			break ;
+	}
+	join = ft_node_join(cmd->head, cmd->size);
+	*command = ft_strrchr(join, '\n');
+	if (*command == NULL)
+		*command = ft_strdup(join);
+	else
+		*command = ft_strdup(ft_strrchr(join, '\n'));
+	ft_memdel((void **)&join);
+	ft_lstfree(cmd->head);
+	ft_memdel((void **)&cmd);
+    return (end);
 }

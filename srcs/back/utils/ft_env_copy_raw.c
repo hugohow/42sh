@@ -6,7 +6,7 @@
 /*   By: hhow-cho <hhow-cho@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/06/16 15:12:28 by hhow-cho          #+#    #+#             */
-/*   Updated: 2019/06/27 21:20:18 by hhow-cho         ###   ########.fr       */
+/*   Updated: 2019/07/02 01:09:48 by hhow-cho         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,6 +15,7 @@
 
 static t_env **exit_env(t_env **env)
 {
+	ft_putstr_fd(FAIL_COPY_ENV, STDERR_FILENO);
 	ft_env_free(&env);
 	return (NULL);
 }
