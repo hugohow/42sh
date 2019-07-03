@@ -6,7 +6,7 @@
 /*   By: hhow-cho <hhow-cho@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/06/09 00:32:39 by hhow-cho          #+#    #+#             */
-/*   Updated: 2019/07/03 22:05:49 by hhow-cho         ###   ########.fr       */
+/*   Updated: 2019/07/03 23:24:39 by hhow-cho         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -93,7 +93,7 @@ typedef struct	s_cmd
 {
 	t_list *head;
 	int		last_key;
-	int		size;
+	unsigned long long		size;
 	int		len;
 	t_env	**copy_env;
 }				t_cmd;
@@ -238,7 +238,7 @@ char **ft_get_args(char *cmd, t_env **copy_env, int *p_result_parsing);
 char *ft_get_args_dollar(char *str, t_env **copy_env, int *p_result_parsing);
 char *ft_get_args_tilde(char *str, t_env **copy_env);
 int	ft_isatty(int fd);
-char *ft_node_join(t_list *head, int size);
+char *ft_node_join(t_list *head, unsigned long long size);
 char			**ft_str_separate(char const *str, char c);
 char *ft_strjoin_(char *str1, char *str2, char *str3);
 char *ft_strjoin_free_first(char *prefix, char *to_free);

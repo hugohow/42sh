@@ -6,7 +6,7 @@
 /*   By: hhow-cho <hhow-cho@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/06/24 23:43:40 by hhow-cho          #+#    #+#             */
-/*   Updated: 2019/06/25 00:10:09 by hhow-cho         ###   ########.fr       */
+/*   Updated: 2019/07/03 23:25:32 by hhow-cho         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,11 +37,11 @@ static char *apply_del(char *output, int i)
 	return (output);
 }
 
-char *ft_node_join(t_list *head, int size)
+char *ft_node_join(t_list *head, unsigned long long size)
 {
 	char *output;
 	t_list *node;
-	int i;
+	unsigned long long  i;
 
 	if (!(output = (char *)ft_memalloc((size + 1) * sizeof(char))))
 		return (NULL);

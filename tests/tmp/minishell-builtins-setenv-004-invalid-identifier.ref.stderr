@@ -1,1 +1,2 @@
-setenv: Variable name must begin with a letter.
+/usr/local/bin/bash: line 1: setenv: command not found
+/usr/local/bin/bash: line 2: export: `42': not a valid identifier

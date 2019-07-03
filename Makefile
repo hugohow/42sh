@@ -23,11 +23,11 @@ re: fclean all
 
 test: re
 	# bash tests/42ShellTester.sh $(PWD)/$(NAME) --hard --reference "bash" --filter "tilde-expansion"
-	bash tests/42ShellTester.sh $(PWD)/$(NAME) --hard --reference "csh" --filter $(NAME)
+	bash tests/42ShellTester.sh $(PWD)/$(NAME) --hard --reference "bash" --filter $(NAME)
 	bash test.sh
 
 valgrind: re
 	valgrind --track-origins=yes --show-leak-kinds=all --track-fds=yes 		\
-				--show-reachable=no --leak-check=full ./minishell tests/tests_sh/test_cd.sh
+				--show-reachable=no --leak-check=full ./minishell tests/tests_sh/*.sh >> leaks 2>&1
 
 .PHONY: all re clean fclean test valgrind

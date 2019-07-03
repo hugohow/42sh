@@ -6,7 +6,7 @@
 /*   By: hhow-cho <hhow-cho@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/06/09 01:53:37 by hhow-cho          #+#    #+#             */
-/*   Updated: 2019/07/02 02:14:24 by hhow-cho         ###   ########.fr       */
+/*   Updated: 2019/07/03 23:41:42 by hhow-cho         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -66,35 +66,41 @@ int ft_stdin_get_cmd(int fd, char **command, t_env **copy_env)
 {	
     char ret;
 	t_list *head;
+	t_list *node;
 	char *join;
 	t_cmd *cmd;
-	int end;
 
 	cmd = ft_cmd_init(copy_env);
 	head = cmd->head;
-	end = 0;
 	while (42)
 	{
 		if ((read(fd, &ret, sizeof(char)) == 0))
 		{
-			end = 1;
+			*((int *)ft_vars_get_value(KEY_MUST_EXIT)) = 1;
 			break ;
-		}		
+		}
 		cmd->last_key = (int)ret;
 		if (ret == '\n' || ret == '\0')
+		{
 			break ;
-		ret = ft_apply_key(cmd, 0);
-		if (ret == 0)
-			break ;
+		}
+		node = ft_lstnew((void *)&(cmd->last_key), sizeof(int));
+		ft_lstinsert(&head, node);
+		cmd->size = cmd->size + 1;
+		cmd->len = cmd->len + 1;
 	}
 	join = ft_node_join(cmd->head, cmd->size);
-	*command = ft_strrchr(join, '\n');
-	if (*command == NULL)
-		*command = ft_strdup(join);
-	else
-		*command = ft_strdup(ft_strrchr(join, '\n'));
-	ft_memdel((void **)&join);
-	ft_lstfree(cmd->head);
+	// *command = ft_strrchr(join, '\n');
+	// if (*command == NULL)
+	// {
+	// 	*command = join;
+	// 	ft_lstfree(head);
+	// 	ft_memdel((void **)&cmd);
+	// 	return (ret);
+	// }
+	*command = join;
+	// ft_memdel((void **)&join);
+	ft_lstfree(head);
 	ft_memdel((void **)&cmd);
-    return (end);
+    return (ret);
 }
