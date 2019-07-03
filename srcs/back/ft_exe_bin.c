@@ -6,7 +6,7 @@
 /*   By: hhow-cho <hhow-cho@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/06/09 01:40:14 by hhow-cho          #+#    #+#             */
-/*   Updated: 2019/07/03 18:19:57 by hhow-cho         ###   ########.fr       */
+/*   Updated: 2019/07/03 20:18:09 by hhow-cho         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,13 +26,15 @@ static int ft_search_and_exe_bin(char **args, t_env **cpy_environ, int fds[])
 	char *command;
 	t_node_ht *value;
 	t_ht *table_bins;
+	char *to_free;
 
 	table_bins = ft_bins_table_get(cpy_environ);
 	command = args[0];
 	if (table_bins && (value = ft_ht_get(table_bins, args[0])) && value->datum)
 	{
-		ft_memdel((void **)&(args[0]));
+		to_free = args[0];
 		args[0] = ft_strdup((char *)(value->datum));
+		ft_memdel((void **)&to_free);
 		result_cmd = ft_exe_path(args, cpy_environ, fds);
 	}
 	else
@@ -48,8 +50,9 @@ static int ft_search_and_exe_bin(char **args, t_env **cpy_environ, int fds[])
 					char *cwd;
 
 					cwd = *((char **)ft_vars_get_value(KEY_CWD));
-					ft_memdel((void **)&(args[0]));
+					to_free = args[0];
 					args[0] = ft_strjoin_(cwd, "/", pDirent->d_name);
+					ft_memdel((void **)&(to_free));
 					result_cmd = ft_exe_path(args, cpy_environ, fds);
 					closedir (pDir);
 					return (result_cmd);

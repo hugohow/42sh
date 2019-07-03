@@ -6,7 +6,7 @@
 /*   By: hhow-cho <hhow-cho@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/06/16 15:18:02 by hhow-cho          #+#    #+#             */
-/*   Updated: 2019/07/03 16:08:24 by hhow-cho         ###   ########.fr       */
+/*   Updated: 2019/07/03 21:37:43 by hhow-cho         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,12 +28,17 @@ static int ft_env_size(t_env **list)
 static t_env *ft_new_env(char *env_line)
 {
 	t_env *new_env;
+	t_vars 	*p_vars;
 
 	if (!(new_env = ft_memalloc(sizeof(t_env))))
 		return (NULL);
 	new_env->line = env_line;
 	if (ft_env_cmp_prefix("PATH", env_line) == 0)
-		new_env->table = ft_bins_table_create(env_line);
+	{
+		p_vars = ft_vars_get();
+		ft_ht_free(&(p_vars->hash_table));
+		p_vars->hash_table = ft_bins_table_create(env_line);
+	}
 	return (new_env);
 }
 

@@ -6,7 +6,7 @@
 /*   By: hhow-cho <hhow-cho@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/06/16 15:12:28 by hhow-cho          #+#    #+#             */
-/*   Updated: 2019/07/03 17:13:57 by hhow-cho         ###   ########.fr       */
+/*   Updated: 2019/07/03 21:29:53 by hhow-cho         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,6 +21,7 @@ static t_env **exit_env(t_env **env)
 }
 
 
+
 t_env **ft_env_copy_raw(char **str, char **argv)
 {
     t_env **copy;
@@ -28,7 +29,10 @@ t_env **ft_env_copy_raw(char **str, char **argv)
 	int pwd_present;
 	int shlvl_present;
     int i;
+	t_vars 	*p_vars;
 
+	p_vars = ft_vars_get();
+	
     i = 0;
     while (str[i])
         i++;
@@ -38,6 +42,7 @@ t_env **ft_env_copy_raw(char **str, char **argv)
 	path_present = 0;
 	pwd_present = 0;
 	shlvl_present = 0;
+	i = 0;
     while (str[i])
     {
         if (!(copy[i] = ft_memalloc(sizeof(t_env))))
@@ -62,10 +67,8 @@ t_env **ft_env_copy_raw(char **str, char **argv)
 		if (ft_env_cmp_prefix("PATH", copy[i]->line) == 0)
 		{
 			path_present = 1;
-			copy[i]->table = ft_bins_table_create(copy[i]->line);
+			p_vars->hash_table = ft_bins_table_create(copy[i]->line);
 		}
-		else
-			copy[i]->table = NULL;
 		if (ft_env_cmp_prefix("PWD", copy[i]->line) == 0)
 		{
 			pwd_present = 1;
@@ -88,6 +91,10 @@ t_env **ft_env_copy_raw(char **str, char **argv)
 			return (exit_env(copy));
 		copy[i]->line = ft_strdup("SHLVL=1");
 		i++;
+	}
+	if (path_present == 0)
+	{
+		p_vars->hash_table = ft_bins_table_create("PATH=/usr/local/bin:/usr/bin:/bin");
 	}
 
     return (copy);

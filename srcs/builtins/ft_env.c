@@ -6,7 +6,7 @@
 /*   By: hhow-cho <hhow-cho@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/06/20 13:58:20 by hhow-cho          #+#    #+#             */
-/*   Updated: 2019/07/03 16:14:05 by hhow-cho         ###   ########.fr       */
+/*   Updated: 2019/07/03 20:23:01 by hhow-cho         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,7 +33,7 @@ t_env **clear_environ(void)
 {
     t_env **output;
 
-    output = (t_env **)ft_memalloc(sizeof(t_env *));
+    output = (t_env **)ft_memalloc((sizeof(t_env *) + 1));
     return (output);
 }
 
@@ -135,7 +135,7 @@ int ft_env(char **argv, t_env **cpy_environ, int fds[])
         } else if (WIFSIGNALED(waitstatus)) {
             // printf("tué par le signal %d\n", WTERMSIG(waitstatus));
         } else if (WIFSTOPPED(waitstatus)) {
-            // printf("arrêté par le signal %d\n", WSTOPSIG(waitstatus));
+            ft_printf("Stopped\n");
         } else if (WIFCONTINUED(waitstatus)) {
             // printf("relancé\n");
         }

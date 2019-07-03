@@ -6,7 +6,7 @@
 /*   By: hhow-cho <hhow-cho@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/06/09 00:32:39 by hhow-cho          #+#    #+#             */
-/*   Updated: 2019/07/03 17:10:14 by hhow-cho         ###   ########.fr       */
+/*   Updated: 2019/07/03 20:57:54 by hhow-cho         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -87,7 +87,6 @@ typedef struct s_node
 typedef struct s_env
 {
     char *line;
-	t_ht *table;
 }               t_env;
 
 typedef struct	s_cmd
@@ -117,8 +116,8 @@ typedef struct	s_vars
 	int		pid;
 	char	**argv_list;
 	int 	argc;
-	t_ht 	*default_table;
 	char	*cwd;
+	t_ht 	*hash_table;
 }				t_vars;
 
 typedef int		(t_ft_apply)(t_cmd *, int);

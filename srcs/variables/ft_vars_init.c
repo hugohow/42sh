@@ -6,7 +6,7 @@
 /*   By: hhow-cho <hhow-cho@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/07/01 23:57:36 by hhow-cho          #+#    #+#             */
-/*   Updated: 2019/07/03 17:53:19 by hhow-cho         ###   ########.fr       */
+/*   Updated: 2019/07/03 21:34:55 by hhow-cho         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,7 +26,6 @@ int	ft_vars_init(int argc, char **argv)
 	p_vars->pid = getpid();
 	p_vars->argv_list = argv;
 	p_vars->argc = argc;
-	p_vars->default_table = ft_bins_table_create("PATH=/usr/sbin:/usr/bin:/sbin:/bin");
 	p_vars->cwd = getcwd(NULL, 0);
     return (0);
 }

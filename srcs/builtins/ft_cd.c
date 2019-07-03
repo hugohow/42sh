@@ -6,7 +6,7 @@
 /*   By: hhow-cho <hhow-cho@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/06/13 19:57:57 by hhow-cho          #+#    #+#             */
-/*   Updated: 2019/07/03 18:22:12 by hhow-cho         ###   ########.fr       */
+/*   Updated: 2019/07/03 18:31:55 by hhow-cho         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,12 +22,13 @@ static int ft_cd_change_env(char *new_pwd_line, char *old_pwd_val, t_env ***p_en
 
 	p_vars = ft_vars_get();
 	if (new_pwd_line == NULL)
-		new_pwd_line = p_vars->cwd;
+		new_pwd_line = ft_strdup(p_vars->cwd);
 	ft_env_add("OLDPWD", old_pwd_val, p_environ);
 	ft_env_add("PWD", new_pwd_line, p_environ);
 	ft_memdel((void **)&(p_vars->cwd));
 	p_vars->cwd = getcwd(NULL, 0);
 	ft_memdel((void **)&old_pwd_val);
+	ft_memdel((void **)&new_pwd_line);
     return (0);
 }
 
