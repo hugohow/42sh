@@ -6,7 +6,7 @@
 /*   By: hhow-cho <hhow-cho@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/06/09 00:32:39 by hhow-cho          #+#    #+#             */
-/*   Updated: 2019/07/03 16:08:06 by hhow-cho         ###   ########.fr       */
+/*   Updated: 2019/07/03 17:10:14 by hhow-cho         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -104,6 +104,7 @@ typedef struct	s_cmd
 # define KEY_COPY_ENV (2 << 3)
 # define KEY_P_COPY_ENV (2 << 4)
 # define KEY_PID (2 << 4)
+# define KEY_CWD (2 << 5)
 
 typedef struct	s_vars
 {
@@ -117,6 +118,7 @@ typedef struct	s_vars
 	char	**argv_list;
 	int 	argc;
 	t_ht 	*default_table;
+	char	*cwd;
 }				t_vars;
 
 typedef int		(t_ft_apply)(t_cmd *, int);

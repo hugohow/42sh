@@ -6,7 +6,7 @@
 /*   By: hhow-cho <hhow-cho@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/06/27 22:25:10 by hhow-cho          #+#    #+#             */
-/*   Updated: 2019/07/02 02:58:14 by hhow-cho         ###   ########.fr       */
+/*   Updated: 2019/07/03 18:26:54 by hhow-cho         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,12 +17,11 @@ static char *get_pwd_plus_element(t_env ***p_environ, char *element)
     char *curpath;
 	char *pwd;
 
-	pwd = ft_strdup(ft_env_get_value(*p_environ, "PWD"));
+	pwd = ft_env_get_value(*p_environ, "PWD");
 	if (pwd == NULL)
-		pwd = getcwd(NULL, 0);
+		pwd = *((char **)ft_vars_get_value(KEY_CWD));
 	curpath = ft_strjoin_(pwd, "/", element);
 	curpath = ft_path_trim_free(curpath);
-	ft_memdel((void **)&pwd);
 	return (curpath);
 }
 

@@ -6,7 +6,7 @@
 /*   By: hhow-cho <hhow-cho@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/07/01 23:40:30 by hhow-cho          #+#    #+#             */
-/*   Updated: 2019/07/03 15:25:47 by hhow-cho         ###   ########.fr       */
+/*   Updated: 2019/07/03 17:09:59 by hhow-cho         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,5 +34,7 @@ void     *ft_vars_get_value(long key)
 		return (&(p_vars->copy_env));
 	if (key == KEY_PID)
 		return (&(p_vars->pid));
+	if (key == KEY_CWD)
+		return (&(p_vars->cwd));
 	return (NULL);
 }

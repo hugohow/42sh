@@ -6,7 +6,7 @@
 /*   By: hhow-cho <hhow-cho@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/06/26 22:25:42 by hhow-cho          #+#    #+#             */
-/*   Updated: 2019/07/03 14:53:21 by hhow-cho         ###   ########.fr       */
+/*   Updated: 2019/07/03 16:30:58 by hhow-cho         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,8 +40,6 @@ int ft_non_interactive_exec(char **argv)
 		ft_cmd_exec(command, p_copy_env, fds, &success);
 		if (*((int *)ft_vars_get_value(KEY_MUST_EXIT)) == 1)
 			break ;
-		// if (ft_env_get_value(*p_copy_env, "EXIT") && ft_strchr(ft_env_get_value(*p_copy_env, "EXIT"), '1'))
-		// 	break ;
 		if (end == 1)
 			break;
 	}

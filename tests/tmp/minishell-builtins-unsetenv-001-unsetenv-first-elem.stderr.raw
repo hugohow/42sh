@@ -1,4 +1,4 @@
 minishell: command not found: unset
-minishell(22745,0x7fffb7f363c0) malloc: *** error for object 0x7fef76c023d0: pointer being freed was not allocated
+minishell(57053,0x7fffb7f363c0) malloc: *** error for object 0x7fd38cc023b0: pointer being freed was not allocated
 *** set a breakpoint in malloc_error_break to debug
-./lib/main.sh: line 102: 22745 Abort trap: 6           /Users/hugohow-choong/42/42sh/minishell
+./lib/main.sh: line 102: 57053 Abort trap: 6           /Users/hugohow-choong/42/42sh/minishell

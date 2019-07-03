@@ -6,7 +6,7 @@
 /*   By: hhow-cho <hhow-cho@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/06/16 13:42:37 by hhow-cho          #+#    #+#             */
-/*   Updated: 2019/07/03 15:56:30 by hhow-cho         ###   ########.fr       */
+/*   Updated: 2019/07/03 16:53:30 by hhow-cho         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -86,7 +86,7 @@ static int get_expansion_length(char *str)
 */
 
 
-static const char *resolve_expansion(char *str, int start, int end, t_env **copy_env)
+static char *resolve_expansion(char *str, int start, int end, t_env **copy_env)
 {
 	char *line;
 	char *expansion;
@@ -113,16 +113,16 @@ static const char *resolve_expansion(char *str, int start, int end, t_env **copy
 
 				nb = expansion[0] - '0';
 				if (nb < p_vars->argc)
-					return (p_vars->argv_list[nb]);
+					return (ft_strdup(p_vars->argv_list[nb]));
 				else
-					return ("");
+					return (ft_strdup(""));
 			}
 		}
 		line = ft_env_get_line_n(copy_env, expansion, len_expansion);
 		if (line)
-			return (line + end - start - 1);
+			return (ft_strdup(line + end - start - 1));
 		else
-			return ("");
+			return (ft_strdup(""));
 	}
 	else
 	{
@@ -142,16 +142,16 @@ static const char *resolve_expansion(char *str, int start, int end, t_env **copy
 
 				nb = expansion[0] - '0';
 				if (nb < p_vars->argc)
-					return (p_vars->argv_list[nb]);
+					return (ft_strdup(p_vars->argv_list[nb]));
 				else
-					return ("");
+					return (ft_strdup(""));
 			}
 		}
 		line = ft_env_get_line_n(copy_env, expansion, len_expansion);
 		if (line)
-			return (line + end - start + 1);
+			return (ft_strdup(line + end - start + 1));
 		else
-			return ("");
+			return (ft_strdup(""));
 	}
 }
 
@@ -162,15 +162,18 @@ static const char *resolve_expansion(char *str, int start, int end, t_env **copy
 static char *replace_expansion(char *str, int i, int ret, t_env **copy_env)
 {
 	char *tmp;
+	char *expansion;
 	int start;
 	int end;
 
 	start = i;
 	end = i + ret;
-	tmp = ft_strjoin(resolve_expansion(str, start, end, copy_env), str + end);
+	expansion = resolve_expansion(str, start, end, copy_env);
+	tmp = ft_strjoin(expansion, str + end);
 	str[start] = 0;
 	str = ft_strjoin_free_first(str, tmp);
 	ft_memdel((void **)&tmp);
+	ft_memdel((void **)&expansion);
 	return (str);
 }
 

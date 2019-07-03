@@ -6,7 +6,7 @@
 /*   By: hhow-cho <hhow-cho@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/06/16 15:12:28 by hhow-cho          #+#    #+#             */
-/*   Updated: 2019/07/03 16:08:29 by hhow-cho         ###   ########.fr       */
+/*   Updated: 2019/07/03 17:13:57 by hhow-cho         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -74,9 +74,12 @@ t_env **ft_env_copy_raw(char **str, char **argv)
     }
 	if (pwd_present == 0)
 	{
+		char *cwd;
+
+		cwd = (char *)ft_vars_get_value(KEY_CWD);
         if (!(copy[i] = ft_memalloc(sizeof(t_env))))
 			return (exit_env(copy));
-        copy[i]->line = ft_strjoin_free_second("PWD=", getcwd(NULL, 0));
+        copy[i]->line = ft_strjoin("PWD=", cwd);
         i++;
 	}
 	if (shlvl_present == 0)
