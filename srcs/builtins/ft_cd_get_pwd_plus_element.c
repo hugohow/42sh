@@ -1,24 +1,26 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_vars_free.c                                     :+:      :+:    :+:   */
+/*   ft_cd_get_pwd_plus_element.c                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: hhow-cho <hhow-cho@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2019/07/02 00:15:54 by hhow-cho          #+#    #+#             */
-/*   Updated: 2019/07/03 21:42:34 by hhow-cho         ###   ########.fr       */
+/*   Created: 2019/07/03 22:02:13 by hhow-cho          #+#    #+#             */
+/*   Updated: 2019/07/03 22:02:21 by hhow-cho         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "shell.h"
 
-void ft_vars_free(void)
+char *ft_cd_get_pwd_plus_element(t_env ***p_environ, char *element)
 {
-	t_vars 	*p_vars;
+    char *dest_path;
+	char *pwd;
 
-	p_vars = ft_vars_get();
-	ft_env_free(&(p_vars->copy_env));
-	ft_memdel((void **)&(p_vars->cwd));
-	ft_ht_free(&(p_vars->hash_table));
-	ft_memdel((void **)&p_vars);
+	pwd = ft_env_get_value(*p_environ, "PWD");
+	if (pwd == NULL)
+		pwd = *((char **)ft_vars_get_value(KEY_CWD));
+	dest_path = ft_strjoin_(pwd, "/", element);
+	dest_path = ft_path_trim_free(dest_path);
+	return (dest_path);
 }

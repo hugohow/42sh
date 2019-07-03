@@ -6,7 +6,7 @@
 /*   By: hhow-cho <hhow-cho@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/06/20 18:08:05 by hhow-cho          #+#    #+#             */
-/*   Updated: 2019/07/03 20:58:53 by hhow-cho         ###   ########.fr       */
+/*   Updated: 2019/07/03 21:41:44 by hhow-cho         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,34 +37,34 @@ static const char *ft_get_possibilities(char *begin, t_env **copy_env)
 	suggestion = NULL;
 	table = ft_bins_table_get(copy_env);
 	i = 0;
-	while (i < (int)table->size)
+	while (builtins[i])
 	{
-		t_node_ht *node;
-
-		node = table->list[i];
-		while (node)
+		if (ft_strncmp(begin, builtins[i], ft_strlen(begin)) == 0)
 		{
-			if (ft_strncmp(begin, node->key, ft_strlen(begin)) == 0)
-			{
-				if (suggestion == NULL)
-					suggestion = node->key;
-				if (ft_strlen(suggestion) > ft_strlen(node->key))
-					suggestion = node->key;
-				k++;
-			}
-			node = node->next;
+			suggestion = builtins[i];
+			break ;
 		}
 		i++;
 	}
+	i = 0;
 	if (suggestion == NULL)
 	{
-		i = 0;
-		while (builtins[i])
+		while (i < (int)table->size)
 		{
-			if (ft_strncmp(begin, builtins[i], ft_strlen(begin)) == 0)
+			t_node_ht *node;
+
+			node = table->list[i];
+			while (node)
 			{
-				suggestion = builtins[i];
-				break ;
+				if (ft_strncmp(begin, node->key, ft_strlen(begin)) == 0)
+				{
+					if (suggestion == NULL)
+						suggestion = node->key;
+					if (ft_strlen(suggestion) > ft_strlen(node->key))
+						suggestion = node->key;
+					k++;
+				}
+				node = node->next;
 			}
 			i++;
 		}

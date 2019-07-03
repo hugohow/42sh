@@ -6,7 +6,7 @@
 /*   By: hhow-cho <hhow-cho@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/06/13 19:57:57 by hhow-cho          #+#    #+#             */
-/*   Updated: 2019/07/03 18:31:55 by hhow-cho         ###   ########.fr       */
+/*   Updated: 2019/07/03 22:05:28 by hhow-cho         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,52 +32,10 @@ static int ft_cd_change_env(char *new_pwd_line, char *old_pwd_val, t_env ***p_en
     return (0);
 }
 
-static char *ft_get_curpath(char *element, t_env ***p_environ, int fds[])
-{
-	char *curpath;
-
-	curpath = NULL;
-    if (element)
-    {
-        if (ft_strcmp(element, "-") == 0)
-		{
-			if (!(curpath = ft_strdup(ft_env_get_value(*p_environ, "OLDPWD"))))
-			{
-				ft_putstr_fd("minishell: cd: OLDPWD not set\n", fds[2]);
-				return (NULL);
-			}
-			ft_dprintf(fds[1], "%s\n", curpath);
-		}
-        else
-		{
-			curpath = ft_cd_get_abs_path(p_environ, element, fds);
-			if (curpath == NULL)
-			{
-				ft_dprintf(fds[2], "minishell: No such file or directory: %s\n", element);
-				return (NULL);
-			}
-		}
-    }
-    else
-    {
-		if (!(curpath = ft_strdup(ft_env_get_value(*p_environ, "HOME"))))
-		{
-			ft_putstr_fd("minishell: cd: HOME not set\n", 2);
-			return (NULL);
-		}
-    }
-	if (ft_strlen(curpath) > PATH_MAX)
-	{
-		ft_memdel((void **)&curpath);
-		ft_putstr_fd("minishell: cd: path too long\n", 2);
-		return (NULL);
-	}
-	return (curpath);
-}
 
 int ft_change_dir(char *element, t_env ***p_environ, long long flag, int fds[])
 {
-    char *curpath;
+    char *dest_path;
     char *old_pwd_val;
 	int ret;
 
@@ -90,20 +48,20 @@ int ft_change_dir(char *element, t_env ***p_environ, long long flag, int fds[])
 		cwd = *((char **)ft_vars_get_value(KEY_CWD));
 		old_pwd_val = ft_strjoin("OLDPWD=", cwd);
 	}
-	curpath = ft_get_curpath(element, p_environ, fds);
-	if (curpath == NULL)
+	dest_path = ft_cd_get_dest_path(element, p_environ, fds);
+	if (dest_path == NULL)
 	{
 		ft_memdel((void **)&old_pwd_val);
 		return (1);	
 	}
-    if ((ret = ft_cd_go_to(curpath, fds)) != 0)
+    if ((ret = ft_cd_go_to(dest_path, fds)) != 0)
 	{
 		ft_memdel((void **)&old_pwd_val);
 		return (ret);
 	}
     if (flag & FLAG_CD_P)
         return (ft_cd_change_env(NULL, old_pwd_val, p_environ));
-    return (ft_cd_change_env(curpath, old_pwd_val, p_environ));
+    return (ft_cd_change_env(dest_path, old_pwd_val, p_environ));
 }
 
 
