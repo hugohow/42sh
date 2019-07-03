@@ -6,7 +6,7 @@
 /*   By: hhow-cho <hhow-cho@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/06/09 00:32:39 by hhow-cho          #+#    #+#             */
-/*   Updated: 2019/07/03 23:24:39 by hhow-cho         ###   ########.fr       */
+/*   Updated: 2019/07/04 01:58:05 by hhow-cho         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,6 @@
 #include <sys/stat.h>
 #include <termios.h>
 #include <sys/wait.h>
-
 #include <sys/ioctl.h>
 #include <signal.h>
 #include <sys/uio.h>
@@ -259,4 +258,7 @@ int	ft_vars_init(int argc, char **argv);
 t_env     **ft_vars_get_copy_env(void);
 t_env     ***ft_vars_get_p_copy_env(void);
 void ft_vars_free(void);
+
+const char			*ft_errors_signal_get(int signal);
+const char			*ft_errors_stop_get(int sig);
 #endif

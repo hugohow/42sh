@@ -6,7 +6,7 @@
 /*   By: hhow-cho <hhow-cho@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/06/24 23:12:34 by hhow-cho          #+#    #+#             */
-/*   Updated: 2019/07/03 23:40:25 by hhow-cho         ###   ########.fr       */
+/*   Updated: 2019/07/04 01:49:09 by hhow-cho         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,8 +16,6 @@ void signal_callback_handler(int signum)
 {
 	if (signum == SIGINT)
 	{
-		ft_putstr_fd("\n", 0);
-		ft_terminal_prompt();
 	}
 	if (signum == SIGTSTP)
 	{

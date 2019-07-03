@@ -6,7 +6,7 @@
 /*   By: hhow-cho <hhow-cho@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/06/28 03:18:47 by hhow-cho          #+#    #+#             */
-/*   Updated: 2019/06/28 23:27:37 by hhow-cho         ###   ########.fr       */
+/*   Updated: 2019/07/04 01:50:06 by hhow-cho         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,9 +30,9 @@ int ft_apply_ctrl_d(t_cmd *cmd, int to_write)
 	}
 	else
 	{
-		node = ft_lstnew((void *)&(cmd->last_key), sizeof(int));
-		ft_lstinsert(&head, node);
-		return (1);	
+		// node = ft_lstnew((void *)&(cmd->last_key), sizeof(int));
+		// ft_lstinsert(&head, node);
+		// return (1);	
 	}
 	return (1);	
 }

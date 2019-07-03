@@ -6,7 +6,7 @@
 /*   By: hhow-cho <hhow-cho@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/06/09 14:28:12 by hhow-cho          #+#    #+#             */
-/*   Updated: 2019/07/03 19:04:41 by hhow-cho         ###   ########.fr       */
+/*   Updated: 2019/07/04 01:56:34 by hhow-cho         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -87,9 +87,9 @@ int ft_exe_path(char **argv, t_env **cpy_environ, int fds[])
         if (WIFEXITED(waitstatus)) {
             // printf("terminé, code=%d\n", WEXITSTATUS(waitstatus));
         } else if (WIFSIGNALED(waitstatus)) {
-            // ft_printf("tué par le signal %d\n", WTERMSIG(waitstatus));
+            ft_printf("%s\n", ft_errors_signal_get(WTERMSIG(waitstatus)));
         } else if (WIFSTOPPED(waitstatus)) {
-            ft_printf("Stopped\n");
+            ft_printf("%s\n", ft_errors_stop_get(WTERMSIG(waitstatus)));
         } else if (WIFCONTINUED(waitstatus)) {
             // ft_printf("relancé\n");
         }
