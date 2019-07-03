@@ -6,7 +6,7 @@
 /*   By: hhow-cho <hhow-cho@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/07/03 22:05:15 by hhow-cho          #+#    #+#             */
-/*   Updated: 2019/07/03 22:05:42 by hhow-cho         ###   ########.fr       */
+/*   Updated: 2019/07/03 22:10:11 by hhow-cho         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,6 +33,7 @@ char *ft_cd_get_dest_path(char *element, t_env ***p_environ, int fds[])
 			dest_path = ft_cd_get_abs_path(p_environ, element, fds);
 			if (dest_path == NULL)
 			{
+				ft_memdel((void **)&dest_path);
 				ft_dprintf(fds[2], "minishell: No such file or directory: %s\n", element);
 				return (NULL);
 			}
