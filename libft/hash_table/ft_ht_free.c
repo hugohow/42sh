@@ -6,7 +6,7 @@
 /*   By: hhow-cho <hhow-cho@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/04/14 20:07:08 by hhow-cho          #+#    #+#             */
-/*   Updated: 2019/06/27 18:29:08 by hhow-cho         ###   ########.fr       */
+/*   Updated: 2019/07/03 16:12:35 by hhow-cho         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,6 +29,8 @@ void			ft_ht_free(t_ht **p_hash_table)
 	t_node_ht	*node;
 
 	i = 0;
+	if (p_hash_table == NULL)
+		return ;
 	if (p_hash_table && *p_hash_table)
 	{
 		while (i < (*p_hash_table)->size)

@@ -6,7 +6,7 @@
 /*   By: hhow-cho <hhow-cho@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/06/15 23:23:34 by hhow-cho          #+#    #+#             */
-/*   Updated: 2019/06/20 16:19:30 by hhow-cho         ###   ########.fr       */
+/*   Updated: 2019/07/03 16:13:58 by hhow-cho         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,11 +27,8 @@ char **ft_env_raw(t_env **cpy_environ)
     len = 0;
     while (cpy_environ[len])
     {
-		if (cpy_environ[len]->special == 0)
-        {
-			table_env[k] = cpy_environ[len]->line;
-			k++;
-		}
+		table_env[k] = cpy_environ[len]->line;
+		k++;
 		len++;
     }
     table_env[k] = 0;

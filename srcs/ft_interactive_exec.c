@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_terminal_exec.c                                 :+:      :+:    :+:   */
+/*   ft_interactive_exec.c                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: hhow-cho <hhow-cho@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/06/24 23:12:34 by hhow-cho          #+#    #+#             */
-/*   Updated: 2019/07/02 03:01:52 by hhow-cho         ###   ########.fr       */
+/*   Updated: 2019/07/03 16:05:08 by hhow-cho         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,7 +25,7 @@ void signal_callback_handler(int signum)
 	}
 }
 
-int ft_terminal_exec(void)
+int ft_interactive_exec(void)
 {
 	char *command;
 	int success;
@@ -53,7 +53,7 @@ int ft_terminal_exec(void)
 		ft_terminal_get_cmd(&command, *p_copy_env);
 		ft_terminal_exit();
 		ft_cmd_exec(command, p_copy_env, fds, &success);
-		if (ft_env_get_value(*p_copy_env, "EXIT") && ft_strchr(ft_env_get_value(*p_copy_env, "EXIT"), '1'))
+		if (*((int *)ft_vars_get_value(KEY_MUST_EXIT)) == 1)
 		{
 			ft_putstr_fd("exit\n", fds[1]);
 			break ;

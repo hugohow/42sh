@@ -2,3 +2,6 @@ minishell: command not found: export
 minishell: command not found: export
 minishell: command not found: unset
 minishell: command not found: unset
+minishell(21564,0x7fffb7f363c0) malloc: *** error for object 0x7f80ae600310: pointer being freed was not allocated
+*** set a breakpoint in malloc_error_break to debug
+./lib/main.sh: line 102: 21564 Abort trap: 6           /Users/hugohow-choong/42/42sh/minishell

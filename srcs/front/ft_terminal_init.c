@@ -6,7 +6,7 @@
 /*   By: hhow-cho <hhow-cho@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/06/19 23:08:39 by hhow-cho          #+#    #+#             */
-/*   Updated: 2019/07/02 02:00:02 by hhow-cho         ###   ########.fr       */
+/*   Updated: 2019/07/03 14:21:40 by hhow-cho         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,7 +55,7 @@ int ft_terminal_init(void)
         return (-1);
     }
 	tcgetattr(STDIN_FILENO, &(p_vars->old_config));
-    (p_vars->new_config) = get_new_config(p_vars->old_config);
+    p_vars->new_config = get_new_config(p_vars->old_config);
   	tcsetattr(0, TCSAFLUSH, &(p_vars->new_config));
     return (0);
 }

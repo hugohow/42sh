@@ -6,7 +6,7 @@
 /*   By: hhow-cho <hhow-cho@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/06/16 13:42:37 by hhow-cho          #+#    #+#             */
-/*   Updated: 2019/07/02 03:10:25 by hhow-cho         ###   ########.fr       */
+/*   Updated: 2019/07/03 15:56:30 by hhow-cho         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,6 +34,11 @@ static int get_expansion_length(char *str)
 	if (str[ret] == '{')
 	{
 		ret++;
+		if (ft_isdigit(str[ret]) && str[ret] != '}')
+		{
+			ft_dprintf(2, "minishell: bad substitution\n");
+			return (-1);
+		}
 		while (str[ret] && str[ret] != '}')
 		{
 			if (ft_is_special_param(str[ret]) && ret != 2)
@@ -57,6 +62,8 @@ static int get_expansion_length(char *str)
 	}
 	else
 	{
+		if (ft_isdigit(str[ret]))
+			return (ret + 1);
 		while (str[ret] && str[ret] != '/')
 		{
 			if (ft_is_special_param(str[ret]))
@@ -84,12 +91,33 @@ static const char *resolve_expansion(char *str, int start, int end, t_env **copy
 	char *line;
 	char *expansion;
 	size_t len_expansion;
+	t_vars 	*p_vars;
 
+	p_vars = ft_vars_get();
 	start++;
 	if (str[start] == '{')
 	{
 		expansion = str + start + 1;
 		len_expansion = end - 2 - start;
+		if (len_expansion == 1)
+		{
+			if (ft_strncmp(expansion, "?", len_expansion) == 0)
+				return (ft_itoa(p_vars->success_exit));
+			if (ft_strncmp(expansion, "$", len_expansion) == 0)
+				return (ft_itoa(p_vars->pid));
+			if (ft_strncmp(expansion, "#", len_expansion) == 0)
+				return (ft_itoa(p_vars->argc));
+			if (ft_isdigit(expansion[0]))
+			{
+				int nb;
+
+				nb = expansion[0] - '0';
+				if (nb < p_vars->argc)
+					return (p_vars->argv_list[nb]);
+				else
+					return ("");
+			}
+		}
 		line = ft_env_get_line_n(copy_env, expansion, len_expansion);
 		if (line)
 			return (line + end - start - 1);
@@ -100,6 +128,25 @@ static const char *resolve_expansion(char *str, int start, int end, t_env **copy
 	{
 		expansion = str + start;
 		len_expansion = end - start;
+		if (len_expansion == 1)
+		{
+			if (ft_strncmp(expansion, "?", len_expansion) == 0)
+				return (ft_itoa(p_vars->success_exit));
+			if (ft_strncmp(expansion, "$", len_expansion) == 0)
+				return (ft_itoa(p_vars->pid));
+			if (ft_strncmp(expansion, "#", len_expansion) == 0)
+				return (ft_itoa(p_vars->argc));
+			if (ft_isdigit(expansion[0]))
+			{
+				int nb;
+
+				nb = expansion[0] - '0';
+				if (nb < p_vars->argc)
+					return (p_vars->argv_list[nb]);
+				else
+					return ("");
+			}
+		}
 		line = ft_env_get_line_n(copy_env, expansion, len_expansion);
 		if (line)
 			return (line + end - start + 1);

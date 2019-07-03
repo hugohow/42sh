@@ -6,7 +6,7 @@
 /*   By: hhow-cho <hhow-cho@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/06/09 00:32:39 by hhow-cho          #+#    #+#             */
-/*   Updated: 2019/07/02 02:55:47 by hhow-cho         ###   ########.fr       */
+/*   Updated: 2019/07/03 16:08:06 by hhow-cho         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -88,7 +88,6 @@ typedef struct s_env
 {
     char *line;
 	t_ht *table;
-    int special;
 }               t_env;
 
 typedef struct	s_cmd
@@ -100,12 +99,24 @@ typedef struct	s_cmd
 	t_env	**copy_env;
 }				t_cmd;
 
+# define KEY_MUST_EXIT (2 << 1)
+# define KEY_SUCCESS_EXIT (2 << 2)
+# define KEY_COPY_ENV (2 << 3)
+# define KEY_P_COPY_ENV (2 << 4)
+# define KEY_PID (2 << 4)
+
 typedef struct	s_vars
 {
 	t_env	**copy_env;
 	t_env	**copy_env_special;
 	struct termios old_config;
 	struct termios new_config;
+	int		must_exit;
+	int		success_exit;
+	int		pid;
+	char	**argv_list;
+	int 	argc;
+	t_ht 	*default_table;
 }				t_vars;
 
 typedef int		(t_ft_apply)(t_cmd *, int);
@@ -120,8 +131,8 @@ typedef struct s_fts_apply
 ** Two main functions
 */
 
-int ft_terminal_exec(void);
-int ft_stdin_exec(char **argv);
+int ft_interactive_exec(void);
+int ft_non_interactive_exec(char **argv);
 int ft_stdin_get_cmd(int fd, char **command, t_env **copy_env);
 
 /*
@@ -158,7 +169,7 @@ int ft_env_delete_line(char *prefix, t_env **cpy_environ);
 int ft_env_change_line(char *prefix, char *line, t_env **cpy_environ);
 char **ft_env_raw(t_env **cpy_environ);
 t_env **ft_env_copy_raw(char **str, char **argv);
-void ft_env_add(char *prefix, char *line, t_env ***p_environ, int special);
+void ft_env_add(char *prefix, char *line, t_env ***p_environ);
 int ft_env_cmp_prefix(char *prefix, char *line);
 t_env **ft_env_deep_copy(t_env **str);
 void ft_env_free(t_env ***p_cpy_environ);
@@ -239,7 +250,8 @@ int ft_apply_printable(t_cmd *cmd, int to_write);
 int ft_apply_enter(t_cmd *cmd, int to_write);
 
 t_vars     *ft_vars_get(void);
-int	ft_vars_init(char **argv);
+void     *ft_vars_get_value(long key);
+int	ft_vars_init(int argc, char **argv);
 t_env     **ft_vars_get_copy_env(void);
 t_env     ***ft_vars_get_p_copy_env(void);
 void ft_vars_free(void);

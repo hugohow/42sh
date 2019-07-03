@@ -6,7 +6,7 @@
 /*   By: hhow-cho <hhow-cho@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/06/20 13:58:20 by hhow-cho          #+#    #+#             */
-/*   Updated: 2019/07/02 03:52:12 by hhow-cho         ###   ########.fr       */
+/*   Updated: 2019/07/03 16:14:05 by hhow-cho         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,11 +23,8 @@ void ft_print_env(t_env **cpy_env, int fds[])
     i = 0;
     while (cpy_env[i])
     {
-        if (cpy_env[i]->special == 0)
-        {
-			ft_putstr_fd(cpy_env[i]->line, fds[1]);
-            ft_putstr_fd("\n", fds[1]);
-        }
+		ft_putstr_fd(cpy_env[i]->line, fds[1]);
+        ft_putstr_fd("\n", fds[1]);
         i++;
     }
 }

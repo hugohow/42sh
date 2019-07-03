@@ -14,6 +14,8 @@ echo $?
 echo $@
 echo $?
 echo $!
+echo $99
+echo $91
 ls dzdz
 echo $?
 echo ssz${*}/ab

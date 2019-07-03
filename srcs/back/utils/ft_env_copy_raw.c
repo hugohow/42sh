@@ -6,7 +6,7 @@
 /*   By: hhow-cho <hhow-cho@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/06/16 15:12:28 by hhow-cho          #+#    #+#             */
-/*   Updated: 2019/07/02 01:09:48 by hhow-cho         ###   ########.fr       */
+/*   Updated: 2019/07/03 16:08:29 by hhow-cho         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,60 +18,6 @@ static t_env **exit_env(t_env **env)
 	ft_putstr_fd(FAIL_COPY_ENV, STDERR_FILENO);
 	ft_env_free(&env);
 	return (NULL);
-}
-
-static t_env **get_special_char(t_env **copy, char **argv, int i)
-{
-	if (!(copy[i] = ft_memalloc(sizeof(t_env))))
-		return (exit_env(copy));
-	copy[i]->line = ft_strjoin_free_second("$=", ft_itoa((int)getpid()));
-	copy[i++]->special = 1;
-
-
-	if (!(copy[i] = ft_memalloc(sizeof(t_env))))
-		return (exit_env(copy));
-	copy[i]->line = ft_strdup("?=0");
-	copy[i++]->special = 1;
-
-	if (!(copy[i] = ft_memalloc(sizeof(t_env))))
-		return (exit_env(copy));
-	copy[i]->line = ft_strdup("!=");
-	copy[i++]->special = 1;
-
-	int k;
-	char *tmp;
-	char *nb;
-
-	k = 0;
-	while (argv[k])
-	{
-	    if (!(copy[i] = ft_memalloc(sizeof(t_env))))
-			return (exit_env(copy));
-		nb = ft_itoa(k);
-		tmp = ft_strjoin(nb, "=");
-		copy[i]->line = ft_strjoin(tmp, argv[k]);
-		ft_memdel((void **)&nb);
-		ft_memdel((void **)&tmp);
-		copy[i++]->special = 1;
-		k++;
-	}
-
-	if (!(copy[i] = ft_memalloc(sizeof(t_env))))
-		return (exit_env(copy));
-	if (k == 0)
-		copy[i]->line = ft_strdup("#=0");
-	else
-		copy[i]->line = ft_strjoin_free_second("#=", ft_itoa(k - 1));
-	copy[i++]->special = 1;
-
-	if (!(copy[i] = ft_memalloc(sizeof(t_env))))
-		return (exit_env(copy));
-	copy[i]->line = ft_strdup("EXIT=0");
-	copy[i++]->special = 1;
-
-
-    copy[i] = 0;
-	return (copy);
 }
 
 
@@ -124,24 +70,13 @@ t_env **ft_env_copy_raw(char **str, char **argv)
 		{
 			pwd_present = 1;
 		}
-        copy[i]->special = 0;
         i++;
     }
-	if (path_present == 0)
-	{
-        if (!(copy[i] = ft_memalloc(sizeof(t_env))))
-			return (exit_env(copy));
-        copy[i]->line = ft_strdup("PATH=/usr/sbin:/usr/bin:/sbin:/bin");
-		copy[i]->table = ft_bins_table_create(copy[i]->line);
-        copy[i]->special = 1;
-        i++;
-	}
 	if (pwd_present == 0)
 	{
         if (!(copy[i] = ft_memalloc(sizeof(t_env))))
 			return (exit_env(copy));
         copy[i]->line = ft_strjoin_free_second("PWD=", getcwd(NULL, 0));
-        copy[i]->special = 0;
         i++;
 	}
 	if (shlvl_present == 0)
@@ -149,11 +84,10 @@ t_env **ft_env_copy_raw(char **str, char **argv)
         if (!(copy[i] = ft_memalloc(sizeof(t_env))))
 			return (exit_env(copy));
 		copy[i]->line = ft_strdup("SHLVL=1");
-		copy[i]->special = 0;
 		i++;
 	}
 
-    return (get_special_char(copy, argv, i));
+    return (copy);
 }
 
 

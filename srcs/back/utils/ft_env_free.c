@@ -6,7 +6,7 @@
 /*   By: hhow-cho <hhow-cho@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/06/20 14:39:27 by hhow-cho          #+#    #+#             */
-/*   Updated: 2019/06/27 18:21:54 by hhow-cho         ###   ########.fr       */
+/*   Updated: 2019/07/03 16:14:08 by hhow-cho         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,7 +25,6 @@ void ft_env_free(t_env ***p_cpy_environ)
 			(*p_cpy_environ)[i]->table = NULL;
 		}
 		ft_memdel((void **)(&((*p_cpy_environ)[i]->line)));
-		(*p_cpy_environ)[i]->special = 0;
 		ft_memdel((void **)(&((*p_cpy_environ)[i])));
         i++;
     }
