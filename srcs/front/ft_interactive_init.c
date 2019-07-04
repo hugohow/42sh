@@ -6,7 +6,7 @@
 /*   By: hhow-cho <hhow-cho@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/06/19 23:08:39 by hhow-cho          #+#    #+#             */
-/*   Updated: 2019/07/04 20:00:15 by hhow-cho         ###   ########.fr       */
+/*   Updated: 2019/07/04 20:46:20 by hhow-cho         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -62,7 +62,10 @@ int ft_interactive_init(void)
 	p_vars = ft_vars_get();
 	copy_env = ft_vars_get_copy_env();
 	if ((ret = handle_errors(copy_env)) < 0)
+	{
+		ft_putstr_fd("Init termcaps failed\n", 2);
 		return (-1);
+	}
 	tcgetattr(STDIN_FILENO, &(p_vars->old_config));
     p_vars->new_config = get_new_config(p_vars->old_config);
   	tcsetattr(0, TCSAFLUSH, &(p_vars->new_config));
