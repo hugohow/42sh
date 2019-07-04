@@ -6,7 +6,7 @@
 /*   By: hhow-cho <hhow-cho@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/06/17 12:46:29 by hhow-cho          #+#    #+#             */
-/*   Updated: 2019/07/04 16:11:05 by hhow-cho         ###   ########.fr       */
+/*   Updated: 2019/07/04 17:23:45 by hhow-cho         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -107,7 +107,6 @@ char *ft_args_tilde_get(char *str, t_env **copy_env)
 	i = 0;
 	while (str[i])
 	{
-		// je ne comprends pas poutquoi y'a pas ':' comme indiqué dans la doc
 		if (str[i] == '~' && (i == 0 || str[i - 1] == '='))
 		{
 			if (str[i + 1] == '~')

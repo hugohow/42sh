@@ -6,7 +6,7 @@
 /*   By: hhow-cho <hhow-cho@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/06/09 00:32:39 by hhow-cho          #+#    #+#             */
-/*   Updated: 2019/07/04 17:06:35 by hhow-cho         ###   ########.fr       */
+/*   Updated: 2019/07/04 17:36:12 by hhow-cho         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -119,7 +119,7 @@ typedef struct	s_vars
 	t_ht 	*hash_table;
 }				t_vars;
 
-typedef int		(t_ft_apply)(t_cmd *, int);
+typedef int		(t_ft_apply)(t_cmd *);
 
 typedef struct s_fts_apply
 {
@@ -252,14 +252,14 @@ char *ft_strjoin_(char *str1, char *str2, char *str3);
 char *ft_strjoin_free_first(char *prefix, char *to_free);
 char *ft_strjoin_free_second(char *prefix, char *to_free);
 
-int ft_apply_key(t_cmd *cmd, int to_write);
+int ft_apply_key(t_cmd *cmd);
 
-int ft_apply_tab(t_cmd *cmd, int to_write);
-int ft_apply_ctrl_c(t_cmd *cmd, int to_write);
-int ft_apply_ctrl_d(t_cmd *cmd, int to_write);
-int ft_apply_del(t_cmd *cmd, int to_write);
-int ft_apply_printable(t_cmd *cmd, int to_write);
-int ft_apply_enter(t_cmd *cmd, int to_write);
+int ft_apply_tab(t_cmd *cmd);
+int ft_apply_ctrl_c(t_cmd *cmd);
+int ft_apply_ctrl_d(t_cmd *cmd);
+int ft_apply_del(t_cmd *cmd);
+int ft_apply_printable(t_cmd *cmd);
+int ft_apply_enter(t_cmd *cmd);
 
 t_vars     *ft_vars_get(void);
 void     *ft_vars_get_value(long key);

@@ -6,7 +6,7 @@
 /*   By: hhow-cho <hhow-cho@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/06/28 03:25:09 by hhow-cho          #+#    #+#             */
-/*   Updated: 2019/06/28 22:33:47 by hhow-cho         ###   ########.fr       */
+/*   Updated: 2019/07/04 17:35:28 by hhow-cho         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,7 @@ static const	t_fts_apply fcts[] =
 };
 
 
-int ft_apply_key(t_cmd *cmd, int to_write)
+int ft_apply_key(t_cmd *cmd)
 {
 	int			i;
 	t_ft_apply 	*ft;
@@ -34,10 +34,10 @@ int ft_apply_key(t_cmd *cmd, int to_write)
 		if (fcts[i].key == cmd->last_key)
 		{
 			ft = fcts[i].fct;
-			return (ft(cmd, to_write));
+			return (ft(cmd));
 		}
 		i++;
 	}
 	ft = fcts[i].fct;
-	return (ft(cmd, to_write));
+	return (ft(cmd));
 }

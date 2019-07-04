@@ -6,15 +6,15 @@
 /*   By: hhow-cho <hhow-cho@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/06/28 03:17:45 by hhow-cho          #+#    #+#             */
-/*   Updated: 2019/06/28 22:33:36 by hhow-cho         ###   ########.fr       */
+/*   Updated: 2019/07/04 17:35:17 by hhow-cho         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "shell.h"
 
-int ft_apply_enter(t_cmd *cmd, int to_write)
+int ft_apply_enter(t_cmd *cmd)
 {
-	if (cmd && to_write)
+	if (cmd)
 	{
 		
 	}

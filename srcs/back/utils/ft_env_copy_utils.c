@@ -6,7 +6,7 @@
 /*   By: hhow-cho <hhow-cho@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/07/04 17:05:15 by hhow-cho          #+#    #+#             */
-/*   Updated: 2019/07/04 17:05:42 by hhow-cho         ###   ########.fr       */
+/*   Updated: 2019/07/04 17:17:28 by hhow-cho         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -64,7 +64,6 @@ t_env **ft_env_increment_shlvl(t_env **copy)
 			break ;
 		i++;
 	}
-
 	nb = ft_atoi(copy[i]->line + 6) + 1;
 	if (nb < 0)
 		nb = 0;
