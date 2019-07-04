@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_terminal_read_key.c                             :+:      :+:    :+:   */
+/*   ft_interactive_read_key.c                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: hhow-cho <hhow-cho@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/06/19 23:11:34 by hhow-cho          #+#    #+#             */
-/*   Updated: 2019/06/21 14:28:35 by hhow-cho         ###   ########.fr       */
+/*   Updated: 2019/07/04 16:35:07 by hhow-cho         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,7 @@
 ** Read key of ascii table
 */
 
-int ft_terminal_read_key(void)
+int ft_interactive_read_key(void)
 {
 	int	nread;
 	char	seq[4];

@@ -1,84 +1,16 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_get_args_dollar.c                               :+:      :+:    :+:   */
+/*   ft_args_dollar_replace_expansion.c                 :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: hhow-cho <hhow-cho@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2019/06/16 13:42:37 by hhow-cho          #+#    #+#             */
-/*   Updated: 2019/07/03 16:53:30 by hhow-cho         ###   ########.fr       */
+/*   Created: 2019/07/04 16:04:27 by hhow-cho          #+#    #+#             */
+/*   Updated: 2019/07/04 16:21:00 by hhow-cho         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "shell.h"
-
-
-static int	ft_is_special_param(char c)
-{
-	if (c == '*' || c == '@' || c == '#' || c == '?'|| c == '-' || c == '$' || c == '!')
-		return (1);
-	return (0);
-}
-
-/*
-** lenght of {PATH} or $@
-*/
-
-static int get_expansion_length(char *str)
-{
-	int ret;
-
-	ret = 1;
-	if (str[ret] == 0)
-		return (0);
-	if (str[ret] == '{')
-	{
-		ret++;
-		if (ft_isdigit(str[ret]) && str[ret] != '}')
-		{
-			ft_dprintf(2, "minishell: bad substitution\n");
-			return (-1);
-		}
-		while (str[ret] && str[ret] != '}')
-		{
-			if (ft_is_special_param(str[ret]) && ret != 2)
-			{
-				ft_dprintf(2, "minishell: bad substitution\n");
-				return (-1);
-			}
-			if (ft_is_special_param(str[ret]) == 0 && ft_isalnum(str[ret]) == 0 && str[ret] != '_')
-			{
-				ft_dprintf(2, "minishell: bad substitution\n");
-				return (-1);
-			}
-			ret++;
-		}
-		if (str[ret] == 0)
-		{
-			ft_dprintf(2, "minishell: bad substitution\n");
-			return (-1);
-		}
-		ret++;
-	}
-	else
-	{
-		if (ft_isdigit(str[ret]))
-			return (ret + 1);
-		while (str[ret] && str[ret] != '/')
-		{
-			if (ft_is_special_param(str[ret]))
-			{
-				if (ret == 1)
-					ret++;
-				break;
-			}
-			else if (ft_isalnum(str[ret]) == 0 && str[ret] != '_')
-				break ;
-			ret++;
-		}
-	}
-	return (ret);
-}
 
 
 /*
@@ -155,55 +87,26 @@ static char *resolve_expansion(char *str, int start, int end, t_env **copy_env)
 	}
 }
 
+
 /*
 ** replace ${PATH}
 */
 
-static char *replace_expansion(char *str, int i, int ret, t_env **copy_env)
+char *ft_args_dollar_replace_expansion(char *str, int i, int ret, t_env **copy_env)
 {
-	char *tmp;
 	char *expansion;
+	char *to_free;
 	int start;
 	int end;
 
 	start = i;
 	end = i + ret;
 	expansion = resolve_expansion(str, start, end, copy_env);
-	tmp = ft_strjoin(expansion, str + end);
+
+	to_free = str;
 	str[start] = 0;
-	str = ft_strjoin_free_first(str, tmp);
-	ft_memdel((void **)&tmp);
+	str = ft_strjoin_(str, expansion, str + end);
+	ft_memdel((void **)&to_free);
 	ft_memdel((void **)&expansion);
-	return (str);
-}
-
-
-char *ft_get_args_dollar(char *str, t_env **copy_env, int *p_result_parsing)
-{
-	int i;
-	int ret;
-
-	i = 0;
-	while (str[i])
-	{
-		if (str[i] == '$')
-		{
-			ret = get_expansion_length(str + i);
-			if (ret == -1)
-			{
-				*p_result_parsing = 1;
-				ft_memdel((void **)&str);
-				return (NULL);
-			}
-			if (ret != 0)
-				str = replace_expansion(str, i, ret, copy_env);
-		}
-		i++;
-	}
-	if (ft_strlen(str) == 0)
-	{
-		ft_memdel((void **)&str);
-		return (ft_strdup(""));
-	}
 	return (str);
 }

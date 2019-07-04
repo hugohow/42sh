@@ -1,18 +1,18 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_get_args.c                                      :+:      :+:    :+:   */
+/*   ft_args_get.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: hhow-cho <hhow-cho@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/06/14 14:25:36 by hhow-cho          #+#    #+#             */
-/*   Updated: 2019/06/28 16:28:19 by hhow-cho         ###   ########.fr       */
+/*   Updated: 2019/07/04 16:10:40 by hhow-cho         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "shell.h"
 
-char **ft_get_args(char *cmd, t_env **copy_env, int *p_result_parsing)
+char **ft_args_get(char *cmd, t_env **copy_env, int *p_result_parsing)
 {
 	char	**args;
 	int		i;
@@ -22,7 +22,7 @@ char **ft_get_args(char *cmd, t_env **copy_env, int *p_result_parsing)
 	i = 0;	
 	while (args && args[i])
 	{
-		args[i] = ft_get_args_dollar(args[i], copy_env, p_result_parsing);
+		args[i] = ft_args_dollar_get(args[i], copy_env, p_result_parsing);
 		if (args[i] == NULL)
 		{
 			j = i + 1;
@@ -34,7 +34,7 @@ char **ft_get_args(char *cmd, t_env **copy_env, int *p_result_parsing)
 			ft_list_free(&args);
 			return (NULL);
 		}
-		args[i] = ft_get_args_tilde(args[i], copy_env);
+		args[i] = ft_args_tilde_get(args[i], copy_env);
 		args[i] = ft_strtrim_free(args[i]);
 		i++;
 	}

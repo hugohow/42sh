@@ -1,18 +1,18 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_terminal_prompt.c                               :+:      :+:    :+:   */
+/*   ft_interactive_prompt.c                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: hhow-cho <hhow-cho@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/06/24 23:13:26 by hhow-cho          #+#    #+#             */
-/*   Updated: 2019/07/03 22:15:36 by hhow-cho         ###   ########.fr       */
+/*   Updated: 2019/07/04 16:35:04 by hhow-cho         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "shell.h"
 
-void ft_terminal_prompt(void)
+void ft_interactive_prompt(void)
 {
 	char *cwd;
 

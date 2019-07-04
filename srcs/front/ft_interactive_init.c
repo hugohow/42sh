@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_terminal_init.c                                 :+:      :+:    :+:   */
+/*   ft_interactive_init.c                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: hhow-cho <hhow-cho@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/06/19 23:08:39 by hhow-cho          #+#    #+#             */
-/*   Updated: 2019/07/03 14:21:40 by hhow-cho         ###   ########.fr       */
+/*   Updated: 2019/07/04 16:35:01 by hhow-cho         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,7 +30,7 @@ static struct termios get_new_config(struct termios old_config)
 }
 
 
-int ft_terminal_init(void)
+int ft_interactive_init(void)
 {
 	t_env **copy_env;
     char *term_name;

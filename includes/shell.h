@@ -6,7 +6,7 @@
 /*   By: hhow-cho <hhow-cho@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/06/09 00:32:39 by hhow-cho          #+#    #+#             */
-/*   Updated: 2019/07/04 01:58:05 by hhow-cho         ###   ########.fr       */
+/*   Updated: 2019/07/04 17:06:35 by hhow-cho         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -133,15 +133,17 @@ typedef struct s_fts_apply
 
 int ft_interactive_exec(void);
 int ft_non_interactive_exec(char **argv);
-int ft_stdin_get_cmd(int fd, char **command, t_env **copy_env);
+int ft_non_interactive_get_cmd(int fd, char **command, t_env **copy_env);
 
 /*
 ** Functions for terminal interactions
 */
 
-int ft_terminal_get_cmd(char **command, t_env **copy_env);
-int ft_terminal_read_key(void);
-void ft_terminal_prompt(void);
+int ft_interactive_get_cmd(char **command, t_env **copy_env);
+int ft_interactive_read_key(void);
+void ft_interactive_prompt(void);
+int ft_interactive_init();
+void ft_interactive_exit();
 
 t_node **get_child(t_node *node, char *cmd, t_env **copy_env);
 t_node *create_node(long type, char *cmd, t_env **copy_env);
@@ -168,7 +170,13 @@ char *ft_env_get_value(t_env **cpy_environ, char *prefix);
 int ft_env_delete_line(char *prefix, t_env **cpy_environ);
 int ft_env_change_line(char *prefix, char *line, t_env **cpy_environ);
 char **ft_env_raw(t_env **cpy_environ);
+
 t_env **ft_env_copy_raw(char **str, char **argv);
+t_env **ft_env_copy_exit(t_env **env);
+t_env **ft_env_add_default_pwd(t_env **copy);
+t_env **ft_env_add_default_shlvl(t_env **copy);
+t_env **ft_env_increment_shlvl(t_env **copy);
+
 void ft_env_add(char *prefix, char *line, t_env ***p_environ);
 int ft_env_cmp_prefix(char *prefix, char *line);
 t_env **ft_env_deep_copy(t_env **str);
@@ -213,8 +221,6 @@ void ft_list_free_n(char ***p_list, size_t len);
 
 int ft_is_path(char *cmd);
 void ft_print_env(t_env **str, int fds[]);
-int ft_terminal_init();
-void ft_terminal_exit();
 void print_cmd(char *cmd);
 void add_to_stdout(char **p_cmd, int c, int *index);
 void delete_n_lines(int n);
@@ -229,13 +235,16 @@ void ft_syntax_tree_free(t_node **root);
 
 
 int ft_exe_bin(t_node *node, t_env ***p_environ, int fds[]);
-void    ft_execute_tree(t_node *node, t_env ***p_environ, int fds[], int *p_success);
+void    ft_syntax_tree_execute(t_node *node, t_env ***p_environ, int fds[], int *p_success);
 t_node **ft_get_semi_colon_child(t_node *node, char *cmd, t_env **copy_env);
 t_ht *ft_bins_table_create(char *line);
 t_ht * ft_bins_table_get(t_env **copy_environ);
-char **ft_get_args(char *cmd, t_env **copy_env, int *p_result_parsing);
-char *ft_get_args_dollar(char *str, t_env **copy_env, int *p_result_parsing);
-char *ft_get_args_tilde(char *str, t_env **copy_env);
+char **ft_args_get(char *cmd, t_env **copy_env, int *p_result_parsing);
+char *ft_args_dollar_get(char *str, t_env **copy_env, int *p_result_parsing);
+char *ft_args_dollar_replace_expansion(char *str, int i, int ret, t_env **copy_env);
+int ft_args_dollar_is_valid(char *str);
+
+char *ft_args_tilde_get(char *str, t_env **copy_env);
 int	ft_isatty(int fd);
 char *ft_node_join(t_list *head, unsigned long long size);
 char			**ft_str_separate(char const *str, char c);

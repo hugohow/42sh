@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_get_args_tilde.c                                :+:      :+:    :+:   */
+/*   ft_args_tilde_get.c                                :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: hhow-cho <hhow-cho@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/06/17 12:46:29 by hhow-cho          #+#    #+#             */
-/*   Updated: 2019/07/02 12:34:05 by hhow-cho         ###   ########.fr       */
+/*   Updated: 2019/07/04 16:11:05 by hhow-cho         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,24 +16,27 @@
 ** ~/ -> ${HOME}/
 */
 
-static char *ft_replace_by_home(char *str, int i, char *line)
+static char *ft_replace_by_home(char *str, int i, t_env **copy_env)
 {
 	char *to_free;
+	char *line;
 
 	to_free = NULL;
+	line = ft_env_get_value(copy_env, "HOME");
 	if (line)
 	{
+		to_free = str;
 		str[i] = 0;
 		if (str[i + 1] == '/')
 		{
-			to_free = ft_strjoin(line, str + i + 1);
+			str = ft_strjoin_(str, line, str + i + 1);
 		}
 		else if (str[i + 1] == 0)
 		{
-			to_free = ft_strdup(line);
+			str = ft_strjoin(str, line);	
 		}
-		str = ft_strjoin_free_first(str, to_free);
 		ft_memdel((void **)&to_free);
+
 	}
 	return (str);
 }
@@ -42,24 +45,26 @@ static char *ft_replace_by_home(char *str, int i, char *line)
 ** ~-/ -> ${OLDPWD}/
 */
 
-static char *ft_replace_by_oldpwd(char *str, int i, char *line)
+static char *ft_replace_by_oldpwd(char *str, int i, t_env **copy_env)
 {
 	char *to_free;
+	char *line;
 
 	to_free = NULL;
+	line = ft_env_get_value(copy_env, "OLDPWD");
 	if (line)
 	{
+		to_free = str;
 		str[i] = 0;
 		str[i + 1] = 0;
 		if (str[i + 2] == '/')
 		{
-			to_free = ft_strjoin(line, str + i + 2);
+			str = ft_strjoin_(str, line, str + i + 2);
 		}
 		else if (str[i + 2] == 0)
 		{
-			to_free = ft_strdup(line);
+			str = ft_strjoin(str, line);
 		}
-		str = ft_strjoin_free_first(str, to_free);
 		ft_memdel((void **)&to_free);
 	}
 	return (str);
@@ -69,33 +74,34 @@ static char *ft_replace_by_oldpwd(char *str, int i, char *line)
 ** ~+/ -> ${PWD}/
 */
 
-static char *ft_replace_by_pwd(char *str, int i, char *line)
+static char *ft_replace_by_pwd(char *str, int i, t_env **copy_env)
 {
 	char *to_free;
+	char *line;
 
 	to_free = NULL;
+	line = ft_env_get_value(copy_env, "PWD");
 	if (line)
 	{
+		to_free = str;
 		str[i] = 0;
 		str[i + 1] = 0;
 		if (str[i + 2] == '/')
 		{
-			to_free = ft_strjoin(line, str + i + 2);
+			str = ft_strjoin_(str, line, str + i + 2);
 		}
 		else if (str[i + 2] == 0)
 		{
-			to_free = ft_strdup(line);
+			str = ft_strjoin(str, line);
 		}
-		str = ft_strjoin_free_first(str, to_free);
 		ft_memdel((void **)&to_free);
 	}
 	return (str);
 }
 
 
-char *ft_get_args_tilde(char *str, t_env **copy_env)
+char *ft_args_tilde_get(char *str, t_env **copy_env)
 {
-	char *line;
 	int i;
 
 	i = 0;
@@ -105,36 +111,13 @@ char *ft_get_args_tilde(char *str, t_env **copy_env)
 		if (str[i] == '~' && (i == 0 || str[i - 1] == '='))
 		{
 			if (str[i + 1] == '~')
-			{
 				i++;
-			}
 			else if (str[i + 1] == 0 || str[i + 1] == '/')
-			{
-				line = ft_env_get_value(copy_env, "HOME");
-				if (line)
-				{
-					str = ft_replace_by_home(str, i , line);
-					return (ft_get_args_tilde(str, copy_env));
-				}
-			}
+				str = ft_replace_by_home(str, i , copy_env);
 			else if (str[i + 1] == '-' && (str[i + 2] == 0 || str[i + 2] == '/'))
-			{
-				line = ft_env_get_value(copy_env, "OLDPWD");
-				if (line)
-				{
-					str = ft_replace_by_oldpwd(str, i , line);
-					return (ft_get_args_tilde(str, copy_env));
-				}
-			}
+				str = ft_replace_by_oldpwd(str, i , copy_env);
 			else if (str[i + 1] == '+' && (str[i + 2] == 0 || str[i + 2] == '/'))
-			{
-				line = ft_env_get_value(copy_env, "PWD");
-				if (line)
-				{
-					str = ft_replace_by_pwd(str, i , line);
-					return (ft_get_args_tilde(str, copy_env));
-				}
-			}
+				str = ft_replace_by_pwd(str, i , copy_env);
 		}
 		i++;
 	}

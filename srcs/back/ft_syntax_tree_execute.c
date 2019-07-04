@@ -1,18 +1,18 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_execute_tree.c                                  :+:      :+:    :+:   */
+/*   ft_syntax_tree_execute.c                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: hhow-cho <hhow-cho@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/06/26 14:24:52 by hhow-cho          #+#    #+#             */
-/*   Updated: 2019/07/03 15:18:15 by hhow-cho         ###   ########.fr       */
+/*   Updated: 2019/07/04 03:30:33 by hhow-cho         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "shell.h"
 
-void    ft_execute_tree(t_node *node, t_env ***p_environ, int fds[], int *p_success)
+void    ft_syntax_tree_execute(t_node *node, t_env ***p_environ, int fds[], int *p_success)
 {
 	int k;
 
@@ -28,7 +28,7 @@ void    ft_execute_tree(t_node *node, t_env ***p_environ, int fds[], int *p_succ
     {
         while (node->child[k])
         {
-            ft_execute_tree(node->child[k], p_environ, fds, p_success);
+            ft_syntax_tree_execute(node->child[k], p_environ, fds, p_success);
 			if ((node->child[k])->args == NULL)
 				return ;
 			if (*((int *)ft_vars_get_value(KEY_MUST_EXIT)) == 1)

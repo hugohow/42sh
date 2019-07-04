@@ -6,7 +6,7 @@
 /*   By: hhow-cho <hhow-cho@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/06/28 03:05:18 by hhow-cho          #+#    #+#             */
-/*   Updated: 2019/06/28 23:00:21 by hhow-cho         ###   ########.fr       */
+/*   Updated: 2019/07/04 16:35:19 by hhow-cho         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,7 +30,7 @@ int ft_apply_del(t_cmd *cmd, int to_write)
 	join = ft_node_join(head, cmd->size);
 	if (to_write)
 	{
-		ft_terminal_prompt();
+		ft_interactive_prompt();
 		tputs(tgetstr("ce", NULL), 1, my_outc);
 		ft_putstr_fd(join, 0);
 	}
