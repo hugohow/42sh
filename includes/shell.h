@@ -6,7 +6,7 @@
 /*   By: hhow-cho <hhow-cho@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/06/09 00:32:39 by hhow-cho          #+#    #+#             */
-/*   Updated: 2019/07/04 18:47:27 by hhow-cho         ###   ########.fr       */
+/*   Updated: 2019/07/04 20:31:48 by hhow-cho         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -103,6 +103,7 @@ typedef struct	s_cmd
 # define KEY_P_COPY_ENV (2 << 4)
 # define KEY_PID (2 << 4)
 # define KEY_CWD (2 << 5)
+# define KEY_LAST_KEY (2 << 6)
 
 typedef struct	s_vars
 {
@@ -117,6 +118,7 @@ typedef struct	s_vars
 	int 	argc;
 	char	*cwd;
 	t_ht 	*hash_table;
+	int		last_key;
 }				t_vars;
 
 typedef int		(t_ft_apply)(t_cmd *);
@@ -210,6 +212,9 @@ int 	ft_exit(char **argv, t_env ***p_cpy_environ, int fds[]);
 
 
 char *ft_env_autocomplete_cmd(char *begin, t_env **copy_env);
+const char *ft_env_autocomplete_sugg_builtins(char *begin);
+const char *ft_env_autocomplete_sugg_table(t_ht *table, char *begin);
+
 char *ft_path_trim(char *path);
 char *ft_path_trim_free(char *abs_path);
 

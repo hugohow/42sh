@@ -6,7 +6,7 @@
 /*   By: hhow-cho <hhow-cho@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/06/09 01:53:37 by hhow-cho          #+#    #+#             */
-/*   Updated: 2019/07/04 17:36:43 by hhow-cho         ###   ########.fr       */
+/*   Updated: 2019/07/04 20:35:45 by hhow-cho         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,6 +45,7 @@ int ft_interactive_get_cmd(char **command, t_env **copy_env)
 	{
 		ret = ft_interactive_read_key();
 		cmd->last_key = ret;
+		*((int *)ft_vars_get_value(KEY_LAST_KEY)) = (int)ret;
 		ret = ft_apply_key(cmd);
 		if (ret == 0)
 			break ;

@@ -6,11 +6,25 @@
 /*   By: hhow-cho <hhow-cho@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/06/26 22:25:42 by hhow-cho          #+#    #+#             */
-/*   Updated: 2019/07/04 16:36:51 by hhow-cho         ###   ########.fr       */
+/*   Updated: 2019/07/04 20:37:59 by hhow-cho         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "shell.h"
+
+static void init_exec_fds(int *p_fd, int fds[], char **argv)
+{
+	fds[0] = 0;
+	fds[1] = 1;
+	fds[2] = 2;
+	*p_fd = ft_isatty(0) == 0 ? 0 : open(argv[1], O_RDONLY);
+	if (*p_fd < 0)
+	{
+		ft_vars_free();
+		ft_dprintf(fds[2], "shell: %s: No such file or directory\n", argv[1]);
+		exit(EXIT_UTILITY_NOT_FOUND);
+	}
+}
 
 int ft_non_interactive_exec(char **argv)
 {
@@ -18,29 +32,18 @@ int ft_non_interactive_exec(char **argv)
 	int success;
 	int fds[3];
 	int fd;
-	int end;
 	t_env ***p_copy_env;
 
 	p_copy_env = ft_vars_get_p_copy_env();
-	fds[0] = 0;
-	fds[1] = 1;
-	fds[2] = 2;
 	success = 0;
-	fd = ft_isatty(0) == 0 ? 0 : open(argv[1], O_RDONLY);
-	if (fd < 0)
-	{
-		ft_env_free(p_copy_env);
-		ft_dprintf(fds[2], "shell: %s: No such file or directory\n", argv[1]);
-		exit(EXIT_UTILITY_NOT_FOUND);
-	}
-	end = 0;
+	init_exec_fds(&fd, fds, argv);
 	while (42)
 	{
-		end = ft_non_interactive_get_cmd(fd, &command, *p_copy_env);
+		ft_non_interactive_get_cmd(fd, &command, *p_copy_env);
 		ft_cmd_exec(command, p_copy_env, fds, &success);
 		if (*((int *)ft_vars_get_value(KEY_MUST_EXIT)) == 1)
 			break ;
-		if (end == 1)
+		if (*((int *)ft_vars_get_value(KEY_LAST_KEY)) == 0)
 			break;
 	}
 	if (fd != 0)

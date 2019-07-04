@@ -6,7 +6,7 @@
 /*   By: hhow-cho <hhow-cho@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/06/20 13:58:20 by hhow-cho          #+#    #+#             */
-/*   Updated: 2019/07/04 01:56:40 by hhow-cho         ###   ########.fr       */
+/*   Updated: 2019/07/04 20:39:05 by hhow-cho         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -116,7 +116,7 @@ int ft_env(char **argv, t_env **cpy_environ, int fds[])
 	if (pid < 0)
     {
         ft_putstr_fd("erreur pid", fds[2]);
-        exit(1);
+        return (1);
     }
     if (pid == 0)
     {
@@ -129,7 +129,7 @@ int ft_env(char **argv, t_env **cpy_environ, int fds[])
 		
         w = waitpid(pid, &waitstatus, WUNTRACED | WCONTINUED);
         if (w == -1)
-            exit(EXIT_FAILURE);
+            return (EXIT_FAILURE);
         if (WIFEXITED(waitstatus)) {
             // printf("terminé, code=%d\n", WEXITSTATUS(waitstatus));
         } else if (WIFSIGNALED(waitstatus)) {
