@@ -6,7 +6,7 @@
 /*   By: hhow-cho <hhow-cho@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/06/16 15:12:28 by hhow-cho          #+#    #+#             */
-/*   Updated: 2019/07/04 17:05:51 by hhow-cho         ###   ########.fr       */
+/*   Updated: 2019/07/04 20:59:06 by hhow-cho         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,6 +44,7 @@ t_env **ft_env_copy_raw(char **str, char **argv)
 	    copy[i]->line = ft_strdup(str[i]);
         i++;
     }
+	copy[i] = 0;
 	ft_get_bins_table(copy);
 	if (ft_env_get_line(copy, "SHLVL") == NULL)
 		copy = ft_env_add_default_shlvl(copy);

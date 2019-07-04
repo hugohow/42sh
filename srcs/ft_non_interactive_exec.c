@@ -6,7 +6,7 @@
 /*   By: hhow-cho <hhow-cho@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/06/26 22:25:42 by hhow-cho          #+#    #+#             */
-/*   Updated: 2019/07/04 20:37:59 by hhow-cho         ###   ########.fr       */
+/*   Updated: 2019/07/04 22:07:31 by hhow-cho         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,10 @@ static void init_exec_fds(int *p_fd, int fds[], char **argv)
 	fds[0] = 0;
 	fds[1] = 1;
 	fds[2] = 2;
-	*p_fd = ft_isatty(0) == 0 ? 0 : open(argv[1], O_RDONLY);
+	if (argv[1])
+		*p_fd = open(argv[1], O_RDONLY);
+	else
+		*p_fd = 0;
 	if (*p_fd < 0)
 	{
 		ft_vars_free();

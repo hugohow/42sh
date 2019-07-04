@@ -6,7 +6,7 @@
 /*   By: hhow-cho <hhow-cho@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/06/09 00:32:39 by hhow-cho          #+#    #+#             */
-/*   Updated: 2019/07/04 20:31:48 by hhow-cho         ###   ########.fr       */
+/*   Updated: 2019/07/04 22:49:52 by hhow-cho         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,8 +27,6 @@
 #include <signal.h>
 #include <sys/uio.h>
 #include <term.h>
-#include <curses.h>
-
 #include "libft.h"
 #include "ht.h"
 #include "ft_printf.h"
