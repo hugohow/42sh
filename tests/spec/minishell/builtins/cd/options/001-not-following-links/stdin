@@ -1,3 +1,0 @@
-cd -P sub_directory_link
-cd -P sub_sub_directory_link
-${GLOBAL_TMP_DIRECTORY}/display_env

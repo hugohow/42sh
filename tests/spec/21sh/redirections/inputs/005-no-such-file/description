@@ -1,1 +1,0 @@
-The purpose of this test is to check that using a wrong path within the STDIN redirection `<` results in an error.

@@ -1,1 +1,0 @@
-The purpose of this test is to check that using the builtin `cd` without any argument results in moving to the HOME directory.

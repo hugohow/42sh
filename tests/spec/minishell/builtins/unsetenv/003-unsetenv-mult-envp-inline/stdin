@@ -1,3 +1,0 @@
-unsetenv ONE TWO THREE
-unset ONE TWO THREE
-./display_env

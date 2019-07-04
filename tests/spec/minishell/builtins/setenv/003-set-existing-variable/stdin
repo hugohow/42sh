@@ -1,8 +1,0 @@
-setenv TESTVAR1 NEW_${GLOBAL_TOKEN}
-./display_env
-
-setenv TESTVAR1=NEW_${GLOBAL_TOKEN}
-./display_env
-
-export TESTVAR1=NEW_${GLOBAL_TOKEN}
-./display_env

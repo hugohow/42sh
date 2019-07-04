@@ -1,1 +1,0 @@
-env -i TESTVARIABLE=${GLOBAL_TOKEN} ./display_env

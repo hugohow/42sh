@@ -1,1 +1,0 @@
-The purpose of this test is to check that exporting the same variable twice in a row does result in an updated variable, but not in a duplicated variable.

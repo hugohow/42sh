@@ -1,1 +1,0 @@
-The purpose of this test is to check that using a number as first argument with the builtin `exit` results in the Shell termination with given number as exit status.

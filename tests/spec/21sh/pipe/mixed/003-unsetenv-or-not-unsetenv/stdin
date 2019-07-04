@@ -1,1 +1,0 @@
-unsetenv VARIABLE_TEST | unset VARIABLE_TEST | ./display_env

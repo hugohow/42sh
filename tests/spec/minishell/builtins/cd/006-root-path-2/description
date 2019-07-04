@@ -1,1 +1,0 @@
-The purpose of this test is to check that using the root path as first argument with the builtin `cd` results in moving to the correct directory.

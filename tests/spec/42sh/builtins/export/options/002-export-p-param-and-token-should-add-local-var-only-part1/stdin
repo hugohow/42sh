@@ -1,2 +1,0 @@
-export -p ${GLOBAL_TOKEN}_NAME
-export

@@ -1,1 +1,0 @@
-The purpose of this test is to check that adding twice symbols `(` and `)` in a command line does not make the Shell resulting in error.

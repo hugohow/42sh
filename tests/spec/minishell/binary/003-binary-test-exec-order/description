@@ -1,1 +1,0 @@
-The purpose of this test is to check that the Shell correctly finds binaries by iterating on paths within the environment variable PATH from left to right.

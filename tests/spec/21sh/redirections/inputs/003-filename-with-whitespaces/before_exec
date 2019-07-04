@@ -1,3 +1,0 @@
-echo "${GLOBAL_TOKEN}_LINE_1" > simple_text_file
-echo "${GLOBAL_TOKEN}_LINE_2" >> simple_text_file
-echo "${GLOBAL_TOKEN}_LINE_3" >> simple_text_file

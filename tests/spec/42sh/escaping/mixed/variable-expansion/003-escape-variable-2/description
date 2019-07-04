@@ -1,1 +1,0 @@
-The purpose of this test is to check that using three backslashes `\\` before the symbol of variable expansion `$` does not result in variable expansion.

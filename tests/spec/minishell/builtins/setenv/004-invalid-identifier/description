@@ -1,1 +1,0 @@
-The purpose of this test is to check that using a wrong variable name with the builtin `setenv` (or `export`) results in error.

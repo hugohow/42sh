@@ -1,1 +1,0 @@
-The purpose of this test is to check that prematurely exiting a subshell does work and does not result in parent shell termination.

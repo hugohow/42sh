@@ -1,3 +1,0 @@
-cd symbolic_link
-${GLOBAL_TMP_DIRECTORY}/display_pwd
-${GLOBAL_TMP_DIRECTORY}/display_env

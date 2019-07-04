@@ -1,1 +1,0 @@
-rm -f "${GLOBAL_TOKEN}_FILENAME"

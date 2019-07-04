@@ -1,2 +1,0 @@
-exit 21 42
-./write_on_stdout ${GLOBAL_TOKEN}

@@ -1,1 +1,0 @@
-The purpose of this test is to check that the special variable `$?` may be expanded with the last exit status.

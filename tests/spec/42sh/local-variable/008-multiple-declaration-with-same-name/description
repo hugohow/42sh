@@ -1,1 +1,0 @@
-The purpose of this test is to check that declaring the same variable several times in the same command line does work and does not result in error.

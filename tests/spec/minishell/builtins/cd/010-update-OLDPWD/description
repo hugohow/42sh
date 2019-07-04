@@ -1,1 +1,0 @@
-The purpose of this test is to check that using the builtin `cd` results in a modified environment variable `PWD`.

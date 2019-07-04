@@ -1,1 +1,0 @@
-The purpose of this test is to check that using the right redirection `>` without any command results in the creation of an empty file (same effect as `touch`).

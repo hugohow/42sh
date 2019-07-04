@@ -1,2 +1,0 @@
-(exit ; ./write_on_stdout ${GLOBAL_TOKEN}_NOT_DISPLAYED)
-./write_on_stdout ${GLOBAL_TOKEN}_DISPLAYED

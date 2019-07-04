@@ -1,3 +1,0 @@
-export -n ${GLOBAL_TOKEN}_NAME
-export
-./display_env

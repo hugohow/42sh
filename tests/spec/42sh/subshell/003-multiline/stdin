@@ -1,4 +1,0 @@
-(
-./write_on_stdout ${GLOBAL_TOKEN}_SUBSHELL1 ;
-./write_on_stdout ${GLOBAL_TOKEN}_SUBSHELL2
-)

@@ -1,3 +1,0 @@
-TILDE:
-command : TOKEN201906241721=~
-command : ./write_on_stdout TILDE:$TOKEN201906241721

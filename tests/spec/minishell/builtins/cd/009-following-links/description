@@ -1,1 +1,0 @@
-The purpose of this test is to check that using symbolic links twice with the builtin `cd` results in a correct environment variable PWD. By default, the path to the current directory should be a non-resolved symbolic path.

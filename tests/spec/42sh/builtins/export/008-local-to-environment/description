@@ -1,1 +1,0 @@
-The purpose of this test is to check that a declared local variable may be exported to the environment with the builtin `export`.

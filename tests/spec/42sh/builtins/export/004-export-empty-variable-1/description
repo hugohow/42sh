@@ -1,1 +1,0 @@
-The purpose of this test is to check that exporting an empty variable does not add it to the environment.

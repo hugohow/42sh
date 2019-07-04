@@ -1,1 +1,0 @@
- The purpose of this test is to check that using the builtin `export` with option `-n` results in a removed environment variable.

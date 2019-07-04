@@ -1,2 +1,0 @@
-exit abc
-./write_on_stdout ${GLOBAL_TOKEN}
