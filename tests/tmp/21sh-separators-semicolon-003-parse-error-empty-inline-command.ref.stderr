@@ -1,0 +1,2 @@
+/usr/local/bin/bash: line 1: syntax error near unexpected token `;'
+/usr/local/bin/bash: line 1: `./write_on_stdout TOKEN201906152138 ; ; ./exit_with_status 42'

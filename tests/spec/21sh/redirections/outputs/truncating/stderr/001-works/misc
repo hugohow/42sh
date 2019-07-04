@@ -1,0 +1,2 @@
+expected_to create_file "new_file_stderr" matching_regex "${GLOBAL_TOKEN}_STDERR"
+expected_to create_file "new_file_stderr" with_nb_of_lines 1

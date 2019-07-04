@@ -1,0 +1,2 @@
+/usr/local/bin/bash: line 1: export: -w: invalid option
+export: usage: export [-fn] [name[=value] ...] or export -p

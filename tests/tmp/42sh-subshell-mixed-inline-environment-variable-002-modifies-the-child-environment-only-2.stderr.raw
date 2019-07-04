@@ -1,0 +1,3 @@
+shell: command not found: (
+Too many symbolic links
+./lib/main.sh: line 102: 60571 Segmentation fault: 11  /Users/hugohow-choong/42/42sh/minishell
