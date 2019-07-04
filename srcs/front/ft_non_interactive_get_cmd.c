@@ -6,7 +6,7 @@
 /*   By: hhow-cho <hhow-cho@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/07/04 16:36:32 by hhow-cho          #+#    #+#             */
-/*   Updated: 2019/07/04 16:36:46 by hhow-cho         ###   ########.fr       */
+/*   Updated: 2019/07/04 19:53:22 by hhow-cho         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,9 +52,7 @@ int ft_non_interactive_get_cmd(int fd, char **command, t_env **copy_env)
 		}
 		cmd->last_key = (int)ret;
 		if (ret == '\n' || ret == '\0')
-		{
 			break ;
-		}
 		node = ft_lstnew((void *)&(cmd->last_key), sizeof(int));
 		ft_lstinsert(&head, node);
 		cmd->size = cmd->size + 1;

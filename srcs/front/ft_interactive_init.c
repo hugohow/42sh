@@ -6,7 +6,7 @@
 /*   By: hhow-cho <hhow-cho@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/06/19 23:08:39 by hhow-cho          #+#    #+#             */
-/*   Updated: 2019/07/04 16:35:01 by hhow-cho         ###   ########.fr       */
+/*   Updated: 2019/07/04 20:00:15 by hhow-cho         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,16 +29,11 @@ static struct termios get_new_config(struct termios old_config)
 	return (new_config);
 }
 
-
-int ft_interactive_init(void)
+static int handle_errors(t_env **copy_env)
 {
-	t_env **copy_env;
-    char *term_name;
-    int ret;
-	t_vars 	*p_vars;
+	int ret;
+	char *term_name;
 
-	p_vars = ft_vars_get();
-	copy_env = ft_vars_get_copy_env();
     if ((term_name = ft_env_get_value(copy_env, "TERM")))
 		ret = tgetent(NULL, term_name);
 	else
@@ -54,6 +49,20 @@ int ft_interactive_init(void)
 		ft_putstr_fd(term_name, STDERR_FILENO);
         return (-1);
     }
+	return (ret);
+}
+
+
+int ft_interactive_init(void)
+{
+	t_env **copy_env;
+    int ret;
+	t_vars 	*p_vars;
+
+	p_vars = ft_vars_get();
+	copy_env = ft_vars_get_copy_env();
+	if ((ret = handle_errors(copy_env)) < 0)
+		return (-1);
 	tcgetattr(STDIN_FILENO, &(p_vars->old_config));
     p_vars->new_config = get_new_config(p_vars->old_config);
   	tcsetattr(0, TCSAFLUSH, &(p_vars->new_config));
