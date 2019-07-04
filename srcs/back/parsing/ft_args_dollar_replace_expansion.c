@@ -6,11 +6,46 @@
 /*   By: hhow-cho <hhow-cho@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/07/04 16:04:27 by hhow-cho          #+#    #+#             */
-/*   Updated: 2019/07/04 16:21:00 by hhow-cho         ###   ########.fr       */
+/*   Updated: 2019/07/04 18:33:37 by hhow-cho         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "shell.h"
+
+static int ft_args_resolve_expansion_special(char *expansion, char **p_output)
+{
+	size_t len_expansion;
+	t_vars 	*p_vars;
+	int nb;
+
+	p_vars = ft_vars_get();
+	len_expansion = 1;
+	if (ft_strncmp(expansion, "?", len_expansion) == 0)
+	{
+		*p_output = ft_itoa(p_vars->success_exit);
+		return (0);
+	}
+	if (ft_strncmp(expansion, "$", len_expansion) == 0)
+	{
+		*p_output = ft_itoa(p_vars->pid);
+		return (0);
+	}
+	if (ft_strncmp(expansion, "#", len_expansion) == 0)
+	{
+		*p_output = ft_itoa(p_vars->argc);
+		return (0);
+	}
+	if (ft_isdigit(expansion[0]))
+	{
+		nb = expansion[0] - '0';
+		if (nb < p_vars->argc)
+			*p_output = ft_strdup(p_vars->argv_list[nb]);
+		else
+			*p_output = ft_strdup("");
+		return (0);
+	}
+	return (1);
+}
 
 
 /*
@@ -18,73 +53,31 @@
 */
 
 
-static char *resolve_expansion(char *str, int start, int end, t_env **copy_env)
+static char *ft_args_resolve_expansion(char *str, int start, int end, t_env **copy_env)
 {
 	char *line;
 	char *expansion;
+	char *output;
 	size_t len_expansion;
-	t_vars 	*p_vars;
 
-	p_vars = ft_vars_get();
 	start++;
 	if (str[start] == '{')
 	{
 		expansion = str + start + 1;
 		len_expansion = end - 2 - start;
-		if (len_expansion == 1)
-		{
-			if (ft_strncmp(expansion, "?", len_expansion) == 0)
-				return (ft_itoa(p_vars->success_exit));
-			if (ft_strncmp(expansion, "$", len_expansion) == 0)
-				return (ft_itoa(p_vars->pid));
-			if (ft_strncmp(expansion, "#", len_expansion) == 0)
-				return (ft_itoa(p_vars->argc));
-			if (ft_isdigit(expansion[0]))
-			{
-				int nb;
-
-				nb = expansion[0] - '0';
-				if (nb < p_vars->argc)
-					return (ft_strdup(p_vars->argv_list[nb]));
-				else
-					return (ft_strdup(""));
-			}
-		}
-		line = ft_env_get_line_n(copy_env, expansion, len_expansion);
-		if (line)
-			return (ft_strdup(line + end - start - 1));
-		else
-			return (ft_strdup(""));
 	}
 	else
 	{
 		expansion = str + start;
 		len_expansion = end - start;
-		if (len_expansion == 1)
-		{
-			if (ft_strncmp(expansion, "?", len_expansion) == 0)
-				return (ft_itoa(p_vars->success_exit));
-			if (ft_strncmp(expansion, "$", len_expansion) == 0)
-				return (ft_itoa(p_vars->pid));
-			if (ft_strncmp(expansion, "#", len_expansion) == 0)
-				return (ft_itoa(p_vars->argc));
-			if (ft_isdigit(expansion[0]))
-			{
-				int nb;
-
-				nb = expansion[0] - '0';
-				if (nb < p_vars->argc)
-					return (ft_strdup(p_vars->argv_list[nb]));
-				else
-					return (ft_strdup(""));
-			}
-		}
-		line = ft_env_get_line_n(copy_env, expansion, len_expansion);
-		if (line)
-			return (ft_strdup(line + end - start + 1));
-		else
-			return (ft_strdup(""));
 	}
+	if (len_expansion == 1)
+	{
+		if (ft_args_resolve_expansion_special(expansion, &output) == 0)
+			return (output);
+	}
+	line = ft_env_get_value_n(copy_env, expansion, len_expansion);
+	return (ft_strdup(line));
 }
 
 
@@ -101,8 +94,9 @@ char *ft_args_dollar_replace_expansion(char *str, int i, int ret, t_env **copy_e
 
 	start = i;
 	end = i + ret;
-	expansion = resolve_expansion(str, start, end, copy_env);
-
+	expansion = ft_args_resolve_expansion(str, start, end, copy_env);
+	if (expansion == NULL)
+		expansion = ft_strdup("");
 	to_free = str;
 	str[start] = 0;
 	str = ft_strjoin_(str, expansion, str + end);

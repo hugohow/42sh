@@ -1,3 +1,3 @@
-minishell(50932,0x7fffb7f363c0) malloc: *** error for object 0x7fa3f9c022a0: pointer being freed was not allocated
+minishell(26256,0x7fffb7f363c0) malloc: *** error for object 0x7fa2224022a0: pointer being freed was not allocated
 *** set a breakpoint in malloc_error_break to debug
-./lib/main.sh: line 102: 50932 Abort trap: 6           /Users/hugohow-choong/42/42sh/minishell
+./lib/main.sh: line 102: 26256 Abort trap: 6           /Users/hugohow-choong/42/42sh/minishell
