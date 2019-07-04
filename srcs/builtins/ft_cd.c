@@ -6,7 +6,7 @@
 /*   By: hhow-cho <hhow-cho@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/06/13 19:57:57 by hhow-cho          #+#    #+#             */
-/*   Updated: 2019/07/03 22:46:28 by hhow-cho         ###   ########.fr       */
+/*   Updated: 2019/07/04 19:37:36 by hhow-cho         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,14 +37,13 @@ int ft_change_dir(char *element, t_env ***p_environ, long long flag, int fds[])
 {
     char *dest_path;
     char *old_pwd_val;
+	char *cwd;
 	int ret;
 
 	if (ft_env_get_value(*p_environ, "PWD"))
 		old_pwd_val = ft_strdup(ft_env_get_value(*p_environ, "PWD"));
 	else
 	{
-		char *cwd;
-
 		cwd = *((char **)ft_vars_get_value(KEY_CWD));
 		old_pwd_val = ft_strjoin("OLDPWD=", cwd);
 	}

@@ -6,23 +6,17 @@
 /*   By: hhow-cho <hhow-cho@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/06/09 14:28:12 by hhow-cho          #+#    #+#             */
-/*   Updated: 2019/07/04 01:56:34 by hhow-cho         ###   ########.fr       */
+/*   Updated: 2019/07/04 19:01:14 by hhow-cho         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 
 #include "shell.h"
 
-int ft_exe_path(char **argv, t_env **cpy_environ, int fds[])
+static int check_if_bin(char *path, int fds[])
 {
-    pid_t pid;
-    struct stat fileStat;
-    int waitstatus;
-    int i;
-	char *path;
-    i = 0;
+	struct stat fileStat;
 
-	path = argv[0];
 	ft_memset((void*)&fileStat, 0, sizeof(fileStat));
 	if (stat(path, &fileStat))
 	{
@@ -40,6 +34,19 @@ int ft_exe_path(char **argv, t_env **cpy_environ, int fds[])
 		ft_dprintf(fds[2], "permission denied : %s \n", path);
 		return (EXIT_FAIL);
 	}
+	return (0);
+}
+
+int ft_exe_path(char **argv, t_env **cpy_environ, int fds[])
+{
+    pid_t pid;
+    int waitstatus;
+    int i;
+	char *path;
+
+	path = argv[0];
+	if ((i = check_if_bin(path, fds)) != 0)
+		return (i);
     pid = fork();
     if (pid < 0) 
     {
@@ -48,16 +55,6 @@ int ft_exe_path(char **argv, t_env **cpy_environ, int fds[])
     }
     if (pid == 0)
     {
-    //     if (fd0 != 0)
-    //     {
-    //         dup2(fd0, STDIN_FILENO);    
-    //         close(fd0);
-    //     }
-    //     if (fd1 != 1)
-    //     {
-    //         dup2(fd1, STDOUT_FILENO);
-    //         close(fd1);
-    //     }
 		char **cpy_env_raw;
 
 		cpy_env_raw = ft_env_raw(cpy_environ);
@@ -71,15 +68,10 @@ int ft_exe_path(char **argv, t_env **cpy_environ, int fds[])
     }
 	else
 	{
-    // if (fd0 != 0)
-    //     close(fd0);
-    // if (fd1 != 1)
-    //     close(fd1);
-    // while (!WIFEXITED(waitstatus) && !WIFSIGNALED(waitstatus))
-	// {
         int w;
         w = waitpid(pid, &waitstatus, WUNTRACED | WCONTINUED);
-        if (w == -1) {
+        if (w == -1)
+		{
             // perror("waitpid");
             exit(EXIT_FAILURE);
         }
@@ -93,10 +85,7 @@ int ft_exe_path(char **argv, t_env **cpy_environ, int fds[])
         } else if (WIFCONTINUED(waitstatus)) {
             // ft_printf("relancé\n");
         }
-	// }
 	}
-	// parent
-	// ft_memdel((void **)(path));
     i = WEXITSTATUS(waitstatus);
 
     return (i);
