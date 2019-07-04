@@ -6,7 +6,7 @@
 /*   By: hhow-cho <hhow-cho@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/06/27 21:45:53 by hhow-cho          #+#    #+#             */
-/*   Updated: 2019/06/28 17:12:04 by hhow-cho         ###   ########.fr       */
+/*   Updated: 2019/07/04 18:47:18 by hhow-cho         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,31 +26,31 @@ int ft_cd_can_go_to(char *abs_path)
 }
 
 
-int ft_cd_go_to(char *curpath, int fds[])
+int ft_cd_go_to(char *path, int fds[])
 {
     struct stat fileStat;
 
 	ft_memset((void*)&fileStat, 0, sizeof(fileStat));
-	if (stat(curpath, &fileStat))
+	if (stat(path, &fileStat))
 	{
-		lstat(curpath, &fileStat);
-		if (S_ISLNK(fileStat.st_mode) && access(curpath, X_OK))
+		lstat(path, &fileStat);
+		if (S_ISLNK(fileStat.st_mode) && access(path, X_OK))
 		{
-			ft_dprintf(fds[2], "minishell: cd: Too many symbolic links: %s\n", curpath);
+			ft_dprintf(fds[2], "minishell: cd: Too many symbolic links: %s\n", path);
 			return (EXIT_FAIL);
 		}
-		ft_dprintf(fds[2], "minishell: cd: No such file or directory: %s\n", curpath);
+		ft_dprintf(fds[2], "minishell: cd: No such file or directory: %s\n", path);
 		return (EXIT_FAIL);
 	}
 	else if (!S_ISDIR(fileStat.st_mode) && !S_ISLNK(fileStat.st_mode))
 	{
-		ft_dprintf(fds[2], "minishell: cd: Not a directory: %s\n", curpath);
+		ft_dprintf(fds[2], "minishell: cd: Not a directory: %s\n", path);
 		return (EXIT_FAIL);
 	}
-	else if (access(curpath, X_OK))
+	else if (access(path, X_OK))
 	{
-		ft_dprintf(fds[2], "minishell: cd: Permission denied: %s\n", curpath);
+		ft_dprintf(fds[2], "minishell: cd: Permission denied: %s\n", path);
 		return (EXIT_FAIL);
 	}
-    return (chdir(curpath));
+    return (chdir(path));
 }
