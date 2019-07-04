@@ -63,9 +63,9 @@ rm -rf leaks
 for filename in $(ls tests/tests_sh); do
     echo Test tests/tests_sh/${filename}
 	execute_bash tests/tests_sh/${filename}
-	# echo Test leaks tests/tests_sh/${filename}
-	# valgrind --track-origins=yes --show-leak-kinds=all --track-fds=yes 		\
-	# 			--show-reachable=no --leak-check=full ./minishell tests/tests_sh/${filename} 2>> leaks
+	echo Test leaks tests/tests_sh/${filename}
+	valgrind --track-origins=yes --show-leak-kinds=all --track-fds=yes 		\
+				--show-reachable=no --leak-check=full ./minishell tests/tests_sh/${filename} 2>> leaks
 done
 
 rm -rf ${TMP_DIR} ${TMP_DIR_LOG}
