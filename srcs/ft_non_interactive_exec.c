@@ -6,11 +6,21 @@
 /*   By: hhow-cho <hhow-cho@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/06/26 22:25:42 by hhow-cho          #+#    #+#             */
-/*   Updated: 2019/07/04 23:42:25 by hhow-cho         ###   ########.fr       */
+/*   Updated: 2019/07/05 15:39:03 by hhow-cho         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "shell.h"
+
+void signal_callback_handler_non_interactive(int signum)
+{
+	if (signum == SIGINT)
+	{
+	}
+	if (signum == SIGTSTP)
+	{	
+	}
+}
 
 static void init_exec_fds(int *p_fd, int fds[], char **argv)
 {
@@ -24,6 +34,14 @@ static void init_exec_fds(int *p_fd, int fds[], char **argv)
 		ft_dprintf(fds[2], "shell: %s: No such file or directory\n", argv[1]);
 		exit(EXIT_UTILITY_NOT_FOUND);
 	}
+    if (signal(SIGINT, signal_callback_handler_non_interactive) == SIG_ERR)
+        ft_putstr_fd("can't catch SIGINT\n", 2);
+    if (signal(SIGTSTP, signal_callback_handler_non_interactive) == SIG_ERR)
+        ft_putstr_fd("can't catch SIGTSTP\n", 2);
+    if (signal(SIGTERM, signal_callback_handler_non_interactive) == SIG_ERR)
+        ft_putstr_fd("can't catch SIGTERM\n", 2);
+    if (signal(SIGQUIT, signal_callback_handler_non_interactive) == SIG_ERR)
+        ft_putstr_fd("can't catch SIGQUIT\n", 2);
 }
 
 int ft_non_interactive_exec(char **argv)

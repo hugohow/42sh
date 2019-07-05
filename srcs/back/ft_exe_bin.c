@@ -6,7 +6,7 @@
 /*   By: hhow-cho <hhow-cho@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/06/09 01:40:14 by hhow-cho          #+#    #+#             */
-/*   Updated: 2019/07/04 16:10:58 by hhow-cho         ###   ########.fr       */
+/*   Updated: 2019/07/05 14:10:28 by hhow-cho         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -80,7 +80,10 @@ int ft_exe_bin(t_node *node, t_env ***p_environ, int fds[])
 	if (node->args == NULL)
 		return (1);
 	if (node->args[0] == NULL)
-        return 0;
+	{
+		ft_list_free(&(node->args));
+		return 0;
+	}
     new_path = NULL;
 	command = node->args[0];
 	result_cmd = 0;
@@ -100,5 +103,6 @@ int ft_exe_bin(t_node *node, t_env ***p_environ, int fds[])
 		result_cmd = ft_env(node->args, *p_environ, fds);
 	else
 		result_cmd = ft_search_and_exe_bin(node->args, *p_environ, fds);
+	// ft_list_free(&(node->args));
 	return (ft_max(result_cmd, result_parsing));
 }
