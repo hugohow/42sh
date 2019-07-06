@@ -5,7 +5,7 @@ LESS=-R
 XPC_FLAGS=0x0
 TERM_PROGRAM_VERSION=388.1.3
 SSH_AUTH_SOCK=/private/tmp/com.apple.launchd.1mMa91litE/Listeners
-TERM_SESSION_ID=B96E4F69-A8AF-47A8-AFD1-83F79FEF1CA6
+TERM_SESSION_ID=1CBEDCD7-63E7-484D-A653-FF70E3CE4C7C
 PWD=/Users/hugohow-choong/42/42sh/tests/tmp
 LOGNAME=hugohow-choong
 HOME=/Users/hugohow-choong
@@ -28,7 +28,7 @@ __CF_USER_TEXT_ENCODING=0x1F5:0x0:0x1
 TERM_PROGRAM=Apple_Terminal
 OLDPWD=/Users/hugohow-choong/42/42sh/tests
 _=/Users/hugohow-choong/42/42sh/minishell
-TESTVAR1=VALUE_TOKEN201907062002
+TESTVAR1=VALUE_TOKEN201907062139
 ------------------------------
 TOTAL ENVIRONMENT VARIABLES: 30
 ------------------------------
@@ -38,7 +38,7 @@ LESS=-R
 XPC_FLAGS=0x0
 TERM_PROGRAM_VERSION=388.1.3
 SSH_AUTH_SOCK=/private/tmp/com.apple.launchd.1mMa91litE/Listeners
-TERM_SESSION_ID=B96E4F69-A8AF-47A8-AFD1-83F79FEF1CA6
+TERM_SESSION_ID=1CBEDCD7-63E7-484D-A653-FF70E3CE4C7C
 PWD=/Users/hugohow-choong/42/42sh/tests/tmp
 LOGNAME=hugohow-choong
 HOME=/Users/hugohow-choong
@@ -61,7 +61,7 @@ __CF_USER_TEXT_ENCODING=0x1F5:0x0:0x1
 TERM_PROGRAM=Apple_Terminal
 OLDPWD=/Users/hugohow-choong/42/42sh/tests
 _=/Users/hugohow-choong/42/42sh/minishell
-TESTVAR1=VALUE_TOKEN201907062002
+TESTVAR1=VALUE_TOKEN201907062139
 ------------------------------
 TOTAL ENVIRONMENT VARIABLES: 30
 ------------------------------
@@ -71,7 +71,7 @@ LESS=-R
 XPC_FLAGS=0x0
 TERM_PROGRAM_VERSION=388.1.3
 SSH_AUTH_SOCK=/private/tmp/com.apple.launchd.1mMa91litE/Listeners
-TERM_SESSION_ID=B96E4F69-A8AF-47A8-AFD1-83F79FEF1CA6
+TERM_SESSION_ID=1CBEDCD7-63E7-484D-A653-FF70E3CE4C7C
 PWD=/Users/hugohow-choong/42/42sh/tests/tmp
 LOGNAME=hugohow-choong
 HOME=/Users/hugohow-choong
@@ -94,6 +94,6 @@ __CF_USER_TEXT_ENCODING=0x1F5:0x0:0x1
 TERM_PROGRAM=Apple_Terminal
 OLDPWD=/Users/hugohow-choong/42/42sh/tests
 _=/Users/hugohow-choong/42/42sh/minishell
-TESTVAR1=VALUE_TOKEN201907062002
+TESTVAR1=VALUE_TOKEN201907062139
 ------------------------------
 TOTAL ENVIRONMENT VARIABLES: 30

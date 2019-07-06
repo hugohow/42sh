@@ -6,7 +6,7 @@
 /*   By: hhow-cho <hhow-cho@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/07/04 17:05:15 by hhow-cho          #+#    #+#             */
-/*   Updated: 2019/07/05 00:06:45 by hhow-cho         ###   ########.fr       */
+/*   Updated: 2019/07/06 21:38:40 by hhow-cho         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,7 +26,7 @@ t_env **ft_env_add_default_pwd(t_env **copy)
 	int i;
 
 	i = 0;
-	cwd = (char *)ft_vars_get_value(KEY_CWD);
+	cwd = *((char **)ft_vars_get_value(KEY_CWD));
 	while (copy[i])
 		i++;
 	if (!(copy[i] = ft_memalloc(sizeof(t_env))))

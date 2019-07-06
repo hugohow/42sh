@@ -6,7 +6,7 @@
 /*   By: hhow-cho <hhow-cho@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/06/09 00:32:39 by hhow-cho          #+#    #+#             */
-/*   Updated: 2019/07/06 19:41:56 by hhow-cho         ###   ########.fr       */
+/*   Updated: 2019/07/06 21:32:12 by hhow-cho         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -211,7 +211,7 @@ int 	ft_exit(char **argv, t_env ***p_cpy_environ, int fds[]);
 
 char *ft_env_autocomplete_cmd(char *begin, t_env **copy_env);
 const char *ft_env_autocomplete_sugg_builtins(char *begin);
-const char *ft_env_autocomplete_sugg_table(t_ht *table, char *begin);
+const char *ft_env_autocomplete_sugg_table(char *begin);
 
 char *ft_path_trim(char *path);
 char *ft_path_trim_free(char *abs_path);
@@ -243,7 +243,7 @@ int ft_exe_bin(t_node *node, t_env ***p_environ, int fds[]);
 void    ft_syntax_tree_execute(t_node *node, t_env ***p_environ, int fds[], int *p_success);
 t_node **ft_get_semi_colon_child(t_node *node, char *cmd, t_env **copy_env);
 t_ht *ft_bins_table_create(char *line);
-t_ht * ft_bins_table_get(t_env **copy_environ);
+t_ht * ft_bins_table_get(void);
 char **ft_args_get(char *cmd, t_env **copy_env, int *p_result_parsing);
 char *ft_args_dollar_get(char *str, t_env **copy_env, int *p_result_parsing);
 char *ft_args_dollar_replace_expansion(char *str, int i, int ret, t_env **copy_env);

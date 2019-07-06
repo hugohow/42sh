@@ -6,7 +6,7 @@
 /*   By: hhow-cho <hhow-cho@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/07/04 20:05:46 by hhow-cho          #+#    #+#             */
-/*   Updated: 2019/07/04 20:12:56 by hhow-cho         ###   ########.fr       */
+/*   Updated: 2019/07/06 21:32:26 by hhow-cho         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,12 +42,16 @@ const char *ft_env_autocomplete_sugg_builtins(char *begin)
 	return (suggestion);
 }
 
-const char *ft_env_autocomplete_sugg_table(t_ht *table, char *begin)
+const char *ft_env_autocomplete_sugg_table(char *begin)
 {
 	int i;
 	t_node_ht *node;
 	const char *suggestion;
-	
+	t_ht *table;
+
+	table = ft_bins_table_get();
+	if (table == NULL)
+		return (NULL);
 	i = 0;
 	suggestion = NULL;
 	while (i < (int)table->size)

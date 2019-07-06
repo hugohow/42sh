@@ -2,6 +2,6 @@
 
 _=/Users/hugohow-choong/42/42sh/minishell
 SHLVL=1
-PWD=
+PWD=/Users/hugohow-choong/42/42sh/tests/tmp
 ------------------------------
 TOTAL ENVIRONMENT VARIABLES: 4
