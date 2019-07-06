@@ -6,7 +6,7 @@
 /*   By: hhow-cho <hhow-cho@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/07/04 16:04:27 by hhow-cho          #+#    #+#             */
-/*   Updated: 2019/07/05 18:41:50 by hhow-cho         ###   ########.fr       */
+/*   Updated: 2019/07/06 18:41:31 by hhow-cho         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -67,6 +67,8 @@ static char *ft_args_resolve_expansion(char *str, int start, int end, t_env **co
 			return (output);
 	}
 	line = ft_env_get_value_n(copy_env, expansion, len_expansion);
+	if (line == NULL)
+		return (ft_strdup(""));
 	return (ft_strdup(line));
 }
 
@@ -105,6 +107,5 @@ char *ft_args_dollar_replace_expansion(char *str, int i, int ret, t_env **copy_e
 	ft_memdel((void **)&prefix);
 	ft_memdel((void **)&suffix);
 	ft_memdel((void **)&expansion);
-	ft_memdel((void **)&str);
 	return (output);
 }

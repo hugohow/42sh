@@ -6,7 +6,7 @@
 /*   By: hhow-cho <hhow-cho@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/06/14 14:25:36 by hhow-cho          #+#    #+#             */
-/*   Updated: 2019/07/05 19:38:37 by hhow-cho         ###   ########.fr       */
+/*   Updated: 2019/07/06 18:48:43 by hhow-cho         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,6 +30,8 @@ char **ft_args_get(char *cmd, t_env **copy_env, int *p_result_parsing)
 	char	**args;
 	int		i;
 	int		j;
+	char 	*tmp;
+	char 	*to_free;
 
 	args = ft_strsplit(cmd, ' ');
 	if (args == NULL)
@@ -43,8 +45,8 @@ char **ft_args_get(char *cmd, t_env **copy_env, int *p_result_parsing)
 	i = 0;
 	while (args[i])
 	{
-		args[i] = ft_args_dollar_get(args[i], copy_env, p_result_parsing);
-		if (args[i] == NULL)
+		tmp = ft_args_dollar_get(args[i], copy_env, p_result_parsing);
+		if (tmp == NULL)
 		{
 			j = i + 1;
 			while (args[j])
@@ -55,8 +57,13 @@ char **ft_args_get(char *cmd, t_env **copy_env, int *p_result_parsing)
 			ft_list_free(&args);
 			return (NULL);
 		}
+		to_free = args[i];
+		args[i] = ft_strdup(tmp);
+		ft_memdel((void **)&to_free);
+		ft_memdel((void **)&tmp);
 		i++;
 	}
+	args[i] = 0;
 	return (args);
 	i = 0;
 	while (args[i])

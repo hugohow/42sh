@@ -6,7 +6,7 @@
 /*   By: hhow-cho <hhow-cho@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/06/16 13:42:37 by hhow-cho          #+#    #+#             */
-/*   Updated: 2019/07/05 19:40:07 by hhow-cho         ###   ########.fr       */
+/*   Updated: 2019/07/06 19:01:00 by hhow-cho         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,28 +17,32 @@ char *ft_args_dollar_get(char *str, t_env **copy_env, int *p_result_parsing)
 {
 	int i;
 	int ret;
+	char *output;
+	char *to_free;
 
 	i = 0;
-	while (str[i])
+	output = ft_strdup(str);
+	// ft_dprintf(2, "to replace : %s\n", str);
+	while (output[i])
 	{
-		if (str[i] == '$')
+		if (output[i] == '$')
 		{
-			ret = ft_args_dollar_is_valid(str + i);
+			ret = ft_args_dollar_is_valid(output + i);
 			if (ret == -1)
 			{
 				*p_result_parsing = 1;
-				ft_memdel((void **)&str);
+				if (output)
+					ft_memdel((void **)&output);
 				return (NULL);
 			}
 			if (ret != 0)
-				str = ft_args_dollar_replace_expansion(str, i, ret, copy_env);
+			{
+				to_free = output;
+				output = ft_args_dollar_replace_expansion(output, i, ret, copy_env);
+				ft_memdel((void **)&to_free);
+			}
 		}
 		i++;
 	}
-	if (ft_strlen(str) == 0)
-	{
-		ft_memdel((void **)&str);
-		return (ft_strdup(""));
-	}
-	return (str);
+	return (output);
 }
