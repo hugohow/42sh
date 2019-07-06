@@ -6,7 +6,7 @@
 /*   By: hhow-cho <hhow-cho@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/06/14 14:25:36 by hhow-cho          #+#    #+#             */
-/*   Updated: 2019/07/05 17:27:17 by hhow-cho         ###   ########.fr       */
+/*   Updated: 2019/07/05 19:38:37 by hhow-cho         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,6 +57,7 @@ char **ft_args_get(char *cmd, t_env **copy_env, int *p_result_parsing)
 		}
 		i++;
 	}
+	return (args);
 	i = 0;
 	while (args[i])
 	{

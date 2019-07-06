@@ -6,7 +6,7 @@
 /*   By: hhow-cho <hhow-cho@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/07/01 21:17:08 by hhow-cho          #+#    #+#             */
-/*   Updated: 2019/07/01 21:18:46 by hhow-cho         ###   ########.fr       */
+/*   Updated: 2019/07/05 18:47:54 by hhow-cho         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,7 @@ char *ft_strjoin_(char *str1, char *str2, char *str3)
 
 	if (str1 == NULL || str2 == NULL || str3 == NULL)
 		return (NULL);
-	len = ft_strlen(str1) + ft_strlen(str2) + ft_strlen(str3) + 1;
+	len = ft_strlen(str1) + ft_strlen(str2) + ft_strlen(str3) + 4;
 	if (!(new_str = (char *)ft_memalloc(len * sizeof(char))))
 		return (NULL);
 	i = -1;

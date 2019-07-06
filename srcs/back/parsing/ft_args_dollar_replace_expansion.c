@@ -6,7 +6,7 @@
 /*   By: hhow-cho <hhow-cho@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/07/04 16:04:27 by hhow-cho          #+#    #+#             */
-/*   Updated: 2019/07/05 17:26:38 by hhow-cho         ###   ########.fr       */
+/*   Updated: 2019/07/05 18:41:50 by hhow-cho         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -78,19 +78,33 @@ static char *ft_args_resolve_expansion(char *str, int start, int end, t_env **co
 char *ft_args_dollar_replace_expansion(char *str, int i, int ret, t_env **copy_env)
 {
 	char *expansion;
-	char *to_free;
+	char *output;
 	int start;
 	int end;
+
+	char *prefix;
+	char *suffix;
 
 	start = i;
 	end = i + ret;
 	expansion = ft_args_resolve_expansion(str, start, end, copy_env);
 	if (expansion == NULL)
 		expansion = ft_strdup("");
-	to_free = str;
-	str[start] = 0;
-	str = ft_strjoin_(str, expansion, str + end);
-	ft_memdel((void **)&to_free);
+	
+
+	prefix = ft_strsub(str, 0, start);
+	if (prefix == NULL)
+		prefix = ft_strdup("");
+	suffix = ft_strsub(str, end, ft_strlen(str) - end);
+	if (suffix == NULL)
+		suffix = ft_strdup("");
+	output = ft_strjoin_(prefix, expansion, suffix);
+
+
+
+	ft_memdel((void **)&prefix);
+	ft_memdel((void **)&suffix);
 	ft_memdel((void **)&expansion);
-	return (str);
+	ft_memdel((void **)&str);
+	return (output);
 }

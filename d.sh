@@ -1,0 +1,1 @@
+echo $NULLLLL $PWD $PATH $PATH/abc bb$PATH/abc

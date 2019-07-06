@@ -1,2 +1,1 @@
 minishell: command not found: unset
-./lib/main.sh: line 102: 39602 Segmentation fault: 11  /Users/hugohow-choong/42/42sh/minishell
