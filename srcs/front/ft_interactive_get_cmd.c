@@ -6,7 +6,7 @@
 /*   By: hhow-cho <hhow-cho@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/06/09 01:53:37 by hhow-cho          #+#    #+#             */
-/*   Updated: 2019/07/04 20:35:45 by hhow-cho         ###   ########.fr       */
+/*   Updated: 2019/07/06 20:58:38 by hhow-cho         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,7 +56,7 @@ int ft_interactive_get_cmd(char **command, t_env **copy_env)
 	if (*command == NULL)
 		*command = ft_strdup(join);
 	else
-		*command = ft_strdup(ft_strrchr(join, '\n'));
+		*command = ft_strdup(ft_strrchr(join, '\n') + 1);
 	ft_memdel((void **)&join);
 	ft_lstfree(cmd->head);
 	ft_memdel((void **)&cmd);

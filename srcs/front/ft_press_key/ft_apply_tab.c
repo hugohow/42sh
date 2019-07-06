@@ -6,7 +6,7 @@
 /*   By: hhow-cho <hhow-cho@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/06/28 02:59:58 by hhow-cho          #+#    #+#             */
-/*   Updated: 2019/07/06 19:35:03 by hhow-cho         ###   ########.fr       */
+/*   Updated: 2019/07/06 20:58:12 by hhow-cho         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,7 @@ int ft_apply_tab(t_cmd *cmd)
 	char *join;
 
 	head = cmd->head;
-	join = ft_node_join(head, cmd->size);
+	join = ft_node_join(head, cmd->size + 2);
 	str = ft_strrchr(join, ';');
 	if (str == NULL)
 		str = join;

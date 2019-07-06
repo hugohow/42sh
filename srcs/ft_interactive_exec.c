@@ -6,7 +6,7 @@
 /*   By: hhow-cho <hhow-cho@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/06/24 23:12:34 by hhow-cho          #+#    #+#             */
-/*   Updated: 2019/07/05 15:38:55 by hhow-cho         ###   ########.fr       */
+/*   Updated: 2019/07/06 20:59:50 by hhow-cho         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,7 +57,8 @@ int ft_interactive_exec(void)
 		ft_cmd_exec(command, p_copy_env, fds, &success);
 		if (*((int *)ft_vars_get_value(KEY_MUST_EXIT)) == 1)
 		{
-			ft_putstr_fd("exit\n", fds[1]);
+			if (*((int *)ft_vars_get_value(KEY_LAST_KEY)) != KEY_TERM_CTRL_D)
+				ft_putstr_fd("exit\n", fds[1]);
 			break ;
 		}
 	}

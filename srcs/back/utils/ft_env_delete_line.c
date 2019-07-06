@@ -6,7 +6,7 @@
 /*   By: hhow-cho <hhow-cho@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/06/16 15:00:37 by hhow-cho          #+#    #+#             */
-/*   Updated: 2019/07/03 21:37:14 by hhow-cho         ###   ########.fr       */
+/*   Updated: 2019/07/06 20:26:56 by hhow-cho         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,6 +30,7 @@ int ft_env_delete_line(char *prefix, t_env **cpy_environ)
 		{
 			k = i + 1;
 			ft_memdel((void **)&(cpy_environ[i]->line));
+			ft_memdel((void **)&(cpy_environ[i]));
 			while (cpy_environ[k])
 			{
 				cpy_environ[k - 1] = cpy_environ[k];
