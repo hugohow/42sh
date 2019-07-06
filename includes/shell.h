@@ -6,7 +6,7 @@
 /*   By: hhow-cho <hhow-cho@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/06/09 00:32:39 by hhow-cho          #+#    #+#             */
-/*   Updated: 2019/07/04 22:49:52 by hhow-cho         ###   ########.fr       */
+/*   Updated: 2019/07/06 19:41:56 by hhow-cho         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -248,6 +248,8 @@ char **ft_args_get(char *cmd, t_env **copy_env, int *p_result_parsing);
 char *ft_args_dollar_get(char *str, t_env **copy_env, int *p_result_parsing);
 char *ft_args_dollar_replace_expansion(char *str, int i, int ret, t_env **copy_env);
 int ft_args_dollar_is_valid(char *str);
+
+int ft_bin_is_accessible(char *path, int fds[]);
 
 char *ft_args_tilde_get(char *str, t_env **copy_env);
 int	ft_isatty(int fd);

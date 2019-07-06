@@ -6,7 +6,7 @@
 /*   By: hhow-cho <hhow-cho@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/06/20 13:58:20 by hhow-cho          #+#    #+#             */
-/*   Updated: 2019/07/04 20:39:05 by hhow-cho         ###   ########.fr       */
+/*   Updated: 2019/07/06 20:04:22 by hhow-cho         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -97,10 +97,7 @@ static int ft_execute_env(char **argv, int flag, t_env **cpy_environ, int fds[])
 
 int ft_env(char **argv, t_env **cpy_environ, int fds[])
 {
-    pid_t pid;
     int status;
-    int waitstatus;
-    int i;
 	int flag;
 
 	argv++;
@@ -112,34 +109,6 @@ int ft_env(char **argv, t_env **cpy_environ, int fds[])
 	flag = ft_env_parse(&argv, fds);
 	if (flag < 0)
 		return (1);
-    pid = fork();
-	if (pid < 0)
-    {
-        ft_putstr_fd("erreur pid", fds[2]);
-        return (1);
-    }
-    if (pid == 0)
-    {
-        status = ft_execute_env(argv, flag, cpy_environ, fds);
-        exit(status);
-    }
-	else
-	{
-		int w;
-		
-        w = waitpid(pid, &waitstatus, WUNTRACED | WCONTINUED);
-        if (w == -1)
-            return (EXIT_FAILURE);
-        if (WIFEXITED(waitstatus)) {
-            // printf("terminé, code=%d\n", WEXITSTATUS(waitstatus));
-        } else if (WIFSIGNALED(waitstatus)) {
-            ft_printf("%s\n", ft_errors_signal_get(WTERMSIG(waitstatus)));
-        } else if (WIFSTOPPED(waitstatus)) {
-            ft_printf("%s\n", ft_errors_stop_get(WTERMSIG(waitstatus)));
-        } else if (WIFCONTINUED(waitstatus)) {
-            // ft_printf("relancé\n");
-        }
-	}
-    i = WEXITSTATUS(waitstatus);
-    return (i);
+    status = ft_execute_env(argv, flag, cpy_environ, fds);
+    return (status);
 }

@@ -6,7 +6,7 @@
 /*   By: hhow-cho <hhow-cho@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/06/28 02:59:58 by hhow-cho          #+#    #+#             */
-/*   Updated: 2019/07/04 17:35:50 by hhow-cho         ###   ########.fr       */
+/*   Updated: 2019/07/06 19:35:03 by hhow-cho         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,7 +31,7 @@ int ft_apply_tab(t_cmd *cmd)
 		write(0, complete, ft_strlen(complete));
 		node = ft_lstnew((void *)complete, ft_strlen(complete));
 		ft_lstinsert(&head, node);
-		cmd->size = cmd->size + ft_strlen(complete);
+		cmd->size = cmd->size + ft_strlen(complete) + 2;
 		ft_memdel((void **)&complete);
 	}
 	ft_memdel((void **)&join);

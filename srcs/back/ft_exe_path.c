@@ -6,36 +6,12 @@
 /*   By: hhow-cho <hhow-cho@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/06/09 14:28:12 by hhow-cho          #+#    #+#             */
-/*   Updated: 2019/07/04 19:01:14 by hhow-cho         ###   ########.fr       */
+/*   Updated: 2019/07/06 19:42:50 by hhow-cho         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 
 #include "shell.h"
-
-static int check_if_bin(char *path, int fds[])
-{
-	struct stat fileStat;
-
-	ft_memset((void*)&fileStat, 0, sizeof(fileStat));
-	if (stat(path, &fileStat))
-	{
-		lstat(path, &fileStat);
-		if (S_ISLNK(fileStat.st_mode) && access(path, X_OK))
-		{
-			ft_dprintf(fds[2], "Too many symbolic links: %s \n", path);
-			return (EXIT_FAIL);
-		}
-		ft_dprintf(fds[2], "No such file or directory: %s \n", path);
-		return (EXIT_FAIL);
-	}
-	else if (access(path, X_OK))
-	{
-		ft_dprintf(fds[2], "permission denied : %s \n", path);
-		return (EXIT_FAIL);
-	}
-	return (0);
-}
 
 int ft_exe_path(char **argv, t_env **cpy_environ, int fds[])
 {
@@ -45,7 +21,7 @@ int ft_exe_path(char **argv, t_env **cpy_environ, int fds[])
 	char *path;
 
 	path = argv[0];
-	if ((i = check_if_bin(path, fds)) != 0)
+	if ((i = ft_bin_is_accessible(path, fds)) != 0)
 		return (i);
     pid = fork();
     if (pid < 0) 

@@ -6,7 +6,7 @@
 /*   By: hhow-cho <hhow-cho@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/04/02 17:04:33 by hhow-cho          #+#    #+#             */
-/*   Updated: 2019/06/28 23:08:31 by hhow-cho         ###   ########.fr       */
+/*   Updated: 2019/07/06 19:31:28 by hhow-cho         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,22 +14,18 @@
 
 char	*ft_strrchr(const char *s, int c)
 {
-	size_t	i;
+	char	*last_pos;
 
-	if (s == NULL)
-		return (NULL);
-	if ((char)c == '\0')
-		return (char *)(s + ft_strlen(s));
-	if (ft_strlen(s) == 0)
-		return (NULL);
-	i = ft_strlen(s) - 1;
-	while (i > 0)
+	last_pos = (0);
+	while (*s)
 	{
-		if (*(s + i) == (char)c)
-			return (char *)(s + i + 1);
-		i--;
+		if (*s == c)
+			last_pos = (char*)s;
+		++s;
 	}
-	if (*s == (char)c)
-		return (char *)s;
-	return (NULL);
+	if (last_pos)
+		return (last_pos);
+	if (c == '\0')
+		return ((char*)s);
+	return (0);
 }
