@@ -6,7 +6,7 @@
 /*   By: hhow-cho <hhow-cho@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/06/28 02:59:58 by hhow-cho          #+#    #+#             */
-/*   Updated: 2019/07/06 20:58:12 by hhow-cho         ###   ########.fr       */
+/*   Updated: 2019/07/06 21:22:03 by hhow-cho         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,10 +28,10 @@ int ft_apply_tab(t_cmd *cmd)
 	complete = ft_env_autocomplete_cmd(str, cmd->copy_env);
 	if (complete)
 	{
-		write(0, complete, ft_strlen(complete));
-		node = ft_lstnew((void *)complete, ft_strlen(complete));
+		ft_putstr_fd(complete, 0);
+		node = ft_lstnew((void *)complete, ((ft_strlen(complete) + 1) * sizeof(char)));
 		ft_lstinsert(&head, node);
-		cmd->size = cmd->size + ft_strlen(complete) + 2;
+		cmd->size = cmd->size + ((ft_strlen(complete) + 1) * sizeof(char));
 		ft_memdel((void **)&complete);
 	}
 	ft_memdel((void **)&join);
