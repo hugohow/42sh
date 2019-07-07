@@ -6,7 +6,7 @@
 /*   By: hhow-cho <hhow-cho@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/06/20 16:37:59 by hhow-cho          #+#    #+#             */
-/*   Updated: 2019/06/28 17:08:30 by hhow-cho         ###   ########.fr       */
+/*   Updated: 2019/07/07 01:30:48 by hhow-cho         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,6 +49,13 @@ static char **shift_left_two(char **list, int i)
 	return (list);
 }
 
+
+/*
+** If the preceding component does not refer (in the context of pathname 
+** resolution with symbolic links followed) to a directory, then the cd 
+** utility shall display an appropriate error message and no further steps shall be taken.
+*/
+
 static char **clean_list(char **list)
 {
 	int i;
@@ -63,6 +70,15 @@ static char **clean_list(char **list)
 		}
 		else if (ft_strcmp(list[i], "..") == 0)
 		{
+			// if (i > 0)
+			// {
+			// 	tmp = get_path_list_n(list, i);
+			// 	if (ft_cd_can_go_to(tmp) == -1 && ft_strlen(tmp) != 0)
+			// 	{
+			// 		// ft_dprintf(2, "stop: %s not valid\n", tmp);
+			// 		return (NULL);
+			// 	}
+			// }
 			if (i > 0)
 				list = shift_left_two(list, i);
 			else
@@ -114,6 +130,8 @@ char *ft_path_trim(char *abs_path)
 	if (ft_strcmp(list[0], "") == 0)
 		ft_strcat(new_path, "/");
 	list = clean_list(list);
+	if (list == NULL)
+		return (NULL);
 	new_path = get_new_path(new_path, list);
 	ft_list_free(&list);
 	return (new_path);
@@ -140,6 +158,8 @@ char *ft_path_trim_free(char *abs_path)
 	if (ft_strcmp(list[0], "") == 0)
 		ft_strcat(new_path, "/");
 	list = clean_list(list);
+	if (list == NULL)
+		return (NULL);
 	new_path = get_new_path(new_path, list);
 	ft_memdel((void **)&abs_path);
 	ft_list_free(&list);

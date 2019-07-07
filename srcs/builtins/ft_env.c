@@ -6,7 +6,7 @@
 /*   By: hhow-cho <hhow-cho@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/06/20 13:58:20 by hhow-cho          #+#    #+#             */
-/*   Updated: 2019/07/06 20:04:22 by hhow-cho         ###   ########.fr       */
+/*   Updated: 2019/07/07 02:08:01 by hhow-cho         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -77,7 +77,7 @@ static int ft_execute_env(char **argv, int flag, t_env **cpy_environ, int fds[])
         copy_env = ft_env_deep_copy(cpy_environ);
 	if (copy_env == NULL)
 	{
-		ft_putstr_fd("Error copy env", 2);
+		ft_putstr_fd("Error copy env\n", 2);
 		return (1);
 	}
 	argv = ft_env_complete_env(argv, &copy_env, flag, cpy_environ);
@@ -85,10 +85,12 @@ static int ft_execute_env(char **argv, int flag, t_env **cpy_environ, int fds[])
     if (*argv)
 	{
 		cmd = ft_env_get_cmd(argv);
+		printf("cmd : %s\n", cmd);
 		ft_cmd_exec(cmd, &copy_env, fds, &success);
 	}
     else
         ft_print_env(copy_env, fds);
+		hash_table_env = NULL;
 	ft_env_free(&copy_env);
     return (success);
 }

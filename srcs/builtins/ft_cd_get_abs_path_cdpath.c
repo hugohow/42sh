@@ -6,7 +6,7 @@
 /*   By: hhow-cho <hhow-cho@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/07/03 21:58:52 by hhow-cho          #+#    #+#             */
-/*   Updated: 2019/07/03 22:04:02 by hhow-cho         ###   ########.fr       */
+/*   Updated: 2019/07/07 00:03:44 by hhow-cho         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,11 +17,12 @@ char *ft_cd_get_abs_path_cdpath(t_env ***p_environ, char *element, int fds[], ch
 	char **list;
     char *dest_path;
 
+	(void)p_environ;
 		list = ft_str_separate(cd_path, ':');
 
 		if (ft_strlen(list[0]) == 0)
 		{
-			dest_path = ft_cd_get_pwd_plus_element(p_environ, element);
+			dest_path = ft_strjoin("./", element);
 			if (ft_cd_can_go_to(dest_path) == 1)
 			{
 				ft_list_free(&list);
@@ -41,22 +42,22 @@ char *ft_cd_get_abs_path_cdpath(t_env ***p_environ, char *element, int fds[], ch
 				continue ;
 			}
 			dest_path = ft_strjoin_(list[i], "/", element);
-			dest_path = ft_path_trim_free(dest_path);
+			// dest_path = ft_path_trim_free(dest_path);
 			if (ft_cd_can_go_to(dest_path) == 1)
 			{
-				if (ft_strncmp("/", list[i], 1) == 0)
-				{
+				// if (ft_strncmp("/", list[i], 1) == 0)
+				// {
 					ft_dprintf(fds[1], "%s\n", dest_path);
-				}
-				else
-				{
-					char *to_free;
+				// }
+				// else
+				// {
+				// 	char *to_free;
 
-					to_free = dest_path;
-					dest_path = ft_cd_get_pwd_plus_element(p_environ, to_free);
-					ft_memdel((void **)&to_free);
-					ft_dprintf(fds[1], "%s\n", dest_path);
-				}
+				// 	to_free = dest_path;
+				// 	dest_path = ft_cd_get_pwd_plus_element(p_environ, to_free);
+				// 	ft_memdel((void **)&to_free);
+				// 	ft_dprintf(fds[1], "%s\n", dest_path);
+				// }
 				ft_list_free(&list);
 				return (dest_path);
 			}

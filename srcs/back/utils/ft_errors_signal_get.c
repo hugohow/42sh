@@ -6,7 +6,7 @@
 /*   By: hhow-cho <hhow-cho@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/07/04 01:54:31 by hhow-cho          #+#    #+#             */
-/*   Updated: 2019/07/04 01:59:13 by hhow-cho         ###   ########.fr       */
+/*   Updated: 2019/07/06 21:55:00 by hhow-cho         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,7 +44,7 @@ const char			*ft_errors_signal_get(int signal)
 	if (signal == SIGHUP)
 		return ("Hangup: 1");
 	else if (signal == SIGINT)
-		return ("Interrupt: 2");
+		return ("");
 	else if (signal == SIGQUIT)
 		return ("Quit: 3");
 	else if (signal == SIGILL)
