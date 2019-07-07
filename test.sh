@@ -58,8 +58,51 @@ execute_bash()
 	fi
 }
 
+execute_csh()
+{
+	(./minishell < ${1}) > ${LOG} 2> ${LOG_2}
+	YOUR_RET=($?)
+	(csh < ${1}) > ${RESULT} 2> ${RESULT_2}
+	OUR_RET=($?)
+	if !(diff  ${LOG} ${RESULT}) then
+		printf "\nSTDIN--------------------------------------------------------------\n"
+		while read line 
+		do 
+		echo -e "\033[31m$line\033[0m" 
+		done <  ${1}
+		printf "\033[0m-----------------------------------------------------------------\033[0m\n"
+		printf "\r\n\033[31mError STDOUT:\t\t\033[0m\033[37;1m minishell ${1}\033[0m\n\n"
+		diff  ${LOG} ${RESULT}
+		quit
+	else
+		printf "\n\033[32mSTDIN\033[0m--------------------------------------------------------------\n"
+		while read line 
+		do 
+		echo -e "\033[32m$line\033[0m" 
+		done <  ${1}
+		printf "\033[0m-----------------------------------------------------------------\033[0m\n"
+		printf "\n\033[32mSuccess:\t\033[37;1m minishell ${1}\033[0m\n\n"
+		printf "\nSTDERR--------------------------------------------------------------\n"
+		diff  ${RESULT_2} ${LOG_2}
+		printf "\n--------------------------------------------------------------------\n"
+	fi
+}
+
+
 
 rm -rf leaks
+
+
+for filename in $(ls tests/tests_csh); do
+    echo Test tests/tests_csh/${filename}
+	execute_csh tests/tests_csh/${filename}
+	echo Test leaks tests/tests_csh/${filename}
+	valgrind --track-origins=yes --show-leak-kinds=all --track-fds=yes 		\
+				--show-reachable=no --leak-check=full ./minishell tests/tests_csh/${filename} 2>> leaks
+done
+
+
+
 for filename in $(ls tests/tests_sh); do
     echo Test tests/tests_sh/${filename}
 	execute_bash tests/tests_sh/${filename}

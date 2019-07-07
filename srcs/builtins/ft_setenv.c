@@ -6,7 +6,7 @@
 /*   By: hhow-cho <hhow-cho@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/06/16 15:19:11 by hhow-cho          #+#    #+#             */
-/*   Updated: 2019/07/07 17:43:24 by hhow-cho         ###   ########.fr       */
+/*   Updated: 2019/07/07 17:46:08 by hhow-cho         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -66,7 +66,6 @@ int ft_setenv(char **argv, t_env ***p_environ, t_ht **p_table_bins, int fds[])
         if (ft_strcmp("PATH", prefix) == 0)
         {
             ft_ht_free(p_table_bins);
-            *p_table_bins = ft_bins_table_create(ft_strjoin(prefix, "="));
         }
     }
     else
