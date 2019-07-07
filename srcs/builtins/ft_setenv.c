@@ -6,7 +6,7 @@
 /*   By: hhow-cho <hhow-cho@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/06/16 15:19:11 by hhow-cho          #+#    #+#             */
-/*   Updated: 2019/07/04 19:47:28 by hhow-cho         ###   ########.fr       */
+/*   Updated: 2019/07/07 14:34:01 by hhow-cho         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,7 +34,7 @@ static int handle_errors(int argc, char **argv, int fds[])
 	return (0);
 }
 
-int ft_setenv(char **argv, t_env ***p_environ, int fds[])
+int ft_setenv(char **argv, t_env ***p_environ, t_ht **p_table_bins, int fds[])
 {
 	int argc;
 	char *prefix;
@@ -54,6 +54,11 @@ int ft_setenv(char **argv, t_env ***p_environ, int fds[])
 		prefix = ft_strsub(argv[1], 0, i);
 		line = argv[1] + i + 1;
         ft_env_add(prefix, line, p_environ);
+        if (ft_strcmp("PATH", prefix) == 0)
+        {
+            ft_ht_free(p_table_bins);
+            *p_table_bins = ft_bins_table_create(line);
+        }
 		ft_memdel((void **)&prefix);
     }
     else
@@ -61,6 +66,11 @@ int ft_setenv(char **argv, t_env ***p_environ, int fds[])
 		prefix = argv[1];
 		line = argv[2];
         ft_env_add(prefix, line, p_environ);
+        if (ft_strcmp("PATH", prefix) == 0)
+        {
+            ft_ht_free(p_table_bins);
+            *p_table_bins = ft_bins_table_create(line);
+        }
     }
     return (EXIT_SUCCESS);
 }

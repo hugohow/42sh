@@ -6,7 +6,7 @@
 /*   By: hhow-cho <hhow-cho@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/06/28 00:39:52 by hhow-cho          #+#    #+#             */
-/*   Updated: 2019/07/07 02:11:08 by hhow-cho         ###   ########.fr       */
+/*   Updated: 2019/07/07 15:18:47 by hhow-cho         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,32 +15,32 @@
 
 
 
-char **ft_env_complete_env(char **argv, t_env ***p_copy_env, int flag, t_env **originial_env)
+char **ft_env_complete_env(char **argv, t_env ***p_copy_env, t_ht **p_table_bins)
 {
 	t_env **copy_env;
 	char *prefix;
 	char *line;
 	int j;
 	int i;
+	t_ht *table_bins;
 
 	copy_env = *p_copy_env;
-	(void)originial_env;
-	(void)flag;
 	j = 0;
-    while (argv[j])
+    while ((argv)[j])
     {
-        if (ft_strchr(argv[j], '=') == NULL)
+        if (ft_strchr((argv)[j], '=') == NULL)
 			break ;
 		i = 0;
-		while ((argv[j])[i] && (argv[j])[i] != '=')
+		while (((argv)[j])[i] && ((argv)[j])[i] != '=')
 			i++;
-		prefix = ft_strsub(argv[j], 0, i);
-		line = argv[j] + i + 1;
+		prefix = ft_strsub((argv)[j], 0, i);
+		line = (argv)[j] + i + 1;
 		ft_env_add(prefix, line, p_copy_env);
-
-if (ft_env_cmp_prefix("PATH", char *line))
-
-
+		if (ft_strcmp(prefix, "PATH") == 0)
+		{
+			table_bins = ft_bins_table_create(ft_strjoin_(prefix, "=", line));
+			*p_table_bins = table_bins;
+		}
 		ft_memdel((void **)&prefix);
 		j++;
     }

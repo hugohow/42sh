@@ -6,7 +6,7 @@
 /*   By: hhow-cho <hhow-cho@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/06/26 22:25:42 by hhow-cho          #+#    #+#             */
-/*   Updated: 2019/07/06 20:18:24 by hhow-cho         ###   ########.fr       */
+/*   Updated: 2019/07/07 14:06:52 by hhow-cho         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,18 +47,16 @@ static void init_exec_fds(int *p_fd, int fds[], char **argv)
 int ft_non_interactive_exec(char **argv)
 {
 	char *command;
-	int success;
 	int fds[3];
 	int fd;
 	t_env ***p_copy_env;
 
 	p_copy_env = ft_vars_get_p_copy_env();
-	success = 0;
 	init_exec_fds(&fd, fds, argv);
 	while (42)
 	{
 		ft_non_interactive_get_cmd(fd, &command, *p_copy_env);
-		ft_cmd_exec(command, p_copy_env, fds, &success);
+		ft_cmd_exec(command, p_copy_env, NULL, fds);
 		if (*((int *)ft_vars_get_value(KEY_MUST_EXIT)) == 1)
 			break ;
 		if (*((int *)ft_vars_get_value(KEY_LAST_KEY)) == 0)
@@ -66,5 +64,5 @@ int ft_non_interactive_exec(char **argv)
 	}
 	if (fd != 0)
 		close(fd);
-	return (success);
+	return (0);
 }
