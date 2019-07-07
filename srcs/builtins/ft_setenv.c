@@ -6,7 +6,7 @@
 /*   By: hhow-cho <hhow-cho@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/06/16 15:19:11 by hhow-cho          #+#    #+#             */
-/*   Updated: 2019/07/07 17:46:08 by hhow-cho         ###   ########.fr       */
+/*   Updated: 2019/07/07 20:31:02 by hhow-cho         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,12 +25,12 @@ static int handle_errors(int argc, char **argv, int fds[])
 		return (0);
     if (argc > 3)
     {
-        ft_putstr_fd("setenv: Too many arguments. Usage : setenv VAR [VALUE]\n", fds[2]);
+        ft_putstr_fd("minishell setenv: Too many arguments\n", fds[2]);
         return (EXIT_FAIL);
     }
     if (ft_isdigit(argv[1][0]))
     {
-        ft_putstr_fd("not valid. must begin with a letter. Usage : setenv VAR [VALUE]\n", fds[2]);
+        ft_putstr_fd("minishell setenv: not valid. must begin with a letter\n", fds[2]);
         return (EXIT_FAIL);
     }
     i = 0;
@@ -38,7 +38,7 @@ static int handle_errors(int argc, char **argv, int fds[])
     {
         if (ft_isalnum(argv[1][i]) == 0 && argv[1][i] != '_')
         {
-            ft_putstr_fd("Variable name must contain alphanumeric characters. Usage : setenv VAR [VALUE]\n", fds[2]);
+            ft_putstr_fd("minishell setenv: Variable name must contain alphanumeric characters\n", fds[2]);
             return (EXIT_FAIL);
         }
         i++;

@@ -1,1 +1,1 @@
-minishell: cd: Not a directory: /Users/hugohow-choong/42/42sh/tests/tmp/not_a_directory
+minishell: cd: Not a directory: ./not_a_directory

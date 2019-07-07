@@ -6,7 +6,7 @@
 /*   By: hhow-cho <hhow-cho@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/06/09 00:32:39 by hhow-cho          #+#    #+#             */
-/*   Updated: 2019/07/07 15:54:07 by hhow-cho         ###   ########.fr       */
+/*   Updated: 2019/07/07 21:30:00 by hhow-cho         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -116,8 +116,7 @@ typedef struct	s_vars
 	char	**argv_list;
 	int 	argc;
 	char	*cwd;
-	t_ht 	*hash_table;
-	t_ht 	*hash_table_env;
+	t_ht 	**p_hash_table;
 	int		last_key;
 }				t_vars;
 
@@ -197,6 +196,7 @@ int     ft_cd(char **argv, t_env ***p_cpy_environ, int fds[]);
 int		ft_cd_parse(int *p_argc, char ***p_argv);
 int 	ft_cd_go_to(char *path, int fds[]);
 int 	ft_cd_can_go_to(char *abs_path);
+int 	ft_cd_can_go_to_message(char *abs_path, int fds[]);
 int ft_cd_change_env(char *new_pwd_line, t_env ***p_environ);
 char *ft_cd_get_dest_path(char *element, t_env ***p_environ, long long flag, int fds[]);
 char *ft_cd_get_pwd_plus_element(t_env ***p_environ, char *element);
@@ -245,7 +245,7 @@ int ft_exe_bin(t_node *node, t_env ***p_environ, t_ht **p_table_bins, int fds[])
 void    ft_syntax_tree_execute(t_node *node, t_env ***p_environ, t_ht **p_table_bins, int fds[]);
 t_node **ft_get_semi_colon_child(t_node *node, char *cmd, t_env **copy_env);
 t_ht *ft_bins_table_create(char *line);
-t_ht * ft_bins_table_get(void);
+t_ht	**ft_p_bins_table_get(void);
 char **ft_args_get(char *cmd, t_env **copy_env, int *p_result_parsing);
 char *ft_args_dollar_get(char *str, t_env **copy_env, int *p_result_parsing);
 char *ft_args_dollar_replace_expansion(char *str, int i, int ret, t_env **copy_env);

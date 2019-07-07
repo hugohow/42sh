@@ -1,0 +1,2 @@
+unsetenv PATH
+exit

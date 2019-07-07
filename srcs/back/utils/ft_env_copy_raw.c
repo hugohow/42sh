@@ -6,7 +6,7 @@
 /*   By: hhow-cho <hhow-cho@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/06/16 15:12:28 by hhow-cho          #+#    #+#             */
-/*   Updated: 2019/07/04 23:42:08 by hhow-cho         ###   ########.fr       */
+/*   Updated: 2019/07/07 20:37:00 by hhow-cho         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,10 +19,11 @@ static void ft_get_bins_table(t_env **copy)
 	char *value;
 
 	p_vars = ft_vars_get();
+	p_vars->p_hash_table = (t_ht **)ft_memalloc((sizeof(t_ht *)));
 	if ((value = ft_env_get_line(copy, "PATH")))
-		p_vars->hash_table = ft_bins_table_create(value);
+		*(p_vars->p_hash_table) = ft_bins_table_create(value);
 	else
-		p_vars->hash_table = ft_bins_table_create("PATH=/usr/local/bin:/usr/bin:/bin");
+		*(p_vars->p_hash_table) = ft_bins_table_create("PATH=/usr/local/bin:/usr/bin:/bin");
 }
 
 t_env **ft_env_copy_raw(char **str, char **argv)
