@@ -6,11 +6,23 @@
 /*   By: hhow-cho <hhow-cho@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/07/03 22:05:15 by hhow-cho          #+#    #+#             */
-/*   Updated: 2019/07/07 16:26:59 by hhow-cho         ###   ########.fr       */
+/*   Updated: 2019/07/07 17:39:58 by hhow-cho         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "shell.h"
+
+static char *ft_get_path_home(t_env ***p_environ, int fds[])
+{
+	char *dest_path;
+
+	if (!(dest_path = ft_strdup(ft_env_get_value(*p_environ, "HOME"))))
+	{
+		ft_putstr_fd("minishell: cd: HOME not set\n", fds[2]);
+		return (NULL);
+	}
+	return (dest_path);
+}
 
 /*
 ** 1, 2 ) If no directory operand is given and the HOME..
@@ -25,37 +37,31 @@ static char *get_dest_path(char *element, t_env ***p_environ, long long flag, in
 
 	dest_path = NULL;
     if (!element)
-    {
-		if (!(dest_path = ft_strdup(ft_env_get_value(*p_environ, "HOME"))))
-		{
-			ft_putstr_fd("minishell: cd: HOME not set\n", fds[2]);
-			return (NULL);
-		}
-    }
+			return (ft_get_path_home(p_environ, fds));
     else if (ft_strncmp("/", element, 1) == 0)
     {
-		if (!(dest_path = ft_strdup(element)))
-		{
-			ft_putstr_fd("minishell: cd: dir error\n", fds[2]);
-			return (NULL);
-		}
-	}
-	else
-	{
-        if (ft_strncmp(element, ".", 1) == 0 || ft_strncmp(element, "..", 2) == 0)
-		{
-			dest_path = ft_strdup(element);
-		}
-        else if (ft_strcmp(element, "-") == 0)
-		{
-			if (!(dest_path = ft_strdup(ft_env_get_value(*p_environ, "OLDPWD"))))
+			if (!(dest_path = ft_strdup(element)))
 			{
-				ft_putstr_fd("minishell: cd: OLDPWD not set\n", fds[2]);
+				ft_putstr_fd("minishell: cd: dir error\n", fds[2]);
 				return (NULL);
 			}
-			else
-				ft_dprintf(fds[1], "%s\n", dest_path);
 		}
+		else
+		{
+        if (ft_strncmp(element, ".", 1) == 0 || ft_strncmp(element, "..", 2) == 0)
+				{
+					dest_path = ft_strdup(element);
+				}
+					else if (ft_strcmp(element, "-") == 0)
+				{
+					if (!(dest_path = ft_strdup(ft_env_get_value(*p_environ, "OLDPWD"))))
+					{
+						ft_putstr_fd("minishell: cd: OLDPWD not set\n", fds[2]);
+						return (NULL);
+					}
+					else
+						ft_dprintf(fds[1], "%s\n", dest_path);
+				}
         else
 		{
 
@@ -79,12 +85,8 @@ static char *get_dest_path(char *element, t_env ***p_environ, long long flag, in
 		return (NULL);
 	}
 	// if flag different de P
-	if (flag & FLAG_CD_P)
+	if (~(flag & FLAG_CD_P))
 	{
-	}
-	else
-	{
-
 		if (ft_strncmp("/", dest_path, 1) != 0)
 		{
 			to_free = dest_path;
