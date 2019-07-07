@@ -6,7 +6,7 @@
 /*   By: hhow-cho <hhow-cho@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/06/24 23:12:34 by hhow-cho          #+#    #+#             */
-/*   Updated: 2019/07/06 20:59:50 by hhow-cho         ###   ########.fr       */
+/*   Updated: 2019/07/07 14:06:35 by hhow-cho         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,12 +40,10 @@ static void init_exec_fds(int fds[])
 int ft_interactive_exec(void)
 {
 	char *command;
-	int success;
 	int fds[3];
 	t_env ***p_copy_env;
 
 	p_copy_env = ft_vars_get_p_copy_env();
-	success = 0;
 	init_exec_fds(fds);
 	while (42)
 	{
@@ -54,7 +52,7 @@ int ft_interactive_exec(void)
 		ft_interactive_prompt();
 		ft_interactive_get_cmd(&command, *p_copy_env);
 		ft_interactive_exit();
-		ft_cmd_exec(command, p_copy_env, fds, &success);
+		ft_cmd_exec(command, p_copy_env, NULL, fds);
 		if (*((int *)ft_vars_get_value(KEY_MUST_EXIT)) == 1)
 		{
 			if (*((int *)ft_vars_get_value(KEY_LAST_KEY)) != KEY_TERM_CTRL_D)
@@ -62,5 +60,5 @@ int ft_interactive_exec(void)
 			break ;
 		}
 	}
-	return (success);
+	return (0);
 }

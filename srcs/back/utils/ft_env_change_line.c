@@ -6,7 +6,7 @@
 /*   By: hhow-cho <hhow-cho@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/06/16 15:01:20 by hhow-cho          #+#    #+#             */
-/*   Updated: 2019/07/04 18:55:36 by hhow-cho         ###   ########.fr       */
+/*   Updated: 2019/07/07 14:20:28 by hhow-cho         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,6 @@ int ft_env_change_line(char *prefix, char *line, t_env **cpy_environ)
 {
     size_t i;
 	char *to_free;
-	t_vars 	*p_vars;
 	
     i = 0;
 	if (line == NULL)
@@ -28,12 +27,6 @@ int ft_env_change_line(char *prefix, char *line, t_env **cpy_environ)
 		if (ft_env_cmp_prefix(prefix, cpy_environ[i]->line) == 0)
 		{
 			to_free = (cpy_environ[i])->line;
-			if (ft_env_cmp_prefix("PATH", line) == 0)
-			{
-				p_vars = ft_vars_get();
-				ft_ht_free(&(p_vars->hash_table));
-				p_vars->hash_table = ft_bins_table_create(line);
-			}
 			(cpy_environ[i])->line = line;
 			ft_memdel((void **)&to_free);
 			return (1);

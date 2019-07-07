@@ -6,7 +6,7 @@
 #    By: hhow-cho <hhow-cho@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2019/07/04 22:12:22 by hhow-cho          #+#    #+#              #
-#    Updated: 2019/07/06 19:42:32 by hhow-cho         ###   ########.fr        #
+#    Updated: 2019/07/07 00:01:44 by hhow-cho         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -66,7 +66,6 @@ SRC =	srcs/main.c							\
 		srcs/back/utils/ft_strjoin_free_first.c	\
 		srcs/back/utils/ft_strjoin_free_second.c	\
 		srcs/builtins/ft_cd.c	\
-		srcs/builtins/ft_cd_get_abs_path.c	\
 		srcs/builtins/ft_cd_get_abs_path_cdpath.c	\
 		srcs/builtins/ft_cd_get_dest_path.c	\
 		srcs/builtins/ft_cd_get_pwd_plus_element.c	\

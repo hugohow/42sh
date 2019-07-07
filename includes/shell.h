@@ -6,7 +6,7 @@
 /*   By: hhow-cho <hhow-cho@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/06/09 00:32:39 by hhow-cho          #+#    #+#             */
-/*   Updated: 2019/07/06 21:32:12 by hhow-cho         ###   ########.fr       */
+/*   Updated: 2019/07/07 14:44:10 by hhow-cho         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -116,6 +116,7 @@ typedef struct	s_vars
 	int 	argc;
 	char	*cwd;
 	t_ht 	*hash_table;
+	t_ht 	*hash_table_env;
 	int		last_key;
 }				t_vars;
 
@@ -155,7 +156,7 @@ int is_pipe(char *str);
 void print_tokens(t_token **list);
 
 
-void ft_cmd_exec(char *command, t_env ***p_copy_env, int fds[], int *p_success);
+void ft_cmd_exec(char *command, t_env ***p_copy_env, t_ht **p_table_bins, int fds[]);
 
 int					get_next_line(const int fd, char **line);
 
@@ -195,15 +196,15 @@ int     ft_cd(char **argv, t_env ***p_cpy_environ, int fds[]);
 int		ft_cd_parse(int *p_argc, char ***p_argv);
 int 	ft_cd_go_to(char *path, int fds[]);
 int 	ft_cd_can_go_to(char *abs_path);
-char *ft_cd_get_dest_path(char *element, t_env ***p_environ, int fds[]);
+int ft_cd_change_env(char *new_pwd_line, t_env ***p_environ);
+char *ft_cd_get_dest_path(char *element, t_env ***p_environ, long long flag, int fds[]);
 char *ft_cd_get_pwd_plus_element(t_env ***p_environ, char *element);
-char 	*ft_cd_get_abs_path(t_env ***p_environ, char *element, int fds[]);
 char *ft_cd_get_abs_path_cdpath(t_env ***p_environ, char *element, int fds[], char *cd_paths);
-int 	ft_setenv(char **argv, t_env ***p_environ, int fds[]);
+int ft_setenv(char **argv, t_env ***p_environ, t_ht **p_table_bins, int fds[]);
 int 	ft_env(char **argv, t_env **cpy_environ, int fds[]);
 int 	ft_env_parse(char ***p_argv, int fds[]);
-char 	**ft_env_complete_env(char **argv, t_env ***p_copy_env, int flag, t_env **originial_env);
-int 	ft_unsetenv(char **argv, t_env **cpy_environ, int fds[]);
+char **ft_env_complete_env(char **argv, t_env ***p_copy_env, t_ht **p_table_bins);
+int 	ft_unsetenv(char **argv, t_env **cpy_environ, t_ht **p_table_bins, int fds[]);
 int 	ft_exit(char **argv, t_env ***p_cpy_environ, int fds[]);
 
 
@@ -239,8 +240,8 @@ t_node *ft_syntax_tree_create(char *cmd, t_env **copy_env);
 void ft_syntax_tree_free(t_node **root);
 
 
-int ft_exe_bin(t_node *node, t_env ***p_environ, int fds[]);
-void    ft_syntax_tree_execute(t_node *node, t_env ***p_environ, int fds[], int *p_success);
+int ft_exe_bin(t_node *node, t_env ***p_environ, t_ht **p_table_bins, int fds[]);
+void    ft_syntax_tree_execute(t_node *node, t_env ***p_environ, t_ht **p_table_bins, int fds[]);
 t_node **ft_get_semi_colon_child(t_node *node, char *cmd, t_env **copy_env);
 t_ht *ft_bins_table_create(char *line);
 t_ht * ft_bins_table_get(void);

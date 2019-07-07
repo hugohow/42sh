@@ -3,4 +3,5 @@ echo $?
 echo a
 echo $?
 ls ; echo ${PWD } ; ls
+echo ${PWD } ; ls
 exit

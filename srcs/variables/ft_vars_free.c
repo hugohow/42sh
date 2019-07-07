@@ -6,7 +6,7 @@
 /*   By: hhow-cho <hhow-cho@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/07/02 00:15:54 by hhow-cho          #+#    #+#             */
-/*   Updated: 2019/07/05 00:10:23 by hhow-cho         ###   ########.fr       */
+/*   Updated: 2019/07/07 02:07:29 by hhow-cho         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,5 +20,6 @@ void ft_vars_free(void)
 	ft_env_free(&(p_vars->copy_env));
 	ft_memdel((void **)&(p_vars->cwd));
 	ft_ht_free(&(p_vars->hash_table));
+	ft_ht_free(&(p_vars->hash_table_env));
 	ft_memdel((void **)&p_vars);
 }

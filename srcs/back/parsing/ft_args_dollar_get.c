@@ -6,7 +6,7 @@
 /*   By: hhow-cho <hhow-cho@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/06/16 13:42:37 by hhow-cho          #+#    #+#             */
-/*   Updated: 2019/07/06 19:01:00 by hhow-cho         ###   ########.fr       */
+/*   Updated: 2019/07/06 21:50:42 by hhow-cho         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,6 +31,7 @@ char *ft_args_dollar_get(char *str, t_env **copy_env, int *p_result_parsing)
 			if (ret == -1)
 			{
 				*p_result_parsing = 1;
+				ft_putstr_fd("minishell: Bad substitution\n", 2);
 				if (output)
 					ft_memdel((void **)&output);
 				return (NULL);

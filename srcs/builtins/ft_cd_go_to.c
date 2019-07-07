@@ -6,7 +6,7 @@
 /*   By: hhow-cho <hhow-cho@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/06/27 21:45:53 by hhow-cho          #+#    #+#             */
-/*   Updated: 2019/07/04 18:47:18 by hhow-cho         ###   ########.fr       */
+/*   Updated: 2019/07/06 22:21:24 by hhow-cho         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,6 +16,7 @@ int ft_cd_can_go_to(char *abs_path)
 {
     struct stat fileStat;
 
+	ft_memset((void*)&fileStat, 0, sizeof(fileStat));
 	if (stat(abs_path, &fileStat))
 		return (-1);
 	else if (!S_ISDIR(fileStat.st_mode) && !S_ISLNK(fileStat.st_mode))

@@ -6,7 +6,7 @@
 /*   By: hhow-cho <hhow-cho@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/06/20 13:58:20 by hhow-cho          #+#    #+#             */
-/*   Updated: 2019/07/06 20:04:22 by hhow-cho         ###   ########.fr       */
+/*   Updated: 2019/07/07 15:06:26 by hhow-cho         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -69,27 +69,33 @@ static int ft_execute_env(char **argv, int flag, t_env **cpy_environ, int fds[])
 	int success;
     t_env **copy_env;
 	char *cmd;
+	t_ht **p_table_bins;
 
     i = 0;
     if (flag == FLAG_ENV_I)
         copy_env = clear_environ();
     else
         copy_env = ft_env_deep_copy(cpy_environ);
+	p_table_bins = (t_ht **)ft_memalloc(sizeof(t_ht *));
 	if (copy_env == NULL)
 	{
-		ft_putstr_fd("Error copy env", 2);
+		ft_putstr_fd("Error copy env\n", 2);
 		return (1);
 	}
-	argv = ft_env_complete_env(argv, &copy_env, flag, cpy_environ);
-	success = 0;
+	argv = ft_env_complete_env(argv, &copy_env, p_table_bins);
+	if (*p_table_bins == NULL)
+		p_table_bins = NULL;
     if (*argv)
 	{
 		cmd = ft_env_get_cmd(argv);
-		ft_cmd_exec(cmd, &copy_env, fds, &success);
+		// printf("cmd : %s\n", cmd);
+		// printf("p_table_bins : %p\n", p_table_bins);
+		ft_cmd_exec(cmd, &copy_env, p_table_bins, fds);
 	}
     else
         ft_print_env(copy_env, fds);
 	ft_env_free(&copy_env);
+	success = *((int *)ft_vars_get_value(KEY_SUCCESS_EXIT));
     return (success);
 }
 

@@ -6,7 +6,7 @@
 /*   By: hhow-cho <hhow-cho@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/06/16 15:00:37 by hhow-cho          #+#    #+#             */
-/*   Updated: 2019/07/06 20:26:56 by hhow-cho         ###   ########.fr       */
+/*   Updated: 2019/07/07 14:21:55 by hhow-cho         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,10 +20,6 @@ int ft_env_delete_line(char *prefix, t_env **cpy_environ)
 
 	p_vars = ft_vars_get();
     i = 0;
-	if (ft_strcmp(prefix, "PATH") == 0)
-	{
-		ft_ht_free(&(p_vars->hash_table));
-	}
     while (cpy_environ[i])
     {
 		if (ft_env_cmp_prefix(prefix, cpy_environ[i]->line) == 0)

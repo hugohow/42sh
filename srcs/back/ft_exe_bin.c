@@ -6,7 +6,7 @@
 /*   By: hhow-cho <hhow-cho@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/06/09 01:40:14 by hhow-cho          #+#    #+#             */
-/*   Updated: 2019/07/06 21:32:22 by hhow-cho         ###   ########.fr       */
+/*   Updated: 2019/07/07 14:29:40 by hhow-cho         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,17 +20,15 @@ static int ft_max(int a, int b)
 	return (b);
 }
 
-static int ft_search_and_exe_bin(char **args, t_env **cpy_environ, int fds[])
+static int ft_search_and_exe_bin(char **args, t_env **cpy_environ, t_ht **p_table_bins, int fds[])
 {
 	int result_cmd;
 	char *command;
 	t_node_ht *value;
-	t_ht *table_bins;
 	char *to_free;
 
-	table_bins = ft_bins_table_get();
 	command = args[0];
-	if (table_bins && (value = ft_ht_get(table_bins, args[0])) && value->datum)
+	if (*p_table_bins && (value = ft_ht_get(*p_table_bins, args[0])) && value->datum)
 	{
 		to_free = args[0];
 		args[0] = ft_strdup((char *)(value->datum));
@@ -68,7 +66,7 @@ static int ft_search_and_exe_bin(char **args, t_env **cpy_environ, int fds[])
 
 
 
-int ft_exe_bin(t_node *node, t_env ***p_environ, int fds[])
+int ft_exe_bin(t_node *node, t_env ***p_environ, t_ht **p_table_bins, int fds[])
 {
     int result_parsing;
 	int result_cmd;
@@ -96,13 +94,13 @@ int ft_exe_bin(t_node *node, t_env ***p_environ, int fds[])
     else if (ft_strcmp(command, BUILTIN_CD) == 0)
 		result_cmd = ft_cd(node->args, p_environ, fds);
     else if (ft_strcmp(command, BUILTIN_SETENV) == 0)
-        result_cmd = ft_setenv(node->args, p_environ, fds);
+        result_cmd = ft_setenv(node->args, p_environ, p_table_bins, fds);
     else if (ft_strcmp(command, BUILTIN_UNSETENV) == 0)
-        result_cmd = ft_unsetenv(node->args, *p_environ, fds);
+        result_cmd = ft_unsetenv(node->args, *p_environ, p_table_bins, fds);
     else if (ft_strcmp(command, BUILTIN_ENV) == 0)
 		result_cmd = ft_env(node->args, *p_environ, fds);
 	else
-		result_cmd = ft_search_and_exe_bin(node->args, *p_environ, fds);
+		result_cmd = ft_search_and_exe_bin(node->args, *p_environ, p_table_bins, fds);
 	// ft_list_free(&(node->args));
 	return (ft_max(result_cmd, result_parsing));
 }
