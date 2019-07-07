@@ -6,7 +6,7 @@
 /*   By: hhow-cho <hhow-cho@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/06/20 13:58:20 by hhow-cho          #+#    #+#             */
-/*   Updated: 2019/07/07 23:33:54 by hhow-cho         ###   ########.fr       */
+/*   Updated: 2019/07/07 23:52:45 by hhow-cho         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -96,7 +96,7 @@ static int ft_execute_env(char **argv, int flag, t_env **cpy_environ, int fds[])
 		ft_print_env(copy_env, fds);
 	ft_env_free(&copy_env);
 	ft_ht_free(p_table_bins);
-	free(p_table_bins);
+	ft_memdel((void **)&(p_table_bins));
 	success = *((int *)ft_vars_get_value(KEY_SUCCESS_EXIT));
 	return (success);
 }

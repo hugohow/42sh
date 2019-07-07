@@ -6,7 +6,7 @@
 /*   By: hhow-cho <hhow-cho@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/07/03 22:05:15 by hhow-cho          #+#    #+#             */
-/*   Updated: 2019/07/07 22:50:47 by hhow-cho         ###   ########.fr       */
+/*   Updated: 2019/07/08 00:06:10 by hhow-cho         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -73,15 +73,21 @@ static char *ft_solve_dot_dot(char *dest_path, t_env ***p_environ, long long fla
 	if (~(flag & FLAG_CD_P))
 	{
 		if (ft_strncmp("/", dest_path, 1) != 0)
-			dest_path = ft_cd_get_pwd_plus_element(p_environ, dest_path);
+		{
+			to_free = dest_path;
+			dest_path = ft_cd_get_pwd_plus_element(p_environ, to_free);
+			ft_memdel((void **)&to_free);
+		}
 		to_free = dest_path;
-		dest_path = ft_path_trim(dest_path);
+		dest_path = ft_path_trim(to_free);
 		if (ft_cd_can_go_to(dest_path) == -1)
 		{
 			ft_putstr_fd("minishell cd: error retrieving current directory: getcwd: cannot access parent directories: No such file or directory.\n", fds[2]);
 			ft_cd_change_env(to_free, p_environ);
+			ft_memdel((void **)&dest_path);
 			return (NULL);
 		}
+		ft_memdel((void **)&to_free);
 	}
 	dest_path = ft_path_trim_free(dest_path);
 	return (dest_path);
@@ -108,7 +114,10 @@ static char *get_dest_path(char *element, t_env ***p_environ, long long flag, in
 	else
 		dest_path = ft_get_path_cdpath(element, p_environ, fds);
 	if (ft_cd_can_go_to_message(dest_path, fds) == -1)
+	{
+		ft_memdel((void **)&dest_path);
 		return (NULL);
+	}
 	dest_path =  ft_solve_dot_dot(dest_path, p_environ, flag, fds);
 	return (dest_path);
 }
