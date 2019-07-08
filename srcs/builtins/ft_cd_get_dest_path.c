@@ -6,13 +6,27 @@
 /*   By: hhow-cho <hhow-cho@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/07/08 19:05:08 by hhow-cho          #+#    #+#             */
-/*   Updated: 2019/07/08 19:11:22 by hhow-cho         ###   ########.fr       */
+/*   Updated: 2019/07/08 19:46:04 by hhow-cho         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "shell.h"
 
-static char	*ft_solve_dot_dot(char *dest_path, t_env ***p_env, long long flag, int fds[])
+static void	handle_error(char *dest_path, char *to_free, \
+	t_env ***p_env, int fds[])
+{
+	ft_putstr_fd(\
+	"minishell cd: error retrieving current directory: getcwd:"\
+	, fds[2]);
+	ft_putstr_fd(\
+	" cannot access parent directories: No such file or directory.\n"\
+	, fds[2]);
+	ft_cd_change_env(to_free, p_env);
+	ft_memdel((void **)&dest_path);
+}
+
+static char	*ft_solve_dot_dot(char *dest_path, t_env ***p_env,\
+	long long flag, int fds[])
 {
 	char *to_free;
 
@@ -28,14 +42,7 @@ static char	*ft_solve_dot_dot(char *dest_path, t_env ***p_env, long long flag, i
 		dest_path = ft_path_trim(to_free);
 		if (ft_cd_can_go_to(dest_path) == -1)
 		{
-			ft_putstr_fd(\
-			"minishell cd: error retrieving current directory: getcwd:"\
-			, fds[2]);
-			ft_putstr_fd(\
-			" cannot access parent directories: No such file or directory.\n"\
-			, fds[2]);
-			ft_cd_change_env(to_free, p_env);
-			ft_memdel((void **)&dest_path);
+			handle_error(dest_path, to_free, p_env, fds);
 			return (NULL);
 		}
 		ft_memdel((void **)&to_free);
@@ -50,7 +57,8 @@ static char	*ft_solve_dot_dot(char *dest_path, t_env ***p_env, long long flag, i
 ** 4 ) If the first component of the directory operand is dot or dot-dot
 */
 
-static char	*get_dest_path(char *element, t_env ***p_env, long long flag, int fds[])
+static char	*get_dest_path(char *element, t_env ***p_env, \
+	long long flag, int fds[])
 {
 	char *dest_path;
 
@@ -70,11 +78,12 @@ static char	*get_dest_path(char *element, t_env ***p_env, long long flag, int fd
 		ft_memdel((void **)&dest_path);
 		return (NULL);
 	}
-	dest_path =  ft_solve_dot_dot(dest_path, p_env, flag, fds);
+	dest_path = ft_solve_dot_dot(dest_path, p_env, flag, fds);
 	return (dest_path);
 }
 
-char		*ft_cd_get_dest_path(char *element, t_env ***p_env, long long flag, int fds[])
+char		*ft_cd_get_dest_path(char *element, t_env ***p_env, \
+	long long flag, int fds[])
 {
 	char *dest_path;
 

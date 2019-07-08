@@ -6,16 +6,22 @@
 /*   By: hhow-cho <hhow-cho@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/06/27 21:44:27 by hhow-cho          #+#    #+#             */
-/*   Updated: 2019/06/27 22:41:39 by hhow-cho         ###   ########.fr       */
+/*   Updated: 2019/07/08 19:43:22 by hhow-cho         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "shell.h"
 
-int ft_cd_parse(int *p_argc, char ***p_argv)
+static int	handle_error(char c)
 {
-	int flag;
-	int j;
+	ft_dprintf(2, "minishell: cd: -%c: invalid option\n", c);
+	return (1);
+}
+
+int			ft_cd_parse(int *p_argc, char ***p_argv)
+{
+	int	flag;
+	int	j;
 
 	flag = FLAG_CD_L;
 	while (**p_argv && (**p_argv)[0] == '-')
@@ -30,10 +36,7 @@ int ft_cd_parse(int *p_argc, char ***p_argv)
 			else if ((**p_argv)[j] == 'P')
 				flag = FLAG_CD_P;
 			else
-			{
-				ft_dprintf(2, "minishell: cd: -%c: invalid option\n", (**p_argv)[j]);
-				return (1);
-			}
+				return (handle_error((**p_argv)[j]));
 			j++;
 		}
 		*p_argv = *p_argv + 1;

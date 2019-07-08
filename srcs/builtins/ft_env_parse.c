@@ -6,13 +6,21 @@
 /*   By: hhow-cho <hhow-cho@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/06/28 00:37:17 by hhow-cho          #+#    #+#             */
-/*   Updated: 2019/07/02 03:58:19 by hhow-cho         ###   ########.fr       */
+/*   Updated: 2019/07/08 20:06:33 by hhow-cho         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "shell.h"
 
-int ft_env_parse(char ***p_argv, int fds[])
+static int	handle_error(char c, int fds[])
+{
+	ft_dprintf(fds[2], "env: illegal option -- %c\n", c);
+	ft_putstr_fd("usage: env [-i] [name=value ...] [utility [argument ...]]\n",\
+		fds[2]);
+	return (-1);
+}
+
+int			ft_env_parse(char ***p_argv, int fds[])
 {
 	int k;
 	int i;
@@ -30,12 +38,7 @@ int ft_env_parse(char ***p_argv, int fds[])
 			if ((**p_argv)[i] == 'i')
 				flag = FLAG_ENV_I;
 			else
-			{
-				ft_dprintf(fds[2], "env: illegal option -- %c\n", (**p_argv)[i]);
-				ft_putstr_fd("usage: env [-i] [name=value ...] [utility [argument ...]]\n", fds[2]);
-				return (-1);
-			}
-				break ;
+				return (handle_error((**p_argv)[i], fds));
 			i++;
 		}
 		*p_argv = *p_argv + 1;
