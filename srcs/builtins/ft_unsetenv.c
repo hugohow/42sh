@@ -5,11 +5,10 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: hhow-cho <hhow-cho@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2019/06/14 14:49:18 by hhow-cho          #+#    #+#             */
-/*   Updated: 2019/07/07 20:30:56 by hhow-cho         ###   ########.fr       */
+/*   Created: 2019/07/08 20:48:19 by hhow-cho          #+#    #+#             */
+/*   Updated: 2019/07/08 20:48:56 by hhow-cho         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
-
 
 #include "shell.h"
 
@@ -17,30 +16,30 @@
 ** Builtin to unset env variable
 */
 
-int ft_unsetenv(char **argv, t_env **cpy_environ, t_ht **p_table_bins, int fds[])
+int	ft_unsetenv(char **argv, t_env **cpy_environ, t_ht **p_hash, int fds[])
 {
-    int i;
-	int argc;
-	char *prefix;
-    
+	int		i;
+	int		argc;
+	char	*prefix;
+
 	argc = (int)ft_list_size(argv);
-	(void)p_table_bins;
-    if (argc == 1)
-    {
-        ft_putstr_fd("unsetenv: Too few arguments.\n", fds[2]);
-        return (EXIT_FAIL);
-    }
-    i = 1;
-    while (i < argc)
-    {
+	(void)p_hash;
+	if (argc == 1)
+	{
+		ft_putstr_fd("unsetenv: Too few arguments.\n", fds[2]);
+		return (EXIT_FAIL);
+	}
+	i = 1;
+	while (i < argc)
+	{
 		prefix = argv[i];
-        ft_env_delete_line(prefix, cpy_environ);
-        if (ft_strcmp(prefix, "PATH") == 0)
-	    {
-		    ft_ht_free(p_table_bins);
-			*p_table_bins = NULL;
-	    }
-        i++;
-    }
-    return (EXIT_SUCCESS);
+		ft_env_delete_line(prefix, cpy_environ);
+		if (ft_strcmp(prefix, "PATH") == 0)
+		{
+			ft_ht_free(p_hash);
+			*p_hash = NULL;
+		}
+		i++;
+	}
+	return (EXIT_SUCCESS);
 }

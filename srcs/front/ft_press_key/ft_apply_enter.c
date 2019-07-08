@@ -6,17 +6,14 @@
 /*   By: hhow-cho <hhow-cho@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/06/28 03:17:45 by hhow-cho          #+#    #+#             */
-/*   Updated: 2019/07/04 17:35:17 by hhow-cho         ###   ########.fr       */
+/*   Updated: 2019/07/08 20:51:40 by hhow-cho         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "shell.h"
 
-int ft_apply_enter(t_cmd *cmd)
+int	ft_apply_enter(t_cmd *cmd)
 {
-	if (cmd)
-	{
-		
-	}
+	(void)cmd;
 	return (0);
 }

@@ -6,7 +6,7 @@
 /*   By: hhow-cho <hhow-cho@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/06/24 21:21:11 by hhow-cho          #+#    #+#             */
-/*   Updated: 2019/07/08 17:43:12 by hhow-cho         ###   ########.fr       */
+/*   Updated: 2019/07/08 21:27:57 by hhow-cho         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,6 @@ void	ft_list_free(char ***p_list)
 	char	**list;
 
 	list = *p_list;
-
 	i = 0;
 	while (list && list[i])
 	{
@@ -34,7 +33,6 @@ void	ft_list_free_n(char ***p_list, size_t len)
 	char	**list;
 
 	list = *p_list;
-
 	i = 0;
 	while (list && i < len)
 	{

@@ -6,22 +6,22 @@
 /*   By: hhow-cho <hhow-cho@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/06/28 03:05:18 by hhow-cho          #+#    #+#             */
-/*   Updated: 2019/07/06 21:19:31 by hhow-cho         ###   ########.fr       */
+/*   Updated: 2019/07/08 20:51:12 by hhow-cho         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "shell.h"
 
-static int     my_outc(int c)
+static int	my_outc(int c)
 {
-    return (write (STDIN_FILENO, &c, 1));
+	return (write(STDIN_FILENO, &c, 1));
 }
 
-int ft_apply_del(t_cmd *cmd)
+int			ft_apply_del(t_cmd *cmd)
 {
-	t_list *head;
-	t_list *node;
-	char *join;
+	t_list	*head;
+	t_list	*node;
+	char	*join;
 
 	head = cmd->head;
 	node = ft_lstnew((void *)&(cmd->last_key), sizeof(int));

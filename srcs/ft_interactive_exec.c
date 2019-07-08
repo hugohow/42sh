@@ -6,42 +6,37 @@
 /*   By: hhow-cho <hhow-cho@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/06/24 23:12:34 by hhow-cho          #+#    #+#             */
-/*   Updated: 2019/07/08 14:39:04 by hhow-cho         ###   ########.fr       */
+/*   Updated: 2019/07/08 21:18:14 by hhow-cho         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "shell.h"
 
-void signal_callback_handler_interactive(int signum)
+void		signal_callback_handler_interactive(int signum)
 {
-	if (signum == SIGINT)
-	{
-	}
-	if (signum == SIGTSTP)
-	{	
-	}
+	(void)signum;
 }
 
-static void init_exec_fds(int fds[])
+static void	init_exec_fds(int fds[])
 {
 	fds[0] = 0;
 	fds[1] = 1;
 	fds[2] = 2;
-    if (signal(SIGINT, signal_callback_handler_interactive) == SIG_ERR)
-        ft_putstr_fd("can't catch SIGINT\n", 2);
-    if (signal(SIGTSTP, signal_callback_handler_interactive) == SIG_ERR)
-        ft_putstr_fd("can't catch SIGTSTP\n", 2);
-    if (signal(SIGTERM, signal_callback_handler_interactive) == SIG_ERR)
-        ft_putstr_fd("can't catch SIGTERM\n", 2);
-    if (signal(SIGQUIT, signal_callback_handler_interactive) == SIG_ERR)
-        ft_putstr_fd("can't catch SIGQUIT\n", 2);
+	if (signal(SIGINT, signal_callback_handler_interactive) == SIG_ERR)
+		ft_putstr_fd("can't catch SIGINT\n", 2);
+	if (signal(SIGTSTP, signal_callback_handler_interactive) == SIG_ERR)
+		ft_putstr_fd("can't catch SIGTSTP\n", 2);
+	if (signal(SIGTERM, signal_callback_handler_interactive) == SIG_ERR)
+		ft_putstr_fd("can't catch SIGTERM\n", 2);
+	if (signal(SIGQUIT, signal_callback_handler_interactive) == SIG_ERR)
+		ft_putstr_fd("can't catch SIGQUIT\n", 2);
 }
 
-int ft_interactive_exec(void)
+int			ft_interactive_exec(void)
 {
-	char *command;
-	int fds[3];
-	t_env ***p_copy_env;
+	char	*command;
+	int		fds[3];
+	t_env	***p_copy_env;
 
 	p_copy_env = ft_vars_get_p_copy_env();
 	init_exec_fds(fds);

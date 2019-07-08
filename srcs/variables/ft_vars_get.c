@@ -5,25 +5,25 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: hhow-cho <hhow-cho@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2019/07/01 23:40:30 by hhow-cho          #+#    #+#             */
-/*   Updated: 2019/07/04 20:32:39 by hhow-cho         ###   ########.fr       */
+/*   Created: 2019/07/08 21:16:43 by hhow-cho          #+#    #+#             */
+/*   Updated: 2019/07/08 21:21:42 by hhow-cho         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "shell.h"
 
-t_vars     *ft_vars_get(void)
+t_vars	*ft_vars_get(void)
 {
-	static t_vars 	*p_vars;
+	static t_vars	*p_vars;
 
 	if (p_vars == NULL)
 		p_vars = ft_memalloc(sizeof(t_vars));
-    return (p_vars);
+	return (p_vars);
 }
 
-void     *ft_vars_get_value(long key)
+void	*ft_vars_get_value(long key)
 {
-	t_vars 	*p_vars;
+	t_vars	*p_vars;
 
 	p_vars = ft_vars_get();
 	if (key == KEY_MUST_EXIT)

@@ -6,16 +6,16 @@
 /*   By: hhow-cho <hhow-cho@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/06/28 02:57:13 by hhow-cho          #+#    #+#             */
-/*   Updated: 2019/07/06 19:34:54 by hhow-cho         ###   ########.fr       */
+/*   Updated: 2019/07/08 20:52:29 by hhow-cho         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "shell.h"
 
-int ft_apply_printable(t_cmd *cmd)
+int	ft_apply_printable(t_cmd *cmd)
 {
-	t_list *head;
-	t_list *node;
+	t_list	*head;
+	t_list	*node;
 
 	if (ft_isprint(cmd->last_key))
 	{

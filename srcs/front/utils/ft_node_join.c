@@ -6,13 +6,13 @@
 /*   By: hhow-cho <hhow-cho@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/06/24 23:43:40 by hhow-cho          #+#    #+#             */
-/*   Updated: 2019/07/03 23:25:32 by hhow-cho         ###   ########.fr       */
+/*   Updated: 2019/07/08 21:22:03 by hhow-cho         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "shell.h"
 
-static char *apply_del(char *output, int i)
+static char	*apply_del(char *output, int i)
 {
 	int j;
 
@@ -33,15 +33,15 @@ static char *apply_del(char *output, int i)
 		output[j - 1] = output[j];
 		j++;
 	}
-	output[j - 1] = 0;	
+	output[j - 1] = 0;
 	return (output);
 }
 
-char *ft_node_join(t_list *head, unsigned long long size)
+char		*ft_node_join(t_list *head, unsigned long long size)
 {
-	char *output;
-	t_list *node;
-	unsigned long long  i;
+	char				*output;
+	t_list				*node;
+	unsigned long long	i;
 
 	if (!(output = (char *)ft_memalloc((size + 1) * sizeof(char))))
 		return (NULL);
@@ -55,15 +55,10 @@ char *ft_node_join(t_list *head, unsigned long long size)
 	while (ft_strchr(output, 127))
 	{
 		i = 0;
-		while (output[i])
-		{
-			if (output[i] == 127)
-			{
-				output = apply_del(output, i);
-				break ;
-			}
+		while (output[i] && output[i] != 127)
 			i++;
-		}
+		if (output[i] == 127)
+			output = apply_del(output, i);
 	}
 	return (output);
 }

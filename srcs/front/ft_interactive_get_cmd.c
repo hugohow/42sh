@@ -6,18 +6,17 @@
 /*   By: hhow-cho <hhow-cho@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/06/09 01:53:37 by hhow-cho          #+#    #+#             */
-/*   Updated: 2019/07/06 20:58:38 by hhow-cho         ###   ########.fr       */
+/*   Updated: 2019/07/08 21:23:07 by hhow-cho         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "shell.h"
 
-
 /*
 ** Read one line of stdin (it can be better to change linked list to double)
 */
 
-static t_cmd *ft_cmd_init(t_env **copy_env)
+static t_cmd	*ft_cmd_init(t_env **copy_env)
 {
 	t_cmd *cmd;
 
@@ -32,12 +31,26 @@ static t_cmd *ft_cmd_init(t_env **copy_env)
 	return (cmd);
 }
 
-int ft_interactive_get_cmd(char **command, t_env **copy_env)
-{	
-    int ret;
-	t_list *head;
+static void		free_and_assign(char **command, t_cmd *cmd)
+{
 	char *join;
-	t_cmd *cmd;
+
+	join = ft_node_join(cmd->head, cmd->size);
+	*command = ft_strrchr(join, '\n');
+	if (*command == NULL)
+		*command = ft_strdup(join);
+	else
+		*command = ft_strdup(ft_strrchr(join, '\n') + 1);
+	ft_memdel((void **)&join);
+	ft_lstfree(cmd->head);
+	ft_memdel((void **)&cmd);
+}
+
+int				ft_interactive_get_cmd(char **command, t_env **copy_env)
+{
+	int		ret;
+	t_list	*head;
+	t_cmd	*cmd;
 
 	cmd = ft_cmd_init(copy_env);
 	head = cmd->head;
@@ -51,14 +64,6 @@ int ft_interactive_get_cmd(char **command, t_env **copy_env)
 			break ;
 	}
 	ft_putstr_fd("\n\r", STDIN_FILENO);
-	join = ft_node_join(cmd->head, cmd->size);
-	*command = ft_strrchr(join, '\n');
-	if (*command == NULL)
-		*command = ft_strdup(join);
-	else
-		*command = ft_strdup(ft_strrchr(join, '\n') + 1);
-	ft_memdel((void **)&join);
-	ft_lstfree(cmd->head);
-	ft_memdel((void **)&cmd);
-    return (ret);
+	free_and_assign(command, cmd);
+	return (ret);
 }

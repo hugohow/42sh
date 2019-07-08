@@ -6,7 +6,7 @@
 #    By: hhow-cho <hhow-cho@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2019/07/04 22:12:22 by hhow-cho          #+#    #+#              #
-#    Updated: 2019/07/08 18:57:14 by hhow-cho         ###   ########.fr        #
+#    Updated: 2019/07/08 21:26:07 by hhow-cho         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -61,6 +61,7 @@ SRC =	srcs/main.c							\
 		srcs/back/utils/ft_list_free.c	\
 		srcs/back/utils/ft_list_size.c	\
 		srcs/back/utils/ft_path_trim.c	\
+		srcs/back/utils/ft_path_trim_free.c	\
 		srcs/back/utils/ft_str_separate.c	\
 		srcs/back/utils/ft_strjoin_.c	\
 		srcs/back/utils/ft_strjoin_free_first.c	\
