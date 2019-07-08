@@ -6,7 +6,7 @@
 /*   By: hhow-cho <hhow-cho@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/06/09 00:32:39 by hhow-cho          #+#    #+#             */
-/*   Updated: 2019/07/08 15:38:04 by hhow-cho         ###   ########.fr       */
+/*   Updated: 2019/07/08 18:56:20 by hhow-cho         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -139,6 +139,10 @@ char		*ft_cd_get_dest_path(char *element, t_env ***p_env, \
 char		*ft_cd_get_pwd_plus_element(t_env ***p_env, char *element);
 char		*ft_cd_get_abs_path_cdpath(t_env ***p_env, char *element,\
 	int fds[], char *cd_paths);
+char 		*ft_cd_get_path_home(t_env ***p_environ, int fds[]);
+char 		*ft_cd_get_absolute_path(char *element, int fds[]);
+char 		*ft_cd_get_old_path(t_env ***p_environ, int fds[]);
+char		*ft_cd_get_path_cdpath(char *element, t_env ***p_environ, int fds[]);
 int			ft_setenv(char **argv, t_env ***p_env, t_ht **p_table_bins,\
 	int fds[]);
 int			ft_env(char **argv, t_env **cpy_environ, int fds[]);
