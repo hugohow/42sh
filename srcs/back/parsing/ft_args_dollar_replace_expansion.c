@@ -6,17 +6,17 @@
 /*   By: hhow-cho <hhow-cho@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/07/04 16:04:27 by hhow-cho          #+#    #+#             */
-/*   Updated: 2019/07/06 18:41:31 by hhow-cho         ###   ########.fr       */
+/*   Updated: 2019/07/08 16:24:03 by hhow-cho         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "shell.h"
 
-static int ft_args_resolve_expansion_special(char *expansion, char **p_output)
+static int	ft_args_resolve_expansion_special(char *expansion, char **p_output)
 {
-	size_t len_expansion;
-	t_vars 	*p_vars;
-	int nb;
+	size_t	len_expansion;
+	t_vars	*p_vars;
+	int		nb;
 
 	p_vars = ft_vars_get();
 	len_expansion = 1;
@@ -39,18 +39,17 @@ static int ft_args_resolve_expansion_special(char *expansion, char **p_output)
 	return (1);
 }
 
-
 /*
-** get value of ${PATH} 
+** get value of ${PATH}
 */
 
-
-static char *ft_args_resolve_expansion(char *str, int start, int end, t_env **copy_env)
+static char	*ft_args_resolve_expansion(char *str,\
+	int start, int end, t_env **c_env)
 {
-	char *line;
-	char *expansion;
-	char *output;
-	size_t len_expansion;
+	char	*line;
+	char	*expansion;
+	char	*output;
+	size_t	len_expansion;
 
 	output = NULL;
 	start++;
@@ -66,44 +65,34 @@ static char *ft_args_resolve_expansion(char *str, int start, int end, t_env **co
 		if (ft_args_resolve_expansion_special(expansion, &output) == 0)
 			return (output);
 	}
-	line = ft_env_get_value_n(copy_env, expansion, len_expansion);
+	line = ft_env_get_value_n(c_env, expansion, len_expansion);
 	if (line == NULL)
 		return (ft_strdup(""));
 	return (ft_strdup(line));
 }
 
-
 /*
 ** replace ${PATH}
 */
 
-char *ft_args_dollar_replace_expansion(char *str, int i, int ret, t_env **copy_env)
+char		*ft_args_dollar_replace_expansion(char *str, int i,\
+	int ret, t_env **c_env)
 {
 	char *expansion;
 	char *output;
-	int start;
-	int end;
-
 	char *prefix;
 	char *suffix;
 
-	start = i;
-	end = i + ret;
-	expansion = ft_args_resolve_expansion(str, start, end, copy_env);
+	expansion = ft_args_resolve_expansion(str, i, i + ret, c_env);
 	if (expansion == NULL)
 		expansion = ft_strdup("");
-	
-
-	prefix = ft_strsub(str, 0, start);
+	prefix = ft_strsub(str, 0, i);
 	if (prefix == NULL)
 		prefix = ft_strdup("");
-	suffix = ft_strsub(str, end, ft_strlen(str) - end);
+	suffix = ft_strsub(str, (i + ret), ft_strlen(str) - (i + ret));
 	if (suffix == NULL)
 		suffix = ft_strdup("");
 	output = ft_strjoin_(prefix, expansion, suffix);
-
-
-
 	ft_memdel((void **)&prefix);
 	ft_memdel((void **)&suffix);
 	ft_memdel((void **)&expansion);
