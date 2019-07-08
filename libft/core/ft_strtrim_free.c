@@ -6,7 +6,7 @@
 /*   By: hhow-cho <hhow-cho@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/06/27 17:37:25 by hhow-cho          #+#    #+#             */
-/*   Updated: 2019/06/28 16:15:50 by hhow-cho         ###   ########.fr       */
+/*   Updated: 2019/07/08 15:50:45 by hhow-cho         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,7 @@ static int	is_escapable_fttrim(char c)
 	return (0);
 }
 
-static int	count_len_fttrim(const char *str)
+static int	count_len_fttrim(char *str)
 {
 	int		i;
 	int		len;
@@ -39,6 +39,8 @@ static int	count_len_fttrim(const char *str)
 		i--;
 		len--;
 	}
+	if (len <= 0)
+		ft_memdel((void **)&str);
 	return (len);
 }
 
@@ -53,10 +55,7 @@ char		*ft_strtrim_free(char *str)
 		return (NULL);
 	len = count_len_fttrim(str);
 	if (len <= 0)
-	{
-		ft_memdel((void **)&str);
 		return (ft_strdup(""));
-	}
 	if (!(output = (char *)ft_memalloc((len + 1) * sizeof(char))))
 	{
 		ft_memdel((void **)&str);

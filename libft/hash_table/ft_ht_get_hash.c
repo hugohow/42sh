@@ -6,7 +6,7 @@
 /*   By: hhow-cho <hhow-cho@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/06/08 22:38:20 by hhow-cho          #+#    #+#             */
-/*   Updated: 2019/06/08 22:57:02 by hhow-cho         ###   ########.fr       */
+/*   Updated: 2019/07/08 15:46:22 by hhow-cho         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,7 @@
 int	ft_ht_get_hash(const char *str, size_t size)
 {
 	unsigned long long	key;
-	int 				i;
+	int					i;
 
 	i = 0;
 	key = 0;

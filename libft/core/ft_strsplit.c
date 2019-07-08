@@ -6,7 +6,7 @@
 /*   By: hhow-cho <hhow-cho@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/04/02 17:12:49 by hhow-cho          #+#    #+#             */
-/*   Updated: 2019/07/05 00:32:48 by hhow-cho         ###   ########.fr       */
+/*   Updated: 2019/07/08 15:52:54 by hhow-cho         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,7 +58,8 @@ char			**ft_strsplit(char const *str, char c)
 
 	if (str == NULL)
 		return (NULL);
-	if (!(list = (char **)ft_memalloc((count_words(str, c) + 1) * sizeof(char *))))
+	if (!(list = (char **)ft_memalloc((count_words(str, c) + 1)\
+		* sizeof(char *))))
 		return (NULL);
 	i = -1;
 	k = 0;

@@ -6,7 +6,7 @@
 /*   By: hhow-cho <hhow-cho@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/04/02 17:01:15 by hhow-cho          #+#    #+#             */
-/*   Updated: 2019/06/27 16:40:04 by hhow-cho         ###   ########.fr       */
+/*   Updated: 2019/07/08 15:45:46 by hhow-cho         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,8 @@ char		*ft_strdup(const char *s1)
 
 	if (s1 == NULL)
 		return (NULL);
-	if (!(copy = (char *)ft_memalloc((ft_strlen((char *)s1) + 1) * sizeof(char))))
+	if (!(copy = (char *)ft_memalloc((ft_strlen((char *)s1) + 1)\
+		* sizeof(char))))
 		return (NULL);
 	copy = ft_strcpy(copy, s1);
 	return (copy);

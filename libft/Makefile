@@ -6,7 +6,7 @@
 #    By: hhow-cho <hhow-cho@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2019/06/05 23:41:00 by hhow-cho          #+#    #+#              #
-#    Updated: 2019/06/27 17:40:19 by hhow-cho         ###   ########.fr        #
+#    Updated: 2019/07/08 15:59:48 by hhow-cho         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -82,7 +82,6 @@ SRCS	=	core/ft_memset.c					\
 			core/ft_lstpush.c				\
 			core/ft_lstlen.c					\
 			core/ft_lstinsert.c					\
-			core/ft_brackets_is_valid.c     \
 			bigint/ft_bigint_add.c				\
 			bigint/ft_bigint_divide_by_two.c	\
 			bigint/ft_bigint_get_index.c		\
@@ -95,9 +94,6 @@ SRCS	=	core/ft_memset.c					\
 			core/ft_str_left_shift.c			\
 			core/ft_str_right_shift.c			\
 			core/ft_ulltoa.c					\
-			queue/ft_queue_dequeue.c					\
-			queue/ft_queue_enqueue.c					\
-			queue/ft_queue_init.c					\
 		ft_printf/ft_dprintf.c						\
 		ft_printf/ft_printf.c						\
 		ft_printf/ft_sprintf.c						\
@@ -159,16 +155,6 @@ SRCS	=	core/ft_memset.c					\
 		ft_printf/parser/ft_flag_get_zero.c			\
 		ft_printf/precision/ft_apply_precision_nb.c	\
 		ft_printf/precision/ft_apply_precision_str.c	\
-		avlt/ft_avlt_add.c		\
-		avlt/ft_avlt_apply_inorder.c		\
-		avlt/ft_avlt_apply_postorder.c		\
-		avlt/ft_avlt_create.c		\
-		avlt/ft_avlt_free.c		\
-		avlt/ft_avlt_insert.c		\
-		avlt/ft_avlt_is_valid.c		\
-		avlt/ft_avlt_left_rot.c		\
-		avlt/ft_avlt_right_rot.c	\
-		get_next_line/get_next_line.c \
 		hash_table/ft_ht_free.c		\
 		hash_table/ft_ht_add.c		\
 		hash_table/ft_ht_create.c		\
