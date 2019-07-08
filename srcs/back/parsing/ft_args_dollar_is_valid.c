@@ -6,7 +6,7 @@
 /*   By: hhow-cho <hhow-cho@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/07/04 16:07:26 by hhow-cho          #+#    #+#             */
-/*   Updated: 2019/07/05 17:36:34 by hhow-cho         ###   ########.fr       */
+/*   Updated: 2019/07/08 16:15:23 by hhow-cho         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,12 +14,13 @@
 
 static int	ft_is_special_param(char c)
 {
-	if (c == '*' || c == '@' || c == '#' || c == '?'|| c == '-' || c == '$' || c == '!')
+	if (c == '*' || c == '@' || c == '#' || c == '?' || \
+		c == '-' || c == '$' || c == '!')
 		return (1);
 	return (0);
 }
 
-static int ft_args_dollar_is_valid_whitout_braces(char *str)
+static int	ft_args_dollar_is_valid_whitout_braces(char *str)
 {
 	int ret;
 
@@ -45,28 +46,33 @@ static int ft_args_dollar_is_valid_whitout_braces(char *str)
 ** echo ${1*} -> return (-1);
 */
 
-
-static int ft_args_dollar_is_valid_braces(char *str)
+static int	handle_special_case(char *str, int ret)
 {
-	int ret;
-
-	ret = 2;
 	if (ft_isdigit(str[ret]))
 	{
-		ret++;
-		while (str[ret] && str[ret] != '}' && ft_isdigit(str[ret]))
+		while (str[ret + 1] && str[ret + 1] != '}' && ft_isdigit(str[ret + 1]))
 			ret++;
-		if (str[ret] == 0 || str[ret] != '}')
+		if (str[ret + 1] == 0 || str[ret + 1] != '}')
 			return (-1);
-		return (ret + 1);
+		return (ret + 2);
 	}
 	if (ft_is_special_param(str[ret]))
 	{
-		ret++;
-		if (str[ret] != '}')
+		if (str[ret + 1] != '}')
 			return (-1);
-		return (ret + 1);
+		return (ret + 2);
 	}
+	return (0);
+}
+
+static int	ft_args_dollar_is_valid_braces(char *str)
+{
+	int ret;
+	int error;
+
+	ret = 2;
+	if ((error = (handle_special_case(str, ret))) != 0)
+		return (error);
 	while (str[ret] && str[ret] != '}')
 	{
 		if (ft_is_special_param(str[ret]))
@@ -84,7 +90,7 @@ static int ft_args_dollar_is_valid_braces(char *str)
 ** lenght of {PATH} or $@
 */
 
-int ft_args_dollar_is_valid(char *str)
+int			ft_args_dollar_is_valid(char *str)
 {
 	int ret;
 

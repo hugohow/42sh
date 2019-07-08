@@ -1,532 +1,533 @@
-==59722== Memcheck, a memory error detector
-==59722== Copyright (C) 2002-2017, and GNU GPL'd, by Julian Seward et al.
-==59722== Using Valgrind-3.14.0 and LibVEX; rerun with -h for copyright info
-==59722== Command: ./minishell tests/tests_csh/test_setenv.sh
-==59722== 
+==67048== Memcheck, a memory error detector
+==67048== Copyright (C) 2002-2017, and GNU GPL'd, by Julian Seward et al.
+==67048== Using Valgrind-3.14.0 and LibVEX; rerun with -h for copyright info
+==67048== Command: ./minishell tests/tests_csh/test_setenv.sh
+==67048== 
+--67048-- run: /usr/bin/dsymutil "./minishell"
 minishell setenv: Variable name must contain alphanumeric characters
-==59722== 
-==59722== FILE DESCRIPTORS: 3 open at exit.
-==59722== Open file descriptor 2: /nfs/2018/h/hhow-cho/42/42sh/leaks
-==59722==    <inherited from parent>
-==59722== 
-==59722== Open file descriptor 1: /dev/ttys002
-==59722==    <inherited from parent>
-==59722== 
-==59722== Open file descriptor 0: /dev/ttys002
-==59722==    <inherited from parent>
-==59722== 
-==59722== 
-==59722== HEAP SUMMARY:
-==59722==     in use at exit: 18,145 bytes in 162 blocks
-==59722==   total heap usage: 6,721 allocs, 6,559 frees, 174,433 bytes allocated
-==59722== 
-==59722== 72 bytes in 3 blocks are possibly lost in loss record 26 of 42
-==59722==    at 0x1000B6C8A: calloc (in /nfs/2018/h/hhow-cho/.brew/Cellar/valgrind/3.14.0/lib/valgrind/vgpreload_memcheck-amd64-darwin.so)
-==59722==    by 0x100612832: map_images_nolock (in /usr/lib/libobjc.A.dylib)
-==59722==    by 0x100625D6A: map_images (in /usr/lib/libobjc.A.dylib)
-==59722==    by 0x10002503B: dyld::notifyBatchPartial(dyld_image_states, bool, char const* (*)(dyld_image_states, unsigned int, dyld_image_info const*), bool, bool) (in /usr/lib/dyld)
-==59722==    by 0x100025255: dyld::registerObjCNotifiers(void (*)(unsigned int, char const* const*, mach_header const* const*), void (*)(char const*, mach_header const*), void (*)(char const*, mach_header const*)) (in /usr/lib/dyld)
-==59722==    by 0x10026000A: _dyld_objc_notify_register (in /usr/lib/system/libdyld.dylib)
-==59722==    by 0x100612072: _objc_init (in /usr/lib/libobjc.A.dylib)
-==59722==    by 0x1001F368D: _os_object_init (in /usr/lib/system/libdispatch.dylib)
-==59722==    by 0x1001F363A: libdispatch_init (in /usr/lib/system/libdispatch.dylib)
-==59722==    by 0x1001079D5: libSystem_initializer (in /usr/lib/libSystem.B.dylib)
-==59722==    by 0x100035A1A: ImageLoaderMachO::doModInitFunctions(ImageLoader::LinkContext const&) (in /usr/lib/dyld)
-==59722==    by 0x100035C1D: ImageLoaderMachO::doInitialization(ImageLoader::LinkContext const&) (in /usr/lib/dyld)
-==59722== 
-==59722== LEAK SUMMARY:
-==59722==    definitely lost: 0 bytes in 0 blocks
-==59722==    indirectly lost: 0 bytes in 0 blocks
-==59722==      possibly lost: 72 bytes in 3 blocks
-==59722==    still reachable: 200 bytes in 6 blocks
-==59722==         suppressed: 17,873 bytes in 153 blocks
-==59722== Reachable blocks (those to which a pointer was found) are not shown.
-==59722== To see them, rerun with: --leak-check=full --show-leak-kinds=all
-==59722== 
-==59722== For counts of detected and suppressed errors, rerun with: -v
-==59722== ERROR SUMMARY: 1 errors from 1 contexts (suppressed: 12 from 12)
-==59728== Memcheck, a memory error detector
-==59728== Copyright (C) 2002-2017, and GNU GPL'd, by Julian Seward et al.
-==59728== Using Valgrind-3.14.0 and LibVEX; rerun with -h for copyright info
-==59728== Command: ./minishell tests/tests_csh/test_setenv2.sh
-==59728== 
+==67048== 
+==67048== FILE DESCRIPTORS: 3 open at exit.
+==67048== Open file descriptor 2: /nfs/2018/h/hhow-cho/42/42sh/leaks
+==67048==    <inherited from parent>
+==67048== 
+==67048== Open file descriptor 1: /dev/ttys002
+==67048==    <inherited from parent>
+==67048== 
+==67048== Open file descriptor 0: /dev/ttys002
+==67048==    <inherited from parent>
+==67048== 
+==67048== 
+==67048== HEAP SUMMARY:
+==67048==     in use at exit: 18,145 bytes in 162 blocks
+==67048==   total heap usage: 6,721 allocs, 6,559 frees, 174,433 bytes allocated
+==67048== 
+==67048== 72 bytes in 3 blocks are possibly lost in loss record 26 of 42
+==67048==    at 0x1000B6C8A: calloc (in /nfs/2018/h/hhow-cho/.brew/Cellar/valgrind/3.14.0/lib/valgrind/vgpreload_memcheck-amd64-darwin.so)
+==67048==    by 0x100612832: map_images_nolock (in /usr/lib/libobjc.A.dylib)
+==67048==    by 0x100625D6A: map_images (in /usr/lib/libobjc.A.dylib)
+==67048==    by 0x10002503B: dyld::notifyBatchPartial(dyld_image_states, bool, char const* (*)(dyld_image_states, unsigned int, dyld_image_info const*), bool, bool) (in /usr/lib/dyld)
+==67048==    by 0x100025255: dyld::registerObjCNotifiers(void (*)(unsigned int, char const* const*, mach_header const* const*), void (*)(char const*, mach_header const*), void (*)(char const*, mach_header const*)) (in /usr/lib/dyld)
+==67048==    by 0x10026000A: _dyld_objc_notify_register (in /usr/lib/system/libdyld.dylib)
+==67048==    by 0x100612072: _objc_init (in /usr/lib/libobjc.A.dylib)
+==67048==    by 0x1001F368D: _os_object_init (in /usr/lib/system/libdispatch.dylib)
+==67048==    by 0x1001F363A: libdispatch_init (in /usr/lib/system/libdispatch.dylib)
+==67048==    by 0x1001079D5: libSystem_initializer (in /usr/lib/libSystem.B.dylib)
+==67048==    by 0x100035A1A: ImageLoaderMachO::doModInitFunctions(ImageLoader::LinkContext const&) (in /usr/lib/dyld)
+==67048==    by 0x100035C1D: ImageLoaderMachO::doInitialization(ImageLoader::LinkContext const&) (in /usr/lib/dyld)
+==67048== 
+==67048== LEAK SUMMARY:
+==67048==    definitely lost: 0 bytes in 0 blocks
+==67048==    indirectly lost: 0 bytes in 0 blocks
+==67048==      possibly lost: 72 bytes in 3 blocks
+==67048==    still reachable: 200 bytes in 6 blocks
+==67048==         suppressed: 17,873 bytes in 153 blocks
+==67048== Reachable blocks (those to which a pointer was found) are not shown.
+==67048== To see them, rerun with: --leak-check=full --show-leak-kinds=all
+==67048== 
+==67048== For counts of detected and suppressed errors, rerun with: -v
+==67048== ERROR SUMMARY: 1 errors from 1 contexts (suppressed: 12 from 12)
+==67055== Memcheck, a memory error detector
+==67055== Copyright (C) 2002-2017, and GNU GPL'd, by Julian Seward et al.
+==67055== Using Valgrind-3.14.0 and LibVEX; rerun with -h for copyright info
+==67055== Command: ./minishell tests/tests_csh/test_setenv2.sh
+==67055== 
 minishell setenv: not valid. must begin with a letter
-==59728== 
-==59728== FILE DESCRIPTORS: 3 open at exit.
-==59728== Open file descriptor 2: /nfs/2018/h/hhow-cho/42/42sh/leaks
-==59728==    <inherited from parent>
-==59728== 
-==59728== Open file descriptor 1: /dev/ttys002
-==59728==    <inherited from parent>
-==59728== 
-==59728== Open file descriptor 0: /dev/ttys002
-==59728==    <inherited from parent>
-==59728== 
-==59728== 
-==59728== HEAP SUMMARY:
-==59728==     in use at exit: 18,145 bytes in 162 blocks
-==59728==   total heap usage: 6,494 allocs, 6,332 frees, 170,986 bytes allocated
-==59728== 
-==59728== 72 bytes in 3 blocks are possibly lost in loss record 26 of 42
-==59728==    at 0x1000B6C8A: calloc (in /nfs/2018/h/hhow-cho/.brew/Cellar/valgrind/3.14.0/lib/valgrind/vgpreload_memcheck-amd64-darwin.so)
-==59728==    by 0x100612832: map_images_nolock (in /usr/lib/libobjc.A.dylib)
-==59728==    by 0x100625D6A: map_images (in /usr/lib/libobjc.A.dylib)
-==59728==    by 0x10002503B: dyld::notifyBatchPartial(dyld_image_states, bool, char const* (*)(dyld_image_states, unsigned int, dyld_image_info const*), bool, bool) (in /usr/lib/dyld)
-==59728==    by 0x100025255: dyld::registerObjCNotifiers(void (*)(unsigned int, char const* const*, mach_header const* const*), void (*)(char const*, mach_header const*), void (*)(char const*, mach_header const*)) (in /usr/lib/dyld)
-==59728==    by 0x10026000A: _dyld_objc_notify_register (in /usr/lib/system/libdyld.dylib)
-==59728==    by 0x100612072: _objc_init (in /usr/lib/libobjc.A.dylib)
-==59728==    by 0x1001F368D: _os_object_init (in /usr/lib/system/libdispatch.dylib)
-==59728==    by 0x1001F363A: libdispatch_init (in /usr/lib/system/libdispatch.dylib)
-==59728==    by 0x1001079D5: libSystem_initializer (in /usr/lib/libSystem.B.dylib)
-==59728==    by 0x100035A1A: ImageLoaderMachO::doModInitFunctions(ImageLoader::LinkContext const&) (in /usr/lib/dyld)
-==59728==    by 0x100035C1D: ImageLoaderMachO::doInitialization(ImageLoader::LinkContext const&) (in /usr/lib/dyld)
-==59728== 
-==59728== LEAK SUMMARY:
-==59728==    definitely lost: 0 bytes in 0 blocks
-==59728==    indirectly lost: 0 bytes in 0 blocks
-==59728==      possibly lost: 72 bytes in 3 blocks
-==59728==    still reachable: 200 bytes in 6 blocks
-==59728==         suppressed: 17,873 bytes in 153 blocks
-==59728== Reachable blocks (those to which a pointer was found) are not shown.
-==59728== To see them, rerun with: --leak-check=full --show-leak-kinds=all
-==59728== 
-==59728== For counts of detected and suppressed errors, rerun with: -v
-==59728== ERROR SUMMARY: 1 errors from 1 contexts (suppressed: 12 from 12)
-==59734== Memcheck, a memory error detector
-==59734== Copyright (C) 2002-2017, and GNU GPL'd, by Julian Seward et al.
-==59734== Using Valgrind-3.14.0 and LibVEX; rerun with -h for copyright info
-==59734== Command: ./minishell tests/tests_csh/test_setenv3.sh
-==59734== 
+==67055== 
+==67055== FILE DESCRIPTORS: 3 open at exit.
+==67055== Open file descriptor 2: /nfs/2018/h/hhow-cho/42/42sh/leaks
+==67055==    <inherited from parent>
+==67055== 
+==67055== Open file descriptor 1: /dev/ttys002
+==67055==    <inherited from parent>
+==67055== 
+==67055== Open file descriptor 0: /dev/ttys002
+==67055==    <inherited from parent>
+==67055== 
+==67055== 
+==67055== HEAP SUMMARY:
+==67055==     in use at exit: 18,145 bytes in 162 blocks
+==67055==   total heap usage: 6,494 allocs, 6,332 frees, 170,986 bytes allocated
+==67055== 
+==67055== 72 bytes in 3 blocks are possibly lost in loss record 26 of 42
+==67055==    at 0x1000B6C8A: calloc (in /nfs/2018/h/hhow-cho/.brew/Cellar/valgrind/3.14.0/lib/valgrind/vgpreload_memcheck-amd64-darwin.so)
+==67055==    by 0x100612832: map_images_nolock (in /usr/lib/libobjc.A.dylib)
+==67055==    by 0x100625D6A: map_images (in /usr/lib/libobjc.A.dylib)
+==67055==    by 0x10002503B: dyld::notifyBatchPartial(dyld_image_states, bool, char const* (*)(dyld_image_states, unsigned int, dyld_image_info const*), bool, bool) (in /usr/lib/dyld)
+==67055==    by 0x100025255: dyld::registerObjCNotifiers(void (*)(unsigned int, char const* const*, mach_header const* const*), void (*)(char const*, mach_header const*), void (*)(char const*, mach_header const*)) (in /usr/lib/dyld)
+==67055==    by 0x10026000A: _dyld_objc_notify_register (in /usr/lib/system/libdyld.dylib)
+==67055==    by 0x100612072: _objc_init (in /usr/lib/libobjc.A.dylib)
+==67055==    by 0x1001F368D: _os_object_init (in /usr/lib/system/libdispatch.dylib)
+==67055==    by 0x1001F363A: libdispatch_init (in /usr/lib/system/libdispatch.dylib)
+==67055==    by 0x1001079D5: libSystem_initializer (in /usr/lib/libSystem.B.dylib)
+==67055==    by 0x100035A1A: ImageLoaderMachO::doModInitFunctions(ImageLoader::LinkContext const&) (in /usr/lib/dyld)
+==67055==    by 0x100035C1D: ImageLoaderMachO::doInitialization(ImageLoader::LinkContext const&) (in /usr/lib/dyld)
+==67055== 
+==67055== LEAK SUMMARY:
+==67055==    definitely lost: 0 bytes in 0 blocks
+==67055==    indirectly lost: 0 bytes in 0 blocks
+==67055==      possibly lost: 72 bytes in 3 blocks
+==67055==    still reachable: 200 bytes in 6 blocks
+==67055==         suppressed: 17,873 bytes in 153 blocks
+==67055== Reachable blocks (those to which a pointer was found) are not shown.
+==67055== To see them, rerun with: --leak-check=full --show-leak-kinds=all
+==67055== 
+==67055== For counts of detected and suppressed errors, rerun with: -v
+==67055== ERROR SUMMARY: 1 errors from 1 contexts (suppressed: 12 from 12)
+==67061== Memcheck, a memory error detector
+==67061== Copyright (C) 2002-2017, and GNU GPL'd, by Julian Seward et al.
+==67061== Using Valgrind-3.14.0 and LibVEX; rerun with -h for copyright info
+==67061== Command: ./minishell tests/tests_csh/test_setenv3.sh
+==67061== 
 minishell setenv: Too many arguments
-==59734== 
-==59734== FILE DESCRIPTORS: 3 open at exit.
-==59734== Open file descriptor 2: /nfs/2018/h/hhow-cho/42/42sh/leaks
-==59734==    <inherited from parent>
-==59734== 
-==59734== Open file descriptor 1: /dev/ttys002
-==59734==    <inherited from parent>
-==59734== 
-==59734== Open file descriptor 0: /dev/ttys002
-==59734==    <inherited from parent>
-==59734== 
-==59734== 
-==59734== HEAP SUMMARY:
-==59734==     in use at exit: 18,145 bytes in 162 blocks
-==59734==   total heap usage: 6,526 allocs, 6,364 frees, 171,401 bytes allocated
-==59734== 
-==59734== 72 bytes in 3 blocks are possibly lost in loss record 26 of 42
-==59734==    at 0x1000B6C8A: calloc (in /nfs/2018/h/hhow-cho/.brew/Cellar/valgrind/3.14.0/lib/valgrind/vgpreload_memcheck-amd64-darwin.so)
-==59734==    by 0x100612832: map_images_nolock (in /usr/lib/libobjc.A.dylib)
-==59734==    by 0x100625D6A: map_images (in /usr/lib/libobjc.A.dylib)
-==59734==    by 0x10002503B: dyld::notifyBatchPartial(dyld_image_states, bool, char const* (*)(dyld_image_states, unsigned int, dyld_image_info const*), bool, bool) (in /usr/lib/dyld)
-==59734==    by 0x100025255: dyld::registerObjCNotifiers(void (*)(unsigned int, char const* const*, mach_header const* const*), void (*)(char const*, mach_header const*), void (*)(char const*, mach_header const*)) (in /usr/lib/dyld)
-==59734==    by 0x10026000A: _dyld_objc_notify_register (in /usr/lib/system/libdyld.dylib)
-==59734==    by 0x100612072: _objc_init (in /usr/lib/libobjc.A.dylib)
-==59734==    by 0x1001F368D: _os_object_init (in /usr/lib/system/libdispatch.dylib)
-==59734==    by 0x1001F363A: libdispatch_init (in /usr/lib/system/libdispatch.dylib)
-==59734==    by 0x1001079D5: libSystem_initializer (in /usr/lib/libSystem.B.dylib)
-==59734==    by 0x100035A1A: ImageLoaderMachO::doModInitFunctions(ImageLoader::LinkContext const&) (in /usr/lib/dyld)
-==59734==    by 0x100035C1D: ImageLoaderMachO::doInitialization(ImageLoader::LinkContext const&) (in /usr/lib/dyld)
-==59734== 
-==59734== LEAK SUMMARY:
-==59734==    definitely lost: 0 bytes in 0 blocks
-==59734==    indirectly lost: 0 bytes in 0 blocks
-==59734==      possibly lost: 72 bytes in 3 blocks
-==59734==    still reachable: 200 bytes in 6 blocks
-==59734==         suppressed: 17,873 bytes in 153 blocks
-==59734== Reachable blocks (those to which a pointer was found) are not shown.
-==59734== To see them, rerun with: --leak-check=full --show-leak-kinds=all
-==59734== 
-==59734== For counts of detected and suppressed errors, rerun with: -v
-==59734== ERROR SUMMARY: 1 errors from 1 contexts (suppressed: 12 from 12)
-==59740== Memcheck, a memory error detector
-==59740== Copyright (C) 2002-2017, and GNU GPL'd, by Julian Seward et al.
-==59740== Using Valgrind-3.14.0 and LibVEX; rerun with -h for copyright info
-==59740== Command: ./minishell tests/tests_csh/test_setenv4.sh
-==59740== 
-==59740== 
-==59740== FILE DESCRIPTORS: 3 open at exit.
-==59740== Open file descriptor 2: /nfs/2018/h/hhow-cho/42/42sh/leaks
-==59740==    <inherited from parent>
-==59740== 
-==59740== Open file descriptor 1: /dev/ttys002
-==59740==    <inherited from parent>
-==59740== 
-==59740== Open file descriptor 0: /dev/ttys002
-==59740==    <inherited from parent>
-==59740== 
-==59740== 
-==59740== HEAP SUMMARY:
-==59740==     in use at exit: 18,145 bytes in 162 blocks
-==59740==   total heap usage: 6,573 allocs, 6,411 frees, 172,315 bytes allocated
-==59740== 
-==59740== 72 bytes in 3 blocks are possibly lost in loss record 26 of 42
-==59740==    at 0x1000B6C8A: calloc (in /nfs/2018/h/hhow-cho/.brew/Cellar/valgrind/3.14.0/lib/valgrind/vgpreload_memcheck-amd64-darwin.so)
-==59740==    by 0x100612832: map_images_nolock (in /usr/lib/libobjc.A.dylib)
-==59740==    by 0x100625D6A: map_images (in /usr/lib/libobjc.A.dylib)
-==59740==    by 0x10002503B: dyld::notifyBatchPartial(dyld_image_states, bool, char const* (*)(dyld_image_states, unsigned int, dyld_image_info const*), bool, bool) (in /usr/lib/dyld)
-==59740==    by 0x100025255: dyld::registerObjCNotifiers(void (*)(unsigned int, char const* const*, mach_header const* const*), void (*)(char const*, mach_header const*), void (*)(char const*, mach_header const*)) (in /usr/lib/dyld)
-==59740==    by 0x10026000A: _dyld_objc_notify_register (in /usr/lib/system/libdyld.dylib)
-==59740==    by 0x100612072: _objc_init (in /usr/lib/libobjc.A.dylib)
-==59740==    by 0x1001F368D: _os_object_init (in /usr/lib/system/libdispatch.dylib)
-==59740==    by 0x1001F363A: libdispatch_init (in /usr/lib/system/libdispatch.dylib)
-==59740==    by 0x1001079D5: libSystem_initializer (in /usr/lib/libSystem.B.dylib)
-==59740==    by 0x100035A1A: ImageLoaderMachO::doModInitFunctions(ImageLoader::LinkContext const&) (in /usr/lib/dyld)
-==59740==    by 0x100035C1D: ImageLoaderMachO::doInitialization(ImageLoader::LinkContext const&) (in /usr/lib/dyld)
-==59740== 
-==59740== LEAK SUMMARY:
-==59740==    definitely lost: 0 bytes in 0 blocks
-==59740==    indirectly lost: 0 bytes in 0 blocks
-==59740==      possibly lost: 72 bytes in 3 blocks
-==59740==    still reachable: 200 bytes in 6 blocks
-==59740==         suppressed: 17,873 bytes in 153 blocks
-==59740== Reachable blocks (those to which a pointer was found) are not shown.
-==59740== To see them, rerun with: --leak-check=full --show-leak-kinds=all
-==59740== 
-==59740== For counts of detected and suppressed errors, rerun with: -v
-==59740== ERROR SUMMARY: 1 errors from 1 contexts (suppressed: 12 from 12)
-==59748== Memcheck, a memory error detector
-==59748== Copyright (C) 2002-2017, and GNU GPL'd, by Julian Seward et al.
-==59748== Using Valgrind-3.14.0 and LibVEX; rerun with -h for copyright info
-==59748== Command: ./minishell tests/tests_csh/test_unsetenv.sh
-==59748== 
+==67061== 
+==67061== FILE DESCRIPTORS: 3 open at exit.
+==67061== Open file descriptor 2: /nfs/2018/h/hhow-cho/42/42sh/leaks
+==67061==    <inherited from parent>
+==67061== 
+==67061== Open file descriptor 1: /dev/ttys002
+==67061==    <inherited from parent>
+==67061== 
+==67061== Open file descriptor 0: /dev/ttys002
+==67061==    <inherited from parent>
+==67061== 
+==67061== 
+==67061== HEAP SUMMARY:
+==67061==     in use at exit: 18,145 bytes in 162 blocks
+==67061==   total heap usage: 6,526 allocs, 6,364 frees, 171,401 bytes allocated
+==67061== 
+==67061== 72 bytes in 3 blocks are possibly lost in loss record 26 of 42
+==67061==    at 0x1000B6C8A: calloc (in /nfs/2018/h/hhow-cho/.brew/Cellar/valgrind/3.14.0/lib/valgrind/vgpreload_memcheck-amd64-darwin.so)
+==67061==    by 0x100612832: map_images_nolock (in /usr/lib/libobjc.A.dylib)
+==67061==    by 0x100625D6A: map_images (in /usr/lib/libobjc.A.dylib)
+==67061==    by 0x10002503B: dyld::notifyBatchPartial(dyld_image_states, bool, char const* (*)(dyld_image_states, unsigned int, dyld_image_info const*), bool, bool) (in /usr/lib/dyld)
+==67061==    by 0x100025255: dyld::registerObjCNotifiers(void (*)(unsigned int, char const* const*, mach_header const* const*), void (*)(char const*, mach_header const*), void (*)(char const*, mach_header const*)) (in /usr/lib/dyld)
+==67061==    by 0x10026000A: _dyld_objc_notify_register (in /usr/lib/system/libdyld.dylib)
+==67061==    by 0x100612072: _objc_init (in /usr/lib/libobjc.A.dylib)
+==67061==    by 0x1001F368D: _os_object_init (in /usr/lib/system/libdispatch.dylib)
+==67061==    by 0x1001F363A: libdispatch_init (in /usr/lib/system/libdispatch.dylib)
+==67061==    by 0x1001079D5: libSystem_initializer (in /usr/lib/libSystem.B.dylib)
+==67061==    by 0x100035A1A: ImageLoaderMachO::doModInitFunctions(ImageLoader::LinkContext const&) (in /usr/lib/dyld)
+==67061==    by 0x100035C1D: ImageLoaderMachO::doInitialization(ImageLoader::LinkContext const&) (in /usr/lib/dyld)
+==67061== 
+==67061== LEAK SUMMARY:
+==67061==    definitely lost: 0 bytes in 0 blocks
+==67061==    indirectly lost: 0 bytes in 0 blocks
+==67061==      possibly lost: 72 bytes in 3 blocks
+==67061==    still reachable: 200 bytes in 6 blocks
+==67061==         suppressed: 17,873 bytes in 153 blocks
+==67061== Reachable blocks (those to which a pointer was found) are not shown.
+==67061== To see them, rerun with: --leak-check=full --show-leak-kinds=all
+==67061== 
+==67061== For counts of detected and suppressed errors, rerun with: -v
+==67061== ERROR SUMMARY: 1 errors from 1 contexts (suppressed: 12 from 12)
+==67067== Memcheck, a memory error detector
+==67067== Copyright (C) 2002-2017, and GNU GPL'd, by Julian Seward et al.
+==67067== Using Valgrind-3.14.0 and LibVEX; rerun with -h for copyright info
+==67067== Command: ./minishell tests/tests_csh/test_setenv4.sh
+==67067== 
+==67067== 
+==67067== FILE DESCRIPTORS: 3 open at exit.
+==67067== Open file descriptor 2: /nfs/2018/h/hhow-cho/42/42sh/leaks
+==67067==    <inherited from parent>
+==67067== 
+==67067== Open file descriptor 1: /dev/ttys002
+==67067==    <inherited from parent>
+==67067== 
+==67067== Open file descriptor 0: /dev/ttys002
+==67067==    <inherited from parent>
+==67067== 
+==67067== 
+==67067== HEAP SUMMARY:
+==67067==     in use at exit: 18,145 bytes in 162 blocks
+==67067==   total heap usage: 6,573 allocs, 6,411 frees, 172,315 bytes allocated
+==67067== 
+==67067== 72 bytes in 3 blocks are possibly lost in loss record 26 of 42
+==67067==    at 0x1000B6C8A: calloc (in /nfs/2018/h/hhow-cho/.brew/Cellar/valgrind/3.14.0/lib/valgrind/vgpreload_memcheck-amd64-darwin.so)
+==67067==    by 0x100612832: map_images_nolock (in /usr/lib/libobjc.A.dylib)
+==67067==    by 0x100625D6A: map_images (in /usr/lib/libobjc.A.dylib)
+==67067==    by 0x10002503B: dyld::notifyBatchPartial(dyld_image_states, bool, char const* (*)(dyld_image_states, unsigned int, dyld_image_info const*), bool, bool) (in /usr/lib/dyld)
+==67067==    by 0x100025255: dyld::registerObjCNotifiers(void (*)(unsigned int, char const* const*, mach_header const* const*), void (*)(char const*, mach_header const*), void (*)(char const*, mach_header const*)) (in /usr/lib/dyld)
+==67067==    by 0x10026000A: _dyld_objc_notify_register (in /usr/lib/system/libdyld.dylib)
+==67067==    by 0x100612072: _objc_init (in /usr/lib/libobjc.A.dylib)
+==67067==    by 0x1001F368D: _os_object_init (in /usr/lib/system/libdispatch.dylib)
+==67067==    by 0x1001F363A: libdispatch_init (in /usr/lib/system/libdispatch.dylib)
+==67067==    by 0x1001079D5: libSystem_initializer (in /usr/lib/libSystem.B.dylib)
+==67067==    by 0x100035A1A: ImageLoaderMachO::doModInitFunctions(ImageLoader::LinkContext const&) (in /usr/lib/dyld)
+==67067==    by 0x100035C1D: ImageLoaderMachO::doInitialization(ImageLoader::LinkContext const&) (in /usr/lib/dyld)
+==67067== 
+==67067== LEAK SUMMARY:
+==67067==    definitely lost: 0 bytes in 0 blocks
+==67067==    indirectly lost: 0 bytes in 0 blocks
+==67067==      possibly lost: 72 bytes in 3 blocks
+==67067==    still reachable: 200 bytes in 6 blocks
+==67067==         suppressed: 17,873 bytes in 153 blocks
+==67067== Reachable blocks (those to which a pointer was found) are not shown.
+==67067== To see them, rerun with: --leak-check=full --show-leak-kinds=all
+==67067== 
+==67067== For counts of detected and suppressed errors, rerun with: -v
+==67067== ERROR SUMMARY: 1 errors from 1 contexts (suppressed: 12 from 12)
+==67075== Memcheck, a memory error detector
+==67075== Copyright (C) 2002-2017, and GNU GPL'd, by Julian Seward et al.
+==67075== Using Valgrind-3.14.0 and LibVEX; rerun with -h for copyright info
+==67075== Command: ./minishell tests/tests_csh/test_unsetenv.sh
+==67075== 
 unsetenv: Too few arguments.
-==59748== 
-==59748== FILE DESCRIPTORS: 3 open at exit.
-==59748== Open file descriptor 2: /nfs/2018/h/hhow-cho/42/42sh/leaks
-==59748==    <inherited from parent>
-==59748== 
-==59748== Open file descriptor 1: /dev/ttys002
-==59748==    <inherited from parent>
-==59748== 
-==59748== Open file descriptor 0: /dev/ttys002
-==59748==    <inherited from parent>
-==59748== 
-==59748== 
-==59748== HEAP SUMMARY:
-==59748==     in use at exit: 18,145 bytes in 162 blocks
-==59748==   total heap usage: 6,549 allocs, 6,387 frees, 171,863 bytes allocated
-==59748== 
-==59748== 72 bytes in 3 blocks are possibly lost in loss record 26 of 42
-==59748==    at 0x1000B6C8A: calloc (in /nfs/2018/h/hhow-cho/.brew/Cellar/valgrind/3.14.0/lib/valgrind/vgpreload_memcheck-amd64-darwin.so)
-==59748==    by 0x100612832: map_images_nolock (in /usr/lib/libobjc.A.dylib)
-==59748==    by 0x100625D6A: map_images (in /usr/lib/libobjc.A.dylib)
-==59748==    by 0x10002503B: dyld::notifyBatchPartial(dyld_image_states, bool, char const* (*)(dyld_image_states, unsigned int, dyld_image_info const*), bool, bool) (in /usr/lib/dyld)
-==59748==    by 0x100025255: dyld::registerObjCNotifiers(void (*)(unsigned int, char const* const*, mach_header const* const*), void (*)(char const*, mach_header const*), void (*)(char const*, mach_header const*)) (in /usr/lib/dyld)
-==59748==    by 0x10026000A: _dyld_objc_notify_register (in /usr/lib/system/libdyld.dylib)
-==59748==    by 0x100612072: _objc_init (in /usr/lib/libobjc.A.dylib)
-==59748==    by 0x1001F368D: _os_object_init (in /usr/lib/system/libdispatch.dylib)
-==59748==    by 0x1001F363A: libdispatch_init (in /usr/lib/system/libdispatch.dylib)
-==59748==    by 0x1001079D5: libSystem_initializer (in /usr/lib/libSystem.B.dylib)
-==59748==    by 0x100035A1A: ImageLoaderMachO::doModInitFunctions(ImageLoader::LinkContext const&) (in /usr/lib/dyld)
-==59748==    by 0x100035C1D: ImageLoaderMachO::doInitialization(ImageLoader::LinkContext const&) (in /usr/lib/dyld)
-==59748== 
-==59748== LEAK SUMMARY:
-==59748==    definitely lost: 0 bytes in 0 blocks
-==59748==    indirectly lost: 0 bytes in 0 blocks
-==59748==      possibly lost: 72 bytes in 3 blocks
-==59748==    still reachable: 200 bytes in 6 blocks
-==59748==         suppressed: 17,873 bytes in 153 blocks
-==59748== Reachable blocks (those to which a pointer was found) are not shown.
-==59748== To see them, rerun with: --leak-check=full --show-leak-kinds=all
-==59748== 
-==59748== For counts of detected and suppressed errors, rerun with: -v
-==59748== ERROR SUMMARY: 1 errors from 1 contexts (suppressed: 12 from 12)
-==59755== Memcheck, a memory error detector
-==59755== Copyright (C) 2002-2017, and GNU GPL'd, by Julian Seward et al.
-==59755== Using Valgrind-3.14.0 and LibVEX; rerun with -h for copyright info
-==59755== Command: ./minishell tests/tests_csh/test_unsetenv2.sh
-==59755== 
-==59755== 
-==59755== FILE DESCRIPTORS: 3 open at exit.
-==59755== Open file descriptor 2: /nfs/2018/h/hhow-cho/42/42sh/leaks
-==59755==    <inherited from parent>
-==59755== 
-==59755== Open file descriptor 1: /dev/ttys002
-==59755==    <inherited from parent>
-==59755== 
-==59755== Open file descriptor 0: /dev/ttys002
-==59755==    <inherited from parent>
-==59755== 
-==59755== 
-==59755== HEAP SUMMARY:
-==59755==     in use at exit: 18,145 bytes in 162 blocks
-==59755==   total heap usage: 6,504 allocs, 6,342 frees, 171,164 bytes allocated
-==59755== 
-==59755== 72 bytes in 3 blocks are possibly lost in loss record 26 of 42
-==59755==    at 0x1000B6C8A: calloc (in /nfs/2018/h/hhow-cho/.brew/Cellar/valgrind/3.14.0/lib/valgrind/vgpreload_memcheck-amd64-darwin.so)
-==59755==    by 0x100612832: map_images_nolock (in /usr/lib/libobjc.A.dylib)
-==59755==    by 0x100625D6A: map_images (in /usr/lib/libobjc.A.dylib)
-==59755==    by 0x10002503B: dyld::notifyBatchPartial(dyld_image_states, bool, char const* (*)(dyld_image_states, unsigned int, dyld_image_info const*), bool, bool) (in /usr/lib/dyld)
-==59755==    by 0x100025255: dyld::registerObjCNotifiers(void (*)(unsigned int, char const* const*, mach_header const* const*), void (*)(char const*, mach_header const*), void (*)(char const*, mach_header const*)) (in /usr/lib/dyld)
-==59755==    by 0x10026000A: _dyld_objc_notify_register (in /usr/lib/system/libdyld.dylib)
-==59755==    by 0x100612072: _objc_init (in /usr/lib/libobjc.A.dylib)
-==59755==    by 0x1001F368D: _os_object_init (in /usr/lib/system/libdispatch.dylib)
-==59755==    by 0x1001F363A: libdispatch_init (in /usr/lib/system/libdispatch.dylib)
-==59755==    by 0x1001079D5: libSystem_initializer (in /usr/lib/libSystem.B.dylib)
-==59755==    by 0x100035A1A: ImageLoaderMachO::doModInitFunctions(ImageLoader::LinkContext const&) (in /usr/lib/dyld)
-==59755==    by 0x100035C1D: ImageLoaderMachO::doInitialization(ImageLoader::LinkContext const&) (in /usr/lib/dyld)
-==59755== 
-==59755== LEAK SUMMARY:
-==59755==    definitely lost: 0 bytes in 0 blocks
-==59755==    indirectly lost: 0 bytes in 0 blocks
-==59755==      possibly lost: 72 bytes in 3 blocks
-==59755==    still reachable: 200 bytes in 6 blocks
-==59755==         suppressed: 17,873 bytes in 153 blocks
-==59755== Reachable blocks (those to which a pointer was found) are not shown.
-==59755== To see them, rerun with: --leak-check=full --show-leak-kinds=all
-==59755== 
-==59755== For counts of detected and suppressed errors, rerun with: -v
-==59755== ERROR SUMMARY: 1 errors from 1 contexts (suppressed: 12 from 12)
-==59767== Memcheck, a memory error detector
-==59767== Copyright (C) 2002-2017, and GNU GPL'd, by Julian Seward et al.
-==59767== Using Valgrind-3.14.0 and LibVEX; rerun with -h for copyright info
-==59767== Command: ./minishell tests/tests_sh/test_cd.sh
-==59767== 
+==67075== 
+==67075== FILE DESCRIPTORS: 3 open at exit.
+==67075== Open file descriptor 2: /nfs/2018/h/hhow-cho/42/42sh/leaks
+==67075==    <inherited from parent>
+==67075== 
+==67075== Open file descriptor 1: /dev/ttys002
+==67075==    <inherited from parent>
+==67075== 
+==67075== Open file descriptor 0: /dev/ttys002
+==67075==    <inherited from parent>
+==67075== 
+==67075== 
+==67075== HEAP SUMMARY:
+==67075==     in use at exit: 18,145 bytes in 162 blocks
+==67075==   total heap usage: 6,549 allocs, 6,387 frees, 171,863 bytes allocated
+==67075== 
+==67075== 72 bytes in 3 blocks are possibly lost in loss record 26 of 42
+==67075==    at 0x1000B6C8A: calloc (in /nfs/2018/h/hhow-cho/.brew/Cellar/valgrind/3.14.0/lib/valgrind/vgpreload_memcheck-amd64-darwin.so)
+==67075==    by 0x100612832: map_images_nolock (in /usr/lib/libobjc.A.dylib)
+==67075==    by 0x100625D6A: map_images (in /usr/lib/libobjc.A.dylib)
+==67075==    by 0x10002503B: dyld::notifyBatchPartial(dyld_image_states, bool, char const* (*)(dyld_image_states, unsigned int, dyld_image_info const*), bool, bool) (in /usr/lib/dyld)
+==67075==    by 0x100025255: dyld::registerObjCNotifiers(void (*)(unsigned int, char const* const*, mach_header const* const*), void (*)(char const*, mach_header const*), void (*)(char const*, mach_header const*)) (in /usr/lib/dyld)
+==67075==    by 0x10026000A: _dyld_objc_notify_register (in /usr/lib/system/libdyld.dylib)
+==67075==    by 0x100612072: _objc_init (in /usr/lib/libobjc.A.dylib)
+==67075==    by 0x1001F368D: _os_object_init (in /usr/lib/system/libdispatch.dylib)
+==67075==    by 0x1001F363A: libdispatch_init (in /usr/lib/system/libdispatch.dylib)
+==67075==    by 0x1001079D5: libSystem_initializer (in /usr/lib/libSystem.B.dylib)
+==67075==    by 0x100035A1A: ImageLoaderMachO::doModInitFunctions(ImageLoader::LinkContext const&) (in /usr/lib/dyld)
+==67075==    by 0x100035C1D: ImageLoaderMachO::doInitialization(ImageLoader::LinkContext const&) (in /usr/lib/dyld)
+==67075== 
+==67075== LEAK SUMMARY:
+==67075==    definitely lost: 0 bytes in 0 blocks
+==67075==    indirectly lost: 0 bytes in 0 blocks
+==67075==      possibly lost: 72 bytes in 3 blocks
+==67075==    still reachable: 200 bytes in 6 blocks
+==67075==         suppressed: 17,873 bytes in 153 blocks
+==67075== Reachable blocks (those to which a pointer was found) are not shown.
+==67075== To see them, rerun with: --leak-check=full --show-leak-kinds=all
+==67075== 
+==67075== For counts of detected and suppressed errors, rerun with: -v
+==67075== ERROR SUMMARY: 1 errors from 1 contexts (suppressed: 12 from 12)
+==67082== Memcheck, a memory error detector
+==67082== Copyright (C) 2002-2017, and GNU GPL'd, by Julian Seward et al.
+==67082== Using Valgrind-3.14.0 and LibVEX; rerun with -h for copyright info
+==67082== Command: ./minishell tests/tests_csh/test_unsetenv2.sh
+==67082== 
+==67082== 
+==67082== FILE DESCRIPTORS: 3 open at exit.
+==67082== Open file descriptor 2: /nfs/2018/h/hhow-cho/42/42sh/leaks
+==67082==    <inherited from parent>
+==67082== 
+==67082== Open file descriptor 1: /dev/ttys002
+==67082==    <inherited from parent>
+==67082== 
+==67082== Open file descriptor 0: /dev/ttys002
+==67082==    <inherited from parent>
+==67082== 
+==67082== 
+==67082== HEAP SUMMARY:
+==67082==     in use at exit: 18,145 bytes in 162 blocks
+==67082==   total heap usage: 6,504 allocs, 6,342 frees, 171,164 bytes allocated
+==67082== 
+==67082== 72 bytes in 3 blocks are possibly lost in loss record 26 of 42
+==67082==    at 0x1000B6C8A: calloc (in /nfs/2018/h/hhow-cho/.brew/Cellar/valgrind/3.14.0/lib/valgrind/vgpreload_memcheck-amd64-darwin.so)
+==67082==    by 0x100612832: map_images_nolock (in /usr/lib/libobjc.A.dylib)
+==67082==    by 0x100625D6A: map_images (in /usr/lib/libobjc.A.dylib)
+==67082==    by 0x10002503B: dyld::notifyBatchPartial(dyld_image_states, bool, char const* (*)(dyld_image_states, unsigned int, dyld_image_info const*), bool, bool) (in /usr/lib/dyld)
+==67082==    by 0x100025255: dyld::registerObjCNotifiers(void (*)(unsigned int, char const* const*, mach_header const* const*), void (*)(char const*, mach_header const*), void (*)(char const*, mach_header const*)) (in /usr/lib/dyld)
+==67082==    by 0x10026000A: _dyld_objc_notify_register (in /usr/lib/system/libdyld.dylib)
+==67082==    by 0x100612072: _objc_init (in /usr/lib/libobjc.A.dylib)
+==67082==    by 0x1001F368D: _os_object_init (in /usr/lib/system/libdispatch.dylib)
+==67082==    by 0x1001F363A: libdispatch_init (in /usr/lib/system/libdispatch.dylib)
+==67082==    by 0x1001079D5: libSystem_initializer (in /usr/lib/libSystem.B.dylib)
+==67082==    by 0x100035A1A: ImageLoaderMachO::doModInitFunctions(ImageLoader::LinkContext const&) (in /usr/lib/dyld)
+==67082==    by 0x100035C1D: ImageLoaderMachO::doInitialization(ImageLoader::LinkContext const&) (in /usr/lib/dyld)
+==67082== 
+==67082== LEAK SUMMARY:
+==67082==    definitely lost: 0 bytes in 0 blocks
+==67082==    indirectly lost: 0 bytes in 0 blocks
+==67082==      possibly lost: 72 bytes in 3 blocks
+==67082==    still reachable: 200 bytes in 6 blocks
+==67082==         suppressed: 17,873 bytes in 153 blocks
+==67082== Reachable blocks (those to which a pointer was found) are not shown.
+==67082== To see them, rerun with: --leak-check=full --show-leak-kinds=all
+==67082== 
+==67082== For counts of detected and suppressed errors, rerun with: -v
+==67082== ERROR SUMMARY: 1 errors from 1 contexts (suppressed: 12 from 12)
+==67094== Memcheck, a memory error detector
+==67094== Copyright (C) 2002-2017, and GNU GPL'd, by Julian Seward et al.
+==67094== Using Valgrind-3.14.0 and LibVEX; rerun with -h for copyright info
+==67094== Command: ./minishell tests/tests_sh/test_cd.sh
+==67094== 
 minishell: cd: No such file or directory: ./directory
 mkdir: perm: File exists
 minishell: cd: Permission denied: ./perm
 minishell: cd: No such file or directory: /~
 minishell: cd: No such file or directory: /-
-==59767== 
-==59767== FILE DESCRIPTORS: 3 open at exit.
-==59767== Open file descriptor 2: /nfs/2018/h/hhow-cho/42/42sh/leaks
-==59767==    <inherited from parent>
-==59767== 
-==59767== Open file descriptor 1: /dev/ttys002
-==59767==    <inherited from parent>
-==59767== 
-==59767== Open file descriptor 0: /dev/ttys002
-==59767==    <inherited from parent>
-==59767== 
-==59767== 
-==59767== HEAP SUMMARY:
-==59767==     in use at exit: 18,145 bytes in 162 blocks
-==59767==   total heap usage: 8,101 allocs, 7,939 frees, 203,499 bytes allocated
-==59767== 
-==59767== 72 bytes in 3 blocks are possibly lost in loss record 26 of 42
-==59767==    at 0x1000B6C8A: calloc (in /nfs/2018/h/hhow-cho/.brew/Cellar/valgrind/3.14.0/lib/valgrind/vgpreload_memcheck-amd64-darwin.so)
-==59767==    by 0x100612832: map_images_nolock (in /usr/lib/libobjc.A.dylib)
-==59767==    by 0x100625D6A: map_images (in /usr/lib/libobjc.A.dylib)
-==59767==    by 0x10002503B: dyld::notifyBatchPartial(dyld_image_states, bool, char const* (*)(dyld_image_states, unsigned int, dyld_image_info const*), bool, bool) (in /usr/lib/dyld)
-==59767==    by 0x100025255: dyld::registerObjCNotifiers(void (*)(unsigned int, char const* const*, mach_header const* const*), void (*)(char const*, mach_header const*), void (*)(char const*, mach_header const*)) (in /usr/lib/dyld)
-==59767==    by 0x10026000A: _dyld_objc_notify_register (in /usr/lib/system/libdyld.dylib)
-==59767==    by 0x100612072: _objc_init (in /usr/lib/libobjc.A.dylib)
-==59767==    by 0x1001F368D: _os_object_init (in /usr/lib/system/libdispatch.dylib)
-==59767==    by 0x1001F363A: libdispatch_init (in /usr/lib/system/libdispatch.dylib)
-==59767==    by 0x1001079D5: libSystem_initializer (in /usr/lib/libSystem.B.dylib)
-==59767==    by 0x100035A1A: ImageLoaderMachO::doModInitFunctions(ImageLoader::LinkContext const&) (in /usr/lib/dyld)
-==59767==    by 0x100035C1D: ImageLoaderMachO::doInitialization(ImageLoader::LinkContext const&) (in /usr/lib/dyld)
-==59767== 
-==59767== LEAK SUMMARY:
-==59767==    definitely lost: 0 bytes in 0 blocks
-==59767==    indirectly lost: 0 bytes in 0 blocks
-==59767==      possibly lost: 72 bytes in 3 blocks
-==59767==    still reachable: 200 bytes in 6 blocks
-==59767==         suppressed: 17,873 bytes in 153 blocks
-==59767== Reachable blocks (those to which a pointer was found) are not shown.
-==59767== To see them, rerun with: --leak-check=full --show-leak-kinds=all
-==59767== 
-==59767== For counts of detected and suppressed errors, rerun with: -v
-==59767== ERROR SUMMARY: 1 errors from 1 contexts (suppressed: 12 from 12)
-==59779== Memcheck, a memory error detector
-==59779== Copyright (C) 2002-2017, and GNU GPL'd, by Julian Seward et al.
-==59779== Using Valgrind-3.14.0 and LibVEX; rerun with -h for copyright info
-==59779== Command: ./minishell tests/tests_sh/test_cd_rm.sh
-==59779== 
+==67094== 
+==67094== FILE DESCRIPTORS: 3 open at exit.
+==67094== Open file descriptor 2: /nfs/2018/h/hhow-cho/42/42sh/leaks
+==67094==    <inherited from parent>
+==67094== 
+==67094== Open file descriptor 1: /dev/ttys002
+==67094==    <inherited from parent>
+==67094== 
+==67094== Open file descriptor 0: /dev/ttys002
+==67094==    <inherited from parent>
+==67094== 
+==67094== 
+==67094== HEAP SUMMARY:
+==67094==     in use at exit: 18,145 bytes in 162 blocks
+==67094==   total heap usage: 8,101 allocs, 7,939 frees, 203,499 bytes allocated
+==67094== 
+==67094== 72 bytes in 3 blocks are possibly lost in loss record 26 of 42
+==67094==    at 0x1000B6C8A: calloc (in /nfs/2018/h/hhow-cho/.brew/Cellar/valgrind/3.14.0/lib/valgrind/vgpreload_memcheck-amd64-darwin.so)
+==67094==    by 0x100612832: map_images_nolock (in /usr/lib/libobjc.A.dylib)
+==67094==    by 0x100625D6A: map_images (in /usr/lib/libobjc.A.dylib)
+==67094==    by 0x10002503B: dyld::notifyBatchPartial(dyld_image_states, bool, char const* (*)(dyld_image_states, unsigned int, dyld_image_info const*), bool, bool) (in /usr/lib/dyld)
+==67094==    by 0x100025255: dyld::registerObjCNotifiers(void (*)(unsigned int, char const* const*, mach_header const* const*), void (*)(char const*, mach_header const*), void (*)(char const*, mach_header const*)) (in /usr/lib/dyld)
+==67094==    by 0x10026000A: _dyld_objc_notify_register (in /usr/lib/system/libdyld.dylib)
+==67094==    by 0x100612072: _objc_init (in /usr/lib/libobjc.A.dylib)
+==67094==    by 0x1001F368D: _os_object_init (in /usr/lib/system/libdispatch.dylib)
+==67094==    by 0x1001F363A: libdispatch_init (in /usr/lib/system/libdispatch.dylib)
+==67094==    by 0x1001079D5: libSystem_initializer (in /usr/lib/libSystem.B.dylib)
+==67094==    by 0x100035A1A: ImageLoaderMachO::doModInitFunctions(ImageLoader::LinkContext const&) (in /usr/lib/dyld)
+==67094==    by 0x100035C1D: ImageLoaderMachO::doInitialization(ImageLoader::LinkContext const&) (in /usr/lib/dyld)
+==67094== 
+==67094== LEAK SUMMARY:
+==67094==    definitely lost: 0 bytes in 0 blocks
+==67094==    indirectly lost: 0 bytes in 0 blocks
+==67094==      possibly lost: 72 bytes in 3 blocks
+==67094==    still reachable: 200 bytes in 6 blocks
+==67094==         suppressed: 17,873 bytes in 153 blocks
+==67094== Reachable blocks (those to which a pointer was found) are not shown.
+==67094== To see them, rerun with: --leak-check=full --show-leak-kinds=all
+==67094== 
+==67094== For counts of detected and suppressed errors, rerun with: -v
+==67094== ERROR SUMMARY: 1 errors from 1 contexts (suppressed: 12 from 12)
+==67106== Memcheck, a memory error detector
+==67106== Copyright (C) 2002-2017, and GNU GPL'd, by Julian Seward et al.
+==67106== Using Valgrind-3.14.0 and LibVEX; rerun with -h for copyright info
+==67106== Command: ./minishell tests/tests_sh/test_cd_rm.sh
+==67106== 
 minishell: cd: No such file or directory: ./dqdqzdqzd/../../
 minishell: cd: No such file or directory: ./dqdqzdqzd/../
 minishell cd: error retrieving current directory: getcwd: cannot access parent directories: No such file or directory.
-==59779== 
-==59779== FILE DESCRIPTORS: 3 open at exit.
-==59779== Open file descriptor 2: /nfs/2018/h/hhow-cho/42/42sh/leaks
-==59779==    <inherited from parent>
-==59779== 
-==59779== Open file descriptor 1: /dev/ttys002
-==59779==    <inherited from parent>
-==59779== 
-==59779== Open file descriptor 0: /dev/ttys002
-==59779==    <inherited from parent>
-==59779== 
-==59779== 
-==59779== HEAP SUMMARY:
-==59779==     in use at exit: 18,145 bytes in 162 blocks
-==59779==   total heap usage: 7,216 allocs, 7,054 frees, 192,756 bytes allocated
-==59779== 
-==59779== 72 bytes in 3 blocks are possibly lost in loss record 26 of 42
-==59779==    at 0x1000B6C8A: calloc (in /nfs/2018/h/hhow-cho/.brew/Cellar/valgrind/3.14.0/lib/valgrind/vgpreload_memcheck-amd64-darwin.so)
-==59779==    by 0x100612832: map_images_nolock (in /usr/lib/libobjc.A.dylib)
-==59779==    by 0x100625D6A: map_images (in /usr/lib/libobjc.A.dylib)
-==59779==    by 0x10002503B: dyld::notifyBatchPartial(dyld_image_states, bool, char const* (*)(dyld_image_states, unsigned int, dyld_image_info const*), bool, bool) (in /usr/lib/dyld)
-==59779==    by 0x100025255: dyld::registerObjCNotifiers(void (*)(unsigned int, char const* const*, mach_header const* const*), void (*)(char const*, mach_header const*), void (*)(char const*, mach_header const*)) (in /usr/lib/dyld)
-==59779==    by 0x10026000A: _dyld_objc_notify_register (in /usr/lib/system/libdyld.dylib)
-==59779==    by 0x100612072: _objc_init (in /usr/lib/libobjc.A.dylib)
-==59779==    by 0x1001F368D: _os_object_init (in /usr/lib/system/libdispatch.dylib)
-==59779==    by 0x1001F363A: libdispatch_init (in /usr/lib/system/libdispatch.dylib)
-==59779==    by 0x1001079D5: libSystem_initializer (in /usr/lib/libSystem.B.dylib)
-==59779==    by 0x100035A1A: ImageLoaderMachO::doModInitFunctions(ImageLoader::LinkContext const&) (in /usr/lib/dyld)
-==59779==    by 0x100035C1D: ImageLoaderMachO::doInitialization(ImageLoader::LinkContext const&) (in /usr/lib/dyld)
-==59779== 
-==59779== LEAK SUMMARY:
-==59779==    definitely lost: 0 bytes in 0 blocks
-==59779==    indirectly lost: 0 bytes in 0 blocks
-==59779==      possibly lost: 72 bytes in 3 blocks
-==59779==    still reachable: 200 bytes in 6 blocks
-==59779==         suppressed: 17,873 bytes in 153 blocks
-==59779== Reachable blocks (those to which a pointer was found) are not shown.
-==59779== To see them, rerun with: --leak-check=full --show-leak-kinds=all
-==59779== 
-==59779== For counts of detected and suppressed errors, rerun with: -v
-==59779== ERROR SUMMARY: 1 errors from 1 contexts (suppressed: 12 from 12)
-==59794== Memcheck, a memory error detector
-==59794== Copyright (C) 2002-2017, and GNU GPL'd, by Julian Seward et al.
-==59794== Using Valgrind-3.14.0 and LibVEX; rerun with -h for copyright info
-==59794== Command: ./minishell tests/tests_sh/test_colon.sh
-==59794== 
+==67106== 
+==67106== FILE DESCRIPTORS: 3 open at exit.
+==67106== Open file descriptor 2: /nfs/2018/h/hhow-cho/42/42sh/leaks
+==67106==    <inherited from parent>
+==67106== 
+==67106== Open file descriptor 1: /dev/ttys002
+==67106==    <inherited from parent>
+==67106== 
+==67106== Open file descriptor 0: /dev/ttys002
+==67106==    <inherited from parent>
+==67106== 
+==67106== 
+==67106== HEAP SUMMARY:
+==67106==     in use at exit: 18,145 bytes in 162 blocks
+==67106==   total heap usage: 7,216 allocs, 7,054 frees, 192,756 bytes allocated
+==67106== 
+==67106== 72 bytes in 3 blocks are possibly lost in loss record 26 of 42
+==67106==    at 0x1000B6C8A: calloc (in /nfs/2018/h/hhow-cho/.brew/Cellar/valgrind/3.14.0/lib/valgrind/vgpreload_memcheck-amd64-darwin.so)
+==67106==    by 0x100612832: map_images_nolock (in /usr/lib/libobjc.A.dylib)
+==67106==    by 0x100625D6A: map_images (in /usr/lib/libobjc.A.dylib)
+==67106==    by 0x10002503B: dyld::notifyBatchPartial(dyld_image_states, bool, char const* (*)(dyld_image_states, unsigned int, dyld_image_info const*), bool, bool) (in /usr/lib/dyld)
+==67106==    by 0x100025255: dyld::registerObjCNotifiers(void (*)(unsigned int, char const* const*, mach_header const* const*), void (*)(char const*, mach_header const*), void (*)(char const*, mach_header const*)) (in /usr/lib/dyld)
+==67106==    by 0x10026000A: _dyld_objc_notify_register (in /usr/lib/system/libdyld.dylib)
+==67106==    by 0x100612072: _objc_init (in /usr/lib/libobjc.A.dylib)
+==67106==    by 0x1001F368D: _os_object_init (in /usr/lib/system/libdispatch.dylib)
+==67106==    by 0x1001F363A: libdispatch_init (in /usr/lib/system/libdispatch.dylib)
+==67106==    by 0x1001079D5: libSystem_initializer (in /usr/lib/libSystem.B.dylib)
+==67106==    by 0x100035A1A: ImageLoaderMachO::doModInitFunctions(ImageLoader::LinkContext const&) (in /usr/lib/dyld)
+==67106==    by 0x100035C1D: ImageLoaderMachO::doInitialization(ImageLoader::LinkContext const&) (in /usr/lib/dyld)
+==67106== 
+==67106== LEAK SUMMARY:
+==67106==    definitely lost: 0 bytes in 0 blocks
+==67106==    indirectly lost: 0 bytes in 0 blocks
+==67106==      possibly lost: 72 bytes in 3 blocks
+==67106==    still reachable: 200 bytes in 6 blocks
+==67106==         suppressed: 17,873 bytes in 153 blocks
+==67106== Reachable blocks (those to which a pointer was found) are not shown.
+==67106== To see them, rerun with: --leak-check=full --show-leak-kinds=all
+==67106== 
+==67106== For counts of detected and suppressed errors, rerun with: -v
+==67106== ERROR SUMMARY: 1 errors from 1 contexts (suppressed: 12 from 12)
+==67121== Memcheck, a memory error detector
+==67121== Copyright (C) 2002-2017, and GNU GPL'd, by Julian Seward et al.
+==67121== Using Valgrind-3.14.0 and LibVEX; rerun with -h for copyright info
+==67121== Command: ./minishell tests/tests_sh/test_colon.sh
+==67121== 
 ls: nothing: No such file or directory
 minishell: command not found: a
 minishell: command not found: b
-==59794== 
-==59794== FILE DESCRIPTORS: 3 open at exit.
-==59794== Open file descriptor 2: /nfs/2018/h/hhow-cho/42/42sh/leaks
-==59794==    <inherited from parent>
-==59794== 
-==59794== Open file descriptor 1: /dev/ttys002
-==59794==    <inherited from parent>
-==59794== 
-==59794== Open file descriptor 0: /dev/ttys002
-==59794==    <inherited from parent>
-==59794== 
-==59794== 
-==59794== HEAP SUMMARY:
-==59794==     in use at exit: 18,145 bytes in 162 blocks
-==59794==   total heap usage: 6,857 allocs, 6,695 frees, 184,487 bytes allocated
-==59794== 
-==59794== 72 bytes in 3 blocks are possibly lost in loss record 26 of 42
-==59794==    at 0x1000B6C8A: calloc (in /nfs/2018/h/hhow-cho/.brew/Cellar/valgrind/3.14.0/lib/valgrind/vgpreload_memcheck-amd64-darwin.so)
-==59794==    by 0x100612832: map_images_nolock (in /usr/lib/libobjc.A.dylib)
-==59794==    by 0x100625D6A: map_images (in /usr/lib/libobjc.A.dylib)
-==59794==    by 0x10002503B: dyld::notifyBatchPartial(dyld_image_states, bool, char const* (*)(dyld_image_states, unsigned int, dyld_image_info const*), bool, bool) (in /usr/lib/dyld)
-==59794==    by 0x100025255: dyld::registerObjCNotifiers(void (*)(unsigned int, char const* const*, mach_header const* const*), void (*)(char const*, mach_header const*), void (*)(char const*, mach_header const*)) (in /usr/lib/dyld)
-==59794==    by 0x10026000A: _dyld_objc_notify_register (in /usr/lib/system/libdyld.dylib)
-==59794==    by 0x100612072: _objc_init (in /usr/lib/libobjc.A.dylib)
-==59794==    by 0x1001F368D: _os_object_init (in /usr/lib/system/libdispatch.dylib)
-==59794==    by 0x1001F363A: libdispatch_init (in /usr/lib/system/libdispatch.dylib)
-==59794==    by 0x1001079D5: libSystem_initializer (in /usr/lib/libSystem.B.dylib)
-==59794==    by 0x100035A1A: ImageLoaderMachO::doModInitFunctions(ImageLoader::LinkContext const&) (in /usr/lib/dyld)
-==59794==    by 0x100035C1D: ImageLoaderMachO::doInitialization(ImageLoader::LinkContext const&) (in /usr/lib/dyld)
-==59794== 
-==59794== LEAK SUMMARY:
-==59794==    definitely lost: 0 bytes in 0 blocks
-==59794==    indirectly lost: 0 bytes in 0 blocks
-==59794==      possibly lost: 72 bytes in 3 blocks
-==59794==    still reachable: 200 bytes in 6 blocks
-==59794==         suppressed: 17,873 bytes in 153 blocks
-==59794== Reachable blocks (those to which a pointer was found) are not shown.
-==59794== To see them, rerun with: --leak-check=full --show-leak-kinds=all
-==59794== 
-==59794== For counts of detected and suppressed errors, rerun with: -v
-==59794== ERROR SUMMARY: 1 errors from 1 contexts (suppressed: 12 from 12)
-==59803== Memcheck, a memory error detector
-==59803== Copyright (C) 2002-2017, and GNU GPL'd, by Julian Seward et al.
-==59803== Using Valgrind-3.14.0 and LibVEX; rerun with -h for copyright info
-==59803== Command: ./minishell tests/tests_sh/test_dire.sh
-==59803== 
+==67121== 
+==67121== FILE DESCRIPTORS: 3 open at exit.
+==67121== Open file descriptor 2: /nfs/2018/h/hhow-cho/42/42sh/leaks
+==67121==    <inherited from parent>
+==67121== 
+==67121== Open file descriptor 1: /dev/ttys002
+==67121==    <inherited from parent>
+==67121== 
+==67121== Open file descriptor 0: /dev/ttys002
+==67121==    <inherited from parent>
+==67121== 
+==67121== 
+==67121== HEAP SUMMARY:
+==67121==     in use at exit: 18,145 bytes in 162 blocks
+==67121==   total heap usage: 6,857 allocs, 6,695 frees, 184,487 bytes allocated
+==67121== 
+==67121== 72 bytes in 3 blocks are possibly lost in loss record 26 of 42
+==67121==    at 0x1000B6C8A: calloc (in /nfs/2018/h/hhow-cho/.brew/Cellar/valgrind/3.14.0/lib/valgrind/vgpreload_memcheck-amd64-darwin.so)
+==67121==    by 0x100612832: map_images_nolock (in /usr/lib/libobjc.A.dylib)
+==67121==    by 0x100625D6A: map_images (in /usr/lib/libobjc.A.dylib)
+==67121==    by 0x10002503B: dyld::notifyBatchPartial(dyld_image_states, bool, char const* (*)(dyld_image_states, unsigned int, dyld_image_info const*), bool, bool) (in /usr/lib/dyld)
+==67121==    by 0x100025255: dyld::registerObjCNotifiers(void (*)(unsigned int, char const* const*, mach_header const* const*), void (*)(char const*, mach_header const*), void (*)(char const*, mach_header const*)) (in /usr/lib/dyld)
+==67121==    by 0x10026000A: _dyld_objc_notify_register (in /usr/lib/system/libdyld.dylib)
+==67121==    by 0x100612072: _objc_init (in /usr/lib/libobjc.A.dylib)
+==67121==    by 0x1001F368D: _os_object_init (in /usr/lib/system/libdispatch.dylib)
+==67121==    by 0x1001F363A: libdispatch_init (in /usr/lib/system/libdispatch.dylib)
+==67121==    by 0x1001079D5: libSystem_initializer (in /usr/lib/libSystem.B.dylib)
+==67121==    by 0x100035A1A: ImageLoaderMachO::doModInitFunctions(ImageLoader::LinkContext const&) (in /usr/lib/dyld)
+==67121==    by 0x100035C1D: ImageLoaderMachO::doInitialization(ImageLoader::LinkContext const&) (in /usr/lib/dyld)
+==67121== 
+==67121== LEAK SUMMARY:
+==67121==    definitely lost: 0 bytes in 0 blocks
+==67121==    indirectly lost: 0 bytes in 0 blocks
+==67121==      possibly lost: 72 bytes in 3 blocks
+==67121==    still reachable: 200 bytes in 6 blocks
+==67121==         suppressed: 17,873 bytes in 153 blocks
+==67121== Reachable blocks (those to which a pointer was found) are not shown.
+==67121== To see them, rerun with: --leak-check=full --show-leak-kinds=all
+==67121== 
+==67121== For counts of detected and suppressed errors, rerun with: -v
+==67121== ERROR SUMMARY: 1 errors from 1 contexts (suppressed: 12 from 12)
+==67130== Memcheck, a memory error detector
+==67130== Copyright (C) 2002-2017, and GNU GPL'd, by Julian Seward et al.
+==67130== Using Valgrind-3.14.0 and LibVEX; rerun with -h for copyright info
+==67130== Command: ./minishell tests/tests_sh/test_dire.sh
+==67130== 
 minishell: /Library is not an executable
-==59803== 
-==59803== FILE DESCRIPTORS: 3 open at exit.
-==59803== Open file descriptor 2: /nfs/2018/h/hhow-cho/42/42sh/leaks
-==59803==    <inherited from parent>
-==59803== 
-==59803== Open file descriptor 1: /dev/ttys002
-==59803==    <inherited from parent>
-==59803== 
-==59803== Open file descriptor 0: /dev/ttys002
-==59803==    <inherited from parent>
-==59803== 
-==59803== 
-==59803== HEAP SUMMARY:
-==59803==     in use at exit: 18,145 bytes in 162 blocks
-==59803==   total heap usage: 6,550 allocs, 6,388 frees, 171,871 bytes allocated
-==59803== 
-==59803== 72 bytes in 3 blocks are possibly lost in loss record 26 of 42
-==59803==    at 0x1000B6C8A: calloc (in /nfs/2018/h/hhow-cho/.brew/Cellar/valgrind/3.14.0/lib/valgrind/vgpreload_memcheck-amd64-darwin.so)
-==59803==    by 0x100612832: map_images_nolock (in /usr/lib/libobjc.A.dylib)
-==59803==    by 0x100625D6A: map_images (in /usr/lib/libobjc.A.dylib)
-==59803==    by 0x10002503B: dyld::notifyBatchPartial(dyld_image_states, bool, char const* (*)(dyld_image_states, unsigned int, dyld_image_info const*), bool, bool) (in /usr/lib/dyld)
-==59803==    by 0x100025255: dyld::registerObjCNotifiers(void (*)(unsigned int, char const* const*, mach_header const* const*), void (*)(char const*, mach_header const*), void (*)(char const*, mach_header const*)) (in /usr/lib/dyld)
-==59803==    by 0x10026000A: _dyld_objc_notify_register (in /usr/lib/system/libdyld.dylib)
-==59803==    by 0x100612072: _objc_init (in /usr/lib/libobjc.A.dylib)
-==59803==    by 0x1001F368D: _os_object_init (in /usr/lib/system/libdispatch.dylib)
-==59803==    by 0x1001F363A: libdispatch_init (in /usr/lib/system/libdispatch.dylib)
-==59803==    by 0x1001079D5: libSystem_initializer (in /usr/lib/libSystem.B.dylib)
-==59803==    by 0x100035A1A: ImageLoaderMachO::doModInitFunctions(ImageLoader::LinkContext const&) (in /usr/lib/dyld)
-==59803==    by 0x100035C1D: ImageLoaderMachO::doInitialization(ImageLoader::LinkContext const&) (in /usr/lib/dyld)
-==59803== 
-==59803== LEAK SUMMARY:
-==59803==    definitely lost: 0 bytes in 0 blocks
-==59803==    indirectly lost: 0 bytes in 0 blocks
-==59803==      possibly lost: 72 bytes in 3 blocks
-==59803==    still reachable: 200 bytes in 6 blocks
-==59803==         suppressed: 17,873 bytes in 153 blocks
-==59803== Reachable blocks (those to which a pointer was found) are not shown.
-==59803== To see them, rerun with: --leak-check=full --show-leak-kinds=all
-==59803== 
-==59803== For counts of detected and suppressed errors, rerun with: -v
-==59803== ERROR SUMMARY: 1 errors from 1 contexts (suppressed: 12 from 12)
-==59810== Memcheck, a memory error detector
-==59810== Copyright (C) 2002-2017, and GNU GPL'd, by Julian Seward et al.
-==59810== Using Valgrind-3.14.0 and LibVEX; rerun with -h for copyright info
-==59810== Command: ./minishell tests/tests_sh/test_echo.sh
-==59810== 
+==67130== 
+==67130== FILE DESCRIPTORS: 3 open at exit.
+==67130== Open file descriptor 2: /nfs/2018/h/hhow-cho/42/42sh/leaks
+==67130==    <inherited from parent>
+==67130== 
+==67130== Open file descriptor 1: /dev/ttys002
+==67130==    <inherited from parent>
+==67130== 
+==67130== Open file descriptor 0: /dev/ttys002
+==67130==    <inherited from parent>
+==67130== 
+==67130== 
+==67130== HEAP SUMMARY:
+==67130==     in use at exit: 18,145 bytes in 162 blocks
+==67130==   total heap usage: 6,550 allocs, 6,388 frees, 171,871 bytes allocated
+==67130== 
+==67130== 72 bytes in 3 blocks are possibly lost in loss record 26 of 42
+==67130==    at 0x1000B6C8A: calloc (in /nfs/2018/h/hhow-cho/.brew/Cellar/valgrind/3.14.0/lib/valgrind/vgpreload_memcheck-amd64-darwin.so)
+==67130==    by 0x100612832: map_images_nolock (in /usr/lib/libobjc.A.dylib)
+==67130==    by 0x100625D6A: map_images (in /usr/lib/libobjc.A.dylib)
+==67130==    by 0x10002503B: dyld::notifyBatchPartial(dyld_image_states, bool, char const* (*)(dyld_image_states, unsigned int, dyld_image_info const*), bool, bool) (in /usr/lib/dyld)
+==67130==    by 0x100025255: dyld::registerObjCNotifiers(void (*)(unsigned int, char const* const*, mach_header const* const*), void (*)(char const*, mach_header const*), void (*)(char const*, mach_header const*)) (in /usr/lib/dyld)
+==67130==    by 0x10026000A: _dyld_objc_notify_register (in /usr/lib/system/libdyld.dylib)
+==67130==    by 0x100612072: _objc_init (in /usr/lib/libobjc.A.dylib)
+==67130==    by 0x1001F368D: _os_object_init (in /usr/lib/system/libdispatch.dylib)
+==67130==    by 0x1001F363A: libdispatch_init (in /usr/lib/system/libdispatch.dylib)
+==67130==    by 0x1001079D5: libSystem_initializer (in /usr/lib/libSystem.B.dylib)
+==67130==    by 0x100035A1A: ImageLoaderMachO::doModInitFunctions(ImageLoader::LinkContext const&) (in /usr/lib/dyld)
+==67130==    by 0x100035C1D: ImageLoaderMachO::doInitialization(ImageLoader::LinkContext const&) (in /usr/lib/dyld)
+==67130== 
+==67130== LEAK SUMMARY:
+==67130==    definitely lost: 0 bytes in 0 blocks
+==67130==    indirectly lost: 0 bytes in 0 blocks
+==67130==      possibly lost: 72 bytes in 3 blocks
+==67130==    still reachable: 200 bytes in 6 blocks
+==67130==         suppressed: 17,873 bytes in 153 blocks
+==67130== Reachable blocks (those to which a pointer was found) are not shown.
+==67130== To see them, rerun with: --leak-check=full --show-leak-kinds=all
+==67130== 
+==67130== For counts of detected and suppressed errors, rerun with: -v
+==67130== ERROR SUMMARY: 1 errors from 1 contexts (suppressed: 12 from 12)
+==67137== Memcheck, a memory error detector
+==67137== Copyright (C) 2002-2017, and GNU GPL'd, by Julian Seward et al.
+==67137== Using Valgrind-3.14.0 and LibVEX; rerun with -h for copyright info
+==67137== Command: ./minishell tests/tests_sh/test_echo.sh
+==67137== 
 minishell: Bad substitution
 minishell: Bad substitution
-==59810== 
-==59810== FILE DESCRIPTORS: 3 open at exit.
-==59810== Open file descriptor 2: /nfs/2018/h/hhow-cho/42/42sh/leaks
-==59810==    <inherited from parent>
-==59810== 
-==59810== Open file descriptor 1: /dev/ttys002
-==59810==    <inherited from parent>
-==59810== 
-==59810== Open file descriptor 0: /dev/ttys002
-==59810==    <inherited from parent>
-==59810== 
-==59810== 
-==59810== HEAP SUMMARY:
-==59810==     in use at exit: 18,145 bytes in 162 blocks
-==59810==   total heap usage: 6,756 allocs, 6,594 frees, 174,875 bytes allocated
-==59810== 
-==59810== 72 bytes in 3 blocks are possibly lost in loss record 26 of 42
-==59810==    at 0x1000B6C8A: calloc (in /nfs/2018/h/hhow-cho/.brew/Cellar/valgrind/3.14.0/lib/valgrind/vgpreload_memcheck-amd64-darwin.so)
-==59810==    by 0x100612832: map_images_nolock (in /usr/lib/libobjc.A.dylib)
-==59810==    by 0x100625D6A: map_images (in /usr/lib/libobjc.A.dylib)
-==59810==    by 0x10002503B: dyld::notifyBatchPartial(dyld_image_states, bool, char const* (*)(dyld_image_states, unsigned int, dyld_image_info const*), bool, bool) (in /usr/lib/dyld)
-==59810==    by 0x100025255: dyld::registerObjCNotifiers(void (*)(unsigned int, char const* const*, mach_header const* const*), void (*)(char const*, mach_header const*), void (*)(char const*, mach_header const*)) (in /usr/lib/dyld)
-==59810==    by 0x10026000A: _dyld_objc_notify_register (in /usr/lib/system/libdyld.dylib)
-==59810==    by 0x100612072: _objc_init (in /usr/lib/libobjc.A.dylib)
-==59810==    by 0x1001F368D: _os_object_init (in /usr/lib/system/libdispatch.dylib)
-==59810==    by 0x1001F363A: libdispatch_init (in /usr/lib/system/libdispatch.dylib)
-==59810==    by 0x1001079D5: libSystem_initializer (in /usr/lib/libSystem.B.dylib)
-==59810==    by 0x100035A1A: ImageLoaderMachO::doModInitFunctions(ImageLoader::LinkContext const&) (in /usr/lib/dyld)
-==59810==    by 0x100035C1D: ImageLoaderMachO::doInitialization(ImageLoader::LinkContext const&) (in /usr/lib/dyld)
-==59810== 
-==59810== LEAK SUMMARY:
-==59810==    definitely lost: 0 bytes in 0 blocks
-==59810==    indirectly lost: 0 bytes in 0 blocks
-==59810==      possibly lost: 72 bytes in 3 blocks
-==59810==    still reachable: 200 bytes in 6 blocks
-==59810==         suppressed: 17,873 bytes in 153 blocks
-==59810== Reachable blocks (those to which a pointer was found) are not shown.
-==59810== To see them, rerun with: --leak-check=full --show-leak-kinds=all
-==59810== 
-==59810== For counts of detected and suppressed errors, rerun with: -v
-==59810== ERROR SUMMARY: 1 errors from 1 contexts (suppressed: 12 from 12)
-==59818== Memcheck, a memory error detector
-==59818== Copyright (C) 2002-2017, and GNU GPL'd, by Julian Seward et al.
-==59818== Using Valgrind-3.14.0 and LibVEX; rerun with -h for copyright info
-==59818== Command: ./minishell tests/tests_sh/test_echo_1.sh
-==59818== 
+==67137== 
+==67137== FILE DESCRIPTORS: 3 open at exit.
+==67137== Open file descriptor 2: /nfs/2018/h/hhow-cho/42/42sh/leaks
+==67137==    <inherited from parent>
+==67137== 
+==67137== Open file descriptor 1: /dev/ttys002
+==67137==    <inherited from parent>
+==67137== 
+==67137== Open file descriptor 0: /dev/ttys002
+==67137==    <inherited from parent>
+==67137== 
+==67137== 
+==67137== HEAP SUMMARY:
+==67137==     in use at exit: 18,145 bytes in 162 blocks
+==67137==   total heap usage: 6,756 allocs, 6,594 frees, 174,875 bytes allocated
+==67137== 
+==67137== 72 bytes in 3 blocks are possibly lost in loss record 26 of 42
+==67137==    at 0x1000B6C8A: calloc (in /nfs/2018/h/hhow-cho/.brew/Cellar/valgrind/3.14.0/lib/valgrind/vgpreload_memcheck-amd64-darwin.so)
+==67137==    by 0x100612832: map_images_nolock (in /usr/lib/libobjc.A.dylib)
+==67137==    by 0x100625D6A: map_images (in /usr/lib/libobjc.A.dylib)
+==67137==    by 0x10002503B: dyld::notifyBatchPartial(dyld_image_states, bool, char const* (*)(dyld_image_states, unsigned int, dyld_image_info const*), bool, bool) (in /usr/lib/dyld)
+==67137==    by 0x100025255: dyld::registerObjCNotifiers(void (*)(unsigned int, char const* const*, mach_header const* const*), void (*)(char const*, mach_header const*), void (*)(char const*, mach_header const*)) (in /usr/lib/dyld)
+==67137==    by 0x10026000A: _dyld_objc_notify_register (in /usr/lib/system/libdyld.dylib)
+==67137==    by 0x100612072: _objc_init (in /usr/lib/libobjc.A.dylib)
+==67137==    by 0x1001F368D: _os_object_init (in /usr/lib/system/libdispatch.dylib)
+==67137==    by 0x1001F363A: libdispatch_init (in /usr/lib/system/libdispatch.dylib)
+==67137==    by 0x1001079D5: libSystem_initializer (in /usr/lib/libSystem.B.dylib)
+==67137==    by 0x100035A1A: ImageLoaderMachO::doModInitFunctions(ImageLoader::LinkContext const&) (in /usr/lib/dyld)
+==67137==    by 0x100035C1D: ImageLoaderMachO::doInitialization(ImageLoader::LinkContext const&) (in /usr/lib/dyld)
+==67137== 
+==67137== LEAK SUMMARY:
+==67137==    definitely lost: 0 bytes in 0 blocks
+==67137==    indirectly lost: 0 bytes in 0 blocks
+==67137==      possibly lost: 72 bytes in 3 blocks
+==67137==    still reachable: 200 bytes in 6 blocks
+==67137==         suppressed: 17,873 bytes in 153 blocks
+==67137== Reachable blocks (those to which a pointer was found) are not shown.
+==67137== To see them, rerun with: --leak-check=full --show-leak-kinds=all
+==67137== 
+==67137== For counts of detected and suppressed errors, rerun with: -v
+==67137== ERROR SUMMARY: 1 errors from 1 contexts (suppressed: 12 from 12)
+==67145== Memcheck, a memory error detector
+==67145== Copyright (C) 2002-2017, and GNU GPL'd, by Julian Seward et al.
+==67145== Using Valgrind-3.14.0 and LibVEX; rerun with -h for copyright info
+==67145== Command: ./minishell tests/tests_sh/test_echo_1.sh
+==67145== 
 minishell: Bad substitution
 minishell: Bad substitution
 minishell: Bad substitution
@@ -534,529 +535,529 @@ minishell: Bad substitution
 minishell: Bad substitution
 minishell: Bad substitution
 ls: dzdz: No such file or directory
-==59818== 
-==59818== FILE DESCRIPTORS: 3 open at exit.
-==59818== Open file descriptor 2: /nfs/2018/h/hhow-cho/42/42sh/leaks
-==59818==    <inherited from parent>
-==59818== 
-==59818== Open file descriptor 1: /dev/ttys002
-==59818==    <inherited from parent>
-==59818== 
-==59818== Open file descriptor 0: /dev/ttys002
-==59818==    <inherited from parent>
-==59818== 
-==59818== 
-==59818== HEAP SUMMARY:
-==59818==     in use at exit: 18,145 bytes in 162 blocks
-==59818==   total heap usage: 8,210 allocs, 8,048 frees, 200,413 bytes allocated
-==59818== 
-==59818== 72 bytes in 3 blocks are possibly lost in loss record 26 of 42
-==59818==    at 0x1000B6C8A: calloc (in /nfs/2018/h/hhow-cho/.brew/Cellar/valgrind/3.14.0/lib/valgrind/vgpreload_memcheck-amd64-darwin.so)
-==59818==    by 0x100612832: map_images_nolock (in /usr/lib/libobjc.A.dylib)
-==59818==    by 0x100625D6A: map_images (in /usr/lib/libobjc.A.dylib)
-==59818==    by 0x10002503B: dyld::notifyBatchPartial(dyld_image_states, bool, char const* (*)(dyld_image_states, unsigned int, dyld_image_info const*), bool, bool) (in /usr/lib/dyld)
-==59818==    by 0x100025255: dyld::registerObjCNotifiers(void (*)(unsigned int, char const* const*, mach_header const* const*), void (*)(char const*, mach_header const*), void (*)(char const*, mach_header const*)) (in /usr/lib/dyld)
-==59818==    by 0x10026000A: _dyld_objc_notify_register (in /usr/lib/system/libdyld.dylib)
-==59818==    by 0x100612072: _objc_init (in /usr/lib/libobjc.A.dylib)
-==59818==    by 0x1001F368D: _os_object_init (in /usr/lib/system/libdispatch.dylib)
-==59818==    by 0x1001F363A: libdispatch_init (in /usr/lib/system/libdispatch.dylib)
-==59818==    by 0x1001079D5: libSystem_initializer (in /usr/lib/libSystem.B.dylib)
-==59818==    by 0x100035A1A: ImageLoaderMachO::doModInitFunctions(ImageLoader::LinkContext const&) (in /usr/lib/dyld)
-==59818==    by 0x100035C1D: ImageLoaderMachO::doInitialization(ImageLoader::LinkContext const&) (in /usr/lib/dyld)
-==59818== 
-==59818== LEAK SUMMARY:
-==59818==    definitely lost: 0 bytes in 0 blocks
-==59818==    indirectly lost: 0 bytes in 0 blocks
-==59818==      possibly lost: 72 bytes in 3 blocks
-==59818==    still reachable: 200 bytes in 6 blocks
-==59818==         suppressed: 17,873 bytes in 153 blocks
-==59818== Reachable blocks (those to which a pointer was found) are not shown.
-==59818== To see them, rerun with: --leak-check=full --show-leak-kinds=all
-==59818== 
-==59818== For counts of detected and suppressed errors, rerun with: -v
-==59818== ERROR SUMMARY: 1 errors from 1 contexts (suppressed: 12 from 12)
-==59833== Memcheck, a memory error detector
-==59833== Copyright (C) 2002-2017, and GNU GPL'd, by Julian Seward et al.
-==59833== Using Valgrind-3.14.0 and LibVEX; rerun with -h for copyright info
-==59833== Command: ./minishell tests/tests_sh/test_empty_env.sh
-==59833== 
+==67145== 
+==67145== FILE DESCRIPTORS: 3 open at exit.
+==67145== Open file descriptor 2: /nfs/2018/h/hhow-cho/42/42sh/leaks
+==67145==    <inherited from parent>
+==67145== 
+==67145== Open file descriptor 1: /dev/ttys002
+==67145==    <inherited from parent>
+==67145== 
+==67145== Open file descriptor 0: /dev/ttys002
+==67145==    <inherited from parent>
+==67145== 
+==67145== 
+==67145== HEAP SUMMARY:
+==67145==     in use at exit: 18,145 bytes in 162 blocks
+==67145==   total heap usage: 8,210 allocs, 8,048 frees, 200,413 bytes allocated
+==67145== 
+==67145== 72 bytes in 3 blocks are possibly lost in loss record 26 of 42
+==67145==    at 0x1000B6C8A: calloc (in /nfs/2018/h/hhow-cho/.brew/Cellar/valgrind/3.14.0/lib/valgrind/vgpreload_memcheck-amd64-darwin.so)
+==67145==    by 0x100612832: map_images_nolock (in /usr/lib/libobjc.A.dylib)
+==67145==    by 0x100625D6A: map_images (in /usr/lib/libobjc.A.dylib)
+==67145==    by 0x10002503B: dyld::notifyBatchPartial(dyld_image_states, bool, char const* (*)(dyld_image_states, unsigned int, dyld_image_info const*), bool, bool) (in /usr/lib/dyld)
+==67145==    by 0x100025255: dyld::registerObjCNotifiers(void (*)(unsigned int, char const* const*, mach_header const* const*), void (*)(char const*, mach_header const*), void (*)(char const*, mach_header const*)) (in /usr/lib/dyld)
+==67145==    by 0x10026000A: _dyld_objc_notify_register (in /usr/lib/system/libdyld.dylib)
+==67145==    by 0x100612072: _objc_init (in /usr/lib/libobjc.A.dylib)
+==67145==    by 0x1001F368D: _os_object_init (in /usr/lib/system/libdispatch.dylib)
+==67145==    by 0x1001F363A: libdispatch_init (in /usr/lib/system/libdispatch.dylib)
+==67145==    by 0x1001079D5: libSystem_initializer (in /usr/lib/libSystem.B.dylib)
+==67145==    by 0x100035A1A: ImageLoaderMachO::doModInitFunctions(ImageLoader::LinkContext const&) (in /usr/lib/dyld)
+==67145==    by 0x100035C1D: ImageLoaderMachO::doInitialization(ImageLoader::LinkContext const&) (in /usr/lib/dyld)
+==67145== 
+==67145== LEAK SUMMARY:
+==67145==    definitely lost: 0 bytes in 0 blocks
+==67145==    indirectly lost: 0 bytes in 0 blocks
+==67145==      possibly lost: 72 bytes in 3 blocks
+==67145==    still reachable: 200 bytes in 6 blocks
+==67145==         suppressed: 17,873 bytes in 153 blocks
+==67145== Reachable blocks (those to which a pointer was found) are not shown.
+==67145== To see them, rerun with: --leak-check=full --show-leak-kinds=all
+==67145== 
+==67145== For counts of detected and suppressed errors, rerun with: -v
+==67145== ERROR SUMMARY: 1 errors from 1 contexts (suppressed: 12 from 12)
+==67160== Memcheck, a memory error detector
+==67160== Copyright (C) 2002-2017, and GNU GPL'd, by Julian Seward et al.
+==67160== Using Valgrind-3.14.0 and LibVEX; rerun with -h for copyright info
+==67160== Command: ./minishell tests/tests_sh/test_empty_env.sh
+==67160== 
 minishell: command not found: ls
 minishell: command not found: ls
 minishell: command not found: ls
-==59833== 
-==59833== FILE DESCRIPTORS: 3 open at exit.
-==59833== Open file descriptor 2: /nfs/2018/h/hhow-cho/42/42sh/leaks
-==59833==    <inherited from parent>
-==59833== 
-==59833== Open file descriptor 1: /dev/ttys002
-==59833==    <inherited from parent>
-==59833== 
-==59833== Open file descriptor 0: /dev/ttys002
-==59833==    <inherited from parent>
-==59833== 
-==59833== 
-==59833== HEAP SUMMARY:
-==59833==     in use at exit: 18,145 bytes in 162 blocks
-==59833==   total heap usage: 7,358 allocs, 7,196 frees, 199,332 bytes allocated
-==59833== 
-==59833== 72 bytes in 3 blocks are possibly lost in loss record 26 of 42
-==59833==    at 0x1000B6C8A: calloc (in /nfs/2018/h/hhow-cho/.brew/Cellar/valgrind/3.14.0/lib/valgrind/vgpreload_memcheck-amd64-darwin.so)
-==59833==    by 0x100612832: map_images_nolock (in /usr/lib/libobjc.A.dylib)
-==59833==    by 0x100625D6A: map_images (in /usr/lib/libobjc.A.dylib)
-==59833==    by 0x10002503B: dyld::notifyBatchPartial(dyld_image_states, bool, char const* (*)(dyld_image_states, unsigned int, dyld_image_info const*), bool, bool) (in /usr/lib/dyld)
-==59833==    by 0x100025255: dyld::registerObjCNotifiers(void (*)(unsigned int, char const* const*, mach_header const* const*), void (*)(char const*, mach_header const*), void (*)(char const*, mach_header const*)) (in /usr/lib/dyld)
-==59833==    by 0x10026000A: _dyld_objc_notify_register (in /usr/lib/system/libdyld.dylib)
-==59833==    by 0x100612072: _objc_init (in /usr/lib/libobjc.A.dylib)
-==59833==    by 0x1001F368D: _os_object_init (in /usr/lib/system/libdispatch.dylib)
-==59833==    by 0x1001F363A: libdispatch_init (in /usr/lib/system/libdispatch.dylib)
-==59833==    by 0x1001079D5: libSystem_initializer (in /usr/lib/libSystem.B.dylib)
-==59833==    by 0x100035A1A: ImageLoaderMachO::doModInitFunctions(ImageLoader::LinkContext const&) (in /usr/lib/dyld)
-==59833==    by 0x100035C1D: ImageLoaderMachO::doInitialization(ImageLoader::LinkContext const&) (in /usr/lib/dyld)
-==59833== 
-==59833== LEAK SUMMARY:
-==59833==    definitely lost: 0 bytes in 0 blocks
-==59833==    indirectly lost: 0 bytes in 0 blocks
-==59833==      possibly lost: 72 bytes in 3 blocks
-==59833==    still reachable: 200 bytes in 6 blocks
-==59833==         suppressed: 17,873 bytes in 153 blocks
-==59833== Reachable blocks (those to which a pointer was found) are not shown.
-==59833== To see them, rerun with: --leak-check=full --show-leak-kinds=all
-==59833== 
-==59833== For counts of detected and suppressed errors, rerun with: -v
-==59833== ERROR SUMMARY: 1 errors from 1 contexts (suppressed: 12 from 12)
-==59840== Memcheck, a memory error detector
-==59840== Copyright (C) 2002-2017, and GNU GPL'd, by Julian Seward et al.
-==59840== Using Valgrind-3.14.0 and LibVEX; rerun with -h for copyright info
-==59840== Command: ./minishell tests/tests_sh/test_env.sh
-==59840== 
-==59840== 
-==59840== FILE DESCRIPTORS: 3 open at exit.
-==59840== Open file descriptor 2: /nfs/2018/h/hhow-cho/42/42sh/leaks
-==59840==    <inherited from parent>
-==59840== 
-==59840== Open file descriptor 1: /dev/ttys002
-==59840==    <inherited from parent>
-==59840== 
-==59840== Open file descriptor 0: /dev/ttys002
-==59840==    <inherited from parent>
-==59840== 
-==59840== 
-==59840== HEAP SUMMARY:
-==59840==     in use at exit: 18,145 bytes in 162 blocks
-==59840==   total heap usage: 6,442 allocs, 6,280 frees, 170,223 bytes allocated
-==59840== 
-==59840== 72 bytes in 3 blocks are possibly lost in loss record 26 of 42
-==59840==    at 0x1000B6C8A: calloc (in /nfs/2018/h/hhow-cho/.brew/Cellar/valgrind/3.14.0/lib/valgrind/vgpreload_memcheck-amd64-darwin.so)
-==59840==    by 0x100612832: map_images_nolock (in /usr/lib/libobjc.A.dylib)
-==59840==    by 0x100625D6A: map_images (in /usr/lib/libobjc.A.dylib)
-==59840==    by 0x10002503B: dyld::notifyBatchPartial(dyld_image_states, bool, char const* (*)(dyld_image_states, unsigned int, dyld_image_info const*), bool, bool) (in /usr/lib/dyld)
-==59840==    by 0x100025255: dyld::registerObjCNotifiers(void (*)(unsigned int, char const* const*, mach_header const* const*), void (*)(char const*, mach_header const*), void (*)(char const*, mach_header const*)) (in /usr/lib/dyld)
-==59840==    by 0x10026000A: _dyld_objc_notify_register (in /usr/lib/system/libdyld.dylib)
-==59840==    by 0x100612072: _objc_init (in /usr/lib/libobjc.A.dylib)
-==59840==    by 0x1001F368D: _os_object_init (in /usr/lib/system/libdispatch.dylib)
-==59840==    by 0x1001F363A: libdispatch_init (in /usr/lib/system/libdispatch.dylib)
-==59840==    by 0x1001079D5: libSystem_initializer (in /usr/lib/libSystem.B.dylib)
-==59840==    by 0x100035A1A: ImageLoaderMachO::doModInitFunctions(ImageLoader::LinkContext const&) (in /usr/lib/dyld)
-==59840==    by 0x100035C1D: ImageLoaderMachO::doInitialization(ImageLoader::LinkContext const&) (in /usr/lib/dyld)
-==59840== 
-==59840== LEAK SUMMARY:
-==59840==    definitely lost: 0 bytes in 0 blocks
-==59840==    indirectly lost: 0 bytes in 0 blocks
-==59840==      possibly lost: 72 bytes in 3 blocks
-==59840==    still reachable: 200 bytes in 6 blocks
-==59840==         suppressed: 17,873 bytes in 153 blocks
-==59840== Reachable blocks (those to which a pointer was found) are not shown.
-==59840== To see them, rerun with: --leak-check=full --show-leak-kinds=all
-==59840== 
-==59840== For counts of detected and suppressed errors, rerun with: -v
-==59840== ERROR SUMMARY: 1 errors from 1 contexts (suppressed: 12 from 12)
-==59845== Memcheck, a memory error detector
-==59845== Copyright (C) 2002-2017, and GNU GPL'd, by Julian Seward et al.
-==59845== Using Valgrind-3.14.0 and LibVEX; rerun with -h for copyright info
-==59845== Command: ./minishell tests/tests_sh/test_exit.sh
-==59845== 
+==67160== 
+==67160== FILE DESCRIPTORS: 3 open at exit.
+==67160== Open file descriptor 2: /nfs/2018/h/hhow-cho/42/42sh/leaks
+==67160==    <inherited from parent>
+==67160== 
+==67160== Open file descriptor 1: /dev/ttys002
+==67160==    <inherited from parent>
+==67160== 
+==67160== Open file descriptor 0: /dev/ttys002
+==67160==    <inherited from parent>
+==67160== 
+==67160== 
+==67160== HEAP SUMMARY:
+==67160==     in use at exit: 18,145 bytes in 162 blocks
+==67160==   total heap usage: 7,358 allocs, 7,196 frees, 199,332 bytes allocated
+==67160== 
+==67160== 72 bytes in 3 blocks are possibly lost in loss record 26 of 42
+==67160==    at 0x1000B6C8A: calloc (in /nfs/2018/h/hhow-cho/.brew/Cellar/valgrind/3.14.0/lib/valgrind/vgpreload_memcheck-amd64-darwin.so)
+==67160==    by 0x100612832: map_images_nolock (in /usr/lib/libobjc.A.dylib)
+==67160==    by 0x100625D6A: map_images (in /usr/lib/libobjc.A.dylib)
+==67160==    by 0x10002503B: dyld::notifyBatchPartial(dyld_image_states, bool, char const* (*)(dyld_image_states, unsigned int, dyld_image_info const*), bool, bool) (in /usr/lib/dyld)
+==67160==    by 0x100025255: dyld::registerObjCNotifiers(void (*)(unsigned int, char const* const*, mach_header const* const*), void (*)(char const*, mach_header const*), void (*)(char const*, mach_header const*)) (in /usr/lib/dyld)
+==67160==    by 0x10026000A: _dyld_objc_notify_register (in /usr/lib/system/libdyld.dylib)
+==67160==    by 0x100612072: _objc_init (in /usr/lib/libobjc.A.dylib)
+==67160==    by 0x1001F368D: _os_object_init (in /usr/lib/system/libdispatch.dylib)
+==67160==    by 0x1001F363A: libdispatch_init (in /usr/lib/system/libdispatch.dylib)
+==67160==    by 0x1001079D5: libSystem_initializer (in /usr/lib/libSystem.B.dylib)
+==67160==    by 0x100035A1A: ImageLoaderMachO::doModInitFunctions(ImageLoader::LinkContext const&) (in /usr/lib/dyld)
+==67160==    by 0x100035C1D: ImageLoaderMachO::doInitialization(ImageLoader::LinkContext const&) (in /usr/lib/dyld)
+==67160== 
+==67160== LEAK SUMMARY:
+==67160==    definitely lost: 0 bytes in 0 blocks
+==67160==    indirectly lost: 0 bytes in 0 blocks
+==67160==      possibly lost: 72 bytes in 3 blocks
+==67160==    still reachable: 200 bytes in 6 blocks
+==67160==         suppressed: 17,873 bytes in 153 blocks
+==67160== Reachable blocks (those to which a pointer was found) are not shown.
+==67160== To see them, rerun with: --leak-check=full --show-leak-kinds=all
+==67160== 
+==67160== For counts of detected and suppressed errors, rerun with: -v
+==67160== ERROR SUMMARY: 1 errors from 1 contexts (suppressed: 12 from 12)
+==67197== Memcheck, a memory error detector
+==67197== Copyright (C) 2002-2017, and GNU GPL'd, by Julian Seward et al.
+==67197== Using Valgrind-3.14.0 and LibVEX; rerun with -h for copyright info
+==67197== Command: ./minishell tests/tests_sh/test_env.sh
+==67197== 
+==67197== 
+==67197== FILE DESCRIPTORS: 3 open at exit.
+==67197== Open file descriptor 2: /nfs/2018/h/hhow-cho/42/42sh/leaks
+==67197==    <inherited from parent>
+==67197== 
+==67197== Open file descriptor 1: /dev/ttys002
+==67197==    <inherited from parent>
+==67197== 
+==67197== Open file descriptor 0: /dev/ttys002
+==67197==    <inherited from parent>
+==67197== 
+==67197== 
+==67197== HEAP SUMMARY:
+==67197==     in use at exit: 18,145 bytes in 162 blocks
+==67197==   total heap usage: 6,442 allocs, 6,280 frees, 170,223 bytes allocated
+==67197== 
+==67197== 72 bytes in 3 blocks are possibly lost in loss record 26 of 42
+==67197==    at 0x1000B6C8A: calloc (in /nfs/2018/h/hhow-cho/.brew/Cellar/valgrind/3.14.0/lib/valgrind/vgpreload_memcheck-amd64-darwin.so)
+==67197==    by 0x100612832: map_images_nolock (in /usr/lib/libobjc.A.dylib)
+==67197==    by 0x100625D6A: map_images (in /usr/lib/libobjc.A.dylib)
+==67197==    by 0x10002503B: dyld::notifyBatchPartial(dyld_image_states, bool, char const* (*)(dyld_image_states, unsigned int, dyld_image_info const*), bool, bool) (in /usr/lib/dyld)
+==67197==    by 0x100025255: dyld::registerObjCNotifiers(void (*)(unsigned int, char const* const*, mach_header const* const*), void (*)(char const*, mach_header const*), void (*)(char const*, mach_header const*)) (in /usr/lib/dyld)
+==67197==    by 0x10026000A: _dyld_objc_notify_register (in /usr/lib/system/libdyld.dylib)
+==67197==    by 0x100612072: _objc_init (in /usr/lib/libobjc.A.dylib)
+==67197==    by 0x1001F368D: _os_object_init (in /usr/lib/system/libdispatch.dylib)
+==67197==    by 0x1001F363A: libdispatch_init (in /usr/lib/system/libdispatch.dylib)
+==67197==    by 0x1001079D5: libSystem_initializer (in /usr/lib/libSystem.B.dylib)
+==67197==    by 0x100035A1A: ImageLoaderMachO::doModInitFunctions(ImageLoader::LinkContext const&) (in /usr/lib/dyld)
+==67197==    by 0x100035C1D: ImageLoaderMachO::doInitialization(ImageLoader::LinkContext const&) (in /usr/lib/dyld)
+==67197== 
+==67197== LEAK SUMMARY:
+==67197==    definitely lost: 0 bytes in 0 blocks
+==67197==    indirectly lost: 0 bytes in 0 blocks
+==67197==      possibly lost: 72 bytes in 3 blocks
+==67197==    still reachable: 200 bytes in 6 blocks
+==67197==         suppressed: 17,873 bytes in 153 blocks
+==67197== Reachable blocks (those to which a pointer was found) are not shown.
+==67197== To see them, rerun with: --leak-check=full --show-leak-kinds=all
+==67197== 
+==67197== For counts of detected and suppressed errors, rerun with: -v
+==67197== ERROR SUMMARY: 1 errors from 1 contexts (suppressed: 12 from 12)
+==67214== Memcheck, a memory error detector
+==67214== Copyright (C) 2002-2017, and GNU GPL'd, by Julian Seward et al.
+==67214== Using Valgrind-3.14.0 and LibVEX; rerun with -h for copyright info
+==67214== Command: ./minishell tests/tests_sh/test_exit.sh
+==67214== 
 minishell: command not found: #
 minishell: command not found: #
-==59845== 
-==59845== FILE DESCRIPTORS: 3 open at exit.
-==59845== Open file descriptor 2: /nfs/2018/h/hhow-cho/42/42sh/leaks
-==59845==    <inherited from parent>
-==59845== 
-==59845== Open file descriptor 1: /dev/ttys002
-==59845==    <inherited from parent>
-==59845== 
-==59845== Open file descriptor 0: /dev/ttys002
-==59845==    <inherited from parent>
-==59845== 
-==59845== 
-==59845== HEAP SUMMARY:
-==59845==     in use at exit: 18,145 bytes in 162 blocks
-==59845==   total heap usage: 6,575 allocs, 6,413 frees, 180,653 bytes allocated
-==59845== 
-==59845== 72 bytes in 3 blocks are possibly lost in loss record 26 of 42
-==59845==    at 0x1000B6C8A: calloc (in /nfs/2018/h/hhow-cho/.brew/Cellar/valgrind/3.14.0/lib/valgrind/vgpreload_memcheck-amd64-darwin.so)
-==59845==    by 0x100612832: map_images_nolock (in /usr/lib/libobjc.A.dylib)
-==59845==    by 0x100625D6A: map_images (in /usr/lib/libobjc.A.dylib)
-==59845==    by 0x10002503B: dyld::notifyBatchPartial(dyld_image_states, bool, char const* (*)(dyld_image_states, unsigned int, dyld_image_info const*), bool, bool) (in /usr/lib/dyld)
-==59845==    by 0x100025255: dyld::registerObjCNotifiers(void (*)(unsigned int, char const* const*, mach_header const* const*), void (*)(char const*, mach_header const*), void (*)(char const*, mach_header const*)) (in /usr/lib/dyld)
-==59845==    by 0x10026000A: _dyld_objc_notify_register (in /usr/lib/system/libdyld.dylib)
-==59845==    by 0x100612072: _objc_init (in /usr/lib/libobjc.A.dylib)
-==59845==    by 0x1001F368D: _os_object_init (in /usr/lib/system/libdispatch.dylib)
-==59845==    by 0x1001F363A: libdispatch_init (in /usr/lib/system/libdispatch.dylib)
-==59845==    by 0x1001079D5: libSystem_initializer (in /usr/lib/libSystem.B.dylib)
-==59845==    by 0x100035A1A: ImageLoaderMachO::doModInitFunctions(ImageLoader::LinkContext const&) (in /usr/lib/dyld)
-==59845==    by 0x100035C1D: ImageLoaderMachO::doInitialization(ImageLoader::LinkContext const&) (in /usr/lib/dyld)
-==59845== 
-==59845== LEAK SUMMARY:
-==59845==    definitely lost: 0 bytes in 0 blocks
-==59845==    indirectly lost: 0 bytes in 0 blocks
-==59845==      possibly lost: 72 bytes in 3 blocks
-==59845==    still reachable: 200 bytes in 6 blocks
-==59845==         suppressed: 17,873 bytes in 153 blocks
-==59845== Reachable blocks (those to which a pointer was found) are not shown.
-==59845== To see them, rerun with: --leak-check=full --show-leak-kinds=all
-==59845== 
-==59845== For counts of detected and suppressed errors, rerun with: -v
-==59845== ERROR SUMMARY: 1 errors from 1 contexts (suppressed: 12 from 12)
-==59852== Memcheck, a memory error detector
-==59852== Copyright (C) 2002-2017, and GNU GPL'd, by Julian Seward et al.
-==59852== Using Valgrind-3.14.0 and LibVEX; rerun with -h for copyright info
-==59852== Command: ./minishell tests/tests_sh/test_invalid.sh
-==59852== 
+==67214== 
+==67214== FILE DESCRIPTORS: 3 open at exit.
+==67214== Open file descriptor 2: /nfs/2018/h/hhow-cho/42/42sh/leaks
+==67214==    <inherited from parent>
+==67214== 
+==67214== Open file descriptor 1: /dev/ttys002
+==67214==    <inherited from parent>
+==67214== 
+==67214== Open file descriptor 0: /dev/ttys002
+==67214==    <inherited from parent>
+==67214== 
+==67214== 
+==67214== HEAP SUMMARY:
+==67214==     in use at exit: 18,145 bytes in 162 blocks
+==67214==   total heap usage: 6,575 allocs, 6,413 frees, 180,653 bytes allocated
+==67214== 
+==67214== 72 bytes in 3 blocks are possibly lost in loss record 26 of 42
+==67214==    at 0x1000B6C8A: calloc (in /nfs/2018/h/hhow-cho/.brew/Cellar/valgrind/3.14.0/lib/valgrind/vgpreload_memcheck-amd64-darwin.so)
+==67214==    by 0x100612832: map_images_nolock (in /usr/lib/libobjc.A.dylib)
+==67214==    by 0x100625D6A: map_images (in /usr/lib/libobjc.A.dylib)
+==67214==    by 0x10002503B: dyld::notifyBatchPartial(dyld_image_states, bool, char const* (*)(dyld_image_states, unsigned int, dyld_image_info const*), bool, bool) (in /usr/lib/dyld)
+==67214==    by 0x100025255: dyld::registerObjCNotifiers(void (*)(unsigned int, char const* const*, mach_header const* const*), void (*)(char const*, mach_header const*), void (*)(char const*, mach_header const*)) (in /usr/lib/dyld)
+==67214==    by 0x10026000A: _dyld_objc_notify_register (in /usr/lib/system/libdyld.dylib)
+==67214==    by 0x100612072: _objc_init (in /usr/lib/libobjc.A.dylib)
+==67214==    by 0x1001F368D: _os_object_init (in /usr/lib/system/libdispatch.dylib)
+==67214==    by 0x1001F363A: libdispatch_init (in /usr/lib/system/libdispatch.dylib)
+==67214==    by 0x1001079D5: libSystem_initializer (in /usr/lib/libSystem.B.dylib)
+==67214==    by 0x100035A1A: ImageLoaderMachO::doModInitFunctions(ImageLoader::LinkContext const&) (in /usr/lib/dyld)
+==67214==    by 0x100035C1D: ImageLoaderMachO::doInitialization(ImageLoader::LinkContext const&) (in /usr/lib/dyld)
+==67214== 
+==67214== LEAK SUMMARY:
+==67214==    definitely lost: 0 bytes in 0 blocks
+==67214==    indirectly lost: 0 bytes in 0 blocks
+==67214==      possibly lost: 72 bytes in 3 blocks
+==67214==    still reachable: 200 bytes in 6 blocks
+==67214==         suppressed: 17,873 bytes in 153 blocks
+==67214== Reachable blocks (those to which a pointer was found) are not shown.
+==67214== To see them, rerun with: --leak-check=full --show-leak-kinds=all
+==67214== 
+==67214== For counts of detected and suppressed errors, rerun with: -v
+==67214== ERROR SUMMARY: 1 errors from 1 contexts (suppressed: 12 from 12)
+==67234== Memcheck, a memory error detector
+==67234== Copyright (C) 2002-2017, and GNU GPL'd, by Julian Seward et al.
+==67234== Using Valgrind-3.14.0 and LibVEX; rerun with -h for copyright info
+==67234== Command: ./minishell tests/tests_sh/test_invalid.sh
+==67234== 
 shell: ./invalid: No such file or directory
-==59852== 
-==59852== FILE DESCRIPTORS: 3 open at exit.
-==59852== Open file descriptor 2: /nfs/2018/h/hhow-cho/42/42sh/leaks
-==59852==    <inherited from parent>
-==59852== 
-==59852== Open file descriptor 1: /dev/ttys002
-==59852==    <inherited from parent>
-==59852== 
-==59852== Open file descriptor 0: /dev/ttys002
-==59852==    <inherited from parent>
-==59852== 
-==59852== 
-==59852== HEAP SUMMARY:
-==59852==     in use at exit: 18,145 bytes in 162 blocks
-==59852==   total heap usage: 6,498 allocs, 6,336 frees, 171,110 bytes allocated
-==59852== 
-==59852== 72 bytes in 3 blocks are possibly lost in loss record 26 of 42
-==59852==    at 0x1000B6C8A: calloc (in /nfs/2018/h/hhow-cho/.brew/Cellar/valgrind/3.14.0/lib/valgrind/vgpreload_memcheck-amd64-darwin.so)
-==59852==    by 0x100612832: map_images_nolock (in /usr/lib/libobjc.A.dylib)
-==59852==    by 0x100625D6A: map_images (in /usr/lib/libobjc.A.dylib)
-==59852==    by 0x10002503B: dyld::notifyBatchPartial(dyld_image_states, bool, char const* (*)(dyld_image_states, unsigned int, dyld_image_info const*), bool, bool) (in /usr/lib/dyld)
-==59852==    by 0x100025255: dyld::registerObjCNotifiers(void (*)(unsigned int, char const* const*, mach_header const* const*), void (*)(char const*, mach_header const*), void (*)(char const*, mach_header const*)) (in /usr/lib/dyld)
-==59852==    by 0x10026000A: _dyld_objc_notify_register (in /usr/lib/system/libdyld.dylib)
-==59852==    by 0x100612072: _objc_init (in /usr/lib/libobjc.A.dylib)
-==59852==    by 0x1001F368D: _os_object_init (in /usr/lib/system/libdispatch.dylib)
-==59852==    by 0x1001F363A: libdispatch_init (in /usr/lib/system/libdispatch.dylib)
-==59852==    by 0x1001079D5: libSystem_initializer (in /usr/lib/libSystem.B.dylib)
-==59852==    by 0x100035A1A: ImageLoaderMachO::doModInitFunctions(ImageLoader::LinkContext const&) (in /usr/lib/dyld)
-==59852==    by 0x100035C1D: ImageLoaderMachO::doInitialization(ImageLoader::LinkContext const&) (in /usr/lib/dyld)
-==59852== 
-==59852== LEAK SUMMARY:
-==59852==    definitely lost: 0 bytes in 0 blocks
-==59852==    indirectly lost: 0 bytes in 0 blocks
-==59852==      possibly lost: 72 bytes in 3 blocks
-==59852==    still reachable: 200 bytes in 6 blocks
-==59852==         suppressed: 17,873 bytes in 153 blocks
-==59852== Reachable blocks (those to which a pointer was found) are not shown.
-==59852== To see them, rerun with: --leak-check=full --show-leak-kinds=all
-==59852== 
-==59852== For counts of detected and suppressed errors, rerun with: -v
-==59852== ERROR SUMMARY: 1 errors from 1 contexts (suppressed: 12 from 12)
-==59864== Memcheck, a memory error detector
-==59864== Copyright (C) 2002-2017, and GNU GPL'd, by Julian Seward et al.
-==59864== Using Valgrind-3.14.0 and LibVEX; rerun with -h for copyright info
-==59864== Command: ./minishell tests/tests_sh/test_open.sh
-==59864== 
+==67234== 
+==67234== FILE DESCRIPTORS: 3 open at exit.
+==67234== Open file descriptor 2: /nfs/2018/h/hhow-cho/42/42sh/leaks
+==67234==    <inherited from parent>
+==67234== 
+==67234== Open file descriptor 1: /dev/ttys002
+==67234==    <inherited from parent>
+==67234== 
+==67234== Open file descriptor 0: /dev/ttys002
+==67234==    <inherited from parent>
+==67234== 
+==67234== 
+==67234== HEAP SUMMARY:
+==67234==     in use at exit: 18,145 bytes in 162 blocks
+==67234==   total heap usage: 6,498 allocs, 6,336 frees, 171,110 bytes allocated
+==67234== 
+==67234== 72 bytes in 3 blocks are possibly lost in loss record 26 of 42
+==67234==    at 0x1000B6C8A: calloc (in /nfs/2018/h/hhow-cho/.brew/Cellar/valgrind/3.14.0/lib/valgrind/vgpreload_memcheck-amd64-darwin.so)
+==67234==    by 0x100612832: map_images_nolock (in /usr/lib/libobjc.A.dylib)
+==67234==    by 0x100625D6A: map_images (in /usr/lib/libobjc.A.dylib)
+==67234==    by 0x10002503B: dyld::notifyBatchPartial(dyld_image_states, bool, char const* (*)(dyld_image_states, unsigned int, dyld_image_info const*), bool, bool) (in /usr/lib/dyld)
+==67234==    by 0x100025255: dyld::registerObjCNotifiers(void (*)(unsigned int, char const* const*, mach_header const* const*), void (*)(char const*, mach_header const*), void (*)(char const*, mach_header const*)) (in /usr/lib/dyld)
+==67234==    by 0x10026000A: _dyld_objc_notify_register (in /usr/lib/system/libdyld.dylib)
+==67234==    by 0x100612072: _objc_init (in /usr/lib/libobjc.A.dylib)
+==67234==    by 0x1001F368D: _os_object_init (in /usr/lib/system/libdispatch.dylib)
+==67234==    by 0x1001F363A: libdispatch_init (in /usr/lib/system/libdispatch.dylib)
+==67234==    by 0x1001079D5: libSystem_initializer (in /usr/lib/libSystem.B.dylib)
+==67234==    by 0x100035A1A: ImageLoaderMachO::doModInitFunctions(ImageLoader::LinkContext const&) (in /usr/lib/dyld)
+==67234==    by 0x100035C1D: ImageLoaderMachO::doInitialization(ImageLoader::LinkContext const&) (in /usr/lib/dyld)
+==67234== 
+==67234== LEAK SUMMARY:
+==67234==    definitely lost: 0 bytes in 0 blocks
+==67234==    indirectly lost: 0 bytes in 0 blocks
+==67234==      possibly lost: 72 bytes in 3 blocks
+==67234==    still reachable: 200 bytes in 6 blocks
+==67234==         suppressed: 17,873 bytes in 153 blocks
+==67234== Reachable blocks (those to which a pointer was found) are not shown.
+==67234== To see them, rerun with: --leak-check=full --show-leak-kinds=all
+==67234== 
+==67234== For counts of detected and suppressed errors, rerun with: -v
+==67234== ERROR SUMMARY: 1 errors from 1 contexts (suppressed: 12 from 12)
+==67248== Memcheck, a memory error detector
+==67248== Copyright (C) 2002-2017, and GNU GPL'd, by Julian Seward et al.
+==67248== Using Valgrind-3.14.0 and LibVEX; rerun with -h for copyright info
+==67248== Command: ./minishell tests/tests_sh/test_open.sh
+==67248== 
 shell: a: No such file or directory
 shell: a: No such file or directory
 shell: q: No such file or directory
-==59864== 
-==59864== FILE DESCRIPTORS: 3 open at exit.
-==59864== Open file descriptor 2: /nfs/2018/h/hhow-cho/42/42sh/leaks
-==59864==    <inherited from parent>
-==59864== 
-==59864== Open file descriptor 1: /dev/ttys002
-==59864==    <inherited from parent>
-==59864== 
-==59864== Open file descriptor 0: /dev/ttys002
-==59864==    <inherited from parent>
-==59864== 
-==59864== 
-==59864== HEAP SUMMARY:
-==59864==     in use at exit: 18,145 bytes in 162 blocks
-==59864==   total heap usage: 6,791 allocs, 6,629 frees, 175,199 bytes allocated
-==59864== 
-==59864== 72 bytes in 3 blocks are possibly lost in loss record 26 of 42
-==59864==    at 0x1000B6C8A: calloc (in /nfs/2018/h/hhow-cho/.brew/Cellar/valgrind/3.14.0/lib/valgrind/vgpreload_memcheck-amd64-darwin.so)
-==59864==    by 0x100612832: map_images_nolock (in /usr/lib/libobjc.A.dylib)
-==59864==    by 0x100625D6A: map_images (in /usr/lib/libobjc.A.dylib)
-==59864==    by 0x10002503B: dyld::notifyBatchPartial(dyld_image_states, bool, char const* (*)(dyld_image_states, unsigned int, dyld_image_info const*), bool, bool) (in /usr/lib/dyld)
-==59864==    by 0x100025255: dyld::registerObjCNotifiers(void (*)(unsigned int, char const* const*, mach_header const* const*), void (*)(char const*, mach_header const*), void (*)(char const*, mach_header const*)) (in /usr/lib/dyld)
-==59864==    by 0x10026000A: _dyld_objc_notify_register (in /usr/lib/system/libdyld.dylib)
-==59864==    by 0x100612072: _objc_init (in /usr/lib/libobjc.A.dylib)
-==59864==    by 0x1001F368D: _os_object_init (in /usr/lib/system/libdispatch.dylib)
-==59864==    by 0x1001F363A: libdispatch_init (in /usr/lib/system/libdispatch.dylib)
-==59864==    by 0x1001079D5: libSystem_initializer (in /usr/lib/libSystem.B.dylib)
-==59864==    by 0x100035A1A: ImageLoaderMachO::doModInitFunctions(ImageLoader::LinkContext const&) (in /usr/lib/dyld)
-==59864==    by 0x100035C1D: ImageLoaderMachO::doInitialization(ImageLoader::LinkContext const&) (in /usr/lib/dyld)
-==59864== 
-==59864== LEAK SUMMARY:
-==59864==    definitely lost: 0 bytes in 0 blocks
-==59864==    indirectly lost: 0 bytes in 0 blocks
-==59864==      possibly lost: 72 bytes in 3 blocks
-==59864==    still reachable: 200 bytes in 6 blocks
-==59864==         suppressed: 17,873 bytes in 153 blocks
-==59864== Reachable blocks (those to which a pointer was found) are not shown.
-==59864== To see them, rerun with: --leak-check=full --show-leak-kinds=all
-==59864== 
-==59864== For counts of detected and suppressed errors, rerun with: -v
-==59864== ERROR SUMMARY: 1 errors from 1 contexts (suppressed: 12 from 12)
-==59872== Memcheck, a memory error detector
-==59872== Copyright (C) 2002-2017, and GNU GPL'd, by Julian Seward et al.
-==59872== Using Valgrind-3.14.0 and LibVEX; rerun with -h for copyright info
-==59872== Command: ./minishell tests/tests_sh/test_pid.sh
-==59872== 
+==67248== 
+==67248== FILE DESCRIPTORS: 3 open at exit.
+==67248== Open file descriptor 2: /nfs/2018/h/hhow-cho/42/42sh/leaks
+==67248==    <inherited from parent>
+==67248== 
+==67248== Open file descriptor 1: /dev/ttys002
+==67248==    <inherited from parent>
+==67248== 
+==67248== Open file descriptor 0: /dev/ttys002
+==67248==    <inherited from parent>
+==67248== 
+==67248== 
+==67248== HEAP SUMMARY:
+==67248==     in use at exit: 18,145 bytes in 162 blocks
+==67248==   total heap usage: 6,791 allocs, 6,629 frees, 175,199 bytes allocated
+==67248== 
+==67248== 72 bytes in 3 blocks are possibly lost in loss record 26 of 42
+==67248==    at 0x1000B6C8A: calloc (in /nfs/2018/h/hhow-cho/.brew/Cellar/valgrind/3.14.0/lib/valgrind/vgpreload_memcheck-amd64-darwin.so)
+==67248==    by 0x100612832: map_images_nolock (in /usr/lib/libobjc.A.dylib)
+==67248==    by 0x100625D6A: map_images (in /usr/lib/libobjc.A.dylib)
+==67248==    by 0x10002503B: dyld::notifyBatchPartial(dyld_image_states, bool, char const* (*)(dyld_image_states, unsigned int, dyld_image_info const*), bool, bool) (in /usr/lib/dyld)
+==67248==    by 0x100025255: dyld::registerObjCNotifiers(void (*)(unsigned int, char const* const*, mach_header const* const*), void (*)(char const*, mach_header const*), void (*)(char const*, mach_header const*)) (in /usr/lib/dyld)
+==67248==    by 0x10026000A: _dyld_objc_notify_register (in /usr/lib/system/libdyld.dylib)
+==67248==    by 0x100612072: _objc_init (in /usr/lib/libobjc.A.dylib)
+==67248==    by 0x1001F368D: _os_object_init (in /usr/lib/system/libdispatch.dylib)
+==67248==    by 0x1001F363A: libdispatch_init (in /usr/lib/system/libdispatch.dylib)
+==67248==    by 0x1001079D5: libSystem_initializer (in /usr/lib/libSystem.B.dylib)
+==67248==    by 0x100035A1A: ImageLoaderMachO::doModInitFunctions(ImageLoader::LinkContext const&) (in /usr/lib/dyld)
+==67248==    by 0x100035C1D: ImageLoaderMachO::doInitialization(ImageLoader::LinkContext const&) (in /usr/lib/dyld)
+==67248== 
+==67248== LEAK SUMMARY:
+==67248==    definitely lost: 0 bytes in 0 blocks
+==67248==    indirectly lost: 0 bytes in 0 blocks
+==67248==      possibly lost: 72 bytes in 3 blocks
+==67248==    still reachable: 200 bytes in 6 blocks
+==67248==         suppressed: 17,873 bytes in 153 blocks
+==67248== Reachable blocks (those to which a pointer was found) are not shown.
+==67248== To see them, rerun with: --leak-check=full --show-leak-kinds=all
+==67248== 
+==67248== For counts of detected and suppressed errors, rerun with: -v
+==67248== ERROR SUMMARY: 1 errors from 1 contexts (suppressed: 12 from 12)
+==67256== Memcheck, a memory error detector
+==67256== Copyright (C) 2002-2017, and GNU GPL'd, by Julian Seward et al.
+==67256== Using Valgrind-3.14.0 and LibVEX; rerun with -h for copyright info
+==67256== Command: ./minishell tests/tests_sh/test_pid.sh
+==67256== 
 minishell: command not found: #
 minishell: command not found: #
 minishell: command not found: #
 minishell: command not found: #
 minishell: command not found: #
 minishell: command not found: #
-==59872== 
-==59872== FILE DESCRIPTORS: 3 open at exit.
-==59872== Open file descriptor 2: /nfs/2018/h/hhow-cho/42/42sh/leaks
-==59872==    <inherited from parent>
-==59872== 
-==59872== Open file descriptor 1: /dev/ttys002
-==59872==    <inherited from parent>
-==59872== 
-==59872== Open file descriptor 0: /dev/ttys002
-==59872==    <inherited from parent>
-==59872== 
-==59872== 
-==59872== HEAP SUMMARY:
-==59872==     in use at exit: 18,145 bytes in 162 blocks
-==59872==   total heap usage: 6,818 allocs, 6,656 frees, 201,313 bytes allocated
-==59872== 
-==59872== 72 bytes in 3 blocks are possibly lost in loss record 26 of 42
-==59872==    at 0x1000B6C8A: calloc (in /nfs/2018/h/hhow-cho/.brew/Cellar/valgrind/3.14.0/lib/valgrind/vgpreload_memcheck-amd64-darwin.so)
-==59872==    by 0x100612832: map_images_nolock (in /usr/lib/libobjc.A.dylib)
-==59872==    by 0x100625D6A: map_images (in /usr/lib/libobjc.A.dylib)
-==59872==    by 0x10002503B: dyld::notifyBatchPartial(dyld_image_states, bool, char const* (*)(dyld_image_states, unsigned int, dyld_image_info const*), bool, bool) (in /usr/lib/dyld)
-==59872==    by 0x100025255: dyld::registerObjCNotifiers(void (*)(unsigned int, char const* const*, mach_header const* const*), void (*)(char const*, mach_header const*), void (*)(char const*, mach_header const*)) (in /usr/lib/dyld)
-==59872==    by 0x10026000A: _dyld_objc_notify_register (in /usr/lib/system/libdyld.dylib)
-==59872==    by 0x100612072: _objc_init (in /usr/lib/libobjc.A.dylib)
-==59872==    by 0x1001F368D: _os_object_init (in /usr/lib/system/libdispatch.dylib)
-==59872==    by 0x1001F363A: libdispatch_init (in /usr/lib/system/libdispatch.dylib)
-==59872==    by 0x1001079D5: libSystem_initializer (in /usr/lib/libSystem.B.dylib)
-==59872==    by 0x100035A1A: ImageLoaderMachO::doModInitFunctions(ImageLoader::LinkContext const&) (in /usr/lib/dyld)
-==59872==    by 0x100035C1D: ImageLoaderMachO::doInitialization(ImageLoader::LinkContext const&) (in /usr/lib/dyld)
-==59872== 
-==59872== LEAK SUMMARY:
-==59872==    definitely lost: 0 bytes in 0 blocks
-==59872==    indirectly lost: 0 bytes in 0 blocks
-==59872==      possibly lost: 72 bytes in 3 blocks
-==59872==    still reachable: 200 bytes in 6 blocks
-==59872==         suppressed: 17,873 bytes in 153 blocks
-==59872== Reachable blocks (those to which a pointer was found) are not shown.
-==59872== To see them, rerun with: --leak-check=full --show-leak-kinds=all
-==59872== 
-==59872== For counts of detected and suppressed errors, rerun with: -v
-==59872== ERROR SUMMARY: 1 errors from 1 contexts (suppressed: 12 from 12)
-==59877== Memcheck, a memory error detector
-==59877== Copyright (C) 2002-2017, and GNU GPL'd, by Julian Seward et al.
-==59877== Using Valgrind-3.14.0 and LibVEX; rerun with -h for copyright info
-==59877== Command: ./minishell tests/tests_sh/test_shlvl.sh
-==59877== 
+==67256== 
+==67256== FILE DESCRIPTORS: 3 open at exit.
+==67256== Open file descriptor 2: /nfs/2018/h/hhow-cho/42/42sh/leaks
+==67256==    <inherited from parent>
+==67256== 
+==67256== Open file descriptor 1: /dev/ttys002
+==67256==    <inherited from parent>
+==67256== 
+==67256== Open file descriptor 0: /dev/ttys002
+==67256==    <inherited from parent>
+==67256== 
+==67256== 
+==67256== HEAP SUMMARY:
+==67256==     in use at exit: 18,145 bytes in 162 blocks
+==67256==   total heap usage: 6,818 allocs, 6,656 frees, 201,313 bytes allocated
+==67256== 
+==67256== 72 bytes in 3 blocks are possibly lost in loss record 26 of 42
+==67256==    at 0x1000B6C8A: calloc (in /nfs/2018/h/hhow-cho/.brew/Cellar/valgrind/3.14.0/lib/valgrind/vgpreload_memcheck-amd64-darwin.so)
+==67256==    by 0x100612832: map_images_nolock (in /usr/lib/libobjc.A.dylib)
+==67256==    by 0x100625D6A: map_images (in /usr/lib/libobjc.A.dylib)
+==67256==    by 0x10002503B: dyld::notifyBatchPartial(dyld_image_states, bool, char const* (*)(dyld_image_states, unsigned int, dyld_image_info const*), bool, bool) (in /usr/lib/dyld)
+==67256==    by 0x100025255: dyld::registerObjCNotifiers(void (*)(unsigned int, char const* const*, mach_header const* const*), void (*)(char const*, mach_header const*), void (*)(char const*, mach_header const*)) (in /usr/lib/dyld)
+==67256==    by 0x10026000A: _dyld_objc_notify_register (in /usr/lib/system/libdyld.dylib)
+==67256==    by 0x100612072: _objc_init (in /usr/lib/libobjc.A.dylib)
+==67256==    by 0x1001F368D: _os_object_init (in /usr/lib/system/libdispatch.dylib)
+==67256==    by 0x1001F363A: libdispatch_init (in /usr/lib/system/libdispatch.dylib)
+==67256==    by 0x1001079D5: libSystem_initializer (in /usr/lib/libSystem.B.dylib)
+==67256==    by 0x100035A1A: ImageLoaderMachO::doModInitFunctions(ImageLoader::LinkContext const&) (in /usr/lib/dyld)
+==67256==    by 0x100035C1D: ImageLoaderMachO::doInitialization(ImageLoader::LinkContext const&) (in /usr/lib/dyld)
+==67256== 
+==67256== LEAK SUMMARY:
+==67256==    definitely lost: 0 bytes in 0 blocks
+==67256==    indirectly lost: 0 bytes in 0 blocks
+==67256==      possibly lost: 72 bytes in 3 blocks
+==67256==    still reachable: 200 bytes in 6 blocks
+==67256==         suppressed: 17,873 bytes in 153 blocks
+==67256== Reachable blocks (those to which a pointer was found) are not shown.
+==67256== To see them, rerun with: --leak-check=full --show-leak-kinds=all
+==67256== 
+==67256== For counts of detected and suppressed errors, rerun with: -v
+==67256== ERROR SUMMARY: 1 errors from 1 contexts (suppressed: 12 from 12)
+==67261== Memcheck, a memory error detector
+==67261== Copyright (C) 2002-2017, and GNU GPL'd, by Julian Seward et al.
+==67261== Using Valgrind-3.14.0 and LibVEX; rerun with -h for copyright info
+==67261== Command: ./minishell tests/tests_sh/test_shlvl.sh
+==67261== 
 minishell: command not found: #
 minishell: command not found: #
 minishell: command not found: #
 minishell: command not found: #
 minishell: command not found: #
-==59877== 
-==59877== FILE DESCRIPTORS: 3 open at exit.
-==59877== Open file descriptor 2: /nfs/2018/h/hhow-cho/42/42sh/leaks
-==59877==    <inherited from parent>
-==59877== 
-==59877== Open file descriptor 1: /dev/ttys002
-==59877==    <inherited from parent>
-==59877== 
-==59877== Open file descriptor 0: /dev/ttys002
-==59877==    <inherited from parent>
-==59877== 
-==59877== 
-==59877== HEAP SUMMARY:
-==59877==     in use at exit: 18,145 bytes in 162 blocks
-==59877==   total heap usage: 6,883 allocs, 6,721 frees, 197,988 bytes allocated
-==59877== 
-==59877== 72 bytes in 3 blocks are possibly lost in loss record 26 of 42
-==59877==    at 0x1000B6C8A: calloc (in /nfs/2018/h/hhow-cho/.brew/Cellar/valgrind/3.14.0/lib/valgrind/vgpreload_memcheck-amd64-darwin.so)
-==59877==    by 0x100612832: map_images_nolock (in /usr/lib/libobjc.A.dylib)
-==59877==    by 0x100625D6A: map_images (in /usr/lib/libobjc.A.dylib)
-==59877==    by 0x10002503B: dyld::notifyBatchPartial(dyld_image_states, bool, char const* (*)(dyld_image_states, unsigned int, dyld_image_info const*), bool, bool) (in /usr/lib/dyld)
-==59877==    by 0x100025255: dyld::registerObjCNotifiers(void (*)(unsigned int, char const* const*, mach_header const* const*), void (*)(char const*, mach_header const*), void (*)(char const*, mach_header const*)) (in /usr/lib/dyld)
-==59877==    by 0x10026000A: _dyld_objc_notify_register (in /usr/lib/system/libdyld.dylib)
-==59877==    by 0x100612072: _objc_init (in /usr/lib/libobjc.A.dylib)
-==59877==    by 0x1001F368D: _os_object_init (in /usr/lib/system/libdispatch.dylib)
-==59877==    by 0x1001F363A: libdispatch_init (in /usr/lib/system/libdispatch.dylib)
-==59877==    by 0x1001079D5: libSystem_initializer (in /usr/lib/libSystem.B.dylib)
-==59877==    by 0x100035A1A: ImageLoaderMachO::doModInitFunctions(ImageLoader::LinkContext const&) (in /usr/lib/dyld)
-==59877==    by 0x100035C1D: ImageLoaderMachO::doInitialization(ImageLoader::LinkContext const&) (in /usr/lib/dyld)
-==59877== 
-==59877== LEAK SUMMARY:
-==59877==    definitely lost: 0 bytes in 0 blocks
-==59877==    indirectly lost: 0 bytes in 0 blocks
-==59877==      possibly lost: 72 bytes in 3 blocks
-==59877==    still reachable: 200 bytes in 6 blocks
-==59877==         suppressed: 17,873 bytes in 153 blocks
-==59877== Reachable blocks (those to which a pointer was found) are not shown.
-==59877== To see them, rerun with: --leak-check=full --show-leak-kinds=all
-==59877== 
-==59877== For counts of detected and suppressed errors, rerun with: -v
-==59877== ERROR SUMMARY: 1 errors from 1 contexts (suppressed: 12 from 12)
-==59890== Memcheck, a memory error detector
-==59890== Copyright (C) 2002-2017, and GNU GPL'd, by Julian Seward et al.
-==59890== Using Valgrind-3.14.0 and LibVEX; rerun with -h for copyright info
-==59890== Command: ./minishell tests/tests_sh/test_tilde.sh
-==59890== 
-==59890== 
-==59890== FILE DESCRIPTORS: 3 open at exit.
-==59890== Open file descriptor 2: /nfs/2018/h/hhow-cho/42/42sh/leaks
-==59890==    <inherited from parent>
-==59890== 
-==59890== Open file descriptor 1: /dev/ttys002
-==59890==    <inherited from parent>
-==59890== 
-==59890== Open file descriptor 0: /dev/ttys002
-==59890==    <inherited from parent>
-==59890== 
-==59890== 
-==59890== HEAP SUMMARY:
-==59890==     in use at exit: 18,145 bytes in 162 blocks
-==59890==   total heap usage: 8,008 allocs, 7,846 frees, 196,637 bytes allocated
-==59890== 
-==59890== 72 bytes in 3 blocks are possibly lost in loss record 26 of 42
-==59890==    at 0x1000B6C8A: calloc (in /nfs/2018/h/hhow-cho/.brew/Cellar/valgrind/3.14.0/lib/valgrind/vgpreload_memcheck-amd64-darwin.so)
-==59890==    by 0x100612832: map_images_nolock (in /usr/lib/libobjc.A.dylib)
-==59890==    by 0x100625D6A: map_images (in /usr/lib/libobjc.A.dylib)
-==59890==    by 0x10002503B: dyld::notifyBatchPartial(dyld_image_states, bool, char const* (*)(dyld_image_states, unsigned int, dyld_image_info const*), bool, bool) (in /usr/lib/dyld)
-==59890==    by 0x100025255: dyld::registerObjCNotifiers(void (*)(unsigned int, char const* const*, mach_header const* const*), void (*)(char const*, mach_header const*), void (*)(char const*, mach_header const*)) (in /usr/lib/dyld)
-==59890==    by 0x10026000A: _dyld_objc_notify_register (in /usr/lib/system/libdyld.dylib)
-==59890==    by 0x100612072: _objc_init (in /usr/lib/libobjc.A.dylib)
-==59890==    by 0x1001F368D: _os_object_init (in /usr/lib/system/libdispatch.dylib)
-==59890==    by 0x1001F363A: libdispatch_init (in /usr/lib/system/libdispatch.dylib)
-==59890==    by 0x1001079D5: libSystem_initializer (in /usr/lib/libSystem.B.dylib)
-==59890==    by 0x100035A1A: ImageLoaderMachO::doModInitFunctions(ImageLoader::LinkContext const&) (in /usr/lib/dyld)
-==59890==    by 0x100035C1D: ImageLoaderMachO::doInitialization(ImageLoader::LinkContext const&) (in /usr/lib/dyld)
-==59890== 
-==59890== LEAK SUMMARY:
-==59890==    definitely lost: 0 bytes in 0 blocks
-==59890==    indirectly lost: 0 bytes in 0 blocks
-==59890==      possibly lost: 72 bytes in 3 blocks
-==59890==    still reachable: 200 bytes in 6 blocks
-==59890==         suppressed: 17,873 bytes in 153 blocks
-==59890== Reachable blocks (those to which a pointer was found) are not shown.
-==59890== To see them, rerun with: --leak-check=full --show-leak-kinds=all
-==59890== 
-==59890== For counts of detected and suppressed errors, rerun with: -v
-==59890== ERROR SUMMARY: 1 errors from 1 contexts (suppressed: 12 from 12)
-==59896== Memcheck, a memory error detector
-==59896== Copyright (C) 2002-2017, and GNU GPL'd, by Julian Seward et al.
-==59896== Using Valgrind-3.14.0 and LibVEX; rerun with -h for copyright info
-==59896== Command: ./minishell tests/tests_sh/test_var.sh
-==59896== 
-==59896== 
-==59896== FILE DESCRIPTORS: 3 open at exit.
-==59896== Open file descriptor 2: /nfs/2018/h/hhow-cho/42/42sh/leaks
-==59896==    <inherited from parent>
-==59896== 
-==59896== Open file descriptor 1: /dev/ttys002
-==59896==    <inherited from parent>
-==59896== 
-==59896== Open file descriptor 0: /dev/ttys002
-==59896==    <inherited from parent>
-==59896== 
-==59896== 
-==59896== HEAP SUMMARY:
-==59896==     in use at exit: 18,145 bytes in 162 blocks
-==59896==   total heap usage: 8,681 allocs, 8,519 frees, 204,448 bytes allocated
-==59896== 
-==59896== 72 bytes in 3 blocks are possibly lost in loss record 26 of 42
-==59896==    at 0x1000B6C8A: calloc (in /nfs/2018/h/hhow-cho/.brew/Cellar/valgrind/3.14.0/lib/valgrind/vgpreload_memcheck-amd64-darwin.so)
-==59896==    by 0x100612832: map_images_nolock (in /usr/lib/libobjc.A.dylib)
-==59896==    by 0x100625D6A: map_images (in /usr/lib/libobjc.A.dylib)
-==59896==    by 0x10002503B: dyld::notifyBatchPartial(dyld_image_states, bool, char const* (*)(dyld_image_states, unsigned int, dyld_image_info const*), bool, bool) (in /usr/lib/dyld)
-==59896==    by 0x100025255: dyld::registerObjCNotifiers(void (*)(unsigned int, char const* const*, mach_header const* const*), void (*)(char const*, mach_header const*), void (*)(char const*, mach_header const*)) (in /usr/lib/dyld)
-==59896==    by 0x10026000A: _dyld_objc_notify_register (in /usr/lib/system/libdyld.dylib)
-==59896==    by 0x100612072: _objc_init (in /usr/lib/libobjc.A.dylib)
-==59896==    by 0x1001F368D: _os_object_init (in /usr/lib/system/libdispatch.dylib)
-==59896==    by 0x1001F363A: libdispatch_init (in /usr/lib/system/libdispatch.dylib)
-==59896==    by 0x1001079D5: libSystem_initializer (in /usr/lib/libSystem.B.dylib)
-==59896==    by 0x100035A1A: ImageLoaderMachO::doModInitFunctions(ImageLoader::LinkContext const&) (in /usr/lib/dyld)
-==59896==    by 0x100035C1D: ImageLoaderMachO::doInitialization(ImageLoader::LinkContext const&) (in /usr/lib/dyld)
-==59896== 
-==59896== LEAK SUMMARY:
-==59896==    definitely lost: 0 bytes in 0 blocks
-==59896==    indirectly lost: 0 bytes in 0 blocks
-==59896==      possibly lost: 72 bytes in 3 blocks
-==59896==    still reachable: 200 bytes in 6 blocks
-==59896==         suppressed: 17,873 bytes in 153 blocks
-==59896== Reachable blocks (those to which a pointer was found) are not shown.
-==59896== To see them, rerun with: --leak-check=full --show-leak-kinds=all
-==59896== 
-==59896== For counts of detected and suppressed errors, rerun with: -v
-==59896== ERROR SUMMARY: 1 errors from 1 contexts (suppressed: 12 from 12)
-==59901== Memcheck, a memory error detector
-==59901== Copyright (C) 2002-2017, and GNU GPL'd, by Julian Seward et al.
-==59901== Using Valgrind-3.14.0 and LibVEX; rerun with -h for copyright info
-==59901== Command: ./minishell tests/tests_sh/test_z.sh
-==59901== 
+==67261== 
+==67261== FILE DESCRIPTORS: 3 open at exit.
+==67261== Open file descriptor 2: /nfs/2018/h/hhow-cho/42/42sh/leaks
+==67261==    <inherited from parent>
+==67261== 
+==67261== Open file descriptor 1: /dev/ttys002
+==67261==    <inherited from parent>
+==67261== 
+==67261== Open file descriptor 0: /dev/ttys002
+==67261==    <inherited from parent>
+==67261== 
+==67261== 
+==67261== HEAP SUMMARY:
+==67261==     in use at exit: 18,145 bytes in 162 blocks
+==67261==   total heap usage: 6,883 allocs, 6,721 frees, 197,988 bytes allocated
+==67261== 
+==67261== 72 bytes in 3 blocks are possibly lost in loss record 26 of 42
+==67261==    at 0x1000B6C8A: calloc (in /nfs/2018/h/hhow-cho/.brew/Cellar/valgrind/3.14.0/lib/valgrind/vgpreload_memcheck-amd64-darwin.so)
+==67261==    by 0x100612832: map_images_nolock (in /usr/lib/libobjc.A.dylib)
+==67261==    by 0x100625D6A: map_images (in /usr/lib/libobjc.A.dylib)
+==67261==    by 0x10002503B: dyld::notifyBatchPartial(dyld_image_states, bool, char const* (*)(dyld_image_states, unsigned int, dyld_image_info const*), bool, bool) (in /usr/lib/dyld)
+==67261==    by 0x100025255: dyld::registerObjCNotifiers(void (*)(unsigned int, char const* const*, mach_header const* const*), void (*)(char const*, mach_header const*), void (*)(char const*, mach_header const*)) (in /usr/lib/dyld)
+==67261==    by 0x10026000A: _dyld_objc_notify_register (in /usr/lib/system/libdyld.dylib)
+==67261==    by 0x100612072: _objc_init (in /usr/lib/libobjc.A.dylib)
+==67261==    by 0x1001F368D: _os_object_init (in /usr/lib/system/libdispatch.dylib)
+==67261==    by 0x1001F363A: libdispatch_init (in /usr/lib/system/libdispatch.dylib)
+==67261==    by 0x1001079D5: libSystem_initializer (in /usr/lib/libSystem.B.dylib)
+==67261==    by 0x100035A1A: ImageLoaderMachO::doModInitFunctions(ImageLoader::LinkContext const&) (in /usr/lib/dyld)
+==67261==    by 0x100035C1D: ImageLoaderMachO::doInitialization(ImageLoader::LinkContext const&) (in /usr/lib/dyld)
+==67261== 
+==67261== LEAK SUMMARY:
+==67261==    definitely lost: 0 bytes in 0 blocks
+==67261==    indirectly lost: 0 bytes in 0 blocks
+==67261==      possibly lost: 72 bytes in 3 blocks
+==67261==    still reachable: 200 bytes in 6 blocks
+==67261==         suppressed: 17,873 bytes in 153 blocks
+==67261== Reachable blocks (those to which a pointer was found) are not shown.
+==67261== To see them, rerun with: --leak-check=full --show-leak-kinds=all
+==67261== 
+==67261== For counts of detected and suppressed errors, rerun with: -v
+==67261== ERROR SUMMARY: 1 errors from 1 contexts (suppressed: 12 from 12)
+==67266== Memcheck, a memory error detector
+==67266== Copyright (C) 2002-2017, and GNU GPL'd, by Julian Seward et al.
+==67266== Using Valgrind-3.14.0 and LibVEX; rerun with -h for copyright info
+==67266== Command: ./minishell tests/tests_sh/test_tilde.sh
+==67266== 
+==67266== 
+==67266== FILE DESCRIPTORS: 3 open at exit.
+==67266== Open file descriptor 2: /nfs/2018/h/hhow-cho/42/42sh/leaks
+==67266==    <inherited from parent>
+==67266== 
+==67266== Open file descriptor 1: /dev/ttys002
+==67266==    <inherited from parent>
+==67266== 
+==67266== Open file descriptor 0: /dev/ttys002
+==67266==    <inherited from parent>
+==67266== 
+==67266== 
+==67266== HEAP SUMMARY:
+==67266==     in use at exit: 18,145 bytes in 162 blocks
+==67266==   total heap usage: 8,012 allocs, 7,850 frees, 196,646 bytes allocated
+==67266== 
+==67266== 72 bytes in 3 blocks are possibly lost in loss record 26 of 42
+==67266==    at 0x1000B6C8A: calloc (in /nfs/2018/h/hhow-cho/.brew/Cellar/valgrind/3.14.0/lib/valgrind/vgpreload_memcheck-amd64-darwin.so)
+==67266==    by 0x100612832: map_images_nolock (in /usr/lib/libobjc.A.dylib)
+==67266==    by 0x100625D6A: map_images (in /usr/lib/libobjc.A.dylib)
+==67266==    by 0x10002503B: dyld::notifyBatchPartial(dyld_image_states, bool, char const* (*)(dyld_image_states, unsigned int, dyld_image_info const*), bool, bool) (in /usr/lib/dyld)
+==67266==    by 0x100025255: dyld::registerObjCNotifiers(void (*)(unsigned int, char const* const*, mach_header const* const*), void (*)(char const*, mach_header const*), void (*)(char const*, mach_header const*)) (in /usr/lib/dyld)
+==67266==    by 0x10026000A: _dyld_objc_notify_register (in /usr/lib/system/libdyld.dylib)
+==67266==    by 0x100612072: _objc_init (in /usr/lib/libobjc.A.dylib)
+==67266==    by 0x1001F368D: _os_object_init (in /usr/lib/system/libdispatch.dylib)
+==67266==    by 0x1001F363A: libdispatch_init (in /usr/lib/system/libdispatch.dylib)
+==67266==    by 0x1001079D5: libSystem_initializer (in /usr/lib/libSystem.B.dylib)
+==67266==    by 0x100035A1A: ImageLoaderMachO::doModInitFunctions(ImageLoader::LinkContext const&) (in /usr/lib/dyld)
+==67266==    by 0x100035C1D: ImageLoaderMachO::doInitialization(ImageLoader::LinkContext const&) (in /usr/lib/dyld)
+==67266== 
+==67266== LEAK SUMMARY:
+==67266==    definitely lost: 0 bytes in 0 blocks
+==67266==    indirectly lost: 0 bytes in 0 blocks
+==67266==      possibly lost: 72 bytes in 3 blocks
+==67266==    still reachable: 200 bytes in 6 blocks
+==67266==         suppressed: 17,873 bytes in 153 blocks
+==67266== Reachable blocks (those to which a pointer was found) are not shown.
+==67266== To see them, rerun with: --leak-check=full --show-leak-kinds=all
+==67266== 
+==67266== For counts of detected and suppressed errors, rerun with: -v
+==67266== ERROR SUMMARY: 1 errors from 1 contexts (suppressed: 12 from 12)
+==67271== Memcheck, a memory error detector
+==67271== Copyright (C) 2002-2017, and GNU GPL'd, by Julian Seward et al.
+==67271== Using Valgrind-3.14.0 and LibVEX; rerun with -h for copyright info
+==67271== Command: ./minishell tests/tests_sh/test_var.sh
+==67271== 
+==67271== 
+==67271== FILE DESCRIPTORS: 3 open at exit.
+==67271== Open file descriptor 2: /nfs/2018/h/hhow-cho/42/42sh/leaks
+==67271==    <inherited from parent>
+==67271== 
+==67271== Open file descriptor 1: /dev/ttys002
+==67271==    <inherited from parent>
+==67271== 
+==67271== Open file descriptor 0: /dev/ttys002
+==67271==    <inherited from parent>
+==67271== 
+==67271== 
+==67271== HEAP SUMMARY:
+==67271==     in use at exit: 18,145 bytes in 162 blocks
+==67271==   total heap usage: 8,681 allocs, 8,519 frees, 204,448 bytes allocated
+==67271== 
+==67271== 72 bytes in 3 blocks are possibly lost in loss record 26 of 42
+==67271==    at 0x1000B6C8A: calloc (in /nfs/2018/h/hhow-cho/.brew/Cellar/valgrind/3.14.0/lib/valgrind/vgpreload_memcheck-amd64-darwin.so)
+==67271==    by 0x100612832: map_images_nolock (in /usr/lib/libobjc.A.dylib)
+==67271==    by 0x100625D6A: map_images (in /usr/lib/libobjc.A.dylib)
+==67271==    by 0x10002503B: dyld::notifyBatchPartial(dyld_image_states, bool, char const* (*)(dyld_image_states, unsigned int, dyld_image_info const*), bool, bool) (in /usr/lib/dyld)
+==67271==    by 0x100025255: dyld::registerObjCNotifiers(void (*)(unsigned int, char const* const*, mach_header const* const*), void (*)(char const*, mach_header const*), void (*)(char const*, mach_header const*)) (in /usr/lib/dyld)
+==67271==    by 0x10026000A: _dyld_objc_notify_register (in /usr/lib/system/libdyld.dylib)
+==67271==    by 0x100612072: _objc_init (in /usr/lib/libobjc.A.dylib)
+==67271==    by 0x1001F368D: _os_object_init (in /usr/lib/system/libdispatch.dylib)
+==67271==    by 0x1001F363A: libdispatch_init (in /usr/lib/system/libdispatch.dylib)
+==67271==    by 0x1001079D5: libSystem_initializer (in /usr/lib/libSystem.B.dylib)
+==67271==    by 0x100035A1A: ImageLoaderMachO::doModInitFunctions(ImageLoader::LinkContext const&) (in /usr/lib/dyld)
+==67271==    by 0x100035C1D: ImageLoaderMachO::doInitialization(ImageLoader::LinkContext const&) (in /usr/lib/dyld)
+==67271== 
+==67271== LEAK SUMMARY:
+==67271==    definitely lost: 0 bytes in 0 blocks
+==67271==    indirectly lost: 0 bytes in 0 blocks
+==67271==      possibly lost: 72 bytes in 3 blocks
+==67271==    still reachable: 200 bytes in 6 blocks
+==67271==         suppressed: 17,873 bytes in 153 blocks
+==67271== Reachable blocks (those to which a pointer was found) are not shown.
+==67271== To see them, rerun with: --leak-check=full --show-leak-kinds=all
+==67271== 
+==67271== For counts of detected and suppressed errors, rerun with: -v
+==67271== ERROR SUMMARY: 1 errors from 1 contexts (suppressed: 12 from 12)
+==67276== Memcheck, a memory error detector
+==67276== Copyright (C) 2002-2017, and GNU GPL'd, by Julian Seward et al.
+==67276== Using Valgrind-3.14.0 and LibVEX; rerun with -h for copyright info
+==67276== Command: ./minishell tests/tests_sh/test_z.sh
+==67276== 
 minishell: command not found: #
 minishell: command not found: #
 minishell: Bad substitution
 minishell: Bad substitution
 minishell: Bad substitution
-==59901== 
-==59901== FILE DESCRIPTORS: 3 open at exit.
-==59901== Open file descriptor 2: /nfs/2018/h/hhow-cho/42/42sh/leaks
-==59901==    <inherited from parent>
-==59901== 
-==59901== Open file descriptor 1: /dev/ttys002
-==59901==    <inherited from parent>
-==59901== 
-==59901== Open file descriptor 0: /dev/ttys002
-==59901==    <inherited from parent>
-==59901== 
-==59901== 
-==59901== HEAP SUMMARY:
-==59901==     in use at exit: 18,145 bytes in 162 blocks
-==59901==   total heap usage: 6,816 allocs, 6,654 frees, 184,283 bytes allocated
-==59901== 
-==59901== 72 bytes in 3 blocks are possibly lost in loss record 26 of 42
-==59901==    at 0x1000B6C8A: calloc (in /nfs/2018/h/hhow-cho/.brew/Cellar/valgrind/3.14.0/lib/valgrind/vgpreload_memcheck-amd64-darwin.so)
-==59901==    by 0x100612832: map_images_nolock (in /usr/lib/libobjc.A.dylib)
-==59901==    by 0x100625D6A: map_images (in /usr/lib/libobjc.A.dylib)
-==59901==    by 0x10002503B: dyld::notifyBatchPartial(dyld_image_states, bool, char const* (*)(dyld_image_states, unsigned int, dyld_image_info const*), bool, bool) (in /usr/lib/dyld)
-==59901==    by 0x100025255: dyld::registerObjCNotifiers(void (*)(unsigned int, char const* const*, mach_header const* const*), void (*)(char const*, mach_header const*), void (*)(char const*, mach_header const*)) (in /usr/lib/dyld)
-==59901==    by 0x10026000A: _dyld_objc_notify_register (in /usr/lib/system/libdyld.dylib)
-==59901==    by 0x100612072: _objc_init (in /usr/lib/libobjc.A.dylib)
-==59901==    by 0x1001F368D: _os_object_init (in /usr/lib/system/libdispatch.dylib)
-==59901==    by 0x1001F363A: libdispatch_init (in /usr/lib/system/libdispatch.dylib)
-==59901==    by 0x1001079D5: libSystem_initializer (in /usr/lib/libSystem.B.dylib)
-==59901==    by 0x100035A1A: ImageLoaderMachO::doModInitFunctions(ImageLoader::LinkContext const&) (in /usr/lib/dyld)
-==59901==    by 0x100035C1D: ImageLoaderMachO::doInitialization(ImageLoader::LinkContext const&) (in /usr/lib/dyld)
-==59901== 
-==59901== LEAK SUMMARY:
-==59901==    definitely lost: 0 bytes in 0 blocks
-==59901==    indirectly lost: 0 bytes in 0 blocks
-==59901==      possibly lost: 72 bytes in 3 blocks
-==59901==    still reachable: 200 bytes in 6 blocks
-==59901==         suppressed: 17,873 bytes in 153 blocks
-==59901== Reachable blocks (those to which a pointer was found) are not shown.
-==59901== To see them, rerun with: --leak-check=full --show-leak-kinds=all
-==59901== 
-==59901== For counts of detected and suppressed errors, rerun with: -v
-==59901== ERROR SUMMARY: 1 errors from 1 contexts (suppressed: 12 from 12)
+==67276== 
+==67276== FILE DESCRIPTORS: 3 open at exit.
+==67276== Open file descriptor 2: /nfs/2018/h/hhow-cho/42/42sh/leaks
+==67276==    <inherited from parent>
+==67276== 
+==67276== Open file descriptor 1: /dev/ttys002
+==67276==    <inherited from parent>
+==67276== 
+==67276== Open file descriptor 0: /dev/ttys002
+==67276==    <inherited from parent>
+==67276== 
+==67276== 
+==67276== HEAP SUMMARY:
+==67276==     in use at exit: 18,145 bytes in 162 blocks
+==67276==   total heap usage: 6,816 allocs, 6,654 frees, 184,283 bytes allocated
+==67276== 
+==67276== 72 bytes in 3 blocks are possibly lost in loss record 26 of 42
+==67276==    at 0x1000B6C8A: calloc (in /nfs/2018/h/hhow-cho/.brew/Cellar/valgrind/3.14.0/lib/valgrind/vgpreload_memcheck-amd64-darwin.so)
+==67276==    by 0x100612832: map_images_nolock (in /usr/lib/libobjc.A.dylib)
+==67276==    by 0x100625D6A: map_images (in /usr/lib/libobjc.A.dylib)
+==67276==    by 0x10002503B: dyld::notifyBatchPartial(dyld_image_states, bool, char const* (*)(dyld_image_states, unsigned int, dyld_image_info const*), bool, bool) (in /usr/lib/dyld)
+==67276==    by 0x100025255: dyld::registerObjCNotifiers(void (*)(unsigned int, char const* const*, mach_header const* const*), void (*)(char const*, mach_header const*), void (*)(char const*, mach_header const*)) (in /usr/lib/dyld)
+==67276==    by 0x10026000A: _dyld_objc_notify_register (in /usr/lib/system/libdyld.dylib)
+==67276==    by 0x100612072: _objc_init (in /usr/lib/libobjc.A.dylib)
+==67276==    by 0x1001F368D: _os_object_init (in /usr/lib/system/libdispatch.dylib)
+==67276==    by 0x1001F363A: libdispatch_init (in /usr/lib/system/libdispatch.dylib)
+==67276==    by 0x1001079D5: libSystem_initializer (in /usr/lib/libSystem.B.dylib)
+==67276==    by 0x100035A1A: ImageLoaderMachO::doModInitFunctions(ImageLoader::LinkContext const&) (in /usr/lib/dyld)
+==67276==    by 0x100035C1D: ImageLoaderMachO::doInitialization(ImageLoader::LinkContext const&) (in /usr/lib/dyld)
+==67276== 
+==67276== LEAK SUMMARY:
+==67276==    definitely lost: 0 bytes in 0 blocks
+==67276==    indirectly lost: 0 bytes in 0 blocks
+==67276==      possibly lost: 72 bytes in 3 blocks
+==67276==    still reachable: 200 bytes in 6 blocks
+==67276==         suppressed: 17,873 bytes in 153 blocks
+==67276== Reachable blocks (those to which a pointer was found) are not shown.
+==67276== To see them, rerun with: --leak-check=full --show-leak-kinds=all
+==67276== 
+==67276== For counts of detected and suppressed errors, rerun with: -v
+==67276== ERROR SUMMARY: 1 errors from 1 contexts (suppressed: 12 from 12)
