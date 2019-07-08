@@ -6,7 +6,7 @@
 /*   By: hhow-cho <hhow-cho@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/06/19 20:47:47 by hhow-cho          #+#    #+#             */
-/*   Updated: 2019/07/08 19:52:27 by hhow-cho         ###   ########.fr       */
+/*   Updated: 2019/07/08 22:42:33 by hhow-cho         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,12 +45,10 @@ static char	**clean_argv(char **argv)
 int			ft_echo(char **argv, t_env **cpy_environ, int fds[])
 {
 	int		i;
-	int		flag;
 	char	**argv_cpy;
 
 	(void)cpy_environ;
 	i = 0;
-	flag = 0;
 	argv++;
 	argv_cpy = clean_argv(argv);
 	while (argv_cpy[i])

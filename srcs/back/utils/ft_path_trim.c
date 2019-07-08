@@ -6,7 +6,7 @@
 /*   By: hhow-cho <hhow-cho@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/06/20 16:37:59 by hhow-cho          #+#    #+#             */
-/*   Updated: 2019/07/08 21:24:30 by hhow-cho         ###   ########.fr       */
+/*   Updated: 2019/07/08 22:42:13 by hhow-cho         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -103,10 +103,8 @@ char		*ft_path_trim(char *abs_path)
 {
 	char	**list;
 	char	*new_path;
-	size_t	len;
 
 	list = ft_str_separate(abs_path, '/');
-	len = ft_list_size(list);
 	if (list == NULL)
 	{
 		ft_list_free(&list);

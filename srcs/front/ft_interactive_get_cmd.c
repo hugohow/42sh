@@ -6,7 +6,7 @@
 /*   By: hhow-cho <hhow-cho@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/06/09 01:53:37 by hhow-cho          #+#    #+#             */
-/*   Updated: 2019/07/08 21:23:07 by hhow-cho         ###   ########.fr       */
+/*   Updated: 2019/07/08 22:43:20 by hhow-cho         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,11 +49,9 @@ static void		free_and_assign(char **command, t_cmd *cmd)
 int				ft_interactive_get_cmd(char **command, t_env **copy_env)
 {
 	int		ret;
-	t_list	*head;
 	t_cmd	*cmd;
 
 	cmd = ft_cmd_init(copy_env);
-	head = cmd->head;
 	while (42)
 	{
 		ret = ft_interactive_read_key();

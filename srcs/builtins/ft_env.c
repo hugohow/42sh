@@ -6,7 +6,7 @@
 /*   By: hhow-cho <hhow-cho@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/06/20 13:58:20 by hhow-cho          #+#    #+#             */
-/*   Updated: 2019/07/08 20:09:30 by hhow-cho         ###   ########.fr       */
+/*   Updated: 2019/07/08 22:42:48 by hhow-cho         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -65,12 +65,10 @@ static char	*ft_env_get_cmd(char **argv)
 
 static int	ft_execute_env(char **argv, t_env ***p_copy_env, int fds[])
 {
-	int		i;
 	int		success;
 	char	*cmd;
 	t_ht	**p_table_bins;
 
-	i = 0;
 	if (!(p_table_bins = (t_ht **)ft_memalloc(sizeof(t_ht *))))
 		return (1);
 	argv = ft_env_complete_env(argv, p_copy_env, p_table_bins);

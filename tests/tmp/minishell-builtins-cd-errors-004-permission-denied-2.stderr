@@ -1,1 +1,1 @@
-minishell: cd: Permission denied: ./permission_denied
+cd: Permission denied: ./permission_denied

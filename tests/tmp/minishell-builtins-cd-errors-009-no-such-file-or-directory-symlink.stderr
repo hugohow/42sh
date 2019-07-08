@@ -1,1 +1,1 @@
-minishell: cd: Too many symbolic links: ./enoent_symlink
+cd: Too many symbolic links: ./enoent_symlink

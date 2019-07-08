@@ -1,2 +1,2 @@
-minishell setenv: not valid. must begin with a letter
+setenv: not valid. must begin with a letter
 minishell: command not found: export

@@ -6,7 +6,7 @@
 /*   By: hhow-cho <hhow-cho@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/06/09 01:40:14 by hhow-cho          #+#    #+#             */
-/*   Updated: 2019/07/08 18:39:53 by hhow-cho         ###   ########.fr       */
+/*   Updated: 2019/07/08 22:40:05 by hhow-cho         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,11 +52,9 @@ static int	ft_search_and_exe_bin(char **args, t_env **cpy_environ,\
 	t_ht **p_table_bins, int fds[])
 {
 	int			result_cmd;
-	char		*command;
 	t_node_ht	*value;
 	char		*to_free;
 
-	command = args[0];
 	if (p_table_bins \
 	&& *p_table_bins \
 	&& (value = ft_ht_get(*p_table_bins, args[0])) \

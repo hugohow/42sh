@@ -6,7 +6,7 @@
 /*   By: hhow-cho <hhow-cho@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/07/04 01:54:31 by hhow-cho          #+#    #+#             */
-/*   Updated: 2019/07/08 17:40:34 by hhow-cho         ###   ########.fr       */
+/*   Updated: 2019/07/08 22:41:48 by hhow-cho         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,16 +53,13 @@ const char			*ft_errors_signal_get(int signal)
 		return ("Trace/BPT trap: 5");
 	else if (signal == SIGABRT)
 		return ("Abort trap: 6");
-	else if (signal == SIGEMT)
-		return ("EMT trap: 7");
 	else if (signal == SIGFPE)
 		return ("Floating point exception: 8");
 	else if (signal == SIGKILL)
 		return ("Killed: 9");
 	else if (signal == SIGBUS)
 		return ("Bus error: 10");
-	else
-		return (ft_errors_signal_get_2(signal));
+	return (ft_errors_signal_get_2(signal));
 }
 
 const char			*ft_errors_stop_get(int sig)
