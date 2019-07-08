@@ -5,19 +5,21 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: hhow-cho <hhow-cho@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2019/06/23 00:12:02 by hhow-cho          #+#    #+#             */
-/*   Updated: 2019/06/28 01:08:44 by hhow-cho         ###   ########.fr       */
+/*   Created: 2019/07/08 17:43:49 by hhow-cho          #+#    #+#             */
+/*   Updated: 2019/07/08 17:44:17 by hhow-cho         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "shell.h"
 
-size_t ft_list_size(char **list)
+size_t	ft_list_size(char **list)
 {
-    size_t size;
+	size_t size;
 
-    size = 0;
-    while (list[size])
-        size++;
-    return (size);
+	if (list == NULL)
+		return (-1);
+	size = 0;
+	while (list[size])
+		size++;
+	return (size);
 }

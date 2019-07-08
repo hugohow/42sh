@@ -5,25 +5,25 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: hhow-cho <hhow-cho@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2019/06/23 00:11:00 by hhow-cho          #+#    #+#             */
-/*   Updated: 2019/06/24 21:39:08 by hhow-cho         ###   ########.fr       */
+/*   Created: 2019/07/08 17:42:04 by hhow-cho          #+#    #+#             */
+/*   Updated: 2019/07/08 17:42:32 by hhow-cho         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "shell.h"
 
-int ft_is_path(char *cmd)
+int	ft_is_path(char *cmd)
 {
-    int i;
+	int	i;
 
-    if (cmd == NULL)
-        return (-1);
-    i = 0;
-    while (cmd[i])
-    {
-        if (cmd[i] == '/')
-            return (1);
-        i++;
-    }
-    return (0);
+	if (cmd == NULL)
+		return (-1);
+	i = 0;
+	while (cmd[i])
+	{
+		if (cmd[i] == '/')
+			return (1);
+		i++;
+	}
+	return (0);
 }
