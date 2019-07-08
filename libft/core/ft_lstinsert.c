@@ -6,7 +6,7 @@
 /*   By: hhow-cho <hhow-cho@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/06/20 16:01:26 by hhow-cho          #+#    #+#             */
-/*   Updated: 2019/06/20 16:04:27 by hhow-cho         ###   ########.fr       */
+/*   Updated: 2019/07/08 14:22:35 by hhow-cho         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,11 @@ void	ft_lstinsert(t_list **head, t_list *new_el)
 {
 	t_list *node;
 
+	if (new_el == NULL)
+		return ;
 	if (head == NULL)
+		return ;
+	if (*head == NULL)
 		*head = new_el;
 	else
 	{

@@ -6,7 +6,7 @@
 /*   By: hhow-cho <hhow-cho@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/04/02 17:13:35 by hhow-cho          #+#    #+#             */
-/*   Updated: 2019/06/27 17:31:10 by hhow-cho         ###   ########.fr       */
+/*   Updated: 2019/07/08 14:04:59 by hhow-cho         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,7 +26,11 @@ t_list		*ft_lstnew(void const *content, size_t content_size)
 	}
 	else
 	{
-		new_content = (void *)ft_memalloc(content_size);
+		if (!(new_content = (void *)ft_memalloc(content_size)))
+		{
+			ft_memdel((void **)&new);
+			return (NULL);
+		}
 		ft_memcpy(new_content, content, content_size);
 		new->content = new_content;
 		new->content_size = content_size;

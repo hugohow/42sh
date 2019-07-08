@@ -6,7 +6,7 @@
 /*   By: hhow-cho <hhow-cho@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/06/26 22:25:42 by hhow-cho          #+#    #+#             */
-/*   Updated: 2019/07/07 14:06:52 by hhow-cho         ###   ########.fr       */
+/*   Updated: 2019/07/08 14:39:08 by hhow-cho         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,6 +20,11 @@ void signal_callback_handler_non_interactive(int signum)
 	if (signum == SIGTSTP)
 	{	
 	}
+	if (signum == SIGABRT)
+	{
+		
+	}
+	
 }
 
 static void init_exec_fds(int *p_fd, int fds[], char **argv)
