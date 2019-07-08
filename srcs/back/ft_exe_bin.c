@@ -6,10 +6,9 @@
 /*   By: hhow-cho <hhow-cho@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/06/09 01:40:14 by hhow-cho          #+#    #+#             */
-/*   Updated: 2019/07/08 18:29:06 by hhow-cho         ###   ########.fr       */
+/*   Updated: 2019/07/08 18:39:53 by hhow-cho         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
-
 
 #include "shell.h"
 
@@ -28,13 +27,13 @@ static int	ft_search_in_curr_dir(char **args, t_env **cpy_environ, int fds[])
 	char			*cwd;
 	char			*to_free;
 
+	cwd = *((char **)ft_vars_get_value(KEY_CWD));
 	if ((p_dir = opendir(".")))
 	{
 		while ((p_dirent = readdir(p_dir)) != NULL)
 		{
 			if (ft_strcmp(p_dirent->d_name, args[0]) == 0)
 			{
-				cwd = *((char **)ft_vars_get_value(KEY_CWD));
 				to_free = args[0];
 				args[0] = ft_strjoin_(cwd, "/", p_dirent->d_name);
 				ft_memdel((void **)&(to_free));
