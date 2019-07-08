@@ -6,13 +6,13 @@
 /*   By: hhow-cho <hhow-cho@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/07/06 19:41:33 by hhow-cho          #+#    #+#             */
-/*   Updated: 2019/07/07 16:08:42 by hhow-cho         ###   ########.fr       */
+/*   Updated: 2019/07/08 16:57:50 by hhow-cho         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "shell.h"
 
-int ft_bin_is_accessible(char *path, int fds[])
+int	ft_bin_is_accessible(char *path, int fds[])
 {
 	struct stat fileStat;
 
@@ -22,7 +22,7 @@ int ft_bin_is_accessible(char *path, int fds[])
 		lstat(path, &fileStat);
 		if (S_ISLNK(fileStat.st_mode) && access(path, X_OK))
 		{
-			ft_dprintf(fds[2], "minishell: Too many symbolic links: %s \n", path);
+			ft_dprintf(fds[2], "minishell:Too many symbolic links: %s\n", path);
 			return (EXIT_FAIL);
 		}
 		ft_dprintf(fds[2], "minishell: No such file or directory: %s \n", path);

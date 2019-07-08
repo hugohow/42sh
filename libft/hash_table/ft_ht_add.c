@@ -6,7 +6,7 @@
 /*   By: hhow-cho <hhow-cho@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/04/14 19:57:51 by hhow-cho          #+#    #+#             */
-/*   Updated: 2019/06/20 16:57:12 by hhow-cho         ###   ########.fr       */
+/*   Updated: 2019/07/08 16:56:17 by hhow-cho         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,7 +30,7 @@ t_node_ht			*ft_ht_add(t_ht *hash_table, const char *key, void *datum)
 	int			index;
 	t_node_ht	*node;
 
-	if (hash_table == NULL)
+	if (hash_table == NULL || key == NULL || datum == NULL)
 		return (NULL);
 	index = ft_ht_get_hash(key, hash_table->size);
 	node = hash_table->list[index];

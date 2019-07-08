@@ -6,24 +6,23 @@
 /*   By: hhow-cho <hhow-cho@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/07/04 17:05:15 by hhow-cho          #+#    #+#             */
-/*   Updated: 2019/07/08 14:58:54 by hhow-cho         ###   ########.fr       */
+/*   Updated: 2019/07/08 17:26:11 by hhow-cho         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "shell.h"
 
-t_env **ft_env_copy_exit(t_env **env)
+t_env	**ft_env_copy_exit(t_env **env)
 {
 	ft_putstr_fd("minishell: failed to copy env\n", STDERR_FILENO);
 	ft_env_free(&env);
 	return (NULL);
 }
 
-
-t_env **ft_env_add_default_pwd(t_env **copy)
+t_env	**ft_env_add_default_pwd(t_env **copy)
 {
-	char *cwd;
-	int i;
+	char	*cwd;
+	int		i;
 
 	i = 0;
 	cwd = *((char **)ft_vars_get_value(KEY_CWD));
@@ -37,7 +36,7 @@ t_env **ft_env_add_default_pwd(t_env **copy)
 	return (copy);
 }
 
-t_env **ft_env_add_default_shlvl(t_env **copy)
+t_env	**ft_env_add_default_shlvl(t_env **copy)
 {
 	int i;
 
@@ -52,10 +51,10 @@ t_env **ft_env_add_default_shlvl(t_env **copy)
 	return (copy);
 }
 
-t_env **ft_env_increment_shlvl(t_env **copy)
+t_env	**ft_env_increment_shlvl(t_env **copy)
 {
-	int i;
-	int nb;
+	int	i;
+	int	nb;
 
 	i = 0;
 	while (copy[i])
@@ -67,7 +66,8 @@ t_env **ft_env_increment_shlvl(t_env **copy)
 				nb = 0;
 			else if (nb >= 1000)
 			{
-				ft_dprintf(STDERR_FILENO, "shell: shell level (%d) too high, resetting to 1\n", nb);
+				ft_dprintf(STDERR_FILENO, \
+					"shell: shell level (%d) too high, resetting to 1\n", nb);
 				nb = 1;
 			}
 			ft_memdel((void **)&(copy[i]->line));

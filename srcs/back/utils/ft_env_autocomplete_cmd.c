@@ -5,17 +5,15 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: hhow-cho <hhow-cho@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2019/06/20 18:08:05 by hhow-cho          #+#    #+#             */
-/*   Updated: 2019/07/06 21:31:15 by hhow-cho         ###   ########.fr       */
+/*   Created: 2019/07/08 17:04:51 by hhow-cho          #+#    #+#             */
+/*   Updated: 2019/07/08 17:09:37 by hhow-cho         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-
 #include "shell.h"
 
-
-static const char *ft_get_possibilities(char *begin)
-{	
+static const char	*ft_get_possibilities(char *begin)
+{
 	const char *suggestion;
 
 	suggestion = NULL;
@@ -25,7 +23,7 @@ static const char *ft_get_possibilities(char *begin)
 	return (suggestion);
 }
 
-char *ft_env_autocomplete_cmd(char *begin, t_env **copy_env)
+char				*ft_env_autocomplete_cmd(char *begin, t_env **copy_env)
 {
 	const char *suggestion;
 
@@ -37,5 +35,5 @@ char *ft_env_autocomplete_cmd(char *begin, t_env **copy_env)
 		return (NULL);
 	if (ft_strlen(suggestion) == ft_strlen(begin))
 		return (NULL);
-    return (ft_strdup(suggestion + ft_strlen(begin)));
+	return (ft_strdup(suggestion + ft_strlen(begin)));
 }

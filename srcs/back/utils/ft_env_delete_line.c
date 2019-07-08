@@ -6,22 +6,22 @@
 /*   By: hhow-cho <hhow-cho@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/06/16 15:00:37 by hhow-cho          #+#    #+#             */
-/*   Updated: 2019/07/07 14:21:55 by hhow-cho         ###   ########.fr       */
+/*   Updated: 2019/07/08 17:28:39 by hhow-cho         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "shell.h"
 
-int ft_env_delete_line(char *prefix, t_env **cpy_environ)
+int	ft_env_delete_line(char *prefix, t_env **cpy_environ)
 {
-    size_t i;
-    size_t k;
-	t_vars 	*p_vars;
+	size_t	i;
+	size_t	k;
+	t_vars	*p_vars;
 
 	p_vars = ft_vars_get();
-    i = 0;
-    while (cpy_environ[i])
-    {
+	i = 0;
+	while (cpy_environ[i])
+	{
 		if (ft_env_cmp_prefix(prefix, cpy_environ[i]->line) == 0)
 		{
 			k = i + 1;
@@ -35,7 +35,7 @@ int ft_env_delete_line(char *prefix, t_env **cpy_environ)
 			cpy_environ[k - 1] = 0;
 			return (1);
 		}
-        i++;
-    }
-    return (0);
+		i++;
+	}
+	return (0);
 }
