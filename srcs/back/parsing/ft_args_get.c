@@ -6,7 +6,7 @@
 /*   By: hhow-cho <hhow-cho@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/06/14 14:25:36 by hhow-cho          #+#    #+#             */
-/*   Updated: 2019/07/08 16:53:03 by hhow-cho         ###   ########.fr       */
+/*   Updated: 2019/07/09 01:51:32 by hhow-cho         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,6 +53,20 @@ static char	**ft_args_dollar(char **args, t_env **copy_env, int *p_res_parse)
 	return (args);
 }
 
+static char	**ft_args_trim(char **args)
+{
+	int		i;
+
+	i = 0;
+	while (args[i])
+	{
+		args[i] = ft_strtrim_free(args[i]);
+		i++;
+	}
+	args[i] = 0;
+	return (args);
+}
+
 char		**ft_args_get(char *cmd, t_env **copy_env, int *p_res_parse)
 {
 	char	**args;
@@ -63,6 +77,7 @@ char		**ft_args_get(char *cmd, t_env **copy_env, int *p_res_parse)
 		ft_memdel((void **)args);
 		return (NULL);
 	}
+	args = ft_args_trim(args);
 	args = ft_args_tild(args, copy_env);
 	args = ft_args_dollar(args, copy_env, p_res_parse);
 	return (args);

@@ -1,3 +1,44 @@
-[31m[38;5;34m  SUCCESS    expected_to match_regex `COPYENV_VAR1=TOKEN201907082254_VAR1`[0m
-[31m[38;5;34m  SUCCESS    expected_to match_regex `COPYENV_VAR2=TOKEN201907082254_VAR2`[0m
-[31m[38;5;34m  SUCCESS    expected_to match_regex `COPYENV_VAR3=TOKEN201907082254_VAR3`[0m
+make TARGET_DIR=/Users/hugohow-choong/42/42sh/tests/tmp fclean -C ./display-env
+rm -f "/Users/hugohow-choong/42/42sh/tests/tmp/display_env"
+make TARGET_DIR=/Users/hugohow-choong/42/42sh/tests/tmp fclean -C ./display-program-name
+rm -f "/Users/hugohow-choong/42/42sh/tests/tmp/display_program_name"
+make TARGET_DIR=/Users/hugohow-choong/42/42sh/tests/tmp fclean -C ./display-pwd
+rm -f "/Users/hugohow-choong/42/42sh/tests/tmp/display_pwd"
+make TARGET_DIR=/Users/hugohow-choong/42/42sh/tests/tmp fclean -C ./exit-with-status
+rm -f "/Users/hugohow-choong/42/42sh/tests/tmp/exit_with_status"
+make TARGET_DIR=/Users/hugohow-choong/42/42sh/tests/tmp fclean -C ./read-on-stdin
+rm -f "/Users/hugohow-choong/42/42sh/tests/tmp/read_on_stdin"
+make TARGET_DIR=/Users/hugohow-choong/42/42sh/tests/tmp fclean -C ./sleep-and-exit-with-status
+rm -f "/Users/hugohow-choong/42/42sh/tests/tmp/sleep_and_exit_with_status"
+make TARGET_DIR=/Users/hugohow-choong/42/42sh/tests/tmp fclean -C ./sleep-and-write-on-stderr
+rm -f "/Users/hugohow-choong/42/42sh/tests/tmp/sleep_and_write_on_stderr"
+make TARGET_DIR=/Users/hugohow-choong/42/42sh/tests/tmp fclean -C ./write-all-arguments-on-stdout
+rm -f "/Users/hugohow-choong/42/42sh/tests/tmp/write_all_arguments_on_stdout"
+make TARGET_DIR=/Users/hugohow-choong/42/42sh/tests/tmp fclean -C ./write-on-stderr
+rm -f "/Users/hugohow-choong/42/42sh/tests/tmp/write_on_stderr"
+make TARGET_DIR=/Users/hugohow-choong/42/42sh/tests/tmp fclean -C ./write-on-stdout
+rm -f "/Users/hugohow-choong/42/42sh/tests/tmp/write_on_stdout"
+make TARGET_DIR=/Users/hugohow-choong/42/42sh/tests/tmp fclean -C ./write-on-stdout-and-stderr
+rm -f "/Users/hugohow-choong/42/42sh/tests/tmp/write_on_stdout_and_stderr"
+make TARGET_DIR=/Users/hugohow-choong/42/42sh/tests/tmp -C ./display-env
+gcc -Wall -Werror -Wextra main.c -o "/Users/hugohow-choong/42/42sh/tests/tmp/display_env"
+make TARGET_DIR=/Users/hugohow-choong/42/42sh/tests/tmp -C ./display-program-name
+gcc -Wall -Werror -Wextra main.c -o "/Users/hugohow-choong/42/42sh/tests/tmp/display_program_name"
+make TARGET_DIR=/Users/hugohow-choong/42/42sh/tests/tmp -C ./display-pwd
+gcc -Wall -Werror -Wextra main.c -o "/Users/hugohow-choong/42/42sh/tests/tmp/display_pwd"
+make TARGET_DIR=/Users/hugohow-choong/42/42sh/tests/tmp -C ./exit-with-status
+gcc -Wall -Werror -Wextra main.c -o "/Users/hugohow-choong/42/42sh/tests/tmp/exit_with_status"
+make TARGET_DIR=/Users/hugohow-choong/42/42sh/tests/tmp -C ./read-on-stdin
+gcc -Wall -Werror -Wextra main.c -o "/Users/hugohow-choong/42/42sh/tests/tmp/read_on_stdin"
+make TARGET_DIR=/Users/hugohow-choong/42/42sh/tests/tmp -C ./sleep-and-exit-with-status
+gcc -Wall -Werror -Wextra main.c -o "/Users/hugohow-choong/42/42sh/tests/tmp/sleep_and_exit_with_status"
+make TARGET_DIR=/Users/hugohow-choong/42/42sh/tests/tmp -C ./sleep-and-write-on-stderr
+gcc -Wall -Werror -Wextra main.c -o "/Users/hugohow-choong/42/42sh/tests/tmp/sleep_and_write_on_stderr"
+make TARGET_DIR=/Users/hugohow-choong/42/42sh/tests/tmp -C ./write-all-arguments-on-stdout
+gcc -Wall -Werror -Wextra main.c -o "/Users/hugohow-choong/42/42sh/tests/tmp/write_all_arguments_on_stdout"
+make TARGET_DIR=/Users/hugohow-choong/42/42sh/tests/tmp -C ./write-on-stderr
+gcc -Wall -Werror -Wextra main.c -o "/Users/hugohow-choong/42/42sh/tests/tmp/write_on_stderr"
+make TARGET_DIR=/Users/hugohow-choong/42/42sh/tests/tmp -C ./write-on-stdout
+gcc -Wall -Werror -Wextra main.c -o "/Users/hugohow-choong/42/42sh/tests/tmp/write_on_stdout"
+make TARGET_DIR=/Users/hugohow-choong/42/42sh/tests/tmp -C ./write-on-stdout-and-stderr
+gcc -Wall -Werror -Wextra main.c -o "/Users/hugohow-choong/42/42sh/tests/tmp/write_on_stdout_and_stderr"
