@@ -6,7 +6,7 @@
 /*   By: hhow-cho <hhow-cho@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/06/19 23:08:39 by hhow-cho          #+#    #+#             */
-/*   Updated: 2019/07/04 20:46:20 by hhow-cho         ###   ########.fr       */
+/*   Updated: 2019/07/08 15:08:16 by hhow-cho         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,9 +16,9 @@
 ** Init temrcaps config
 */
 
-static struct termios get_new_config(struct termios old_config)
+static t_config get_new_config(t_config old_config)
 {
-	struct termios new_config;
+	t_config new_config;
 
 	new_config = old_config;
     new_config.c_iflag &= ~(IGNBRK | BRKINT | PARMRK | ISTRIP | INLCR | IGNCR | ICRNL | IXON);
