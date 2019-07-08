@@ -6,13 +6,13 @@
 /*   By: hhow-cho <hhow-cho@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/06/27 21:18:47 by hhow-cho          #+#    #+#             */
-/*   Updated: 2019/06/27 21:22:49 by hhow-cho         ###   ########.fr       */
+/*   Updated: 2019/07/08 18:03:47 by hhow-cho         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "shell.h"
 
-char *ft_strjoin_free_first(char *to_free, char *str)
+char	*ft_strjoin_free_first(char *to_free, char *str)
 {
 	char	*new_str;
 	size_t	len;

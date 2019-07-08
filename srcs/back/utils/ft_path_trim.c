@@ -6,13 +6,13 @@
 /*   By: hhow-cho <hhow-cho@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/06/20 16:37:59 by hhow-cho          #+#    #+#             */
-/*   Updated: 2019/07/07 01:30:48 by hhow-cho         ###   ########.fr       */
+/*   Updated: 2019/07/08 17:48:09 by hhow-cho         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "shell.h"
 
-static char **shift_left_one(char **list, int i)
+static char	**shift_left_one(char **list, int i)
 {
 	int j;
 
@@ -30,7 +30,7 @@ static char **shift_left_one(char **list, int i)
 	return (list);
 }
 
-static char **shift_left_two(char **list, int i)
+static char	**shift_left_two(char **list, int i)
 {
 	int j;
 
@@ -49,14 +49,14 @@ static char **shift_left_two(char **list, int i)
 	return (list);
 }
 
-
 /*
-** If the preceding component does not refer (in the context of pathname 
-** resolution with symbolic links followed) to a directory, then the cd 
-** utility shall display an appropriate error message and no further steps shall be taken.
+** If the preceding component does not refer (in the context of pathname
+** resolution with symbolic links followed) to a directory, then the cd
+** utility shall display an appropriate error message and no further
+** steps shall be taken.
 */
 
-static char **clean_list(char **list)
+static char	**clean_list(char **list)
 {
 	int i;
 
@@ -70,15 +70,6 @@ static char **clean_list(char **list)
 		}
 		else if (ft_strcmp(list[i], "..") == 0)
 		{
-			// if (i > 0)
-			// {
-			// 	tmp = get_path_list_n(list, i);
-			// 	if (ft_cd_can_go_to(tmp) == -1 && ft_strlen(tmp) != 0)
-			// 	{
-			// 		// ft_dprintf(2, "stop: %s not valid\n", tmp);
-			// 		return (NULL);
-			// 	}
-			// }
 			if (i > 0)
 				list = shift_left_two(list, i);
 			else
@@ -91,7 +82,7 @@ static char **clean_list(char **list)
 	return (list);
 }
 
-static char *get_new_path(char *new_path, char **list)
+static char	*get_new_path(char *new_path, char **list)
 {
 	int i;
 
@@ -108,12 +99,11 @@ static char *get_new_path(char *new_path, char **list)
 	return (new_path);
 }
 
-
-char *ft_path_trim(char *abs_path)
+char		*ft_path_trim(char *abs_path)
 {
-	char **list;
-	char *new_path;
-	size_t len;
+	char	**list;
+	char	*new_path;
+	size_t	len;
 
 	list = ft_str_separate(abs_path, '/');
 	len = ft_list_size(list);
@@ -137,11 +127,11 @@ char *ft_path_trim(char *abs_path)
 	return (new_path);
 }
 
-char *ft_path_trim_free(char *abs_path)
+char		*ft_path_trim_free(char *abs_path)
 {
-	char **list;
-	char *new_path;
-	size_t len;
+	char	**list;
+	char	*new_path;
+	size_t	len;
 
 	list = ft_str_separate(abs_path, '/');
 	len = ft_list_size(list);
