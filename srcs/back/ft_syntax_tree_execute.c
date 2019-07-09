@@ -6,7 +6,7 @@
 /*   By: hhow-cho <hhow-cho@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/07/08 18:45:16 by hhow-cho          #+#    #+#             */
-/*   Updated: 2019/07/09 17:24:38 by hhow-cho         ###   ########.fr       */
+/*   Updated: 2019/07/09 17:28:42 by hhow-cho         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,7 +31,10 @@ static void	ft_exec_node_cmd(t_node *node, t_env ***p_env, \
 {
 	int	success;
 
-	if ((ft_find_bin(node, p_hash)) < 0)
+	if (node->cmd_exec == NULL)
+	{
+	}
+	else if ((ft_find_bin(node, p_hash)) < 0)
 	{
 		ft_dprintf(fds[2], \
 			"minishell: command not found: %s\n", node->cmd_exec);
