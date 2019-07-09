@@ -178,7 +178,10 @@ int ft_env(char **argv, t_env **cpy_environ, int fds[])
 							}
 							else
 								ft_cmd_exec(cmd, &copy_env, NULL, fds);
+							ft_env_free(&copy_env);
+							ft_memdel((void **)&(p_hash));
 							status = *((int *)ft_vars_get_value(KEY_SUCCESS_EXIT));
+							ft_vars_free();
 							exit(status);
 					}
 					else
@@ -207,6 +210,8 @@ int ft_env(char **argv, t_env **cpy_environ, int fds[])
 		else
 			ft_print_env(copy_env, fds);
 		ft_env_free(&copy_env);
+		if (*p_hash)
+			ft_ht_free(p_hash);
 		ft_memdel((void **)&(p_hash));
 
 

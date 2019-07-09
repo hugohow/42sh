@@ -13,7 +13,7 @@
 
 NAME 		=		minishell
 CC			= 		gcc
-CFLAGS 		= 		-Wall -Werror -Wextra -g -Iincludes
+CFLAGS 		= 		-Wall -Werror -Wextra -g -g3 -Iincludes
 OBJ 		= 		$(SRC:.c=.o)
 
 C_OK		=		"\033[35m"
