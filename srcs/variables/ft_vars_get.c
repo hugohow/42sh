@@ -6,7 +6,7 @@
 /*   By: hhow-cho <hhow-cho@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/07/08 21:16:43 by hhow-cho          #+#    #+#             */
-/*   Updated: 2019/07/08 21:21:42 by hhow-cho         ###   ########.fr       */
+/*   Updated: 2019/07/09 14:56:48 by hhow-cho         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,7 @@ t_vars	*ft_vars_get(void)
 	static t_vars	*p_vars;
 
 	if (p_vars == NULL)
-		p_vars = ft_memalloc(sizeof(t_vars));
+		p_vars = (t_vars *)ft_memalloc(sizeof(t_vars));
 	return (p_vars);
 }
 

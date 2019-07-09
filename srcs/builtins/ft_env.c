@@ -6,7 +6,7 @@
 /*   By: hhow-cho <hhow-cho@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/06/20 13:58:20 by hhow-cho          #+#    #+#             */
-/*   Updated: 2019/07/08 22:42:48 by hhow-cho         ###   ########.fr       */
+/*   Updated: 2019/07/09 14:56:36 by hhow-cho         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,7 +51,7 @@ static char	*ft_env_get_cmd(char **argv)
 		len += ft_strlen(argv[i]) + 2;
 		i++;
 	}
-	if (!(cmd = ft_memalloc(len * sizeof(char))))
+	if (!(cmd = (char *)ft_memalloc(len * sizeof(char))))
 		return (NULL);
 	i = 0;
 	while (argv[i])

@@ -6,7 +6,7 @@
 #    By: hhow-cho <hhow-cho@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2019/07/04 22:12:22 by hhow-cho          #+#    #+#              #
-#    Updated: 2019/07/08 22:54:09 by hhow-cho         ###   ########.fr        #
+#    Updated: 2019/07/09 16:38:50 by hhow-cho         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -30,6 +30,7 @@ SRC =	srcs/main.c							\
 		srcs/ft_non_interactive_exec.c		\
 		srcs/back/ft_cmd_exec.c				\
 		srcs/back/ft_exe_bin.c				\
+		srcs/back/ft_find_bin.c				\
 		srcs/back/ft_exe_path.c				\
 		srcs/back/ft_syntax_tree_create.c	\
 		srcs/back/ft_syntax_tree_execute.c	\
@@ -38,6 +39,7 @@ SRC =	srcs/main.c							\
 		srcs/back/parsing/ft_args_dollar_is_valid.c	\
 		srcs/back/parsing/ft_args_dollar_replace_expansion.c	\
 		srcs/back/parsing/ft_args_get.c	\
+		srcs/back/parsing/ft_args_get_first.c	\
 		srcs/back/parsing/ft_args_tilde_get.c	\
 		srcs/back/parsing/ft_get_semi_colon_child.c	\
 		srcs/back/utils/ft_bin_is_accessible.c	\
@@ -94,6 +96,7 @@ SRC =	srcs/main.c							\
 		srcs/front/ft_press_key/ft_apply_printable.c		\
 		srcs/front/ft_press_key/ft_apply_tab.c			\
 		srcs/front/utils/ft_node_join.c					\
+		srcs/front/utils/ft_cmd_init.c					\
 		srcs/variables/ft_vars_free.c					\
 		srcs/variables/ft_vars_get.c					\
 		srcs/variables/ft_vars_get_copy_env.c				\

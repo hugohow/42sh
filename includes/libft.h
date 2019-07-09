@@ -6,7 +6,7 @@
 /*   By: hhow-cho <hhow-cho@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/04/02 16:11:35 by hhow-cho          #+#    #+#             */
-/*   Updated: 2019/06/27 17:39:31 by hhow-cho         ###   ########.fr       */
+/*   Updated: 2019/07/09 17:04:40 by hhow-cho         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,6 +43,7 @@ char			*ft_strrchr(const char *s, int c);
 char			*ft_strstr(const char *str, const char *to_find);
 char			*ft_strnstr(const char *str, const char *to_find, size_t len);
 int				ft_strcmp(const char *s1, const char *s2);
+int				ft_strcmp_lowercase(const char *s1, const char *s2);
 int				ft_strncmp(const char *s1, const char *s2, size_t len);
 int				ft_atoi(const char *str);
 int				ft_isalpha(int c);

@@ -6,7 +6,7 @@
 /*   By: hhow-cho <hhow-cho@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/07/04 17:05:15 by hhow-cho          #+#    #+#             */
-/*   Updated: 2019/07/08 21:28:07 by hhow-cho         ###   ########.fr       */
+/*   Updated: 2019/07/09 14:56:02 by hhow-cho         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,7 +28,7 @@ t_env	**ft_env_add_default_pwd(t_env **copy)
 	cwd = *((char **)ft_vars_get_value(KEY_CWD));
 	while (copy[i])
 		i++;
-	if (!(copy[i] = ft_memalloc(sizeof(t_env))))
+	if (!(copy[i] = (t_env *)ft_memalloc(sizeof(t_env))))
 		return (ft_env_copy_exit(copy));
 	copy[i]->line = ft_strjoin("PWD=", cwd);
 	i++;
@@ -43,7 +43,7 @@ t_env	**ft_env_add_default_shlvl(t_env **copy)
 	i = 0;
 	while (copy[i])
 		i++;
-	if (!(copy[i] = ft_memalloc(sizeof(t_env))))
+	if (!(copy[i] = (t_env *)ft_memalloc(sizeof(t_env))))
 		return (ft_env_copy_exit(copy));
 	copy[i]->line = ft_strdup("SHLVL=0");
 	i++;

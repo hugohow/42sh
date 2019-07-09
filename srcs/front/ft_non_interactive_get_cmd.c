@@ -6,7 +6,7 @@
 /*   By: hhow-cho <hhow-cho@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/07/04 16:36:32 by hhow-cho          #+#    #+#             */
-/*   Updated: 2019/07/09 14:00:29 by hhow-cho         ###   ########.fr       */
+/*   Updated: 2019/07/09 14:08:58 by hhow-cho         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,21 +15,6 @@
 /*
 ** Read one line of stdin (it can be better to change linked list to double)
 */
-
-static int		ft_cmd_init(void)
-{
-	t_vars	*p_vars;
-
-	p_vars = ft_vars_get();
-	p_vars->cmd = (t_cmd *)ft_memalloc(sizeof(t_cmd));
-	if (p_vars->cmd == NULL)
-		return (-1);
-	(p_vars->cmd)->head = ft_lstnew(0, 0);
-	(p_vars->cmd)->size = 0;
-	(p_vars->cmd)->len = 0;
-	(p_vars->cmd)->last_key = 0;
-	return (0);
-}
 
 static void		free_and_assign(char **command)
 {

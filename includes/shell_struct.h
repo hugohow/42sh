@@ -6,7 +6,7 @@
 /*   By: hhow-cho <hhow-cho@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/07/08 15:12:43 by hhow-cho          #+#    #+#             */
-/*   Updated: 2019/07/09 13:50:56 by hhow-cho         ###   ########.fr       */
+/*   Updated: 2019/07/09 14:53:38 by hhow-cho         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,6 +23,7 @@ typedef struct			s_node
 {
 	long				type;
 	char				*cmd;
+	char				*cmd_exec;
 	char				**args;
 	int					nb_child;
 	struct s_node		**child;

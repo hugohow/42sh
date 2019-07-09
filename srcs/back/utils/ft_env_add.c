@@ -6,7 +6,7 @@
 /*   By: hhow-cho <hhow-cho@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/07/08 17:00:28 by hhow-cho          #+#    #+#             */
-/*   Updated: 2019/07/08 17:02:38 by hhow-cho         ###   ########.fr       */
+/*   Updated: 2019/07/09 14:55:36 by hhow-cho         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,7 +28,7 @@ static t_env	*ft_new_env(char *env_line)
 {
 	t_env *new_env;
 
-	if (!(new_env = ft_memalloc(sizeof(t_env))))
+	if (!(new_env = (t_env *)ft_memalloc(sizeof(t_env))))
 		return (NULL);
 	new_env->line = env_line;
 	return (new_env);

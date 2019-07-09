@@ -6,7 +6,7 @@
 /*   By: hhow-cho <hhow-cho@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/04/02 17:12:13 by hhow-cho          #+#    #+#             */
-/*   Updated: 2019/06/26 20:33:10 by hhow-cho         ###   ########.fr       */
+/*   Updated: 2019/07/09 14:57:12 by hhow-cho         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,7 @@ char		*ft_strjoin(char const *str1, char const *str2)
 	if (str1 == NULL || str2 == NULL)
 		return (NULL);
 	len = ft_strlen(str1) + ft_strlen(str2) + 1;
-	if (!(new_str = (char	*)ft_memalloc(len * sizeof(*new_str))))
+	if (!(new_str = (char *)ft_memalloc(len * sizeof(*new_str))))
 		return (NULL);
 	i = -1;
 	while (str1[++i])

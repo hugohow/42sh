@@ -6,7 +6,7 @@
 #    By: hhow-cho <hhow-cho@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2019/06/05 23:41:00 by hhow-cho          #+#    #+#              #
-#    Updated: 2019/06/27 17:38:46 by hhow-cho         ###   ########.fr        #
+#    Updated: 2019/07/09 17:04:11 by hhow-cho         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -33,6 +33,7 @@ SRCS	=	ft_memset.c					\
 			ft_strstr.c					\
 			ft_strnstr.c				\
 			ft_strcmp.c					\
+			ft_strcmp_lowercase.c		\
 			ft_strncmp.c				\
 			ft_atoi.c					\
 			ft_isalpha.c				\

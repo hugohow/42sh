@@ -6,7 +6,7 @@
 /*   By: hhow-cho <hhow-cho@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/06/09 00:32:39 by hhow-cho          #+#    #+#             */
-/*   Updated: 2019/07/09 13:52:24 by hhow-cho         ###   ########.fr       */
+/*   Updated: 2019/07/09 16:41:23 by hhow-cho         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -81,6 +81,7 @@ int			ft_interactive_read_key(void);
 void		ft_interactive_prompt(void);
 int			ft_interactive_init();
 void		ft_interactive_exit();
+int			ft_cmd_init(void);
 
 /*
 ** Functions for parsing
@@ -91,6 +92,7 @@ t_node		*create_node(long type, char *cmd, t_env **copy_env);
 t_ht		*ft_bins_table_create(char *line);
 t_ht		**ft_p_bins_table_get(void);
 char		**ft_args_get(char *cmd, t_env **copy_env, int *p_result_parsing);
+char		*ft_args_get_first(char *cmd, t_env **copy_env);
 char		*ft_args_dollar_get(char *str, t_env **copy_env, \
 	int *p_result_parsing);
 char		*ft_args_dollar_replace_expansion(char *str, int i,\
@@ -158,6 +160,7 @@ int			ft_exit(char **argv, t_env ***p_cpy_environ, int fds[]);
 */
 
 int			ft_exe_path(char **argv, t_env **cpy_environ, int fds[]);
+int			ft_find_bin(t_node *node, t_ht **p_hash);
 int			ft_exe_bin(t_node *node, t_env ***p_env, t_ht **p_table_bins,\
 	int fds[]);
 void		ft_syntax_tree_execute(t_node *node, t_env ***p_env,\
