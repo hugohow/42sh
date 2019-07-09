@@ -6,7 +6,7 @@
 /*   By: hhow-cho <hhow-cho@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/06/28 02:59:58 by hhow-cho          #+#    #+#             */
-/*   Updated: 2019/07/08 20:52:55 by hhow-cho         ###   ########.fr       */
+/*   Updated: 2019/07/09 13:52:29 by hhow-cho         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,7 +25,7 @@ int	ft_apply_tab(t_cmd *cmd)
 	str = ft_strrchr(join, ';');
 	if (str == NULL)
 		str = join;
-	complete = ft_env_autocomplete_cmd(str, cmd->copy_env);
+	complete = ft_env_autocomplete_cmd(str);
 	if (complete)
 	{
 		ft_putstr_fd(complete, 0);

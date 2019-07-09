@@ -6,7 +6,7 @@
 /*   By: hhow-cho <hhow-cho@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/06/24 23:12:34 by hhow-cho          #+#    #+#             */
-/*   Updated: 2019/07/08 21:18:14 by hhow-cho         ###   ########.fr       */
+/*   Updated: 2019/07/09 13:47:01 by hhow-cho         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,7 +45,7 @@ int			ft_interactive_exec(void)
 		if (ft_interactive_init() < 0)
 			return (EXIT_FAIL);
 		ft_interactive_prompt();
-		ft_interactive_get_cmd(&command, *p_copy_env);
+		ft_interactive_get_cmd(&command);
 		ft_interactive_exit();
 		ft_cmd_exec(command, p_copy_env, NULL, fds);
 		if (*((int *)ft_vars_get_value(KEY_MUST_EXIT)) == 1)

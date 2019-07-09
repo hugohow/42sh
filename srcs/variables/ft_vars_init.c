@@ -6,7 +6,7 @@
 /*   By: hhow-cho <hhow-cho@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/07/01 23:57:36 by hhow-cho          #+#    #+#             */
-/*   Updated: 2019/07/08 21:17:20 by hhow-cho         ###   ########.fr       */
+/*   Updated: 2019/07/09 13:51:18 by hhow-cho         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,6 +25,7 @@ int	ft_vars_init(int argc, char **argv, char *envp[])
 	p_vars->argv_list = argv;
 	p_vars->argc = argc;
 	p_vars->last_key = 0;
+	p_vars->cmd = NULL;
 	if (!(copy_env = ft_env_copy_raw(envp, argv)))
 		return (EXIT_FAIL);
 	p_vars->copy_env = copy_env;

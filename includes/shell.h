@@ -6,7 +6,7 @@
 /*   By: hhow-cho <hhow-cho@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/06/09 00:32:39 by hhow-cho          #+#    #+#             */
-/*   Updated: 2019/07/08 21:29:26 by hhow-cho         ###   ########.fr       */
+/*   Updated: 2019/07/09 13:52:24 by hhow-cho         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -69,14 +69,14 @@
 
 int			ft_interactive_exec(void);
 int			ft_non_interactive_exec(char **argv);
-int			ft_non_interactive_get_cmd(int fd, char **cmd, t_env **copy_env);
+int			ft_non_interactive_get_cmd(int fd, char **cmd);
 void		ft_cmd_exec(char *cmd, t_env ***p_env, t_ht **p_tab, int fds[]);
 
 /*
 ** Functions for terminal interactions
 */
 
-int			ft_interactive_get_cmd(char **command, t_env **copy_env);
+int			ft_interactive_get_cmd(char **command);
 int			ft_interactive_read_key(void);
 void		ft_interactive_prompt(void);
 int			ft_interactive_init();
@@ -216,7 +216,7 @@ const char	*ft_errors_stop_get(int sig);
 ** Autocomplete functions
 */
 
-char		*ft_env_autocomplete_cmd(char *begin, t_env **copy_env);
+char		*ft_env_autocomplete_cmd(char *begin);
 const char	*ft_env_autocomplete_sugg_builtins(char *begin);
 const char	*ft_env_autocomplete_sugg_table(char *begin);
 

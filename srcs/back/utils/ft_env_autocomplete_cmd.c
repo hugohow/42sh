@@ -6,7 +6,7 @@
 /*   By: hhow-cho <hhow-cho@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/07/08 17:04:51 by hhow-cho          #+#    #+#             */
-/*   Updated: 2019/07/08 17:09:37 by hhow-cho         ###   ########.fr       */
+/*   Updated: 2019/07/09 13:52:16 by hhow-cho         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,11 +23,10 @@ static const char	*ft_get_possibilities(char *begin)
 	return (suggestion);
 }
 
-char				*ft_env_autocomplete_cmd(char *begin, t_env **copy_env)
+char				*ft_env_autocomplete_cmd(char *begin)
 {
 	const char *suggestion;
 
-	(void)copy_env;
 	while (*begin == ' ')
 		begin++;
 	suggestion = ft_get_possibilities(begin);

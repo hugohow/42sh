@@ -6,7 +6,7 @@
 /*   By: hhow-cho <hhow-cho@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/07/08 15:12:43 by hhow-cho          #+#    #+#             */
-/*   Updated: 2019/07/08 15:16:24 by hhow-cho         ###   ########.fr       */
+/*   Updated: 2019/07/09 13:50:56 by hhow-cho         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,7 +39,6 @@ typedef struct			s_cmd
 	int					last_key;
 	long long			size;
 	int					len;
-	t_env				**copy_env;
 }						t_cmd;
 
 typedef struct termios	t_config;
@@ -58,6 +57,7 @@ typedef struct			s_vars
 	char				*cwd;
 	t_ht				**p_hash_table;
 	int					last_key;
+	t_cmd				*cmd;
 }						t_vars;
 
 typedef int		(t_ft_apply)(t_cmd *);
