@@ -35,13 +35,29 @@ static int	ft_search_in_curr_dir(char *cmd_exec)
 static int	ft_search_bin(char *cmd_exec, t_ht **p_table_bins)
 {
 	t_node_ht	*value;
+	t_ht	**p_hash_table;
 
-	if (p_table_bins \
-	&& *p_table_bins \
-	&& (value = ft_ht_get(*p_table_bins, cmd_exec)) \
-	&& value->datum)
+	if (*p_table_bins == NULL)
 	{
-		return (0);
+		p_hash_table = ft_p_bins_table_get();
+
+		if (p_hash_table \
+		&& *p_hash_table \
+		&& (value = ft_ht_get(*p_hash_table, cmd_exec)) \
+		&& value->datum)
+		{
+			return (0);
+		}
+	}
+	else
+	{
+		if (p_table_bins \
+		&& *p_table_bins \
+		&& (value = ft_ht_get(*p_table_bins, cmd_exec)) \
+		&& value->datum)
+		{
+			return (0);
+		}
 	}
 	return (ft_search_in_curr_dir(cmd_exec));
 }
