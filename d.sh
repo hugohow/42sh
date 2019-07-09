@@ -1,1 +1,1 @@
-env VARTEST1=TOKEN201907061956_1 env
+env ls

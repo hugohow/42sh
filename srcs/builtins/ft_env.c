@@ -63,56 +63,99 @@ static char	*ft_env_get_cmd(char **argv)
 	return (cmd);
 }
 
-static int	ft_execute_env(char **argv, t_env ***p_copy_env, int fds[])
+static int ft_execute_env(char **argv, int flag, t_env **cpy_environ, int fds[])
 {
-	int		success;
-	char	*cmd;
-	t_ht	**p_table_bins;
+	int success;
+    t_env **copy_env;
+	char *cmd;
+	t_ht **p_hash;
 
-	if (!(p_table_bins = (t_ht **)ft_memalloc(sizeof(t_ht *))))
-		return (1);
-	argv = ft_env_complete_env(argv, p_copy_env, p_table_bins);
-	if (*argv)
+    if (flag == FLAG_ENV_I)
+        copy_env = clear_environ();
+    else
+        copy_env = ft_env_deep_copy(cpy_environ);
+	p_hash = ft_memalloc(sizeof(t_ht *));
+	if (copy_env == NULL)
 	{
-		cmd = ft_env_get_cmd(argv);
-		if (*p_table_bins == NULL)
-			ft_cmd_exec(cmd, p_copy_env, NULL, fds);
-		else
-			ft_cmd_exec(cmd, p_copy_env, p_table_bins, fds);
+		ft_putstr_fd("Error copy env", 2);
+		return (1);
 	}
-	else
-		ft_print_env(*p_copy_env, fds);
-	ft_ht_free(p_table_bins);
-	ft_memdel((void **)&(p_table_bins));
-	success = *((int *)ft_vars_get_value(KEY_SUCCESS_EXIT));
-	return (success);
+	argv = ft_env_complete_env(argv, &copy_env, p_hash);
+	success = 0;
+    if (*argv)
+	{
+		// if ((ft_find_bin(*argv, p_hash)) < 0)
+		// {
+		// 	ft_dprintf(fds[2], \
+		// 		"minishell: command not found: %s\n", *argv);
+		// 	return (EXIT_UTILITY_NOT_FOUND);
+		// }
+		cmd = ft_env_get_cmd(argv);
+
+
+		
+		if (*p_hash)
+		{
+			ft_cmd_exec(cmd, &copy_env, p_hash, fds);
+			ft_ht_free(p_hash);
+		}
+		else
+			ft_cmd_exec(cmd, &copy_env, NULL, fds);
+	}
+    else
+        ft_print_env(copy_env, fds);
+	ft_env_free(&copy_env);
+	ft_memdel((void **)&(p_hash));
+    return (*((int *)ft_vars_get_value(KEY_SUCCESS_EXIT)));
 }
 
-int			ft_env(char **argv, t_env **cpy_environ, int fds[])
+
+
+int ft_env(char **argv, t_env **cpy_environ, int fds[])
 {
-	int		status;
-	int		flag;
-	t_env	**copy_env;
+    pid_t pid;
+    int status;
+    int waitstatus;
+    int i;
+	int flag;
 
 	argv++;
-	if (ft_list_size(argv) == 0)
-	{
-		ft_print_env(cpy_environ, fds);
-		return (0);
-	}
+    if (ft_list_size(argv) == 0)
+    {
+        ft_print_env(cpy_environ, fds);
+        return (0);
+    }
 	flag = ft_env_parse(&argv, fds);
 	if (flag < 0)
 		return (1);
-	if (flag == FLAG_ENV_I)
-		copy_env = clear_environ();
+    pid = fork();
+	if (pid < 0)
+    {
+        ft_putstr_fd("erreur pid", fds[2]);
+        return (1);
+    }
+    if (pid == 0)
+    {
+        status = ft_execute_env(argv, flag, cpy_environ, fds);
+        exit(status);
+    }
 	else
-		copy_env = ft_env_deep_copy(cpy_environ);
-	if (copy_env == NULL)
 	{
-		ft_putstr_fd("Error copy env\n", 2);
-		return (1);
+		int w;
+		
+        w = waitpid(pid, &waitstatus, WUNTRACED | WCONTINUED);
+        if (w == -1)
+            return (EXIT_FAILURE);
+        if (WIFEXITED(waitstatus)) {
+            // printf("terminé, code=%d\n", WEXITSTATUS(waitstatus));
+        } else if (WIFSIGNALED(waitstatus)) {
+            ft_printf("%s\n", ft_errors_signal_get(WTERMSIG(waitstatus)));
+        } else if (WIFSTOPPED(waitstatus)) {
+            ft_printf("%s\n", ft_errors_stop_get(WTERMSIG(waitstatus)));
+        } else if (WIFCONTINUED(waitstatus)) {
+            // ft_printf("relancé\n");
+        }
 	}
-	status = ft_execute_env(argv, &copy_env, fds);
-	ft_env_free(&copy_env);
-	return (status);
+    i = WEXITSTATUS(waitstatus);
+    return (i);
 }

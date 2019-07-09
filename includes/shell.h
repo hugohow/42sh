@@ -149,8 +149,7 @@ int			ft_setenv(char **argv, t_env ***p_env, t_ht **p_table_bins,\
 	int fds[]);
 int			ft_env(char **argv, t_env **cpy_environ, int fds[]);
 int			ft_env_parse(char ***p_argv, int fds[]);
-char		**ft_env_complete_env(char **argv, t_env ***p_copy_env,\
-	t_ht **p_table_bins);
+char		**ft_env_complete_env(char **argv, t_env ***p_copy_env, t_ht **p_hash);
 int			ft_unsetenv(char **argv, t_env **cpy_environ,\
 	t_ht **p_table_bins, int fds[]);
 int			ft_exit(char **argv, t_env ***p_cpy_environ, int fds[]);
@@ -160,7 +159,7 @@ int			ft_exit(char **argv, t_env ***p_cpy_environ, int fds[]);
 */
 
 int			ft_exe_path(char **argv, t_env **cpy_environ, int fds[]);
-int			ft_find_bin(t_node *node, t_ht **p_hash);
+int			ft_find_bin(char *cmd_exec, t_ht **p_hash);
 int			ft_exe_bin(t_node *node, t_env ***p_env, t_ht **p_table_bins,\
 	int fds[]);
 void		ft_syntax_tree_execute(t_node *node, t_env ***p_env,\

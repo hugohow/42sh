@@ -46,23 +46,23 @@ static int	ft_search_bin(char *cmd_exec, t_ht **p_table_bins)
 	return (ft_search_in_curr_dir(cmd_exec));
 }
 
-int			ft_find_bin(t_node *node, t_ht **p_hash)
+int			ft_find_bin(char *cmd_exec, t_ht **p_hash)
 {
-	if (node->cmd_exec == NULL)
+	if (cmd_exec == NULL)
 		return (-1);
-	if (ft_is_path(node->cmd_exec) == 1)
+	if (ft_is_path(cmd_exec) == 1)
 		return (0);
-	else if (ft_strcmp(node->cmd_exec, BUILTIN_EXIT) == 0)
+	else if (ft_strcmp(cmd_exec, BUILTIN_EXIT) == 0)
 		return (0);
-	else if (ft_strcmp_lowercase(node->cmd_exec, BUILTIN_ECHO) == 0)
+	else if (ft_strcmp_lowercase(cmd_exec, BUILTIN_ECHO) == 0)
 		return (0);
-	else if (ft_strcmp_lowercase(node->cmd_exec, BUILTIN_CD) == 0)
+	else if (ft_strcmp_lowercase(cmd_exec, BUILTIN_CD) == 0)
 		return (0);
-	else if (ft_strcmp(node->cmd_exec, BUILTIN_SETENV) == 0)
+	else if (ft_strcmp(cmd_exec, BUILTIN_SETENV) == 0)
 		return (0);
-	else if (ft_strcmp(node->cmd_exec, BUILTIN_UNSETENV) == 0)
+	else if (ft_strcmp(cmd_exec, BUILTIN_UNSETENV) == 0)
 		return (0);
-	else if (ft_strcmp_lowercase(node->cmd_exec, BUILTIN_ENV) == 0)
+	else if (ft_strcmp_lowercase(cmd_exec, BUILTIN_ENV) == 0)
 		return (0);
-	return (ft_search_bin(node->cmd_exec, p_hash));
+	return (ft_search_bin(cmd_exec, p_hash));
 }

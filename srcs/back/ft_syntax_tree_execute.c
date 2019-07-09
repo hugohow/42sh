@@ -33,8 +33,9 @@ static void	ft_exec_node_cmd(t_node *node, t_env ***p_env, \
 
 	if (node->cmd_exec == NULL)
 	{
+		
 	}
-	else if ((ft_find_bin(node, p_hash)) < 0)
+	else if ((ft_find_bin(node->cmd_exec, p_hash)) < 0)
 	{
 		ft_dprintf(fds[2], \
 			"minishell: command not found: %s\n", node->cmd_exec);
