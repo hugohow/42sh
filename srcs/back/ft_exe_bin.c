@@ -6,12 +6,11 @@
 /*   By: hhow-cho <hhow-cho@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/06/09 01:40:14 by hhow-cho          #+#    #+#             */
-/*   Updated: 2019/07/09 17:13:51 by hhow-cho         ###   ########.fr       */
+/*   Updated: 2019/07/09 17:23:29 by hhow-cho         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "shell.h"
-
 
 static int	ft_search_in_curr_dir(t_node *node, t_env **cpy_environ, int fds[])
 {

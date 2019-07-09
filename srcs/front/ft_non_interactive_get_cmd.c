@@ -6,7 +6,7 @@
 /*   By: hhow-cho <hhow-cho@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/07/04 16:36:32 by hhow-cho          #+#    #+#             */
-/*   Updated: 2019/07/09 14:08:58 by hhow-cho         ###   ########.fr       */
+/*   Updated: 2019/07/09 17:19:25 by hhow-cho         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,14 +31,12 @@ static void		free_and_assign(char **command)
 int				ft_non_interactive_get_cmd(int fd, char **command)
 {
 	char	ret;
-	t_list	*head;
 	t_list	*node;
 	t_vars	*p_vars;
 
 	if ((ft_cmd_init()) < 0)
 		return (0);
 	p_vars = ft_vars_get();
-	head = (p_vars->cmd)->head;
 	while (42)
 	{
 		if ((read(fd, &ret, sizeof(char)) == 0))
@@ -51,7 +49,7 @@ int				ft_non_interactive_get_cmd(int fd, char **command)
 		if (ret == '\n' || ret == '\0' || ft_isascii((int)ret) == 0)
 			break ;
 		node = ft_lstnew((void *)&((p_vars->cmd)->last_key), sizeof(int));
-		ft_lstinsert(&head, node);
+		ft_lstinsert(&((p_vars->cmd)->head), node);
 		(p_vars->cmd)->size = (p_vars->cmd)->size + 1;
 		(p_vars->cmd)->len = (p_vars->cmd)->len + 1;
 	}
