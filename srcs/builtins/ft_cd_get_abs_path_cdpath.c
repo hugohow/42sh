@@ -28,6 +28,7 @@ static char	*ft_traverse_cdlists(char **list, char *element, int fds[])
 		dest_path = ft_strjoin_(list[i], "/", element);
 		if (ft_cd_can_go_to(dest_path) == 1)
 		{
+			dest_path = ft_path_trim_free(dest_path);
 			ft_dprintf(fds[1], "%s\n", dest_path);
 			ft_list_free(&list);
 			return (dest_path);
@@ -58,5 +59,5 @@ char		*ft_cd_get_abs_path_cdpath(t_env ***p_env, char *element, \
 		ft_memdel((void **)&dest_path);
 	}
 	dest_path = ft_traverse_cdlists(list, element, fds);
-	return (NULL);
+	return (dest_path);
 }
