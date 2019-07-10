@@ -10,4 +10,32 @@
 
 ## 42sh
 
-Implementation of https://www.gnu.org/software/bash/manual/bash.pdf
+Reference :  https://www.gnu.org/software/bash/manual/bash.pdf
+
+### No memory leaks. (Valgrind certified)
+
+
+## TO DO
+
+Add `make test` for linux
+
+## Usage
+
+```
+usage: ./minishell [file ...]
+```
+
+### OSX :
+
+```
+make re
+./minishell
+```
+
+### Linux :
+
+```
+sudo apt-get install -y libncurses5-dev
+make re
+./minishell
+```
