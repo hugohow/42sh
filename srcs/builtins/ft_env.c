@@ -6,7 +6,7 @@
 /*   By: hhow-cho <hhow-cho@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/06/20 13:58:20 by hhow-cho          #+#    #+#             */
-/*   Updated: 2019/07/09 14:56:36 by hhow-cho         ###   ########.fr       */
+/*   Updated: 2019/07/10 14:19:26 by hhow-cho         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -86,7 +86,7 @@ static char	*ft_env_get_cmd(char **argv)
 // 	{
 // 		// if ((ft_find_bin(*argv, p_hash)) < 0)
 // 		// {
-// 		// 	ft_dprintf(fds[2], \
+// 		// 	ft_dprintf(fds[2],
 // 		// 		"minishell: command not found: %s\n", *argv);
 // 		// 	return (EXIT_UTILITY_NOT_FOUND);
 // 		// }
@@ -129,90 +129,87 @@ int ft_env(char **argv, t_env **cpy_environ, int fds[])
 	if (flag < 0)
 		return (1);
 
+	t_env **copy_env;
+	char *cmd;
+	t_ht **p_hash;
 
-		int success;
-		t_env **copy_env;
-		char *cmd;
-		t_ht **p_hash;
-
-		if (flag == FLAG_ENV_I)
-			copy_env = clear_environ();
-		else
-			copy_env = ft_env_deep_copy(cpy_environ);
-		p_hash = ft_memalloc(sizeof(t_ht *));
-		if (copy_env == NULL)
+	if (flag == FLAG_ENV_I)
+		copy_env = clear_environ();
+	else
+		copy_env = ft_env_deep_copy(cpy_environ);
+	p_hash = ft_memalloc(sizeof(t_ht *));
+	if (copy_env == NULL)
+	{
+		ft_putstr_fd("Error copy env", 2);
+		return (1);
+	}
+	argv = ft_env_complete_env(argv, &copy_env, p_hash);
+	i = 0;
+	if (*argv)
+	{
+		if ((ft_find_bin(*argv, p_hash)) < 0)
 		{
-			ft_putstr_fd("Error copy env", 2);
-			return (1);
+			ft_dprintf(fds[2], \
+				"minishell env : command not found: %s\n", *argv);
+			i = EXIT_UTILITY_NOT_FOUND;
 		}
-		argv = ft_env_complete_env(argv, &copy_env, p_hash);
-		success = 0;
-		i = 0;
-		if (*argv)
-		{
-			if ((ft_find_bin(*argv, p_hash)) < 0)
-			{
-				ft_dprintf(fds[2], \
-					"minishell env : command not found: %s\n", *argv);
-				i = EXIT_UTILITY_NOT_FOUND;
-			}
-			else
-			{
-					pid = fork();
-					if (pid < 0)
-					{
-						ft_putstr_fd("erreur pid", fds[2]);
-						return (1);
-					}
-					if (pid == 0)
-					{
-
-							cmd = ft_env_get_cmd(argv);
-
-
-							
-							if (*p_hash)
-							{
-								ft_cmd_exec(cmd, &copy_env, p_hash, fds);
-								ft_ht_free(p_hash);
-							}
-							else
-								ft_cmd_exec(cmd, &copy_env, NULL, fds);
-							ft_env_free(&copy_env);
-							ft_memdel((void **)&(p_hash));
-							status = *((int *)ft_vars_get_value(KEY_SUCCESS_EXIT));
-							ft_vars_free();
-							exit(status);
-					}
-					else
-					{
-						int w;
-						
-						w = waitpid(pid, &waitstatus, WUNTRACED | WCONTINUED);
-						if (w == -1)
-							return (EXIT_FAILURE);
-						if (WIFEXITED(waitstatus)) {
-							// printf("terminé, code=%d\n", WEXITSTATUS(waitstatus));
-						} else if (WIFSIGNALED(waitstatus)) {
-							ft_printf("%s\n", ft_errors_signal_get(WTERMSIG(waitstatus)));
-						} else if (WIFSTOPPED(waitstatus)) {
-							ft_printf("%s\n", ft_errors_stop_get(WTERMSIG(waitstatus)));
-						} else if (WIFCONTINUED(waitstatus)) {
-							// ft_printf("relancé\n");
-						}
-					}
-					i = WEXITSTATUS(waitstatus);
-			}
-
-
-
-			}
 		else
-			ft_print_env(copy_env, fds);
-		ft_env_free(&copy_env);
-		if (*p_hash)
-			ft_ht_free(p_hash);
-		ft_memdel((void **)&(p_hash));
+		{
+				pid = fork();
+				if (pid < 0)
+				{
+					ft_putstr_fd("erreur pid", fds[2]);
+					return (1);
+				}
+				if (pid == 0)
+				{
+
+						cmd = ft_env_get_cmd(argv);
+
+
+						
+						if (*p_hash)
+						{
+							ft_cmd_exec(cmd, &copy_env, p_hash, fds);
+							ft_ht_free(p_hash);
+						}
+						else
+							ft_cmd_exec(cmd, &copy_env, NULL, fds);
+						ft_env_free(&copy_env);
+						ft_memdel((void **)&(p_hash));
+						status = *((int *)ft_vars_get_value(KEY_SUCCESS_EXIT));
+						ft_vars_free();
+						exit(status);
+				}
+				else
+				{
+					int w;
+					
+					w = waitpid(pid, &waitstatus, WUNTRACED | WCONTINUED);
+					if (w == -1)
+						return (EXIT_FAILURE);
+					if (WIFEXITED(waitstatus)) {
+						// printf("terminé, code=%d\n", WEXITSTATUS(waitstatus));
+					} else if (WIFSIGNALED(waitstatus)) {
+						ft_printf("%s\n", ft_errors_signal_get(WTERMSIG(waitstatus)));
+					} else if (WIFSTOPPED(waitstatus)) {
+						ft_printf("%s\n", ft_errors_stop_get(WTERMSIG(waitstatus)));
+					} else if (WIFCONTINUED(waitstatus)) {
+						// ft_printf("relancé\n");
+					}
+				}
+				i = WEXITSTATUS(waitstatus);
+		}
+
+
+
+		}
+	else
+		ft_print_env(copy_env, fds);
+	ft_env_free(&copy_env);
+	if (*p_hash)
+		ft_ht_free(p_hash);
+	ft_memdel((void **)&(p_hash));
 
 
     return (i);

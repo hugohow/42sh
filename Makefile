@@ -6,7 +6,7 @@
 #    By: hhow-cho <hhow-cho@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2019/07/04 22:12:22 by hhow-cho          #+#    #+#              #
-#    Updated: 2019/07/10 12:05:07 by hhow-cho         ###   ########.fr        #
+#    Updated: 2019/07/10 14:31:37 by hhow-cho         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -14,6 +14,11 @@
 NAME 		=		minishell
 CC			= 		gcc
 CFLAGS 		= 		-Wall -Werror -Wextra -g -g3 -Iincludes
+ifeq ($(shell uname),Darwin)
+TERMFLAG 	= 		-ltermcap
+else
+TERMFLAG 	= 		-lcurses
+endif
 OBJ 		= 		$(SRC:.c=.o)
 
 C_OK		=		"\033[35m"
@@ -115,7 +120,7 @@ all: $(NAME)
 $(NAME): $(OBJ)
 	@make -C libft/
 	@echo "Creating" [ $(NAME) ]
-	@$(CC) $(CFLAGS) -ltermcap $(INCLUDES) $^ libft/libft.a -o $(NAME)
+	@$(CC) $(CFLAGS) $(INCLUDES) $^ libft/libft.a -o $(NAME) $(TERMFLAG)
 	@echo "Creation" [ $(NAME) ] $(SUCCESS)
 
 clean:
@@ -130,8 +135,14 @@ fclean: clean
 	
 re: fclean all
 
+ifeq ($(shell uname),Darwin)
 test: re
 	bash tests/42ShellTester.sh $(PWD)/$(NAME) --hard --reference "bash" --filter $(NAME)
 	bash test.sh
+else
+test: re
+	@echo "\n\n\033[45mBuild ok, launch tests on OSX\033[0m\n\n"
+	exit 0
+endif
 
 .PHONY: all clean fclean re test

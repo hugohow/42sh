@@ -1,44 +1,90 @@
-make TARGET_DIR=/Users/hugohow-choong/42/42sh/tests/tmp fclean -C ./display-env
-rm -f "/Users/hugohow-choong/42/42sh/tests/tmp/display_env"
-make TARGET_DIR=/Users/hugohow-choong/42/42sh/tests/tmp fclean -C ./display-program-name
-rm -f "/Users/hugohow-choong/42/42sh/tests/tmp/display_program_name"
-make TARGET_DIR=/Users/hugohow-choong/42/42sh/tests/tmp fclean -C ./display-pwd
-rm -f "/Users/hugohow-choong/42/42sh/tests/tmp/display_pwd"
-make TARGET_DIR=/Users/hugohow-choong/42/42sh/tests/tmp fclean -C ./exit-with-status
-rm -f "/Users/hugohow-choong/42/42sh/tests/tmp/exit_with_status"
-make TARGET_DIR=/Users/hugohow-choong/42/42sh/tests/tmp fclean -C ./read-on-stdin
-rm -f "/Users/hugohow-choong/42/42sh/tests/tmp/read_on_stdin"
-make TARGET_DIR=/Users/hugohow-choong/42/42sh/tests/tmp fclean -C ./sleep-and-exit-with-status
-rm -f "/Users/hugohow-choong/42/42sh/tests/tmp/sleep_and_exit_with_status"
-make TARGET_DIR=/Users/hugohow-choong/42/42sh/tests/tmp fclean -C ./sleep-and-write-on-stderr
-rm -f "/Users/hugohow-choong/42/42sh/tests/tmp/sleep_and_write_on_stderr"
-make TARGET_DIR=/Users/hugohow-choong/42/42sh/tests/tmp fclean -C ./write-all-arguments-on-stdout
-rm -f "/Users/hugohow-choong/42/42sh/tests/tmp/write_all_arguments_on_stdout"
-make TARGET_DIR=/Users/hugohow-choong/42/42sh/tests/tmp fclean -C ./write-on-stderr
-rm -f "/Users/hugohow-choong/42/42sh/tests/tmp/write_on_stderr"
-make TARGET_DIR=/Users/hugohow-choong/42/42sh/tests/tmp fclean -C ./write-on-stdout
-rm -f "/Users/hugohow-choong/42/42sh/tests/tmp/write_on_stdout"
-make TARGET_DIR=/Users/hugohow-choong/42/42sh/tests/tmp fclean -C ./write-on-stdout-and-stderr
-rm -f "/Users/hugohow-choong/42/42sh/tests/tmp/write_on_stdout_and_stderr"
-make TARGET_DIR=/Users/hugohow-choong/42/42sh/tests/tmp -C ./display-env
-gcc -Wall -Werror -Wextra main.c -o "/Users/hugohow-choong/42/42sh/tests/tmp/display_env"
-make TARGET_DIR=/Users/hugohow-choong/42/42sh/tests/tmp -C ./display-program-name
-gcc -Wall -Werror -Wextra main.c -o "/Users/hugohow-choong/42/42sh/tests/tmp/display_program_name"
-make TARGET_DIR=/Users/hugohow-choong/42/42sh/tests/tmp -C ./display-pwd
-gcc -Wall -Werror -Wextra main.c -o "/Users/hugohow-choong/42/42sh/tests/tmp/display_pwd"
-make TARGET_DIR=/Users/hugohow-choong/42/42sh/tests/tmp -C ./exit-with-status
-gcc -Wall -Werror -Wextra main.c -o "/Users/hugohow-choong/42/42sh/tests/tmp/exit_with_status"
-make TARGET_DIR=/Users/hugohow-choong/42/42sh/tests/tmp -C ./read-on-stdin
-gcc -Wall -Werror -Wextra main.c -o "/Users/hugohow-choong/42/42sh/tests/tmp/read_on_stdin"
-make TARGET_DIR=/Users/hugohow-choong/42/42sh/tests/tmp -C ./sleep-and-exit-with-status
-gcc -Wall -Werror -Wextra main.c -o "/Users/hugohow-choong/42/42sh/tests/tmp/sleep_and_exit_with_status"
-make TARGET_DIR=/Users/hugohow-choong/42/42sh/tests/tmp -C ./sleep-and-write-on-stderr
-gcc -Wall -Werror -Wextra main.c -o "/Users/hugohow-choong/42/42sh/tests/tmp/sleep_and_write_on_stderr"
-make TARGET_DIR=/Users/hugohow-choong/42/42sh/tests/tmp -C ./write-all-arguments-on-stdout
-gcc -Wall -Werror -Wextra main.c -o "/Users/hugohow-choong/42/42sh/tests/tmp/write_all_arguments_on_stdout"
-make TARGET_DIR=/Users/hugohow-choong/42/42sh/tests/tmp -C ./write-on-stderr
-gcc -Wall -Werror -Wextra main.c -o "/Users/hugohow-choong/42/42sh/tests/tmp/write_on_stderr"
-make TARGET_DIR=/Users/hugohow-choong/42/42sh/tests/tmp -C ./write-on-stdout
-gcc -Wall -Werror -Wextra main.c -o "/Users/hugohow-choong/42/42sh/tests/tmp/write_on_stdout"
-make TARGET_DIR=/Users/hugohow-choong/42/42sh/tests/tmp -C ./write-on-stdout-and-stderr
-gcc -Wall -Werror -Wextra main.c -o "/Users/hugohow-choong/42/42sh/tests/tmp/write_on_stdout_and_stderr"
+make[1]: Entering directory '/42/42sh/tests/support'
+make TARGET_DIR=/42/42sh/tests/tmp fclean -C ./display-env
+make[2]: Entering directory '/42/42sh/tests/support/display-env'
+rm -f "/42/42sh/tests/tmp/display_env"
+make[2]: Leaving directory '/42/42sh/tests/support/display-env'
+make TARGET_DIR=/42/42sh/tests/tmp fclean -C ./display-program-name
+make[2]: Entering directory '/42/42sh/tests/support/display-program-name'
+rm -f "/42/42sh/tests/tmp/display_program_name"
+make[2]: Leaving directory '/42/42sh/tests/support/display-program-name'
+make TARGET_DIR=/42/42sh/tests/tmp fclean -C ./display-pwd
+make[2]: Entering directory '/42/42sh/tests/support/display-pwd'
+rm -f "/42/42sh/tests/tmp/display_pwd"
+make[2]: Leaving directory '/42/42sh/tests/support/display-pwd'
+make TARGET_DIR=/42/42sh/tests/tmp fclean -C ./exit-with-status
+make[2]: Entering directory '/42/42sh/tests/support/exit-with-status'
+rm -f "/42/42sh/tests/tmp/exit_with_status"
+make[2]: Leaving directory '/42/42sh/tests/support/exit-with-status'
+make TARGET_DIR=/42/42sh/tests/tmp fclean -C ./read-on-stdin
+make[2]: Entering directory '/42/42sh/tests/support/read-on-stdin'
+rm -f "/42/42sh/tests/tmp/read_on_stdin"
+make[2]: Leaving directory '/42/42sh/tests/support/read-on-stdin'
+make TARGET_DIR=/42/42sh/tests/tmp fclean -C ./sleep-and-exit-with-status
+make[2]: Entering directory '/42/42sh/tests/support/sleep-and-exit-with-status'
+rm -f "/42/42sh/tests/tmp/sleep_and_exit_with_status"
+make[2]: Leaving directory '/42/42sh/tests/support/sleep-and-exit-with-status'
+make TARGET_DIR=/42/42sh/tests/tmp fclean -C ./sleep-and-write-on-stderr
+make[2]: Entering directory '/42/42sh/tests/support/sleep-and-write-on-stderr'
+rm -f "/42/42sh/tests/tmp/sleep_and_write_on_stderr"
+make[2]: Leaving directory '/42/42sh/tests/support/sleep-and-write-on-stderr'
+make TARGET_DIR=/42/42sh/tests/tmp fclean -C ./write-all-arguments-on-stdout
+make[2]: Entering directory '/42/42sh/tests/support/write-all-arguments-on-stdout'
+rm -f "/42/42sh/tests/tmp/write_all_arguments_on_stdout"
+make[2]: Leaving directory '/42/42sh/tests/support/write-all-arguments-on-stdout'
+make TARGET_DIR=/42/42sh/tests/tmp fclean -C ./write-on-stderr
+make[2]: Entering directory '/42/42sh/tests/support/write-on-stderr'
+rm -f "/42/42sh/tests/tmp/write_on_stderr"
+make[2]: Leaving directory '/42/42sh/tests/support/write-on-stderr'
+make TARGET_DIR=/42/42sh/tests/tmp fclean -C ./write-on-stdout
+make[2]: Entering directory '/42/42sh/tests/support/write-on-stdout'
+rm -f "/42/42sh/tests/tmp/write_on_stdout"
+make[2]: Leaving directory '/42/42sh/tests/support/write-on-stdout'
+make TARGET_DIR=/42/42sh/tests/tmp fclean -C ./write-on-stdout-and-stderr
+make[2]: Entering directory '/42/42sh/tests/support/write-on-stdout-and-stderr'
+rm -f "/42/42sh/tests/tmp/write_on_stdout_and_stderr"
+make[2]: Leaving directory '/42/42sh/tests/support/write-on-stdout-and-stderr'
+make TARGET_DIR=/42/42sh/tests/tmp -C ./display-env
+make[2]: Entering directory '/42/42sh/tests/support/display-env'
+gcc -Wall -Werror -Wextra main.c -o "/42/42sh/tests/tmp/display_env"
+make[2]: Leaving directory '/42/42sh/tests/support/display-env'
+make TARGET_DIR=/42/42sh/tests/tmp -C ./display-program-name
+make[2]: Entering directory '/42/42sh/tests/support/display-program-name'
+gcc -Wall -Werror -Wextra main.c -o "/42/42sh/tests/tmp/display_program_name"
+make[2]: Leaving directory '/42/42sh/tests/support/display-program-name'
+make TARGET_DIR=/42/42sh/tests/tmp -C ./display-pwd
+make[2]: Entering directory '/42/42sh/tests/support/display-pwd'
+gcc -Wall -Werror -Wextra main.c -o "/42/42sh/tests/tmp/display_pwd"
+make[2]: Leaving directory '/42/42sh/tests/support/display-pwd'
+make TARGET_DIR=/42/42sh/tests/tmp -C ./exit-with-status
+make[2]: Entering directory '/42/42sh/tests/support/exit-with-status'
+gcc -Wall -Werror -Wextra main.c -o "/42/42sh/tests/tmp/exit_with_status"
+make[2]: Leaving directory '/42/42sh/tests/support/exit-with-status'
+make TARGET_DIR=/42/42sh/tests/tmp -C ./read-on-stdin
+make[2]: Entering directory '/42/42sh/tests/support/read-on-stdin'
+gcc -Wall -Werror -Wextra main.c -o "/42/42sh/tests/tmp/read_on_stdin"
+make[2]: Leaving directory '/42/42sh/tests/support/read-on-stdin'
+make TARGET_DIR=/42/42sh/tests/tmp -C ./sleep-and-exit-with-status
+make[2]: Entering directory '/42/42sh/tests/support/sleep-and-exit-with-status'
+gcc -Wall -Werror -Wextra main.c -o "/42/42sh/tests/tmp/sleep_and_exit_with_status"
+make[2]: Leaving directory '/42/42sh/tests/support/sleep-and-exit-with-status'
+make TARGET_DIR=/42/42sh/tests/tmp -C ./sleep-and-write-on-stderr
+make[2]: Entering directory '/42/42sh/tests/support/sleep-and-write-on-stderr'
+gcc -Wall -Werror -Wextra main.c -o "/42/42sh/tests/tmp/sleep_and_write_on_stderr"
+make[2]: Leaving directory '/42/42sh/tests/support/sleep-and-write-on-stderr'
+make TARGET_DIR=/42/42sh/tests/tmp -C ./write-all-arguments-on-stdout
+make[2]: Entering directory '/42/42sh/tests/support/write-all-arguments-on-stdout'
+gcc -Wall -Werror -Wextra main.c -o "/42/42sh/tests/tmp/write_all_arguments_on_stdout"
+make[2]: Leaving directory '/42/42sh/tests/support/write-all-arguments-on-stdout'
+make TARGET_DIR=/42/42sh/tests/tmp -C ./write-on-stderr
+make[2]: Entering directory '/42/42sh/tests/support/write-on-stderr'
+gcc -Wall -Werror -Wextra main.c -o "/42/42sh/tests/tmp/write_on_stderr"
+make[2]: Leaving directory '/42/42sh/tests/support/write-on-stderr'
+make TARGET_DIR=/42/42sh/tests/tmp -C ./write-on-stdout
+make[2]: Entering directory '/42/42sh/tests/support/write-on-stdout'
+gcc -Wall -Werror -Wextra main.c -o "/42/42sh/tests/tmp/write_on_stdout"
+make[2]: Leaving directory '/42/42sh/tests/support/write-on-stdout'
+make TARGET_DIR=/42/42sh/tests/tmp -C ./write-on-stdout-and-stderr
+make[2]: Entering directory '/42/42sh/tests/support/write-on-stdout-and-stderr'
+gcc -Wall -Werror -Wextra main.c -o "/42/42sh/tests/tmp/write_on_stdout_and_stderr"
+make[2]: Leaving directory '/42/42sh/tests/support/write-on-stdout-and-stderr'
+make[1]: Leaving directory '/42/42sh/tests/support'
