@@ -6,7 +6,7 @@
 /*   By: hhow-cho <hhow-cho@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/07/04 16:04:27 by hhow-cho          #+#    #+#             */
-/*   Updated: 2019/07/08 16:24:03 by hhow-cho         ###   ########.fr       */
+/*   Updated: 2019/07/10 12:26:21 by hhow-cho         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,7 +25,7 @@ static int	ft_args_resolve_expansion_special(char *expansion, char **p_output)
 	if (ft_strncmp(expansion, "$", len_expansion) == 0)
 		*p_output = ft_itoa(p_vars->pid);
 	if (ft_strncmp(expansion, "#", len_expansion) == 0)
-		*p_output = ft_itoa(p_vars->argc);
+		*p_output = ft_itoa(p_vars->argc - 1);
 	if (ft_isdigit(expansion[0]))
 	{
 		nb = expansion[0] - '0';

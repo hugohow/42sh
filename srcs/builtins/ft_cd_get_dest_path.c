@@ -6,7 +6,7 @@
 /*   By: hhow-cho <hhow-cho@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/07/08 19:05:08 by hhow-cho          #+#    #+#             */
-/*   Updated: 2019/07/08 19:46:04 by hhow-cho         ###   ########.fr       */
+/*   Updated: 2019/07/10 12:41:26 by hhow-cho         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -73,7 +73,7 @@ static char	*get_dest_path(char *element, t_env ***p_env, \
 		return (ft_cd_get_old_path(p_env, fds));
 	else
 		dest_path = ft_cd_get_path_cdpath(element, p_env, fds);
-	if (ft_cd_can_go_to_message(dest_path, fds) == -1)
+	if (ft_cd_can_go_to_message(dest_path, element, fds) == -1)
 	{
 		ft_memdel((void **)&dest_path);
 		return (NULL);

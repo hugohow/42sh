@@ -6,7 +6,7 @@
 /*   By: hhow-cho <hhow-cho@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/06/13 19:57:57 by hhow-cho          #+#    #+#             */
-/*   Updated: 2019/07/08 19:51:36 by hhow-cho         ###   ########.fr       */
+/*   Updated: 2019/07/10 12:43:46 by hhow-cho         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,7 +49,7 @@ int	ft_change_dir(char *element, t_env ***p_env, long long flag, int fds[])
 	dest_path = ft_cd_get_dest_path(element, p_env, flag, fds);
 	if (dest_path == NULL)
 		return (1);
-	if ((ret = ft_cd_go_to(dest_path, fds)) != 0)
+	if ((ret = ft_cd_go_to(dest_path, element, fds)) != 0)
 	{
 		ft_memdel((void **)&dest_path);
 		return (ret);

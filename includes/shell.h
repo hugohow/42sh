@@ -6,7 +6,7 @@
 /*   By: hhow-cho <hhow-cho@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/06/09 00:32:39 by hhow-cho          #+#    #+#             */
-/*   Updated: 2019/07/10 11:56:01 by hhow-cho         ###   ########.fr       */
+/*   Updated: 2019/07/10 12:43:59 by hhow-cho         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -133,9 +133,9 @@ void		ft_env_free(t_env ***p_cpy_environ);
 int			ft_echo(char **argv, t_env **cpy_environ, int fds[]);
 int			ft_cd(char **argv, t_env ***p_cpy_environ, int fds[]);
 int			ft_cd_parse(int *p_argc, char ***p_argv);
-int			ft_cd_go_to(char *path, int fds[]);
+int			ft_cd_go_to(char *path, char *element, int fds[]);
 int			ft_cd_can_go_to(char *abs_path);
-int			ft_cd_can_go_to_message(char *abs_path, int fds[]);
+int			ft_cd_can_go_to_message(char *abs_path, char *element, int fds[]);
 int			ft_cd_change_env(char *new_pwd_line, t_env ***p_env);
 char		*ft_cd_get_dest_path(char *element, t_env ***p_env, \
 	long long flag, int fds[]);
