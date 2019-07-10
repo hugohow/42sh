@@ -6,7 +6,7 @@
 /*   By: hhow-cho <hhow-cho@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/06/09 00:32:39 by hhow-cho          #+#    #+#             */
-/*   Updated: 2019/07/09 16:41:23 by hhow-cho         ###   ########.fr       */
+/*   Updated: 2019/07/10 11:56:01 by hhow-cho         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -103,7 +103,8 @@ t_node		*ft_syntax_tree_create(char *cmd, t_env **copy_env);
 void		ft_syntax_tree_free(t_node **root);
 t_node		**ft_get_semi_colon_child(t_node *node, char *cmd, \
 	t_env **copy_env);
-
+char		*ft_cmd_exec_get(char *cmd);
+char		**ft_args_split(char *cmd);
 /*
 ** Functions related to environnement variables
 */

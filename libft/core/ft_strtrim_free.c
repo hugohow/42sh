@@ -1,3 +1,4 @@
+
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
@@ -14,7 +15,8 @@
 
 static int	is_escapable_fttrim(char c)
 {
-	if (c == '\t' || c == '\n' || c == '"' || c == 39)
+	if (c == '\t' || c == '\v' || c == '\f' || c == '\r' || c == '\n' || \
+		c == '"' || c == 39 || c == ' ')
 		return (1);
 	return (0);
 }
@@ -55,7 +57,7 @@ char		*ft_strtrim_free(char *str)
 		return (NULL);
 	len = count_len_fttrim(str);
 	if (len <= 0)
-		return (ft_strdup(""));
+		return (NULL);
 	if (!(output = (char *)ft_memalloc((len + 1) * sizeof(char))))
 	{
 		ft_memdel((void **)&str);

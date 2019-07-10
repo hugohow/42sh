@@ -6,7 +6,7 @@
 /*   By: hhow-cho <hhow-cho@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/04/02 17:13:02 by hhow-cho          #+#    #+#             */
-/*   Updated: 2019/07/09 14:35:56 by hhow-cho         ###   ########.fr       */
+/*   Updated: 2019/07/10 11:49:53 by hhow-cho         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,8 @@
 
 static int	is_escapable_fttrim(char c)
 {
-	if (c == '\t' || c == '\n' || c == '"' || c == 39)
+	if (c == '\t' || c == '\v' || c == '\f' || c == '\r' || c == '\n' || \
+		c == '"' || c == 39 || c == ' ')
 		return (1);
 	return (0);
 }
@@ -53,7 +54,7 @@ char		*ft_strtrim(char const *str)
 		return (NULL);
 	len = count_len_fttrim(str);
 	if (len <= 0)
-		return (ft_strdup(""));
+		return (NULL);
 	if (!(output = (char *)ft_memalloc((len + 1) * sizeof(char))))
 		return (NULL);
 	i = 0;
