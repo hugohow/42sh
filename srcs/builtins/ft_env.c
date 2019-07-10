@@ -6,7 +6,7 @@
 /*   By: hhow-cho <hhow-cho@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/06/20 13:58:20 by hhow-cho          #+#    #+#             */
-/*   Updated: 2019/07/10 14:19:26 by hhow-cho         ###   ########.fr       */
+/*   Updated: 2019/07/10 22:22:58 by hhow-cho         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -137,7 +137,7 @@ int ft_env(char **argv, t_env **cpy_environ, int fds[])
 		copy_env = clear_environ();
 	else
 		copy_env = ft_env_deep_copy(cpy_environ);
-	p_hash = ft_memalloc(sizeof(t_ht *));
+	p_hash = (t_ht **)ft_memalloc(sizeof(t_ht *));
 	if (copy_env == NULL)
 	{
 		ft_putstr_fd("Error copy env", 2);
