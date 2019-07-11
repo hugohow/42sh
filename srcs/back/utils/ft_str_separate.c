@@ -6,7 +6,7 @@
 /*   By: hhow-cho <hhow-cho@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/06/25 12:00:29 by hhow-cho          #+#    #+#             */
-/*   Updated: 2019/07/08 18:03:13 by hhow-cho         ###   ########.fr       */
+/*   Updated: 2019/07/11 22:34:02 by hhow-cho         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,7 @@ static char		*get_word(const char *str, char c)
 	char		*word;
 	size_t		j;
 
-	if (!(word = (char *)ft_memalloc((strlen(str) + 1) * sizeof(*word))))
+	if (!(word = (char *)ft_memalloc((ft_strlen(str) + 1) * sizeof(*word))))
 		return (NULL);
 	j = 0;
 	while (str[j] && str[j] != c)
@@ -36,17 +36,17 @@ static char		**fill_list_init(char const *str, char c)
 
 	if (str == NULL)
 		return (NULL);
-	if (!(list = (char **)ft_memalloc((strlen(str) + 3) * sizeof(char *))))
+	if (!(list = (char **)ft_memalloc((ft_strlen(str) + 3) * sizeof(char *))))
 		return (NULL);
 	k = 0;
 	if (ft_strlen(str) == 0)
 	{
-		list[k++] = strdup("");
+		list[k++] = ft_strdup("");
 		list[k++] = 0;
 		return (list);
 	}
 	if (str[0] == c)
-		list[k++] = strdup("");
+		list[k++] = ft_strdup("");
 	return (list);
 }
 
@@ -70,11 +70,11 @@ char			**ft_str_separate(char const *str, char c)
 		{
 			word = get_word(str + i, c);
 			list[k++] = word;
-			i += strlen(word) - 1;
+			i += ft_strlen(word) - 1;
 		}
 	}
 	if (i > 1 && str[i - 1] == c)
-		list[k++] = strdup("");
+		list[k++] = ft_strdup("");
 	list[k++] = 0;
 	return (list);
 }
