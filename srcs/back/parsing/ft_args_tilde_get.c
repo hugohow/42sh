@@ -6,7 +6,7 @@
 /*   By: hhow-cho <hhow-cho@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/06/17 12:46:29 by hhow-cho          #+#    #+#             */
-/*   Updated: 2019/07/11 12:45:13 by hhow-cho         ###   ########.fr       */
+/*   Updated: 2019/07/11 17:06:18 by hhow-cho         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,17 +20,24 @@ static char	*ft_replace_by_home(char *str, int i, t_env **copy_env)
 {
 	char *to_free;
 	char *line;
+	struct passwd	*pw;
 
 	to_free = NULL;
 	line = ft_env_get_value(copy_env, "HOME");
+	if (line == NULL)
+	{
+		pw = getpwnam(getlogin());
+		if (pw)
+			line = pw->pw_dir;
+	}
 	if (line)
 	{
 		to_free = str;
 		str[i] = 0;
 		if (str[i + 1] == '/')
-			str = ft_strjoin_(str, "$HOME", str + i + 1);
+			str = ft_strjoin_(str, line, str + i + 1);
 		else if (str[i + 1] == 0)
-			str = ft_strjoin(str, "$HOME");
+			str = ft_strjoin(str, line);
 		ft_memdel((void **)&to_free);
 	}
 	return (str);

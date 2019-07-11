@@ -6,7 +6,7 @@
 /*   By: hhow-cho <hhow-cho@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/06/16 15:12:28 by hhow-cho          #+#    #+#             */
-/*   Updated: 2019/07/09 14:55:53 by hhow-cho         ###   ########.fr       */
+/*   Updated: 2019/07/11 16:51:24 by hhow-cho         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,8 +23,10 @@ static void	ft_get_bins_table(t_env **copy)
 	if ((value = ft_env_get_line(copy, "PATH")))
 		*(p_vars->p_hash_table) = ft_bins_table_create(value);
 	else
-		*(p_vars->p_hash_table) = \
-			ft_bins_table_create("PATH=/usr/local/bin:/usr/bin:/bin");
+	{
+		p_vars->path_default = ft_strdup("/usr/gnu/bin:/usr/local/bin:/bin:/usr/bin:.");
+		*(p_vars->p_hash_table) = ft_bins_table_create("/usr/gnu/bin:/usr/local/bin:/bin:/usr/bin:.");
+	}
 }
 
 t_env		**ft_env_copy_raw(char **str, char **argv)
@@ -36,7 +38,7 @@ t_env		**ft_env_copy_raw(char **str, char **argv)
 	i = 0;
 	while (str[i])
 		i++;
-	if (!(copy = (t_env **)ft_memalloc((i + 1) * sizeof(t_env *))))
+	if (!(copy = (t_env **)ft_memalloc((i + 10) * sizeof(t_env *))))
 		return (NULL);
 	i = -1;
 	while (str[++i])
@@ -46,11 +48,11 @@ t_env		**ft_env_copy_raw(char **str, char **argv)
 		copy[i]->line = ft_strdup(str[i]);
 	}
 	copy[i] = 0;
-	ft_get_bins_table(copy);
 	if (ft_env_get_line(copy, "SHLVL") == NULL)
 		copy = ft_env_add_default_shlvl(copy);
 	if (ft_env_get_line(copy, "PWD") == NULL)
 		copy = ft_env_add_default_pwd(copy);
 	copy = ft_env_increment_shlvl(copy);
+	ft_get_bins_table(copy);
 	return (copy);
 }

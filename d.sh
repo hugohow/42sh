@@ -1,4 +1,1 @@
-ls
-"
-ls
-'
+env -i ./minishell tests_sh/test_colon.sh

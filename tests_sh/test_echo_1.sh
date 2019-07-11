@@ -14,10 +14,10 @@ echo $?
 echo $@
 echo $?
 echo $!
-echo $#
-echo $99
+# echo $#
+# echo $99
 echo ${10}
-echo $12
+# echo $12
 echo ${*A}
 echo ${1A}
 echo ${A$}

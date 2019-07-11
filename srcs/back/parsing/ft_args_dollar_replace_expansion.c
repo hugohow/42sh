@@ -6,11 +6,21 @@
 /*   By: hhow-cho <hhow-cho@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/07/04 16:04:27 by hhow-cho          #+#    #+#             */
-/*   Updated: 2019/07/10 12:26:21 by hhow-cho         ###   ########.fr       */
+/*   Updated: 2019/07/11 15:56:38 by hhow-cho         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "shell.h"
+
+static char *ft_search_local_variable(char *key, size_t n)
+{
+	t_vars	*p_vars;
+
+	p_vars = ft_vars_get();
+	if (ft_strncmp(key, "PATH", n) == 0)
+		return (p_vars->path_default);
+	return (NULL);
+}
 
 static int	ft_args_resolve_expansion_special(char *expansion, char **p_output)
 {
@@ -25,7 +35,7 @@ static int	ft_args_resolve_expansion_special(char *expansion, char **p_output)
 	if (ft_strncmp(expansion, "$", len_expansion) == 0)
 		*p_output = ft_itoa(p_vars->pid);
 	if (ft_strncmp(expansion, "#", len_expansion) == 0)
-		*p_output = ft_itoa(p_vars->argc - 1);
+		*p_output = ft_itoa(p_vars->argc);
 	if (ft_isdigit(expansion[0]))
 	{
 		nb = expansion[0] - '0';
@@ -67,7 +77,11 @@ static char	*ft_args_resolve_expansion(char *str,\
 	}
 	line = ft_env_get_value_n(c_env, expansion, len_expansion);
 	if (line == NULL)
-		return (ft_strdup(""));
+	{
+		line = ft_search_local_variable(expansion, len_expansion);
+		if (line == NULL)
+			return (ft_strdup(""));
+	}
 	return (ft_strdup(line));
 }
 
