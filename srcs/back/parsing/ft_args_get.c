@@ -6,7 +6,7 @@
 /*   By: hhow-cho <hhow-cho@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/06/14 14:25:36 by hhow-cho          #+#    #+#             */
-/*   Updated: 2019/07/10 12:04:07 by hhow-cho         ###   ########.fr       */
+/*   Updated: 2019/07/11 13:14:04 by hhow-cho         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -71,6 +71,13 @@ char		**ft_args_get(char *cmd, t_env **copy_env, int *p_res_parse)
 {
 	char	**args;
 
+	if (ft_str_brackets_is_valid(cmd, ft_strlen(cmd)) == 0)
+	{
+		ft_dprintf(2, \
+			"minishell: syntax error: unexpected end of file\n");
+		*((int *)ft_vars_get_value(KEY_SUCCESS_EXIT)) = 2;
+		return (NULL);
+	}
 	args = ft_args_split(cmd);
 	if (args == NULL || args[0] == NULL)
 	{

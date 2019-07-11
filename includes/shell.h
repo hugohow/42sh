@@ -6,7 +6,7 @@
 /*   By: hhow-cho <hhow-cho@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/06/09 00:32:39 by hhow-cho          #+#    #+#             */
-/*   Updated: 2019/07/10 12:43:59 by hhow-cho         ###   ########.fr       */
+/*   Updated: 2019/07/11 13:04:36 by hhow-cho         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -105,6 +105,8 @@ t_node		**ft_get_semi_colon_child(t_node *node, char *cmd, \
 	t_env **copy_env);
 char		*ft_cmd_exec_get(char *cmd);
 char		**ft_args_split(char *cmd);
+int			ft_str_brackets_is_valid(char *str, size_t len);
+
 /*
 ** Functions related to environnement variables
 */

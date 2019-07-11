@@ -6,7 +6,7 @@
 /*   By: hhow-cho <hhow-cho@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/06/16 13:42:37 by hhow-cho          #+#    #+#             */
-/*   Updated: 2019/07/08 16:09:54 by hhow-cho         ###   ########.fr       */
+/*   Updated: 2019/07/11 12:45:44 by hhow-cho         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,6 +20,8 @@ char	*ft_args_dollar_get(char *str, t_env **copy_env, int *p_result_parsing)
 	char	*to_free;
 
 	i = 0;
+	if (str == NULL)
+		return (NULL);
 	output = ft_strdup(str);
 	while (output && output[i])
 	{

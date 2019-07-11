@@ -6,7 +6,7 @@
 /*   By: hhow-cho <hhow-cho@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/06/17 12:46:29 by hhow-cho          #+#    #+#             */
-/*   Updated: 2019/07/08 16:52:40 by hhow-cho         ###   ########.fr       */
+/*   Updated: 2019/07/11 12:45:13 by hhow-cho         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -95,6 +95,8 @@ char		*ft_args_tilde_get(char *str, t_env **copy_env)
 	int i;
 
 	i = 0;
+	if (str == NULL)
+		return (NULL);
 	while (str[i])
 	{
 		if (str[i] == '~' && (i == 0 || str[i - 1] == '='))
