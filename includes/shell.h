@@ -6,7 +6,7 @@
 /*   By: hhow-cho <hhow-cho@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/06/09 00:32:39 by hhow-cho          #+#    #+#             */
-/*   Updated: 2019/07/11 18:05:46 by hhow-cho         ###   ########.fr       */
+/*   Updated: 2019/07/11 19:28:17 by hhow-cho         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,7 +28,6 @@
 # include <sys/uio.h>
 # include <term.h>
 # include <pwd.h>
-# include <uuid/uuid.h>
 # include "libft.h"
 # include "ht.h"
 # include "ft_printf.h"
