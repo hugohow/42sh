@@ -6,7 +6,7 @@
 /*   By: hhow-cho <hhow-cho@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/07/09 15:08:21 by hhow-cho          #+#    #+#             */
-/*   Updated: 2019/07/11 13:17:55 by hhow-cho         ###   ########.fr       */
+/*   Updated: 2019/07/11 22:18:53 by hhow-cho         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,8 +31,8 @@ char		*ft_args_get_first(char *cmd, t_env **copy_env)
 	cmd_exec = ft_cmd_exec_get(cmd);
 	if (cmd_exec == NULL)
 		return (NULL);
-	cmd_exec = ft_strtrim_free(cmd_exec);
 	cmd_exec = ft_args_tilde_get(cmd_exec, copy_env);
+	cmd_exec = ft_strtrim_free(cmd_exec);
 	tmp = ft_args_dollar_get(cmd_exec, copy_env, &res_parse);
 	if (tmp == NULL)
 	{
