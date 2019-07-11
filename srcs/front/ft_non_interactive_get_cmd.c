@@ -6,7 +6,7 @@
 /*   By: hhow-cho <hhow-cho@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/07/04 16:36:32 by hhow-cho          #+#    #+#             */
-/*   Updated: 2019/07/09 17:19:25 by hhow-cho         ###   ########.fr       */
+/*   Updated: 2019/07/11 17:47:51 by hhow-cho         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,7 +41,7 @@ int				ft_non_interactive_get_cmd(int fd, char **command)
 	{
 		if ((read(fd, &ret, sizeof(char)) == 0))
 		{
-			*((int *)ft_vars_get_value(KEY_MUST_EXIT)) = 1;
+			ret = 0;
 			break ;
 		}
 		(p_vars->cmd)->last_key = (int)ret;

@@ -1,3 +1,1 @@
-cd --
-echo $?
-echo $PWD
+a;ls;b;ls -l

@@ -6,7 +6,7 @@
 /*   By: hhow-cho <hhow-cho@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/07/10 11:53:32 by hhow-cho          #+#    #+#             */
-/*   Updated: 2019/07/10 12:05:45 by hhow-cho         ###   ########.fr       */
+/*   Updated: 2019/07/11 17:31:00 by hhow-cho         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,7 @@
 static int	is_escapable(char c)
 {
 	if (c == '\t' || c == '\v' || c == '\f' || \
-		c == '\r' || c == '\n' || c == ' ' || c == ';')
+		c == '\r' || c == '\n' || c == ' ')
 		return (1);
 	return (0);
 }
@@ -75,10 +75,10 @@ char	*ft_cmd_exec_get(char *cmd)
 	i = 0;
 	j = 0;
 	while (cmd[i] && (cmd[i] == '\t' || cmd[i] == '\v' || cmd[i] == '\f' || \
-		cmd[i] == '\r' || cmd[i] == '\n' || cmd[i] == ' ' || cmd[i] == ';'))
+		cmd[i] == '\r' || cmd[i] == '\n' || cmd[i] == ' '))
 		i++;
 	while (cmd[i] && !(cmd[i] == '\t' || cmd[i] == '\v' || cmd[i] == '\f' || \
-		cmd[i] == '\r' || cmd[i] == '\n' || cmd[i] == ' ' || cmd[i] == ';'))
+		cmd[i] == '\r' || cmd[i] == '\n' || cmd[i] == ' '))
 	{
 		output[j] = ft_tolower(cmd[i]);
 		j++;
