@@ -37,4 +37,7 @@ cd /~
 echo $?
 cd /-
 echo $?
+cd --
+echo $?
+echo $PWD
 exit

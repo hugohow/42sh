@@ -6,7 +6,7 @@
 /*   By: hhow-cho <hhow-cho@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/06/27 21:44:27 by hhow-cho          #+#    #+#             */
-/*   Updated: 2019/07/08 19:43:22 by hhow-cho         ###   ########.fr       */
+/*   Updated: 2019/07/11 17:18:28 by hhow-cho         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,7 @@
 static int	handle_error(char c)
 {
 	ft_dprintf(2, "minishell: cd: -%c: invalid option\n", c);
-	return (1);
+	return (-1);
 }
 
 int			ft_cd_parse(int *p_argc, char ***p_argv)
@@ -29,6 +29,12 @@ int			ft_cd_parse(int *p_argc, char ***p_argv)
 		j = 1;
 		if ((**p_argv)[j] == 0)
 			return (flag);
+		if ((**p_argv)[j] == '-' && (**p_argv)[j + 1] == 0)
+		{
+			*p_argv = *p_argv + 1;
+			*p_argc = *p_argc - 1;
+			return (flag);	
+		}
 		while ((**p_argv)[j])
 		{
 			if ((**p_argv)[j] == 'L')
