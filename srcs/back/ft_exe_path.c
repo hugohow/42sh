@@ -6,7 +6,7 @@
 /*   By: hhow-cho <hhow-cho@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/07/08 18:39:35 by hhow-cho          #+#    #+#             */
-/*   Updated: 2019/07/08 18:42:45 by hhow-cho         ###   ########.fr       */
+/*   Updated: 2019/07/13 16:08:47 by hhow-cho         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,7 +46,7 @@ int			ft_exe_path(char **argv, t_env **cpy_environ, int fds[])
 	{
 		w = waitpid(pid, &waitstatus, WUNTRACED | WCONTINUED);
 		if (w == -1)
-			exit(EXIT_FAILURE);
+			return (EXIT_FAILURE);
 		if (WIFSIGNALED(waitstatus))
 			ft_dprintf(fds[2], "%s\n", \
 				ft_errors_signal_get(WTERMSIG(waitstatus)));
