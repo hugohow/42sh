@@ -6,7 +6,7 @@
 /*   By: hhow-cho <hhow-cho@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/06/16 15:12:28 by hhow-cho          #+#    #+#             */
-/*   Updated: 2019/07/11 16:51:24 by hhow-cho         ###   ########.fr       */
+/*   Updated: 2019/07/13 12:36:14 by hhow-cho         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,8 +24,8 @@ static void	ft_get_bins_table(t_env **copy)
 		*(p_vars->p_hash_table) = ft_bins_table_create(value);
 	else
 	{
-		p_vars->path_default = ft_strdup("/usr/gnu/bin:/usr/local/bin:/bin:/usr/bin:.");
-		*(p_vars->p_hash_table) = ft_bins_table_create("/usr/gnu/bin:/usr/local/bin:/bin:/usr/bin:.");
+		p_vars->path_default = ft_strdup(DEFAULT_PATH);
+		*(p_vars->p_hash_table) = ft_bins_table_create(DEFAULT_PATH);
 	}
 }
 

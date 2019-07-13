@@ -6,7 +6,7 @@
 /*   By: hhow-cho <hhow-cho@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/07/09 16:31:24 by hhow-cho          #+#    #+#             */
-/*   Updated: 2019/07/09 17:00:00 by hhow-cho         ###   ########.fr       */
+/*   Updated: 2019/07/13 12:31:40 by hhow-cho         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,19 +35,16 @@ static int	ft_search_in_curr_dir(char *cmd_exec)
 static int	ft_search_bin(char *cmd_exec, t_ht **p_table_bins)
 {
 	t_node_ht	*value;
-	t_ht	**p_hash_table;
+	t_ht		**p_hash_table;
 
 	if (*p_table_bins == NULL)
 	{
 		p_hash_table = ft_p_bins_table_get();
-
 		if (p_hash_table \
 		&& *p_hash_table \
 		&& (value = ft_ht_get(*p_hash_table, cmd_exec)) \
 		&& value->datum)
-		{
 			return (0);
-		}
 	}
 	else
 	{
@@ -55,9 +52,7 @@ static int	ft_search_bin(char *cmd_exec, t_ht **p_table_bins)
 		&& *p_table_bins \
 		&& (value = ft_ht_get(*p_table_bins, cmd_exec)) \
 		&& value->datum)
-		{
 			return (0);
-		}
 	}
 	return (ft_search_in_curr_dir(cmd_exec));
 }

@@ -6,7 +6,7 @@
 /*   By: hhow-cho <hhow-cho@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/06/27 21:44:27 by hhow-cho          #+#    #+#             */
-/*   Updated: 2019/07/11 17:18:28 by hhow-cho         ###   ########.fr       */
+/*   Updated: 2019/07/13 13:43:09 by hhow-cho         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,16 +26,16 @@ int			ft_cd_parse(int *p_argc, char ***p_argv)
 	flag = FLAG_CD_L;
 	while (**p_argv && (**p_argv)[0] == '-')
 	{
-		j = 1;
-		if ((**p_argv)[j] == 0)
+		if ((**p_argv)[1] == 0)
 			return (flag);
-		if ((**p_argv)[j] == '-' && (**p_argv)[j + 1] == 0)
+		if ((**p_argv)[1] == '-' && (**p_argv)[2] == 0)
 		{
 			*p_argv = *p_argv + 1;
 			*p_argc = *p_argc - 1;
-			return (flag);	
+			return (flag);
 		}
-		while ((**p_argv)[j])
+		j = 0;
+		while ((**p_argv)[++j])
 		{
 			if ((**p_argv)[j] == 'L')
 				flag = FLAG_CD_L;
@@ -43,7 +43,6 @@ int			ft_cd_parse(int *p_argc, char ***p_argv)
 				flag = FLAG_CD_P;
 			else
 				return (handle_error((**p_argv)[j]));
-			j++;
 		}
 		*p_argv = *p_argv + 1;
 		*p_argc = *p_argc - 1;

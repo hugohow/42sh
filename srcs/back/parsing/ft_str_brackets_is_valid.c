@@ -6,13 +6,13 @@
 /*   By: hhow-cho <hhow-cho@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/07/11 12:52:04 by hhow-cho          #+#    #+#             */
-/*   Updated: 2019/07/11 13:16:07 by hhow-cho         ###   ########.fr       */
+/*   Updated: 2019/07/13 12:43:46 by hhow-cho         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "shell.h"
 
-static const char brackets[] =
+static const char g_brackets[] =
 {
 	'{',
 	'}',
@@ -27,25 +27,25 @@ static const char brackets[] =
 	0
 };
 
-int which_bracket(char c)
+int	which_bracket(char c)
 {
 	int i;
 
 	i = 0;
-	while(brackets[i])
+	while (g_brackets[i])
 	{
-		if (brackets[i] == c)
+		if (g_brackets[i] == c)
 			return (i);
 		i++;
 	}
 	return (-1);
 }
 
-int ft_find_closing(char *str, char closing, size_t len)
+int	ft_find_closing(char *str, char closing, size_t len)
 {
-	size_t i;
-	char opening;
-	int count;
+	size_t	i;
+	char	opening;
+	int		count;
 
 	i = 1;
 	opening = str[0];
@@ -66,51 +66,51 @@ int ft_find_closing(char *str, char closing, size_t len)
 	return (-1);
 }
 
-int ft_brackets_is_valid(char *str, size_t len)
+static int	handle_error(char c)
 {
-	size_t i;
-	int ret;
-	int i_closing;
+	ft_dprintf(2, \
+		"minishell: unexpected EOF while looking for matching %c\n", c);
+	return (0);
+}
 
-	i = 0;
-	while (i < len)
+int	ft_brackets_is_valid(char *str, size_t len)
+{
+	size_t	i;
+	int		ret;
+	int		i_closing;
+
+	i = -1;
+	while (++i < len)
 	{
 		if ((ret = which_bracket(str[i])) != -1)
 		{
 			if (ret % 2 == 1)
 				return (0);
+			else if (((i_closing = ft_find_closing(str + i,\
+				g_brackets[ret + 1], len - i))) == -1)
+				return (handle_error(str[i]));
 			else
 			{
-				i_closing = ft_find_closing(str + i, brackets[ret + 1], len - i);
-				if (i_closing == -1)
-				{
-					ft_dprintf(2, "minishell: unexpected EOF while looking for matching %c\n", str[i]);
+				str[i] = ' ';
+				str[i_closing + i] = ' ';
+				if (ft_brackets_is_valid(str + i + 1, i_closing) == 0)
 					return (0);
-				}
-				else
-				{
-					str[i] = ' ';
-					str[i_closing + i] = ' ';
-					if (ft_brackets_is_valid(str + i + 1, i_closing) == 0)
-						return (0);
-				}
 			}
 		}
-		i++;
 	}
 	return (1);
 }
 
-int ft_str_brackets_is_valid(char *str, size_t len)
+int	ft_str_brackets_is_valid(char *str, size_t len)
 {
-	char *tmp;
-	int result;
+	char	*tmp;
+	int		result;
 
 	tmp = (char *)ft_memalloc((len + 1) * sizeof(char));
 	if (tmp == NULL)
 		return (-1);
 	tmp = ft_strncpy(tmp, str, len);
-	result = ft_brackets_is_valid(tmp, len); 
+	result = ft_brackets_is_valid(tmp, len);
 	ft_memdel((void **)&tmp);
 	return (result);
 }
