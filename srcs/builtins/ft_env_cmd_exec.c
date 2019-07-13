@@ -6,7 +6,7 @@
 /*   By: hhow-cho <hhow-cho@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/07/13 13:33:15 by hhow-cho          #+#    #+#             */
-/*   Updated: 2019/07/13 16:30:17 by hhow-cho         ###   ########.fr       */
+/*   Updated: 2019/07/13 18:51:55 by hhow-cho         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,25 +37,32 @@ static char	*ft_env_get_cmd(char **argv)
 	return (cmd);
 }
 
+static void	child_exec(char *path, char **argv, t_env **cpy_environ, int fds[])
+{
+	char **cpy_env_raw;
+
+	cpy_env_raw = ft_env_raw(cpy_environ);
+	if (cpy_env_raw)
+	{
+		if (execve(path, argv, cpy_env_raw) < 0)
+			ft_putstr_fd("erreur\n", fds[2]);
+		ft_memdel((void **)(cpy_env_raw));
+	}
+}
+
 static void	ft_env_exe_path(char **argv, t_env ***p_copy_env,\
 	t_ht **p_hash, int fds[])
 {
-	int		status;
 	char	*cmd;
 
 	cmd = ft_env_get_cmd(argv);
 	if (*p_hash)
-	{
 		ft_cmd_exec(cmd, p_copy_env, p_hash, fds);
-		ft_ht_free(p_hash);
-	}
 	else
 		ft_cmd_exec(cmd, p_copy_env, NULL, fds);
-	ft_env_free(p_copy_env);
-	ft_memdel((void **)&(p_hash));
-	status = *((int *)ft_vars_get_value(KEY_SUCCESS_EXIT));
-	ft_vars_free();
-	exit(status);
+	child_exec("/usr/bin/true", (char *[15]){"/usr/bin/true"}\
+		, *p_copy_env, fds);
+	exit(*((int *)ft_vars_get_value(KEY_SUCCESS_EXIT)));
 }
 
 static int	ft_fork_and_exec(char **argv, t_env ***p_copy_env,\

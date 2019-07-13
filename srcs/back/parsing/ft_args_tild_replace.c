@@ -6,7 +6,7 @@
 /*   By: hhow-cho <hhow-cho@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/07/13 13:04:42 by hhow-cho          #+#    #+#             */
-/*   Updated: 2019/07/13 13:12:01 by hhow-cho         ###   ########.fr       */
+/*   Updated: 2019/07/13 18:45:00 by hhow-cho         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,24 +26,16 @@ static int	is_separator(char c)
 char		*ft_replace_by_home_login(char *str, int i, char *login)
 {
 	char			*to_free;
-	char			*line;
-	struct passwd	*pw;
 	int				j;
 
-	line = NULL;
-	if (((pw = getpwnam(login))))
-		line = pw->pw_dir;
-	if (line)
-	{
-		to_free = str;
-		j = ft_strlen(login) + 1;
-		str[i] = 0;
-		if (is_separator(str[i + j]))
-			str = ft_strjoin_(str, line, str + i + j);
-		else
-			str = ft_strjoin(str, line);
-		ft_memdel((void **)&to_free);
-	}
+	to_free = str;
+	j = ft_strlen(login) + 1;
+	str[i] = 0;
+	if (is_separator(str[i + j]))
+		str = ft_strjoin_(str, login, str + i + j);
+	else
+		str = ft_strjoin(str, login);
+	ft_memdel((void **)&to_free);
 	ft_memdel((void **)&login);
 	return (str);
 }
