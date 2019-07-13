@@ -6,7 +6,7 @@
 /*   By: hhow-cho <hhow-cho@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/06/09 00:32:39 by hhow-cho          #+#    #+#             */
-/*   Updated: 2019/07/13 13:35:17 by hhow-cho         ###   ########.fr       */
+/*   Updated: 2019/07/13 19:01:05 by hhow-cho         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -157,9 +157,11 @@ char		*ft_cd_get_path_cdpath(char *element, t_env ***p_env, int fds[]);
 int			ft_setenv(char **argv, t_env ***p_env, t_ht **p_table_bins,\
 	int fds[]);
 int			ft_env(char **argv, t_env **cpy_environ, int fds[]);
-int			ft_env_cmd_exec(char **argv, t_ht **p_hash, t_env ***p_copy_env, int fds[]);
+int			ft_env_cmd_exec(char **argv, t_ht **p_hash,\
+	t_env ***p_copy_env, int fds[]);
 int			ft_env_parse(char ***p_argv, int fds[]);
-char		**ft_env_complete_env(char **argv, t_env ***p_copy_env, t_ht **p_hash);
+char		**ft_env_complete_env(char **argv, t_env ***p_copy_env,\
+	t_ht **p_hash);
 int			ft_unsetenv(char **argv, t_env **cpy_environ,\
 	t_ht **p_table_bins, int fds[]);
 int			ft_exit(char **argv, t_env ***p_cpy_environ, int fds[]);
