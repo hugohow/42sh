@@ -6,7 +6,7 @@
 /*   By: hhow-cho <hhow-cho@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/06/09 00:32:39 by hhow-cho          #+#    #+#             */
-/*   Updated: 2019/07/12 14:12:15 by hhow-cho         ###   ########.fr       */
+/*   Updated: 2019/07/13 22:35:14 by hhow-cho         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -64,6 +64,7 @@
 # define BUILTIN_EXIT "exit"
 # define BUILTIN_SETENV "setenv"
 # define BUILTIN_UNSETENV "unsetenv"
+# define DEFAULT_PATH "/usr/gnu/bin:/usr/local/bin:/bin:/usr/bin:."
 
 /*
 ** main functions
@@ -101,6 +102,10 @@ char		*ft_args_dollar_replace_expansion(char *str, int i,\
 	int ret, t_env **c_env);
 int			ft_args_dollar_is_valid(char *str);
 char		*ft_args_tilde_get(char *str, t_env **copy_env);
+char		*ft_replace_by_home_login(char *str, int i, char *login);
+char		*ft_replace_by_home(char *str, int i, t_env **copy_env);
+char		*ft_replace_by_oldpwd(char *str, int i, t_env **copy_env);
+char		*ft_replace_by_pwd(char *str, int i, t_env **copy_env);
 t_node		*ft_syntax_tree_create(char *cmd, t_env **copy_env);
 void		ft_syntax_tree_free(t_node **root);
 t_node		**ft_get_semi_colon_child(t_node *node, char *cmd, \
@@ -153,8 +158,11 @@ char		*ft_cd_get_path_cdpath(char *element, t_env ***p_env, int fds[]);
 int			ft_setenv(char **argv, t_env ***p_env, t_ht **p_table_bins,\
 	int fds[]);
 int			ft_env(char **argv, t_env **cpy_environ, int fds[]);
+int			ft_env_cmd_exec(char **argv, t_ht **p_hash,\
+	t_env ***p_copy_env, int fds[]);
 int			ft_env_parse(char ***p_argv, int fds[]);
-char		**ft_env_complete_env(char **argv, t_env ***p_copy_env, t_ht **p_hash);
+char		**ft_env_complete_env(char **argv, t_env ***p_copy_env,\
+	t_ht **p_hash);
 int			ft_unsetenv(char **argv, t_env **cpy_environ,\
 	t_ht **p_table_bins, int fds[]);
 int			ft_exit(char **argv, t_env ***p_cpy_environ, int fds[]);

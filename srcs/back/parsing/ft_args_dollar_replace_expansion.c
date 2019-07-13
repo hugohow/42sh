@@ -6,13 +6,13 @@
 /*   By: hhow-cho <hhow-cho@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/07/04 16:04:27 by hhow-cho          #+#    #+#             */
-/*   Updated: 2019/07/11 15:56:38 by hhow-cho         ###   ########.fr       */
+/*   Updated: 2019/07/13 16:44:21 by hhow-cho         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "shell.h"
 
-static char *ft_search_local_variable(char *key, size_t n)
+static char	*ft_search_local_variable(char *key, size_t n)
 {
 	t_vars	*p_vars;
 
@@ -75,11 +75,9 @@ static char	*ft_args_resolve_expansion(char *str,\
 		if (ft_args_resolve_expansion_special(expansion, &output) == 0)
 			return (output);
 	}
-	line = ft_env_get_value_n(c_env, expansion, len_expansion);
-	if (line == NULL)
+	if (!(line = ft_env_get_value_n(c_env, expansion, len_expansion)))
 	{
-		line = ft_search_local_variable(expansion, len_expansion);
-		if (line == NULL)
+		if (!(line = ft_search_local_variable(expansion, len_expansion)))
 			return (ft_strdup(""));
 	}
 	return (ft_strdup(line));

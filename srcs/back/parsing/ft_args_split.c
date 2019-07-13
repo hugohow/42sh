@@ -6,14 +6,13 @@
 /*   By: hhow-cho <hhow-cho@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/07/10 11:53:32 by hhow-cho          #+#    #+#             */
-/*   Updated: 2019/07/11 17:31:00 by hhow-cho         ###   ########.fr       */
+/*   Updated: 2019/07/13 16:51:10 by hhow-cho         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "shell.h"
 
-
-static int	is_escapable(char c)
+static int		is_escapable(char c)
 {
 	if (c == '\t' || c == '\v' || c == '\f' || \
 		c == '\r' || c == '\n' || c == ' ')
@@ -63,8 +62,7 @@ char			**ft_args_split(char *str)
 	return (list);
 }
 
-
-char	*ft_cmd_exec_get(char *cmd)
+char			*ft_cmd_exec_get(char *cmd)
 {
 	char	*output;
 	int		i;

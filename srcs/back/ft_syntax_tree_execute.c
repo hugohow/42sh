@@ -6,7 +6,7 @@
 /*   By: hhow-cho <hhow-cho@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/07/08 18:45:16 by hhow-cho          #+#    #+#             */
-/*   Updated: 2019/07/11 18:06:15 by hhow-cho         ###   ########.fr       */
+/*   Updated: 2019/07/13 12:30:46 by hhow-cho         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,7 +55,7 @@ static int	ft_exec_node_cmd(t_node *node, t_env ***p_env, \
 	}
 }
 
-int		ft_syntax_tree_execute(t_node *node, t_env ***p_env, \
+int			ft_syntax_tree_execute(t_node *node, t_env ***p_env, \
 	t_ht **p_hash, int fds[])
 {
 	int k;
@@ -71,7 +71,8 @@ int		ft_syntax_tree_execute(t_node *node, t_env ***p_env, \
 	{
 		while (node->child[k])
 		{
-			if ((ft_syntax_tree_execute(node->child[k], p_env, p_hash, fds)) < 0)
+			if ((ft_syntax_tree_execute(node->child[k], p_env, \
+				p_hash, fds)) < 0)
 				return (1);
 			if (*((int *)ft_vars_get_value(KEY_MUST_EXIT)) == 1)
 				return (0);
