@@ -6,7 +6,7 @@
 /*   By: hhow-cho <hhow-cho@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/07/13 13:33:15 by hhow-cho          #+#    #+#             */
-/*   Updated: 2019/07/13 16:23:21 by hhow-cho         ###   ########.fr       */
+/*   Updated: 2019/07/13 16:30:17 by hhow-cho         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,10 +37,11 @@ static char	*ft_env_get_cmd(char **argv)
 	return (cmd);
 }
 
-static void ft_env_exe_path(char **argv, t_env ***p_copy_env, t_ht **p_hash, int fds[])
+static void	ft_env_exe_path(char **argv, t_env ***p_copy_env,\
+	t_ht **p_hash, int fds[])
 {
-    int status;
-	char *cmd;
+	int		status;
+	char	*cmd;
 
 	cmd = ft_env_get_cmd(argv);
 	if (*p_hash)
@@ -57,12 +58,39 @@ static void ft_env_exe_path(char **argv, t_env ***p_copy_env, t_ht **p_hash, int
 	exit(status);
 }
 
-int ft_env_cmd_exec(char **argv, t_ht **p_hash, t_env ***p_copy_env, int fds[])
+static int	ft_fork_and_exec(char **argv, t_env ***p_copy_env,\
+	t_ht **p_hash, int fds[])
 {
-	int i;
-	pid_t pid;
-	int waitstatus;
-	int w;
+	pid_t	pid;
+	int		i;
+	int		waitstatus;
+	int		w;
+
+	pid = fork();
+	if (pid < 0)
+	{
+		ft_putstr_fd("erreur pid", fds[2]);
+		return (1);
+	}
+	if (pid == 0)
+		ft_env_exe_path(argv, p_copy_env, p_hash, fds);
+	else
+	{
+		w = waitpid(pid, &waitstatus, WUNTRACED | WCONTINUED);
+		if (w == -1)
+			return (EXIT_FAILURE);
+		if (WIFSIGNALED(waitstatus))
+			ft_dprintf(fds[2], "%s\n", \
+				ft_errors_signal_get(WTERMSIG(waitstatus)));
+	}
+	i = WEXITSTATUS(waitstatus);
+	return (i);
+}
+
+int			ft_env_cmd_exec(char **argv, \
+	t_ht **p_hash, t_env ***p_copy_env, int fds[])
+{
+	int		i;
 
 	i = 0;
 	if (*argv)
@@ -74,26 +102,7 @@ int ft_env_cmd_exec(char **argv, t_ht **p_hash, t_env ***p_copy_env, int fds[])
 			i = EXIT_UTILITY_NOT_FOUND;
 		}
 		else
-		{
-			pid = fork();
-			if (pid < 0)
-			{
-				ft_putstr_fd("erreur pid", fds[2]);
-				return (1);
-			}
-			if (pid == 0)
-				ft_env_exe_path(argv, p_copy_env, p_hash, fds);
-			else
-			{
-				w = waitpid(pid, &waitstatus, WUNTRACED | WCONTINUED);
-				if (w == -1)
-					return (EXIT_FAILURE);
-				if (WIFSIGNALED(waitstatus))
-					ft_dprintf(fds[2], "%s\n", \
-						ft_errors_signal_get(WTERMSIG(waitstatus)));
-			}
-			i = WEXITSTATUS(waitstatus);
-		}
+			i = ft_fork_and_exec(argv, p_copy_env, p_hash, fds);
 	}
 	else
 		ft_print_env(*p_copy_env, fds);

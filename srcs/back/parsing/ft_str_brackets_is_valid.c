@@ -6,13 +6,13 @@
 /*   By: hhow-cho <hhow-cho@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/07/11 12:52:04 by hhow-cho          #+#    #+#             */
-/*   Updated: 2019/07/13 12:43:46 by hhow-cho         ###   ########.fr       */
+/*   Updated: 2019/07/13 16:47:48 by hhow-cho         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "shell.h"
 
-static const char g_brackets[] =
+static const char	g_brackets[] =
 {
 	'{',
 	'}',
@@ -27,7 +27,7 @@ static const char g_brackets[] =
 	0
 };
 
-int	which_bracket(char c)
+int			which_bracket(char c)
 {
 	int i;
 
@@ -41,7 +41,7 @@ int	which_bracket(char c)
 	return (-1);
 }
 
-int	ft_find_closing(char *str, char closing, size_t len)
+int			ft_find_closing(char *str, char closing, size_t len)
 {
 	size_t	i;
 	char	opening;
@@ -73,7 +73,7 @@ static int	handle_error(char c)
 	return (0);
 }
 
-int	ft_brackets_is_valid(char *str, size_t len)
+int			ft_brackets_is_valid(char *str, size_t len)
 {
 	size_t	i;
 	int		ret;
@@ -101,7 +101,7 @@ int	ft_brackets_is_valid(char *str, size_t len)
 	return (1);
 }
 
-int	ft_str_brackets_is_valid(char *str, size_t len)
+int			ft_str_brackets_is_valid(char *str, size_t len)
 {
 	char	*tmp;
 	int		result;

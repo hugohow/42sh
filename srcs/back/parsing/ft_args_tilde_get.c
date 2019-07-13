@@ -6,19 +6,18 @@
 /*   By: hhow-cho <hhow-cho@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/06/17 12:46:29 by hhow-cho          #+#    #+#             */
-/*   Updated: 2019/07/13 13:04:53 by hhow-cho         ###   ########.fr       */
+/*   Updated: 2019/07/13 16:48:22 by hhow-cho         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "shell.h"
 
-static int is_separator(char c)
+static int	is_separator(char c)
 {
 	if (c == '/' || c == ':')
 		return (1);
 	return (0);
 }
-
 
 static char	*ft_is_tilde_user(char *str)
 {
