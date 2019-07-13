@@ -6,7 +6,7 @@
 /*   By: hhow-cho <hhow-cho@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/06/25 12:00:29 by hhow-cho          #+#    #+#             */
-/*   Updated: 2019/07/11 22:34:02 by hhow-cho         ###   ########.fr       */
+/*   Updated: 2019/07/13 23:50:37 by hhow-cho         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,7 +46,11 @@ static char		**fill_list_init(char const *str, char c)
 		return (list);
 	}
 	if (str[0] == c)
+	{
 		list[k++] = ft_strdup("");
+		if (str[1] == 0)
+			list[k++] = ft_strdup("");
+	}
 	return (list);
 }
 
@@ -71,6 +75,11 @@ char			**ft_str_separate(char const *str, char c)
 			word = get_word(str + i, c);
 			list[k++] = word;
 			i += ft_strlen(word) - 1;
+		}
+		else if (str[i + 1] && str[i + 1] == c)
+		{
+			list[k++] = strdup("");
+			i++;
 		}
 	}
 	if (i > 1 && str[i - 1] == c)

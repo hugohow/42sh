@@ -11,4 +11,6 @@ echo $?
 a;ls;b
 echo $?
 a;ls;b;ls -l
+;
+;;
 echo $?

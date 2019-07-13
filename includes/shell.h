@@ -6,7 +6,7 @@
 /*   By: hhow-cho <hhow-cho@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/06/09 00:32:39 by hhow-cho          #+#    #+#             */
-/*   Updated: 2019/07/13 22:35:14 by hhow-cho         ###   ########.fr       */
+/*   Updated: 2019/07/13 23:32:57 by hhow-cho         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -73,7 +73,7 @@
 int			ft_interactive_exec(void);
 int			ft_non_interactive_exec(char **argv);
 int			ft_non_interactive_get_cmd(int fd, char **cmd);
-void		ft_cmd_exec(char *cmd, t_env ***p_env, t_ht **p_tab, int fds[]);
+void		ft_cmd_exec(char *cmd, t_env ***p_env, int fds[]);
 
 /*
 ** Functions for terminal interactions
