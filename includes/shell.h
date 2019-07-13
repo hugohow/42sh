@@ -6,7 +6,7 @@
 /*   By: hhow-cho <hhow-cho@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/06/09 00:32:39 by hhow-cho          #+#    #+#             */
-/*   Updated: 2019/07/11 19:55:16 by hhow-cho         ###   ########.fr       */
+/*   Updated: 2019/07/12 14:12:15 by hhow-cho         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,6 +55,7 @@
 # define KEY_TERM_ENTER 13
 # define KEY_TERM_CTRL_C 3
 # define KEY_TERM_CTRL_D 4
+# define KEY_TERM_CTRL_M 13
 # define KEY_TERM_DEL 127
 # define KEY_TERM_TAB 9
 # define BUILTIN_CD "cd"
