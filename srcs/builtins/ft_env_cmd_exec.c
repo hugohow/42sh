@@ -6,7 +6,7 @@
 /*   By: hhow-cho <hhow-cho@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/07/13 13:33:15 by hhow-cho          #+#    #+#             */
-/*   Updated: 2019/07/13 19:51:09 by hhow-cho         ###   ########.fr       */
+/*   Updated: 2019/07/13 19:51:49 by hhow-cho         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -115,6 +115,7 @@ int			ft_env_cmd_exec(char **argv, \
 		&& (value = ft_ht_get(*p_hash_table, cmd_exec)) \
 		&& value->datum)
 
+// il faut que ce soit soit un path ou exec comme un binaire
 
 
 		if ((ft_find_bin(*argv, p_hash)) < 0)
