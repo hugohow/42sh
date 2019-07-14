@@ -6,7 +6,7 @@
 /*   By: hhow-cho <hhow-cho@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/07/08 20:48:19 by hhow-cho          #+#    #+#             */
-/*   Updated: 2019/07/14 01:03:07 by hhow-cho         ###   ########.fr       */
+/*   Updated: 2019/07/14 10:59:02 by hhow-cho         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,7 +30,7 @@ int			ft_unsetenv(char **argv, t_env **cpy_env, int fds[])
 	t_vars	*p_vars;
 	t_ht	**p_hash;
 
-	p_hash = ft_p_bins_table_get();
+ 	p_hash = ft_p_bins_table_get();
 	argc = (int)ft_list_size(argv);
 	if (argc == 1)
 		return (handle_error(fds));

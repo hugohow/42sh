@@ -6,11 +6,12 @@
 /*   By: hhow-cho <hhow-cho@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/07/09 16:31:24 by hhow-cho          #+#    #+#             */
-/*   Updated: 2019/07/14 01:28:33 by hhow-cho         ###   ########.fr       */
+/*   Updated: 2019/07/14 12:06:57 by hhow-cho         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "shell.h"
+
 
 static int	traverse_paths(char **paths, char *cmd_exec)
 {
@@ -38,46 +39,45 @@ static int	traverse_paths(char **paths, char *cmd_exec)
 					return (0);
 				}
 			}
+			closedir(p_dir);
 		}
-		closedir(p_dir);
 		i++;
 	}
 	ft_list_free(&paths);
 	return (-1);
 }
 
-static int	ft_search_again(char *cmd_exec)
+static int	ft_search_again(char *cmd_exec, t_env ***p_env)
 {
 	char		*line;
 	char		**paths;
-	t_env	***p_copy_env;
 
-	p_copy_env = ft_vars_get_p_copy_env();
-	if ((line = ft_env_get_line(*p_copy_env, "PATH")))
+	if ((line = ft_env_get_value(*p_env, "PATH")))
 	{
-		paths = ft_str_separate(line + 5, ':');
+		paths = ft_str_separate(line, ':');
 		if (paths == NULL)
-			return (EXIT_UTILITY_NOT_FOUND);
+			return (-1);
 		return (traverse_paths(paths, cmd_exec));
 	}
 	return (-1);
 }
 
-static int	ft_search_bin(char *cmd_exec)
+
+static int	ft_search_bin(char *cmd_exec, t_env ***p_env)
 {
 	t_node_ht	*value;
-	t_ht		**p_hash_table;
+	t_ht	**p_table_bins;
 
-	p_hash_table = ft_p_bins_table_get();
-	if (p_hash_table \
-		&& *p_hash_table \
-		&& (value = ft_ht_get(*p_hash_table, cmd_exec)) \
-		&& value->datum)
-			return (0);
-	return (ft_search_again(cmd_exec));
+ 	p_table_bins = ft_p_bins_table_get();
+	if (p_table_bins \
+	&& *p_table_bins \
+	&& (value = ft_ht_get(*p_table_bins, cmd_exec)) \
+	&& value->datum)
+		return (0);
+	return (ft_search_again(cmd_exec, p_env));
 }
 
-int			ft_find_bin(char *cmd_exec)
+int			ft_find_bin(char *cmd_exec, t_env ***p_env)
 {
 	if (cmd_exec == NULL)
 		return (-1);
@@ -95,5 +95,5 @@ int			ft_find_bin(char *cmd_exec)
 		return (0);
 	else if (ft_strcmp_lowercase(cmd_exec, BUILTIN_ENV) == 0)
 		return (0);
-	return (ft_search_bin(cmd_exec));
+	return (ft_search_bin(cmd_exec, p_env));
 }

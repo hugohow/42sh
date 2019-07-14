@@ -6,23 +6,25 @@
 /*   By: hhow-cho <hhow-cho@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/06/09 01:40:14 by hhow-cho          #+#    #+#             */
-/*   Updated: 2019/07/14 01:24:13 by hhow-cho         ###   ########.fr       */
+/*   Updated: 2019/07/14 11:11:52 by hhow-cho         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "shell.h"
 
-int	ft_search_and_exe_bin(t_node *node, t_env **cpy_environ, int fds[])
+
+static int	ft_search_and_exe_bin(t_node *node, t_env **cpy_environ, int fds[])
 {
 	int			result_cmd;
 	t_node_ht	*value;
 	char		*to_free;
-	t_ht	**p_hash_table;
+	t_ht	**p_table_bins;
 
-	p_hash_table = ft_p_bins_table_get();
-	if (p_hash_table \
-	&& *p_hash_table \
-	&& (value = ft_ht_get(*p_hash_table, node->cmd_exec)) \
+
+ 	p_table_bins = ft_p_bins_table_get();
+	if (p_table_bins \
+	&& *p_table_bins \
+	&& (value = ft_ht_get(*p_table_bins, node->cmd_exec)) \
 	&& value->datum)
 	{
 		to_free = (node->args)[0];
