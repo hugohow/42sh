@@ -6,7 +6,7 @@
 /*   By: hhow-cho <hhow-cho@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/06/25 12:00:29 by hhow-cho          #+#    #+#             */
-/*   Updated: 2019/07/14 10:58:19 by hhow-cho         ###   ########.fr       */
+/*   Updated: 2019/07/14 11:53:35 by hhow-cho         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -79,7 +79,6 @@ char			**ft_str_separate(char const *str, char c)
 		else if (str[i + 1] && str[i + 1] == c)
 		{
 			list[k++] = strdup("");
-			i++;
 		}
 	}
 	if (i > 1 && str[i - 1] == c)
