@@ -14,7 +14,7 @@ mkdir ${TMP_DIR_LOG}
 quit()
 {
 	rm -rf ${TMP_DIR} ${TMP_DIR_LOG}
-	exit 1
+	# exit 1
 }
 
 

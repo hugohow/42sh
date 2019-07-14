@@ -6,26 +6,26 @@
 /*   By: hhow-cho <hhow-cho@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/07/08 16:46:08 by hhow-cho          #+#    #+#             */
-/*   Updated: 2019/07/14 10:36:44 by hhow-cho         ###   ########.fr       */
+/*   Updated: 2019/07/14 10:37:52 by hhow-cho         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "shell.h"
 
-static int	ft_is_empty(char *str)
-{
-	char *tmp;
+// static int	ft_is_empty(char *str)
+// {
+// 	char *tmp;
 
-	if (!(tmp = ft_strtrim(str)))
-		return (1);
-	if (ft_strlen(tmp) == 0)
-	{
-		ft_memdel((void **)&tmp);
-		return (1);
-	}
-	ft_memdel((void **)&tmp);
-	return (0);
-}
+// 	if (!(tmp = ft_strtrim(str)))
+// 		return (1);
+// 	if (ft_strlen(tmp) == 0)
+// 	{
+// 		ft_memdel((void **)&tmp);
+// 		return (1);
+// 	}
+// 	ft_memdel((void **)&tmp);
+// 	return (0);
+// }
 
 t_node	**ft_get_semi_colon_child(t_node *node, char *cmd, t_env **copy_env)
 {
