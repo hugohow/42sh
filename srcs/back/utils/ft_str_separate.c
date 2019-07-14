@@ -6,7 +6,7 @@
 /*   By: hhow-cho <hhow-cho@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/06/25 12:00:29 by hhow-cho          #+#    #+#             */
-/*   Updated: 2019/07/14 10:21:08 by hhow-cho         ###   ########.fr       */
+/*   Updated: 2019/07/14 10:29:03 by hhow-cho         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,28 +29,14 @@ static char		*get_word(const char *str, char c)
 	return (word);
 }
 
-static char		**fill_list_init(char const *str, char c)
+static char		**fill_list_init(char const *str)
 {
-	size_t	k;
 	char	**list;
 
 	if (str == NULL)
 		return (NULL);
 	if (!(list = (char **)ft_memalloc((ft_strlen(str) * 4 + 3) * sizeof(char *))))
 		return (NULL);
-	k = 0;
-	if (ft_strlen(str) == 0)
-	{
-		list[k++] = ft_strdup("");
-		list[k++] = 0;
-		return (list);
-	}
-	if (str[0] == c)
-	{
-		list[k++] = ft_strdup("");
-		if (str[1] == 0)
-			list[k++] = ft_strdup("");
-	}
 	return (list);
 }
 
@@ -61,9 +47,28 @@ char			**ft_str_separate(char const *str, char c)
 	int			i;
 	size_t		k;
 
-	list = fill_list_init(str, c);
+	list = fill_list_init(str);
 	if (list == NULL)
 		return (NULL);
+	k = 0;
+	if (ft_strlen(str) == 0)
+	{
+		list[k++] = ft_strdup("");
+		list[k++] = 0;
+		return (list);
+	}
+	if (str[0] == c && str[1] == 0)
+	{
+		list[k++] = ft_strdup("");
+		list[k++] = ft_strdup("");
+		list[k] = 0;
+		return (list);
+	}
+	if (str[0] == c)
+	{
+		list[k++] = ft_strdup("");
+		list[k] = 0;
+	}
 	k = 0;
 	while (list[k])
 		k++;
