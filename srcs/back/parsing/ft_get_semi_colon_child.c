@@ -6,7 +6,7 @@
 /*   By: hhow-cho <hhow-cho@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/07/08 16:46:08 by hhow-cho          #+#    #+#             */
-/*   Updated: 2019/07/13 23:51:18 by hhow-cho         ###   ########.fr       */
+/*   Updated: 2019/07/14 09:43:34 by hhow-cho         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,8 @@ static int	ft_is_empty(char *str)
 {
 	char *tmp;
 
-	tmp = ft_strtrim(str);
+	if (!(tmp = ft_strtrim(str)))
+		return (1);
 	if (ft_strlen(tmp) == 0)
 	{
 		ft_memdel((void **)&tmp);

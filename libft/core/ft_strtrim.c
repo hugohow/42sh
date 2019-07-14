@@ -6,7 +6,7 @@
 /*   By: hhow-cho <hhow-cho@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/04/02 17:13:02 by hhow-cho          #+#    #+#             */
-/*   Updated: 2019/07/13 19:00:31 by hhow-cho         ###   ########.fr       */
+/*   Updated: 2019/07/14 09:44:11 by hhow-cho         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,11 +41,6 @@ char		*ft_strtrim(char const *str)
 		}
 	}
 	output[k] = '\0';
-	if (k == 0)
-	{
-		ft_memdel((void **)&output);
-		return (NULL);
-	}
 	return (output);
 }
 
