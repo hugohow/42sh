@@ -6,7 +6,7 @@
 /*   By: hhow-cho <hhow-cho@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/06/25 12:00:29 by hhow-cho          #+#    #+#             */
-/*   Updated: 2019/07/14 12:10:52 by hhow-cho         ###   ########.fr       */
+/*   Updated: 2019/07/14 12:13:11 by hhow-cho         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,7 +49,7 @@ static char		**fill_list_init(char const *str, char c)
 	{
 		list[k++] = ft_strdup("");
 		if (str[1] == 0)	
-			list[k++] = ft_strdup("")
+			list[k++] = ft_strdup("");
 	}
 	return (list);
 }
