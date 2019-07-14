@@ -62,10 +62,10 @@ int			ft_setenv(char **argv, t_env ***p_environ, int fds[])
 	char	*prefix;
 	char	*line;
 	int		i;
-	t_ht	**p_table_bins;
+	t_ht	**p_hash;
 
 
- 	p_table_bins = ft_p_bins_table_get();
+ 	p_hash = ft_p_bins_table_get();
 	argc = (int)ft_list_size(argv);
 	if ((i = handle_errors_init(argc, argv, fds)) != 0)
 		return (i);
@@ -77,13 +77,13 @@ int			ft_setenv(char **argv, t_env ***p_environ, int fds[])
 		prefix = argv[1];
 		ft_env_add(prefix, "", p_environ);
 		if (ft_strcmp("PATH", prefix) == 0)
-			ft_ht_free(p_table_bins);
+			ft_ht_free(p_hash);
 	}
 	else
 	{
 		prefix = argv[1];
 		line = argv[2];
-		set_env_two_args(prefix, line, p_table_bins, p_environ);
+		set_env_two_args(prefix, line, p_hash, p_environ);
 	}
 	return (EXIT_SUCCESS);
 }

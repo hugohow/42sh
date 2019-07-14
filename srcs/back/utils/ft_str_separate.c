@@ -46,11 +46,7 @@ static char		**fill_list_init(char const *str, char c)
 		return (list);
 	}
 	if (str[0] == c)
-	{
 		list[k++] = ft_strdup("");
-		if (str[1] == 0)
-			list[k++] = ft_strdup("");
-	}
 	return (list);
 }
 

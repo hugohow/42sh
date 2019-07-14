@@ -12,7 +12,6 @@
 
 #include "shell.h"
 
-
 static int	traverse_paths(char **paths, char *cmd_exec)
 {
 	int	i;
@@ -60,40 +59,4 @@ static int	ft_search_again(char *cmd_exec, t_env ***p_env)
 		return (traverse_paths(paths, cmd_exec));
 	}
 	return (-1);
-}
-
-
-static int	ft_search_bin(char *cmd_exec, t_env ***p_env)
-{
-	t_node_ht	*value;
-	t_ht	**p_table_bins;
-
- 	p_table_bins = ft_p_bins_table_get();
-	if (p_table_bins \
-	&& *p_table_bins \
-	&& (value = ft_ht_get(*p_table_bins, cmd_exec)) \
-	&& value->datum)
-		return (0);
-	return (ft_search_again(cmd_exec, p_env));
-}
-
-int			ft_find_bin(char *cmd_exec, t_env ***p_env)
-{
-	if (cmd_exec == NULL)
-		return (-1);
-	if (ft_is_path(cmd_exec) == 1)
-		return (0);
-	else if (ft_strcmp(cmd_exec, BUILTIN_EXIT) == 0)
-		return (0);
-	else if (ft_strcmp_lowercase(cmd_exec, BUILTIN_ECHO) == 0)
-		return (0);
-	else if (ft_strcmp_lowercase(cmd_exec, BUILTIN_CD) == 0)
-		return (0);
-	else if (ft_strcmp(cmd_exec, BUILTIN_SETENV) == 0)
-		return (0);
-	else if (ft_strcmp(cmd_exec, BUILTIN_UNSETENV) == 0)
-		return (0);
-	else if (ft_strcmp_lowercase(cmd_exec, BUILTIN_ENV) == 0)
-		return (0);
-	return (ft_search_bin(cmd_exec, p_env));
 }

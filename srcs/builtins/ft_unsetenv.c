@@ -30,7 +30,6 @@ int			ft_unsetenv(char **argv, t_env **cpy_env, int fds[])
 	t_vars	*p_vars;
 	t_ht	**p_hash;
 
-
  	p_hash = ft_p_bins_table_get();
 	argc = (int)ft_list_size(argv);
 	if (argc == 1)

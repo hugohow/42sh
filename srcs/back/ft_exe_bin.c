@@ -12,6 +12,7 @@
 
 #include "shell.h"
 
+
 static int	ft_search_and_exe_bin(t_node *node, t_env **cpy_environ, int fds[])
 {
 	int			result_cmd;
