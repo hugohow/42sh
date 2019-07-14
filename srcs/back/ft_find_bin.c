@@ -6,7 +6,7 @@
 /*   By: hhow-cho <hhow-cho@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/07/09 16:31:24 by hhow-cho          #+#    #+#             */
-/*   Updated: 2019/07/14 11:29:32 by hhow-cho         ###   ########.fr       */
+/*   Updated: 2019/07/14 11:34:02 by hhow-cho         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,9 +54,9 @@ static int	ft_search_again(char *cmd_exec)
 	t_env	***p_copy_env;
 
 	p_copy_env = ft_vars_get_p_copy_env();
-	if ((line = ft_env_get_line(*p_copy_env, "PATH")))
+	if ((line = ft_env_get_value(*p_copy_env, "PATH")))
 	{
-		paths = ft_str_separate(line + 5, ':');
+		paths = ft_str_separate(line, ':');
 		if (paths == NULL)
 			return (EXIT_UTILITY_NOT_FOUND);
 		return (traverse_paths(paths, cmd_exec));
@@ -83,7 +83,6 @@ int			ft_find_bin(char *cmd_exec)
 {
 	if (cmd_exec == NULL)
 		return (-1);
-	printf("cmd_exec:%s|\n", cmd_exec);
 	if (ft_is_path(cmd_exec) == 1)
 		return (0);
 	else if (ft_strcmp(cmd_exec, BUILTIN_EXIT) == 0)
