@@ -6,7 +6,7 @@
 /*   By: hhow-cho <hhow-cho@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/06/28 02:57:13 by hhow-cho          #+#    #+#             */
-/*   Updated: 2019/07/13 22:48:36 by hhow-cho         ###   ########.fr       */
+/*   Updated: 2019/07/14 10:44:37 by hhow-cho         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,7 @@ int	ft_apply_printable(t_cmd *cmd)
 	t_list	*head;
 	t_list	*node;
 
-	if (ft_isprint(cmd->last_key))
+	if (ft_isprint(cmd->last_key) || cmd->last_key == KEY_TERM_CTRL_M)
 	{
 		head = cmd->head;
 		write(0, &(cmd->last_key), sizeof(int));
