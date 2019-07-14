@@ -6,7 +6,7 @@
 /*   By: hhow-cho <hhow-cho@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/06/09 00:32:39 by hhow-cho          #+#    #+#             */
-/*   Updated: 2019/07/14 10:59:35 by hhow-cho         ###   ########.fr       */
+/*   Updated: 2019/07/14 11:06:43 by hhow-cho         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -170,11 +170,9 @@ int			ft_exit(char **argv, t_env ***p_cpy_environ, int fds[]);
 */
 
 int			ft_exe_path(char **argv, t_env **cpy_environ, int fds[]);
-int			ft_find_bin(char *cmd_exec, t_ht **p_hash);
-int			ft_exe_bin(t_node *node, t_env ***p_env, t_ht **p_table_bins,\
-	int fds[]);
-int			ft_syntax_tree_execute(t_node *node, t_env ***p_env,\
-	t_ht **p_table_bins, int fds[]);
+int			ft_find_bin(char *cmd_exec);
+int			ft_exe_bin(t_node *node, t_env ***p_env, int fds[]);
+int			ft_syntax_tree_execute(t_node *node, t_env ***p_env, int fds[]);
 
 /*
 ** Utils
