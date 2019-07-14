@@ -6,39 +6,11 @@
 /*   By: hhow-cho <hhow-cho@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/06/09 01:40:14 by hhow-cho          #+#    #+#             */
-/*   Updated: 2019/07/14 11:04:56 by hhow-cho         ###   ########.fr       */
+/*   Updated: 2019/07/14 11:11:52 by hhow-cho         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "shell.h"
-
-static int	ft_search_in_curr_dir(t_node *node, t_env **cpy_environ, int fds[])
-{
-	int				result_cmd;
-	DIR				*p_dir;
-	struct dirent	*p_dirent;
-	char			*cwd;
-	char			*to_free;
-
-	cwd = *((char **)ft_vars_get_value(KEY_CWD));
-	if ((p_dir = opendir(".")))
-	{
-		while ((p_dirent = readdir(p_dir)) != NULL)
-		{
-			if (ft_strcmp_lowercase(p_dirent->d_name, node->cmd_exec) == 0)
-			{
-				to_free = (node->args)[0];
-				(node->args)[0] = ft_strjoin_(cwd, "/", p_dirent->d_name);
-				ft_memdel((void **)&(to_free));
-				result_cmd = ft_exe_path((node->args), cpy_environ, fds);
-				closedir(p_dir);
-				return (result_cmd);
-			}
-		}
-		closedir(p_dir);
-	}
-	return (EXIT_UTILITY_NOT_FOUND);
-}
 
 static int	ft_search_and_exe_bin(t_node *node, t_env **cpy_environ, int fds[])
 {
@@ -60,8 +32,7 @@ static int	ft_search_and_exe_bin(t_node *node, t_env **cpy_environ, int fds[])
 		result_cmd = ft_exe_path((node->args), cpy_environ, fds);
 		return (result_cmd);
 	}
-	result_cmd = ft_search_in_curr_dir(node, cpy_environ, fds);
-	return (result_cmd);
+	return (1);
 }
 
 int			ft_exe_bin(t_node *node, t_env ***p_env, int fds[])
