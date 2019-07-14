@@ -6,7 +6,7 @@
 /*   By: hhow-cho <hhow-cho@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/07/08 20:39:43 by hhow-cho          #+#    #+#             */
-/*   Updated: 2019/07/14 10:59:14 by hhow-cho         ###   ########.fr       */
+/*   Updated: 2019/07/14 13:16:23 by hhow-cho         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,13 +59,11 @@ static void	set_env_two_args(char *prefix, char *line,\
 int			ft_setenv(char **argv, t_env ***p_environ, int fds[])
 {
 	int		argc;
-	char	*prefix;
 	char	*line;
 	int		i;
 	t_ht	**p_hash;
 
-
- 	p_hash = ft_p_bins_table_get();
+	p_hash = ft_p_bins_table_get();
 	argc = (int)ft_list_size(argv);
 	if ((i = handle_errors_init(argc, argv, fds)) != 0)
 		return (i);
@@ -74,16 +72,14 @@ int			ft_setenv(char **argv, t_env ***p_environ, int fds[])
 		ft_print_env(*p_environ, fds);
 	else if (argc == 2)
 	{
-		prefix = argv[1];
-		ft_env_add(prefix, "", p_environ);
-		if (ft_strcmp("PATH", prefix) == 0)
+		ft_env_add(argv[1], "", p_environ);
+		if (ft_strcmp("PATH", argv[1]) == 0)
 			ft_ht_free(p_hash);
 	}
 	else
 	{
-		prefix = argv[1];
 		line = argv[2];
-		set_env_two_args(prefix, line, p_hash, p_environ);
+		set_env_two_args(argv[1], line, p_hash, p_environ);
 	}
 	return (EXIT_SUCCESS);
 }

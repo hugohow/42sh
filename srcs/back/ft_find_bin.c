@@ -6,22 +6,28 @@
 /*   By: hhow-cho <hhow-cho@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/07/09 16:31:24 by hhow-cho          #+#    #+#             */
-/*   Updated: 2019/07/14 12:06:57 by hhow-cho         ###   ########.fr       */
+/*   Updated: 2019/07/14 13:29:56 by hhow-cho         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "shell.h"
 
+static int	add_to_ht(char *key, char *path, DIR *p_dir, char **paths)
+{
+	ft_ht_add(*ft_p_bins_table_get(), key, (void *)(path));
+	ft_memdel((void **)&path);
+	ft_list_free(&paths);
+	closedir(p_dir);
+	return (0);
+}
 
 static int	traverse_paths(char **paths, char *cmd_exec)
 {
-	int	i;
+	int				i;
 	DIR				*p_dir;
 	struct dirent	*p_dirent;
-	t_ht	**p_hash_table;
-	char	*new_path;
+	char			*new_path;
 
-	p_hash_table = ft_p_bins_table_get();
 	i = 0;
 	while (paths[i])
 	{
@@ -32,11 +38,8 @@ static int	traverse_paths(char **paths, char *cmd_exec)
 				if (ft_strcmp(p_dirent->d_name, cmd_exec) == 0)
 				{
 					new_path = ft_strjoin_(paths[i], "/", p_dirent->d_name);
-					ft_ht_add(*p_hash_table, p_dirent->d_name, (void *)(new_path));
-					ft_memdel((void **)&new_path);	
-					ft_list_free(&paths);
-					closedir(p_dir);
-					return (0);
+					return (add_to_ht(p_dirent->d_name, \
+						new_path, p_dir, paths));
 				}
 			}
 			closedir(p_dir);
@@ -62,13 +65,12 @@ static int	ft_search_again(char *cmd_exec, t_env ***p_env)
 	return (-1);
 }
 
-
 static int	ft_search_bin(char *cmd_exec, t_env ***p_env)
 {
 	t_node_ht	*value;
-	t_ht	**p_table_bins;
+	t_ht		**p_table_bins;
 
- 	p_table_bins = ft_p_bins_table_get();
+	p_table_bins = ft_p_bins_table_get();
 	if (p_table_bins \
 	&& *p_table_bins \
 	&& (value = ft_ht_get(*p_table_bins, cmd_exec)) \

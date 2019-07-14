@@ -6,7 +6,7 @@
 /*   By: hhow-cho <hhow-cho@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/06/20 16:37:59 by hhow-cho          #+#    #+#             */
-/*   Updated: 2019/07/13 23:01:31 by hhow-cho         ###   ########.fr       */
+/*   Updated: 2019/07/14 13:31:20 by hhow-cho         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -90,7 +90,8 @@ static char	*get_new_path(char *new_path, char **list)
 	while (list && list[i])
 	{
 		ft_strcat(new_path, list[i]);
-		if (list[i + 1] != 0  && ft_strlen(list[i + 1]) != 0 && new_path[ft_strlen(new_path) - 1] != '/')
+		if (list[i + 1] != 0 && ft_strlen(list[i + 1]) != 0\
+			&& new_path[ft_strlen(new_path) - 1] != '/')
 			ft_strcat(new_path, "/");
 		i++;
 	}

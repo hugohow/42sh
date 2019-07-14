@@ -6,22 +6,20 @@
 /*   By: hhow-cho <hhow-cho@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/06/09 01:40:14 by hhow-cho          #+#    #+#             */
-/*   Updated: 2019/07/14 11:11:52 by hhow-cho         ###   ########.fr       */
+/*   Updated: 2019/07/14 13:22:28 by hhow-cho         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "shell.h"
-
 
 static int	ft_search_and_exe_bin(t_node *node, t_env **cpy_environ, int fds[])
 {
 	int			result_cmd;
 	t_node_ht	*value;
 	char		*to_free;
-	t_ht	**p_table_bins;
+	t_ht		**p_table_bins;
 
-
- 	p_table_bins = ft_p_bins_table_get();
+	p_table_bins = ft_p_bins_table_get();
 	if (p_table_bins \
 	&& *p_table_bins \
 	&& (value = ft_ht_get(*p_table_bins, node->cmd_exec)) \
