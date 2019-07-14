@@ -6,7 +6,7 @@
 /*   By: hhow-cho <hhow-cho@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/07/10 11:53:32 by hhow-cho          #+#    #+#             */
-/*   Updated: 2019/07/13 16:51:10 by hhow-cho         ###   ########.fr       */
+/*   Updated: 2019/07/14 10:01:58 by hhow-cho         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -83,7 +83,5 @@ char			*ft_cmd_exec_get(char *cmd)
 		i++;
 	}
 	output[j] = 0;
-	if (j == 0)
-		ft_memdel((void **)&output);
 	return (output);
 }
