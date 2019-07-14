@@ -6,7 +6,7 @@
 /*   By: hhow-cho <hhow-cho@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/07/09 16:31:24 by hhow-cho          #+#    #+#             */
-/*   Updated: 2019/07/14 11:45:26 by hhow-cho         ###   ########.fr       */
+/*   Updated: 2019/07/14 11:49:21 by hhow-cho         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,8 +39,8 @@ static int	traverse_paths(char **paths, char *cmd_exec)
 					return (0);
 				}
 			}
+			closedir(p_dir);
 		}
-		closedir(p_dir);
 		i++;
 	}
 	ft_list_free(&paths);
@@ -55,7 +55,8 @@ static int	ft_search_again(char *cmd_exec, t_env ***p_env)
 	if ((line = ft_env_get_value(*p_env, "PATH")))
 	{
 		paths = ft_str_separate(line, ':');
-		return (-1);
+		if (paths == NULL)
+			return (-1);
 		return (traverse_paths(paths, cmd_exec));
 	}
 	return (-1);
