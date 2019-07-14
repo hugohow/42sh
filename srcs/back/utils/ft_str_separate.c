@@ -6,7 +6,7 @@
 /*   By: hhow-cho <hhow-cho@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/06/25 12:00:29 by hhow-cho          #+#    #+#             */
-/*   Updated: 2019/07/13 23:50:37 by hhow-cho         ###   ########.fr       */
+/*   Updated: 2019/07/14 10:58:19 by hhow-cho         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,7 +36,7 @@ static char		**fill_list_init(char const *str, char c)
 
 	if (str == NULL)
 		return (NULL);
-	if (!(list = (char **)ft_memalloc((ft_strlen(str) + 3) * sizeof(char *))))
+	if (!(list = (char **)ft_memalloc((ft_strlen(str) * 4 + 3) * sizeof(char *))))
 		return (NULL);
 	k = 0;
 	if (ft_strlen(str) == 0)

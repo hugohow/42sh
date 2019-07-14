@@ -6,7 +6,7 @@
 /*   By: hhow-cho <hhow-cho@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/06/09 01:40:14 by hhow-cho          #+#    #+#             */
-/*   Updated: 2019/07/09 17:23:29 by hhow-cho         ###   ########.fr       */
+/*   Updated: 2019/07/14 10:59:46 by hhow-cho         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -77,9 +77,9 @@ int			ft_exe_bin(t_node *node, t_env ***p_env, t_ht **p_hash, int fds[])
 	else if (ft_strcmp_lowercase(node->args[0], BUILTIN_CD) == 0)
 		result_cmd = ft_cd(node->args, p_env, fds);
 	else if (ft_strcmp(node->args[0], BUILTIN_SETENV) == 0)
-		result_cmd = ft_setenv(node->args, p_env, p_hash, fds);
+		result_cmd = ft_setenv(node->args, p_env, fds);
 	else if (ft_strcmp(node->args[0], BUILTIN_UNSETENV) == 0)
-		result_cmd = ft_unsetenv(node->args, *p_env, p_hash, fds);
+		result_cmd = ft_unsetenv(node->args, *p_env, fds);
 	else if (ft_strcmp_lowercase(node->args[0], BUILTIN_ENV) == 0)
 		result_cmd = ft_env(node->args, *p_env, fds);
 	else
