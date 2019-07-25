@@ -6,7 +6,7 @@
 /*   By: hhow-cho <hhow-cho@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/06/09 00:32:39 by hhow-cho          #+#    #+#             */
-/*   Updated: 2019/07/25 14:22:21 by hhow-cho         ###   ########.fr       */
+/*   Updated: 2019/07/25 20:23:55 by hhow-cho         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,6 +41,7 @@
 # define KEY_LAST_KEY (2 << 6)
 # define TYPE_BASE (1 << 0)
 # define TYPE_CMD (1 << 1)
+# define TYPE_SEMI_COLON (1 << 2)
 # define BUF_SIZE 20
 # define FLAG_CD_P (1 << 0)
 # define FLAG_CD_L (1 << 1)
@@ -90,7 +91,7 @@ int			ft_cmd_init(void);
 ** Functions for parsing
 */
 
-t_node		**get_child(t_node *node, char *cmd, t_env **copy_env);
+int			get_child(t_node *node, t_env **copy_env);
 t_node		*create_node(long type, char *cmd, t_env **copy_env);
 t_ht		*ft_bins_table_create(char *line);
 t_ht		**ft_p_bins_table_get(void);
@@ -108,11 +109,10 @@ char		*ft_replace_by_oldpwd(char *str, int i, t_env **copy_env);
 char		*ft_replace_by_pwd(char *str, int i, t_env **copy_env);
 t_node		*ft_syntax_tree_create(char *cmd, t_env **copy_env);
 void		ft_syntax_tree_free(t_node **root);
-t_node		**ft_get_semi_colon_child(t_node *node, char *cmd, \
-	t_env **copy_env);
 char		*ft_cmd_exec_get(char *cmd);
 char		**ft_args_split(char *cmd);
 int			ft_str_brackets_is_valid(char *str, size_t len);
+int			ft_get_semi_colon_child(t_node *node, t_env **copy_env);
 
 /*
 ** Functions related to environnement variables
