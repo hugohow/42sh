@@ -6,7 +6,7 @@
 /*   By: hhow-cho <hhow-cho@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/06/09 00:32:39 by hhow-cho          #+#    #+#             */
-/*   Updated: 2019/07/25 20:23:55 by hhow-cho         ###   ########.fr       */
+/*   Updated: 2019/07/25 20:29:39 by hhow-cho         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,6 +42,7 @@
 # define TYPE_BASE (1 << 0)
 # define TYPE_CMD (1 << 1)
 # define TYPE_SEMI_COLON (1 << 2)
+# define TYPE_PIPE (1 << 3)
 # define BUF_SIZE 20
 # define FLAG_CD_P (1 << 0)
 # define FLAG_CD_L (1 << 1)
@@ -113,6 +114,7 @@ char		*ft_cmd_exec_get(char *cmd);
 char		**ft_args_split(char *cmd);
 int			ft_str_brackets_is_valid(char *str, size_t len);
 int			ft_get_semi_colon_child(t_node *node, t_env **copy_env);
+int			ft_get_pipe_child(t_node *node, t_env **copy_env);
 
 /*
 ** Functions related to environnement variables

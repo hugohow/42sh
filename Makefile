@@ -6,7 +6,7 @@
 #    By: hhow-cho <hhow-cho@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2019/07/04 22:12:22 by hhow-cho          #+#    #+#              #
-#    Updated: 2019/07/25 20:23:51 by hhow-cho         ###   ########.fr        #
+#    Updated: 2019/07/25 20:43:41 by hhow-cho         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -50,6 +50,7 @@ SRC =	srcs/main.c							\
 		srcs/back/parsing/ft_args_tilde_get.c	\
 		srcs/back/parsing/ft_args_tild_replace.c \
 		srcs/back/parsing/ft_get_semi_colon_child.c	\
+		srcs/back/parsing/ft_get_pipe_child.c	\
 		srcs/back/parsing/ft_str_brackets_is_valid.c	\
 		srcs/back/utils/ft_bin_is_accessible.c	\
 		srcs/back/utils/ft_bins_table_create.c	\
@@ -139,7 +140,7 @@ fclean: clean
 re: fclean all
 
 ifeq ($(shell uname),Darwin)
-test: re
+test_minishell: re
 	# bash tests/42ShellTester.sh $(PWD)/$(NAME) --hard --reference "bash" --filter $(NAME)
 	bash test.sh
 else

@@ -5,8 +5,11 @@ language:
   - c
 compiler:
   - gcc
-script:
-  - make test
+jobs:
+  include:
+    - stage: "Dev"
+      name: "Minishell"
+      script: make test_minishell
 before_install:
   - if [ "$TRAVIS_OS_NAME" = "linux" ]; then sudo apt-get install -y libncurses5-dev ; fi
 email:
