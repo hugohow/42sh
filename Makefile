@@ -6,7 +6,7 @@
 #    By: hhow-cho <hhow-cho@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2019/07/04 22:12:22 by hhow-cho          #+#    #+#              #
-#    Updated: 2019/07/25 20:43:41 by hhow-cho         ###   ########.fr        #
+#    Updated: 2019/07/25 20:53:09 by hhow-cho         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -140,7 +140,7 @@ fclean: clean
 re: fclean all
 
 ifeq ($(shell uname),Darwin)
-test_minishell: re
+test: re
 	# bash tests/42ShellTester.sh $(PWD)/$(NAME) --hard --reference "bash" --filter $(NAME)
 	bash test.sh
 else
