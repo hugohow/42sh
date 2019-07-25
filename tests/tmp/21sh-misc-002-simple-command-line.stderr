@@ -1,8 +1,0 @@
-ls: -c: No such file or directory
-ls: >: No such file or directory
-ls: TOKEN201907251426_STDOUT: No such file or directory
-ls: cat: No such file or directory
-ls: wc: No such file or directory
-ls: |: No such file or directory
-ls: |: No such file or directory
-cat: TOKEN201907251426_STDOUT: No such file or directory

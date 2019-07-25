@@ -1,2 +1,0 @@
-[31m[38;5;34m  SUCCESS    expected_to_not be_empty[0m
-[31m[38;5;34m  SUCCESS    might match_regex `([Pp]arse|[Ss]yntax) error`[0m

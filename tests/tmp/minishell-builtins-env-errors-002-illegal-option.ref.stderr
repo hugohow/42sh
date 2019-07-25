@@ -1,3 +1,0 @@
-env: illegal option -- w
-usage: env [-iv] [-P utilpath] [-S string] [-u name]
-           [name=value ...] [utility [argument ...]]

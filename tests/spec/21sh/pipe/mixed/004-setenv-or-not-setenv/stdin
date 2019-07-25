@@ -1,1 +1,0 @@
-setenv VARIABLE_TEST | export VARIABLE_TEST | ./display_env
