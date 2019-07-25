@@ -6,12 +6,12 @@
 #    By: hhow-cho <hhow-cho@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2019/07/04 22:12:22 by hhow-cho          #+#    #+#              #
-#    Updated: 2019/07/13 13:34:54 by hhow-cho         ###   ########.fr        #
+#    Updated: 2019/07/25 14:28:02 by hhow-cho         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 
-NAME 		=		minishell
+NAME 		=		21sh
 CC			= 		gcc
 CFLAGS 		= 		-Wall -Werror -Wextra -g -g3 -Iincludes
 ifeq ($(shell uname),Darwin)
@@ -140,7 +140,7 @@ re: fclean all
 
 ifeq ($(shell uname),Darwin)
 test: re
-	bash tests/42ShellTester.sh $(PWD)/$(NAME) --hard --reference "bash" --filter $(NAME)
+	# bash tests/42ShellTester.sh $(PWD)/$(NAME) --hard --reference "bash" --filter $(NAME)
 	bash test.sh
 else
 test: re

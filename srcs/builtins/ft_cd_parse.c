@@ -6,7 +6,7 @@
 /*   By: hhow-cho <hhow-cho@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/06/27 21:44:27 by hhow-cho          #+#    #+#             */
-/*   Updated: 2019/07/13 16:41:43 by hhow-cho         ###   ########.fr       */
+/*   Updated: 2019/07/25 14:22:59 by hhow-cho         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 
 static int	handle_error(char c)
 {
-	ft_dprintf(2, "minishell: cd: -%c: invalid option\n", c);
+	ft_dprintf(2, "21sh: cd: -%c: invalid option\n", c);
 	return (-1);
 }
 

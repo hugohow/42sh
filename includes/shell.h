@@ -6,7 +6,7 @@
 /*   By: hhow-cho <hhow-cho@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/06/09 00:32:39 by hhow-cho          #+#    #+#             */
-/*   Updated: 2019/07/14 11:38:50 by hhow-cho         ###   ########.fr       */
+/*   Updated: 2019/07/25 14:22:21 by hhow-cho         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,7 +50,7 @@
 # define EXIT_FAIL 1
 # define EXIT_UTILITY_NOT_FOUND 127
 # define EXIT_UTILITY_NOT_EXEC 126
-# define NAME "\x1b[32mMinishell \x1b[0m"
+# define NAME "\x1b[32m21sh \x1b[0m"
 # define PROMPT "\x1b[36m ➜ \x1b[0m"
 # define KEY_TERM_ENTER 13
 # define KEY_TERM_CTRL_C 3

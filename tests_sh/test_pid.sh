@@ -1,8 +1,8 @@
-# ./minishell
+# ./21sh
 # echo $SHLVL
-# ./minishell
+# ./21sh
 # echo $SHLVL
-# ./minishell
+# ./21sh
 # echo $SHLVL
 echo a
 exit

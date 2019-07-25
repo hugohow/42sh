@@ -6,7 +6,7 @@
 /*   By: hhow-cho <hhow-cho@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/07/04 17:05:15 by hhow-cho          #+#    #+#             */
-/*   Updated: 2019/07/09 14:56:02 by hhow-cho         ###   ########.fr       */
+/*   Updated: 2019/07/25 14:22:47 by hhow-cho         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 
 t_env	**ft_env_copy_exit(t_env **env)
 {
-	ft_putstr_fd("minishell: failed to copy env\n", STDERR_FILENO);
+	ft_putstr_fd("21sh: failed to copy env\n", STDERR_FILENO);
 	ft_env_free(&env);
 	return (NULL);
 }

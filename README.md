@@ -21,14 +21,14 @@ Add `make test` for linux
 ## Usage
 
 ```
-usage: ./minishell [file ...]
+usage: ./21sh [file ...]
 ```
 
 ### OSX :
 
 ```
 make re
-./minishell
+./21sh
 ```
 
 ### Linux :
@@ -36,5 +36,5 @@ make re
 ```
 sudo apt-get install -y libncurses5-dev
 make re
-./minishell
+./21sh
 ```

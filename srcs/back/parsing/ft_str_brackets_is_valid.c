@@ -6,7 +6,7 @@
 /*   By: hhow-cho <hhow-cho@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/07/11 12:52:04 by hhow-cho          #+#    #+#             */
-/*   Updated: 2019/07/13 16:47:48 by hhow-cho         ###   ########.fr       */
+/*   Updated: 2019/07/25 14:22:40 by hhow-cho         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -69,7 +69,7 @@ int			ft_find_closing(char *str, char closing, size_t len)
 static int	handle_error(char c)
 {
 	ft_dprintf(2, \
-		"minishell: unexpected EOF while looking for matching %c\n", c);
+		"21sh: unexpected EOF while looking for matching %c\n", c);
 	return (0);
 }
 

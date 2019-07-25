@@ -5,6 +5,6 @@ echo $SHLVL
 env -i SHLVL=10032 ls
 echo a
 exit
-# env -i SHLVL=10032 ./minishell ; echo $SHLVL
-# env -i SHLVL=999 ./minishell ; echo $SHLVL
-# env -i SHLVL=998 ./minishell ; echo $SHLVL
+# env -i SHLVL=10032 ./21sh ; echo $SHLVL
+# env -i SHLVL=999 ./21sh ; echo $SHLVL
+# env -i SHLVL=998 ./21sh ; echo $SHLVL

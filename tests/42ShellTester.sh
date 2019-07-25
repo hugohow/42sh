@@ -24,7 +24,7 @@ GLOBAL_SPECS_FILTER=""
 GLOBAL_ENTRYPATH=$(pwd)
 GLOBAL_INSTALLDIR="$(get_install_directory)"
 GLOBAL_TMP_DIRECTORY="${GLOBAL_INSTALLDIR}/tmp"
-GLOBAL_LOCALBRANCH=$(git branch | awk '$0 ~ /^\*/ {print $2; exit}')
+GLOBAL_LOCALBRANCH=$(git branch | awk '$0 ~ /^\*/ {print $2; return}')
 GLOBAL_TOKEN="TOKEN$(date +%Y%m%d%H%M)"
 GLOBAL_TOTAL_TESTS=0
 GLOBAL_TOTAL_FAILED_TESTS=0
@@ -73,7 +73,7 @@ while [ ! -z "${1}" ]; do
         ;;
       *)
         printf "%s\n" "Invalid option: ${1}"
-        exit 1
+        return 1
         ;;
     esac
   else
@@ -113,10 +113,10 @@ printf "%s\n\nTotal tests: %s\nTotal failed tests: %s\nTotal pending tests: %s\n
 # go back to entry directory
 cd "${GLOBAL_ENTRYPATH}"
 
-# exit with success or error status
+# return with success or error status
 if [ "${GLOBAL_TOTAL_FAILED_TESTS}" == "0" ]
 then
-  exit 0
+  return 0
 else
-  exit 1
+  return 1
 fi

@@ -6,7 +6,7 @@
 /*   By: hhow-cho <hhow-cho@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/07/13 13:33:15 by hhow-cho          #+#    #+#             */
-/*   Updated: 2019/07/13 21:04:59 by hhow-cho         ###   ########.fr       */
+/*   Updated: 2019/07/25 14:23:02 by hhow-cho         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,7 +32,7 @@ static int	ft_env_search_in_hash(char **argv, \
 		ft_memdel((void **)&to_free);
 		return (ft_exe_path((argv), *p_copy_env, fds));
 	}
-	ft_dprintf(fds[2], "minishell env: command not found %s\n", argv[0]);
+	ft_dprintf(fds[2], "21sh env: command not found %s\n", argv[0]);
 	return (EXIT_UTILITY_NOT_FOUND);
 }
 
