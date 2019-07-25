@@ -6,7 +6,7 @@
 /*   By: hhow-cho <hhow-cho@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/07/08 18:55:22 by hhow-cho          #+#    #+#             */
-/*   Updated: 2019/07/10 12:38:36 by hhow-cho         ###   ########.fr       */
+/*   Updated: 2019/07/25 14:22:54 by hhow-cho         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,7 @@ char	*ft_cd_get_path_home(t_env ***p_environ, int fds[])
 
 	if (!(dest_path = ft_strdup(ft_env_get_value(*p_environ, "HOME"))))
 	{
-		ft_putstr_fd("minishell: cd: HOME not set\n", fds[2]);
+		ft_putstr_fd("21sh: cd: HOME not set\n", fds[2]);
 		return (NULL);
 	}
 	dest_path = ft_path_trim_free(dest_path);
@@ -31,7 +31,7 @@ char	*ft_cd_get_absolute_path(char *element, int fds[])
 
 	if (!(dest_path = ft_strdup(element)))
 	{
-		ft_putstr_fd("minishell: cd: dir error\n", fds[2]);
+		ft_putstr_fd("21sh: cd: dir error\n", fds[2]);
 		return (NULL);
 	}
 	dest_path = ft_path_trim_free(dest_path);
@@ -44,7 +44,7 @@ char	*ft_cd_get_old_path(t_env ***p_environ, int fds[])
 
 	if (!(dest_path = ft_strdup(ft_env_get_value(*p_environ, "OLDPWD"))))
 	{
-		ft_putstr_fd("minishell: cd: OLDPWD not set\n", fds[2]);
+		ft_putstr_fd("21sh: cd: OLDPWD not set\n", fds[2]);
 		return (NULL);
 	}
 	if (ft_cd_can_go_to(dest_path) == 1)

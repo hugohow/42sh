@@ -6,7 +6,7 @@
 /*   By: hhow-cho <hhow-cho@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/07/08 16:46:08 by hhow-cho          #+#    #+#             */
-/*   Updated: 2019/07/14 13:21:43 by hhow-cho         ###   ########.fr       */
+/*   Updated: 2019/07/25 14:22:38 by hhow-cho         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,7 +37,7 @@ static char	**has_syntax_error(char **list)
 		if (ft_is_empty(list[k]) && list[k + 1])
 		{
 			ft_dprintf(2, \
-				"minishell: syntax error near unexpected token ';'\n");
+				"21sh: syntax error near unexpected token ';'\n");
 			ft_list_free(&list);
 			return (NULL);
 		}

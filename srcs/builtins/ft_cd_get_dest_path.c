@@ -6,7 +6,7 @@
 /*   By: hhow-cho <hhow-cho@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/07/08 19:05:08 by hhow-cho          #+#    #+#             */
-/*   Updated: 2019/07/10 12:41:26 by hhow-cho         ###   ########.fr       */
+/*   Updated: 2019/07/25 14:22:50 by hhow-cho         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,7 @@ static void	handle_error(char *dest_path, char *to_free, \
 	t_env ***p_env, int fds[])
 {
 	ft_putstr_fd(\
-	"minishell cd: error retrieving current directory: getcwd:"\
+	"21sh cd: error retrieving current directory: getcwd:"\
 	, fds[2]);
 	ft_putstr_fd(\
 	" cannot access parent directories: No such file or directory.\n"\
@@ -92,7 +92,7 @@ char		*ft_cd_get_dest_path(char *element, t_env ***p_env, \
 	if (ft_strlen(dest_path) > PATH_MAX)
 	{
 		ft_memdel((void **)&dest_path);
-		ft_putstr_fd("minishell: cd: path too long\n", fds[2]);
+		ft_putstr_fd("21sh: cd: path too long\n", fds[2]);
 		return (NULL);
 	}
 	return (dest_path);

@@ -6,7 +6,7 @@
 /*   By: hhow-cho <hhow-cho@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/07/09 15:08:21 by hhow-cho          #+#    #+#             */
-/*   Updated: 2019/07/13 16:50:45 by hhow-cho         ###   ########.fr       */
+/*   Updated: 2019/07/25 14:22:32 by hhow-cho         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,7 @@ static int	handle_error(char *cmd)
 	if (ft_str_brackets_is_valid(cmd, ft_strlen(cmd)) == 0)
 	{
 		ft_dprintf(2, \
-			"minishell: syntax error: unexpected end of file\n");
+			"21sh: syntax error: unexpected end of file\n");
 		*((int *)ft_vars_get_value(KEY_SUCCESS_EXIT)) = 2;
 		*((int *)ft_vars_get_value(KEY_MUST_EXIT)) = 1;
 		return (1);

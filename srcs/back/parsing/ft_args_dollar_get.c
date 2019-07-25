@@ -6,7 +6,7 @@
 /*   By: hhow-cho <hhow-cho@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/06/16 13:42:37 by hhow-cho          #+#    #+#             */
-/*   Updated: 2019/07/13 12:35:09 by hhow-cho         ###   ########.fr       */
+/*   Updated: 2019/07/25 14:22:30 by hhow-cho         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,7 @@
 static char	*handle_error(int *p_result_parsing, char *output)
 {
 	*p_result_parsing = 1;
-	ft_putstr_fd("minishell: Bad substitution\n", 2);
+	ft_putstr_fd("21sh: Bad substitution\n", 2);
 	ft_memdel((void **)&output);
 	return (NULL);
 }

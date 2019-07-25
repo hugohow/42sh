@@ -1,2 +1,2 @@
-./minishell ./invalid
+./21sh ./invalid
 exit 1

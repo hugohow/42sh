@@ -2,7 +2,8 @@
 .DS_Store
 .Spotlight-V100
 .Trashes
-minishell
+21sh
+tests/tmp/*
 
 # Visual Studio code
 *.vscode/
