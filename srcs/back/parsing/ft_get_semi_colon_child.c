@@ -6,7 +6,7 @@
 /*   By: hhow-cho <hhow-cho@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/07/08 16:46:08 by hhow-cho          #+#    #+#             */
-/*   Updated: 2019/07/25 14:22:38 by hhow-cho         ###   ########.fr       */
+/*   Updated: 2019/07/25 20:03:49 by hhow-cho         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,31 +46,33 @@ static char	**has_syntax_error(char **list)
 	return (list);
 }
 
-t_node		**ft_get_semi_colon_child(t_node *node, char *cmd, t_env **copy_env)
+int			ft_get_semi_colon_child(t_node *node, t_env **copy_env)
 {
 	char	**list;
 	int		k;
 	t_node	**child;
 
-	if (!(list = ft_str_separate(cmd, ';')))
-		return (NULL);
+	if (ft_strchr(node->cmd, ';') == NULL)
+		return (0);
+	if (!(list = ft_str_separate(node->cmd, ';')))
+		return (1);
 	child = NULL;
 	if (!(list = has_syntax_error(list)))
-		return (NULL);
-	if (list[0])
 	{
-		if (!(child = (t_node **)ft_memalloc((ft_list_size(list) + 1)\
-			* sizeof(t_node *))))
-		{
-			ft_list_free(&list);
-			return (NULL);
-		}
-		k = -1;
-		while (list[++k] && \
-			(child[k] = create_node(TYPE_CMD, list[k], copy_env)))
-			;
-		node->nb_child = k;
+		*((int *)ft_vars_get_value(KEY_SUCCESS_EXIT)) = 2;
+		return (2);
 	}
+	if (!(child = (t_node **)ft_memalloc((ft_list_size(list) + 1)\
+		* sizeof(t_node *))))
+	{
+		ft_list_free(&list);
+		return (1);
+	}
+	k = -1;
+	while (list[++k] && (child[k] = create_node(TYPE_SEMI_COLON, list[k], copy_env)))
+		;
+	node->nb_child = k;
 	ft_list_free(&list);
-	return (child);
+	node->child = child;
+	return (0);
 }

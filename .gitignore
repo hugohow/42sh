@@ -20,7 +20,6 @@ tests/tmp/*
 # Exe
 *.exe
 *.app
-fillit
 
 # Debug files
 *.dSYM
