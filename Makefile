@@ -6,7 +6,7 @@
 #    By: hhow-cho <hhow-cho@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2019/07/04 22:12:22 by hhow-cho          #+#    #+#              #
-#    Updated: 2019/07/25 20:53:09 by hhow-cho         ###   ########.fr        #
+#    Updated: 2019/07/25 21:29:58 by hhow-cho         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -37,6 +37,7 @@ SRC =	srcs/main.c							\
 		srcs/back/ft_exe_bin.c				\
 		srcs/back/ft_find_bin.c				\
 		srcs/back/ft_exe_path.c				\
+		srcs/back/ft_syntax_tree_execute_node.c	\
 		srcs/back/ft_syntax_tree_create.c	\
 		srcs/back/ft_syntax_tree_execute.c	\
 		srcs/back/ft_syntax_tree_free.c		\

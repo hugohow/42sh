@@ -6,7 +6,7 @@
 /*   By: hhow-cho <hhow-cho@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/07/25 20:28:36 by hhow-cho          #+#    #+#             */
-/*   Updated: 2019/07/25 20:32:53 by hhow-cho         ###   ########.fr       */
+/*   Updated: 2019/07/25 21:38:25 by hhow-cho         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -69,9 +69,10 @@ int			ft_get_pipe_child(t_node *node, t_env **copy_env)
 		return (1);
 	}
 	k = -1;
-	while (list[++k] && (child[k] = create_node(TYPE_PIPE, list[k], copy_env)))
+	while (list[++k] && (child[k] = create_node(TYPE_BASE, list[k], copy_env)))
 		;
 	node->nb_child = k;
+	node->type = TYPE_PIPE;
 	node->child = child;
 	ft_list_free(&list);
 	return (0);

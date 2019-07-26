@@ -6,7 +6,7 @@
 /*   By: hhow-cho <hhow-cho@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/06/20 16:55:53 by hhow-cho          #+#    #+#             */
-/*   Updated: 2019/07/25 20:29:12 by hhow-cho         ###   ########.fr       */
+/*   Updated: 2019/07/25 23:38:11 by hhow-cho         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,6 +17,8 @@ int			get_child(t_node *node, t_env **copy_env)
 	int ret;
 
 	if ((ret = (ft_get_semi_colon_child(node, copy_env))) > 0)
+		return (ret);
+	if (node->child)
 		return (ret);
 	if ((ret = (ft_get_pipe_child(node, copy_env))) > 0)
 		return (ret);

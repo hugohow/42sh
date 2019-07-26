@@ -6,7 +6,7 @@
 /*   By: hhow-cho <hhow-cho@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/07/08 16:46:08 by hhow-cho          #+#    #+#             */
-/*   Updated: 2019/07/25 20:03:49 by hhow-cho         ###   ########.fr       */
+/*   Updated: 2019/07/25 21:37:24 by hhow-cho         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -69,9 +69,10 @@ int			ft_get_semi_colon_child(t_node *node, t_env **copy_env)
 		return (1);
 	}
 	k = -1;
-	while (list[++k] && (child[k] = create_node(TYPE_SEMI_COLON, list[k], copy_env)))
+	while (list[++k] && (child[k] = create_node(TYPE_BASE, list[k], copy_env)))
 		;
 	node->nb_child = k;
+	node->type = TYPE_SEMI_COLON;
 	ft_list_free(&list);
 	node->child = child;
 	return (0);
