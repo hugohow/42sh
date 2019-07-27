@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_get_semi_colon_child.c                          :+:      :+:    :+:   */
+/*   ft_get_pipe_child.c                                :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: hhow-cho <hhow-cho@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2019/07/08 16:46:08 by hhow-cho          #+#    #+#             */
-/*   Updated: 2019/07/25 21:37:24 by hhow-cho         ###   ########.fr       */
+/*   Created: 2019/07/25 20:28:36 by hhow-cho          #+#    #+#             */
+/*   Updated: 2019/07/26 13:42:14 by hhow-cho         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,7 +37,7 @@ static char	**has_syntax_error(char **list)
 		if (ft_is_empty(list[k]) && list[k + 1])
 		{
 			ft_dprintf(2, \
-				"21sh: syntax error near unexpected token ';'\n");
+				"21sh: syntax error near unexpected token '|'\n");
 			ft_list_free(&list);
 			return (NULL);
 		}
@@ -46,15 +46,15 @@ static char	**has_syntax_error(char **list)
 	return (list);
 }
 
-int			ft_get_semi_colon_child(t_node *node, t_env **copy_env)
+int			ft_get_pipe_child(t_node *node, t_env **copy_env)
 {
 	char	**list;
 	int		k;
 	t_node	**child;
 
-	if (ft_strchr(node->cmd, ';') == NULL)
+	if (ft_strchr(node->cmd, '|') == NULL)
 		return (0);
-	if (!(list = ft_str_separate(node->cmd, ';')))
+	if (!(list = ft_str_separate(node->cmd, '|')))
 		return (1);
 	child = NULL;
 	if (!(list = has_syntax_error(list)))
@@ -63,7 +63,7 @@ int			ft_get_semi_colon_child(t_node *node, t_env **copy_env)
 		return (2);
 	}
 	if (!(child = (t_node **)ft_memalloc((ft_list_size(list) + 1)\
-		* sizeof(t_node *))))
+	* sizeof(t_node *))))
 	{
 		ft_list_free(&list);
 		return (1);
@@ -72,8 +72,8 @@ int			ft_get_semi_colon_child(t_node *node, t_env **copy_env)
 	while (list[++k] && (child[k] = create_node(TYPE_BASE, list[k], copy_env)))
 		;
 	node->nb_child = k;
-	node->type = TYPE_SEMI_COLON;
-	ft_list_free(&list);
+	node->type = TYPE_PIPE;
 	node->child = child;
+	ft_list_free(&list);
 	return (0);
 }

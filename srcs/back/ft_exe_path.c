@@ -6,7 +6,7 @@
 /*   By: hhow-cho <hhow-cho@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/07/08 18:39:35 by hhow-cho          #+#    #+#             */
-/*   Updated: 2019/07/13 16:08:47 by hhow-cho         ###   ########.fr       */
+/*   Updated: 2019/07/26 15:33:20 by hhow-cho         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,7 @@ static void	child_exec(char *path, char **argv, t_env **cpy_environ, int fds[])
 		if (execve(path, argv, cpy_env_raw) < 0)
 			ft_putstr_fd("erreur\n", fds[2]);
 		ft_memdel((void **)(cpy_env_raw));
-	}
+    }
 	exit(0);
 }
 

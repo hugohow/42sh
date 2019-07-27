@@ -1,1 +1,1 @@
- ;
+mkdir test ; cd test ; ls -a ; ls | cat | wc -c > fifi ; cat fifi
