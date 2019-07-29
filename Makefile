@@ -6,7 +6,7 @@
 #    By: hhow-cho <hhow-cho@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2019/07/04 22:12:22 by hhow-cho          #+#    #+#              #
-#    Updated: 2019/07/25 21:29:58 by hhow-cho         ###   ########.fr        #
+#    Updated: 2019/07/29 19:11:17 by hhow-cho         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -52,6 +52,8 @@ SRC =	srcs/main.c							\
 		srcs/back/parsing/ft_args_tild_replace.c \
 		srcs/back/parsing/ft_get_semi_colon_child.c	\
 		srcs/back/parsing/ft_get_pipe_child.c	\
+		srcs/back/parsing/ft_get_or_child.c	\
+		srcs/back/parsing/ft_get_and_child.c	\
 		srcs/back/parsing/ft_str_brackets_is_valid.c	\
 		srcs/back/utils/ft_bin_is_accessible.c	\
 		srcs/back/utils/ft_bins_table_create.c	\
@@ -76,6 +78,7 @@ SRC =	srcs/main.c							\
 		srcs/back/utils/ft_path_trim.c	\
 		srcs/back/utils/ft_path_trim_free.c	\
 		srcs/back/utils/ft_str_separate.c	\
+		srcs/back/utils/ft_str_separate_str.c	\
 		srcs/back/utils/ft_strjoin_.c	\
 		srcs/back/utils/ft_strjoin_free_first.c	\
 		srcs/back/utils/ft_strjoin_free_second.c	\
@@ -125,7 +128,7 @@ all: $(NAME)
 $(NAME): $(OBJ)
 	@make -C libft/
 	@echo "Creating" [ $(NAME) ]
-	@$(CC) $(CFLAGS) $(INCLUDES) $^ libft/libft.a -o $(NAME) $(TERMFLAG)
+	@$(CC) $(CFLAGS) $^ libft/libft.a -o $(NAME) $(TERMFLAG)
 	@echo "Creation" [ $(NAME) ] $(SUCCESS)
 
 clean:
@@ -142,6 +145,7 @@ re: fclean all
 
 ifeq ($(shell uname),Darwin)
 test: re
+	@$(CC) $(CFLAGS) libft/libft.a srcs/back/utils/ft_str_separate.c  srcs/back/utils/ft_str_separate_str.c test_fcts/main.c -o test_fcts/test && ./test_fcts/test
 	# bash tests/42ShellTester.sh $(PWD)/$(NAME) --hard --reference "bash" --filter $(NAME)
 	bash test.sh
 else
