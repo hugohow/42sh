@@ -6,7 +6,7 @@
 /*   By: hhow-cho <hhow-cho@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/07/08 18:45:16 by hhow-cho          #+#    #+#             */
-/*   Updated: 2019/07/29 19:09:24 by hhow-cho         ###   ########.fr       */
+/*   Updated: 2019/07/30 18:15:07 by hhow-cho         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -91,10 +91,21 @@ int			ft_syntax_tree_execute(t_node *node, t_env ***p_env, int fds[])
 			k++;
 		}
 	}
-	else if (node && node->type & TYPE_PIPE && node->child && node->child[k])
+	if (node && node->type & TYPE_PIPE && node->child && node->child[k])
 	{
 		if (ft_exec_loop_pipe(node->child, p_env, fds) != 0)
 			return (1);
+	}
+	if (node && node->type & TYPE_REDIRECTED && node->child && node->child[k])
+	{
+		// if ((ft_syntax_tree_execute(node->child[k], p_env, fds)) < 0)
+		// 	return (1);
+		// k++;
+		// while (node->child[k])
+		// {
+		// 	printf("node->child[%d] : %s\ttype : %llu\n", k, (node->child[k])->cmd, (node->child[k])->type);
+		// 	k++;
+		// }
 	}
 	return (0);
 }

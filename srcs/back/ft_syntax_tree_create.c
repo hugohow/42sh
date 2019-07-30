@@ -6,7 +6,7 @@
 /*   By: hhow-cho <hhow-cho@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/06/20 16:55:53 by hhow-cho          #+#    #+#             */
-/*   Updated: 2019/07/29 19:40:53 by hhow-cho         ###   ########.fr       */
+/*   Updated: 2019/07/30 16:09:59 by hhow-cho         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,6 +25,10 @@ int			get_child(t_node *node, t_env **copy_env)
 	if (node->child)
 		return (ret);
 	if ((ret = (ft_get_and_child(node, copy_env))) > 0)
+		return (ret);
+	if (node->child)
+		return (ret);
+	if ((ret = (ft_get_redirection_output_child(node, copy_env))) > 0)
 		return (ret);
 	if (node->child)
 		return (ret);

@@ -6,7 +6,7 @@
 #    By: hhow-cho <hhow-cho@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2019/07/04 22:12:22 by hhow-cho          #+#    #+#              #
-#    Updated: 2019/07/29 19:11:17 by hhow-cho         ###   ########.fr        #
+#    Updated: 2019/07/30 14:24:30 by hhow-cho         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -54,6 +54,7 @@ SRC =	srcs/main.c							\
 		srcs/back/parsing/ft_get_pipe_child.c	\
 		srcs/back/parsing/ft_get_or_child.c	\
 		srcs/back/parsing/ft_get_and_child.c	\
+		srcs/back/parsing/ft_get_redirection_output_child.c	\
 		srcs/back/parsing/ft_str_brackets_is_valid.c	\
 		srcs/back/utils/ft_bin_is_accessible.c	\
 		srcs/back/utils/ft_bins_table_create.c	\

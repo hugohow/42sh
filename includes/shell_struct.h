@@ -6,7 +6,7 @@
 /*   By: hhow-cho <hhow-cho@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/07/08 15:12:43 by hhow-cho          #+#    #+#             */
-/*   Updated: 2019/07/11 14:49:03 by hhow-cho         ###   ########.fr       */
+/*   Updated: 2019/07/30 16:54:52 by hhow-cho         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,11 +21,14 @@ typedef struct			s_token
 
 typedef struct			s_node
 {
-	long				type;
+	unsigned long long	type;
 	char				*cmd;
 	char				*cmd_exec;
 	char				**args;
 	int					nb_child;
+	int					n;
+	int					digit;
+	char				*word;
 	struct s_node		**child;
 }						t_node;
 

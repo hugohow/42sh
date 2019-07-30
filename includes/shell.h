@@ -6,7 +6,7 @@
 /*   By: hhow-cho <hhow-cho@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/06/09 00:32:39 by hhow-cho          #+#    #+#             */
-/*   Updated: 2019/07/29 19:11:03 by hhow-cho         ###   ########.fr       */
+/*   Updated: 2019/07/30 16:37:14 by hhow-cho         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,6 +45,18 @@
 # define TYPE_PIPE (1 << 3)
 # define TYPE_OR (1 << 4)
 # define TYPE_AND (1 << 5)
+# define TYPE_REDIRECTED (1 << 6)
+# define TYPE_REDIRECTION_CMD (1 << 7)
+# define TYPE_REDIRECTION_INPUT (1 << 8)
+# define TYPE_REDIRECTION_OUTPUT (1 << 9)
+# define TYPE_REDIRECTION_APPENDING_OUTPUT (1 << 10)
+# define TYPE_REDIRECTION_STDOUT_STDERR (1 << 11)
+# define TYPE_REDIRECTION_APPENDING_STDOUT_STDERR (1 << 12)
+# define TYPE_REDIRECTION_HERE_DOCUMENT (1 << 13)
+# define TYPE_REDIRECTION_HERE_STRING (1 << 14)
+# define TYPE_REDIRECTION_DUPLICATING_FD (1 << 15)
+# define TYPE_REDIRECTION_MOVING_FD (1 << 16)
+# define TYPE_REDIRECTION_OPEN_FD (1 << 17)
 # define BUF_SIZE 20
 # define FLAG_CD_P (1 << 0)
 # define FLAG_CD_L (1 << 1)
@@ -119,6 +131,7 @@ int			ft_get_semi_colon_child(t_node *node, t_env **copy_env);
 int			ft_get_pipe_child(t_node *node, t_env **copy_env);
 int			ft_get_or_child(t_node *node, t_env **copy_env);
 int			ft_get_and_child(t_node *node, t_env **copy_env);
+int			ft_get_redirection_output_child(t_node *node, t_env **copy_env);
 
 /*
 ** Functions related to environnement variables
