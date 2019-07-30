@@ -6,7 +6,7 @@
 /*   By: hhow-cho <hhow-cho@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/07/08 18:45:16 by hhow-cho          #+#    #+#             */
-/*   Updated: 2019/07/26 17:26:17 by hhow-cho         ###   ########.fr       */
+/*   Updated: 2019/07/29 19:09:24 by hhow-cho         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,6 +54,32 @@ int			ft_syntax_tree_execute(t_node *node, t_env ***p_env, int fds[])
 	if (node && node->type & TYPE_CMD)
 		return (ft_syntax_tree_execute_node(node, p_env, fds));
 	k = 0;
+	if (node && node->type & TYPE_OR && node->child && node->child[k])
+	{
+		while (node->child[k])
+		{
+			if ((ft_syntax_tree_execute(node->child[k], p_env, fds)) < 0)
+				return (1);
+			if (*((int *)ft_vars_get_value(KEY_MUST_EXIT)) == 1)
+				return (0);
+			if (*((int *)ft_vars_get_value(KEY_SUCCESS_EXIT)) == 0)
+				break ;
+			k++;
+		}
+	}
+	if (node && node->type & TYPE_AND && node->child && node->child[k])
+	{
+		while (node->child[k])
+		{
+			if ((ft_syntax_tree_execute(node->child[k], p_env, fds)) < 0)
+				return (1);
+			if (*((int *)ft_vars_get_value(KEY_MUST_EXIT)) == 1)
+				return (0);
+			if (*((int *)ft_vars_get_value(KEY_SUCCESS_EXIT)) != 0)
+				break ;
+			k++;
+		}
+	}
 	if (node && node->type & TYPE_SEMI_COLON && node->child && node->child[k])
 	{
 		while (node->child[k])
