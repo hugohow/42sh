@@ -103,6 +103,13 @@ SRC =	srcs/main.c							\
 		srcs/front/ft_interactive_prompt.c		\
 		srcs/front/ft_interactive_read_key.c		\
 		srcs/front/ft_non_interactive_get_cmd.c		\
+		srcs/front/ft_quote/closures.c \
+		srcs/front/ft_quote/complete.c \
+		srcs/front/ft_quote/ft_press_key/ft_quote_apply_key.c \
+		srcs/front/ft_quote/ft_press_key/ft_quote_apply_enter.c \
+		srcs/front/ft_quote/ft_press_key/ft_quote_apply_arrow.c \
+		srcs/front/ft_quote/ft_press_key/ft_quote_apply_del.c \
+		srcs/front/ft_quote/ft_press_key/ft_quote_apply_printable.c \
 		srcs/front/ft_press_key/ft_apply_ctrl_c.c		\
 		srcs/front/ft_press_key/ft_apply_ctrl_d.c		\
 		srcs/front/ft_press_key/ft_apply_del.c			\
@@ -110,6 +117,7 @@ SRC =	srcs/main.c							\
 		srcs/front/ft_press_key/ft_apply_key.c			\
 		srcs/front/ft_press_key/ft_apply_printable.c		\
 		srcs/front/ft_press_key/ft_apply_tab.c			\
+		srcs/front/utils/ft_putchar_stdin.c				\
 		srcs/front/utils/ft_node_join.c					\
 		srcs/front/utils/ft_cmd_init.c					\
 		srcs/variables/ft_vars_free.c					\

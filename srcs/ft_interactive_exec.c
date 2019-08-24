@@ -47,6 +47,7 @@ int			ft_interactive_exec(void)
 		ft_interactive_prompt();
 		ft_interactive_get_cmd(&command);
 		ft_interactive_exit();
+		printf("La commande est {%s}\n", command);
 		ft_cmd_exec(command, p_copy_env, fds);
 		if (*((int *)ft_vars_get_value(KEY_MUST_EXIT)) == 1)
 		{

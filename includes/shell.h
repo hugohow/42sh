@@ -62,6 +62,10 @@
 # define KEY_TERM_CTRL_M 13
 # define KEY_TERM_DEL 127
 # define KEY_TERM_TAB 9
+# define KEY_TERM_LEFT 0x445b1b
+# define KEY_TERM_UP 0x415b1b
+# define KEY_TERM_RIGHT 0x435b1b
+# define KEY_TERM_DOWN  0x425b1b
 # define BUILTIN_CD "cd"
 # define BUILTIN_ECHO "echo"
 # define BUILTIN_ENV "env"
@@ -89,6 +93,7 @@ void		ft_interactive_prompt(void);
 int			ft_interactive_init();
 void		ft_interactive_exit();
 int			ft_cmd_init(void);
+char		*parse_dquote(void);
 
 /*
 ** Functions for parsing
@@ -185,6 +190,7 @@ int			ft_syntax_tree_execute_node(t_node *node, t_env ***p_env, int fds[]);
 ** Utils
 */
 
+int			ft_putchar_stdin(int c);
 char		*ft_path_trim(char *path);
 char		*ft_path_trim_free(char *abs_path);
 size_t		ft_list_size(char **list);
@@ -213,6 +219,14 @@ int			ft_apply_del(t_cmd *cmd);
 int			ft_apply_printable(t_cmd *cmd);
 int			ft_apply_enter(t_cmd *cmd);
 
+void		ft_quote_print_line(t_cmd *cmd);
+t_list		*ft_quote_get_line(t_list *head);
+void		ft_quote_add_printable(t_cmd *cmd, int c);
+int			ft_quote_apply_key(t_cmd *cmd);
+int			ft_quote_apply_arrow(t_cmd *cmd);
+int			ft_quote_apply_printable(t_cmd *cmd);
+int			ft_quote_apply_del(t_cmd *cmd);
+int			ft_quote_apply_enter(t_cmd *cmd);
 /*
 ** Global variables fcts
 */

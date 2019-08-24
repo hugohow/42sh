@@ -32,7 +32,7 @@ int	ft_interactive_read_key(void)
 			return (ft_atoi(seq));
 		if (read(STDIN_FILENO, &seq[2], 1) != 1)
 			return (ft_atoi(seq));
-		return (ft_atoi(seq));
+		return (*(int*)seq);
 	}
 	else
 	{

@@ -45,6 +45,7 @@ int				ft_interactive_get_cmd(char **command)
 		if (ret == 0)
 			break ;
 	}
+	parse_dquote();
 	ft_putstr_fd("\n\r", STDIN_FILENO);
 	free_and_assign(command);
 	return (ret);

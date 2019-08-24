@@ -37,6 +37,7 @@ typedef struct			s_env
 typedef struct			s_cmd
 {
 	t_list				*head;
+	int					cursor;
 	int					last_key;
 	long long			size;
 	int					len;

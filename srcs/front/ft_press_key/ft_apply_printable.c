@@ -17,7 +17,7 @@ int	ft_apply_printable(t_cmd *cmd)
 	t_list	*head;
 	t_list	*node;
 
-	if (ft_isprint(cmd->last_key) || cmd->last_key == KEY_TERM_CTRL_M)
+	if (ft_isprint(cmd->last_key) || cmd->last_key == '\n' || cmd->last_key == KEY_TERM_CTRL_M)
 	{
 		head = cmd->head;
 		write(0, &(cmd->last_key), sizeof(int));
