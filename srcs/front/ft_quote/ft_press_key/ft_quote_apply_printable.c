@@ -8,7 +8,7 @@ void		ft_quote_add_printable(t_cmd *cmd, int c)
 
 	head = ft_quote_get_line(cmd->head);
 	i = 0;
-	while (++i < cmd->cursor)
+	while (++i < cmd->arg->cursor)
 		head = head->next;
 	node = ft_lstnew((void*)&c, sizeof(int));	
 	if (head)
@@ -29,6 +29,7 @@ int			ft_quote_apply_printable(t_cmd *cmd)
 		return (0);
 	ft_quote_add_printable(cmd, cmd->last_key);
 	ft_quote_print_line(cmd);
-	cmd->cursor++;
+	cmd->arg->cursor++;
+	cmd->arg->col++;
 	return (0);
 }

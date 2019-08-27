@@ -34,13 +34,22 @@ typedef struct			s_env
 	char				*line;
 }						t_env;
 
+
+typedef struct			s_quote
+{
+	char	*prompt;
+	int		cursor;
+	int		row;
+	int		col;
+}						t_quote;
+
 typedef struct			s_cmd
 {
 	t_list				*head;
-	int					cursor;
 	int					last_key;
 	long long			size;
 	int					len;
+	t_quote				*arg;
 }						t_cmd;
 
 typedef struct termios	t_config;

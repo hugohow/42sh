@@ -1,23 +1,25 @@
 #include "closures.h"
 
-static void		read_input(void)
+static void		read_input(t_cmd *cmd)
 {
 	int		ret;
-	t_vars	*p_vars;
+	t_quote	a;
 
-	p_vars = ft_vars_get();
+	memset(&a, '\0', sizeof(t_quote));
+	a.prompt = "dquote> ";
+	cmd->arg = &a;
 	ret = 0;
-	ft_quote_apply_enter(p_vars->cmd);
+	ft_quote_apply_enter(cmd);
 	while (1)
 	{
 		ret = ft_interactive_read_key();
 		if (ret == KEY_TERM_ENTER
-			&& p_vars->cmd->last_key == '"') {
-			if (!check_closures(p_vars->cmd->head, "\""))
+			&& cmd->last_key == '"') {
+			if (!check_closures(cmd->head, "\""))
 				return ;
 		}
-		(p_vars->cmd)->last_key = ret;
-		ft_quote_apply_key(p_vars->cmd);
+		cmd->last_key = ret;
+		ft_quote_apply_key(cmd);
 	}
 }
 
@@ -27,7 +29,7 @@ char		*parse_dquote(void)
 	p_vars = ft_vars_get();
 
 	if (check_closures((p_vars->cmd)->head, "\""))
-		read_input();
+		read_input(p_vars->cmd);
 	fflush(stdout);
 	return (NULL);
 }

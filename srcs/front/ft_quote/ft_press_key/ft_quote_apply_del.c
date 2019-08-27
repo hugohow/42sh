@@ -1,5 +1,7 @@
 #include "shell.h"
 
+
+
 t_list		*ft_quote_get_line(t_list *head)
 {
 	t_list	*line;
@@ -20,10 +22,18 @@ void		ft_quote_print_line(t_cmd *cmd)
 	t_list				*head;
 	size_t				size;
 	char				*line;
+	char				*cap;
+	struct winsize		w;
+	int					row;
 
-	tputs(tgetstr("cb", NULL), 1, ft_putchar_stdin);
+	ioctl(STDOUT_FILENO, TIOCGWINSZ, &w);
+	row = ((cmd->arg->cursor + 7) / w.ws_col);
 	tputs(tgetstr("cr", NULL), 1, ft_putchar_stdin);
-	ft_putstr_fd("dquote> ", 0);
+	while (row--)
+		tputs(tgetstr("up", NULL), 1, ft_putchar_stdin);
+	cap = tgetstr("DC", NULL);
+	tputs(tgoto(cap, 7 + cmd->arg->cursor, 0), 1, ft_putchar_stdin);
+	ft_putstr_fd(cmd->arg->prompt, 0);
 	head = ft_quote_get_line(cmd->head);
 	size = ft_lstlen(head);
 	if (!(line = ft_node_join(head, size)))
@@ -36,14 +46,14 @@ int			ft_quote_apply_del(t_cmd *cmd)
 {
 	t_list		*head;
 
-	if (!cmd->cursor)
+	if (!cmd->arg->cursor)
 		return (0);
 	head = ft_quote_get_line(cmd->head);
-	ft_lstdelnode(&head, (cmd->cursor - 1));
+	ft_lstdelnode(&head, (cmd->arg->cursor - 1));
 	cmd->len = cmd->len - 1;
 	if (cmd->len < 0)
 		cmd->len = 0;
 	ft_quote_print_line(cmd);
-	cmd->cursor--;
+	cmd->arg->cursor--;
 	return (0);
 }
