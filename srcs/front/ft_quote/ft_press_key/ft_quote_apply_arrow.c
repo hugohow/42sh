@@ -1,27 +1,39 @@
 #include "shell.h"
 
-int		ft_quote_apply_arrow(t_cmd *cmd)
+static void		right_call(t_cmd *cmd)
 {
 	struct winsize	w;
-	int		cursor;
+	int				col;
 
-	ioctl(STDOUT_FILENO, TIOCGWINCH, &w);
-	cursor = cmd->arg->cursor;
-	if (cursor)
-		cursor %= w.ws_col;
-	if (cmd->last_key == KEY_TERM_RIGHT) 
+	ioctl(STDOUT_FILENO, TIOCGWINSZ, &w);
+	col = (cmd->arg->cursor + 8);
+	if (cmd->arg->cursor > w.ws_col)
+		col %= w.ws_col;
+	if (cmd->arg->cursor == cmd->arg->col)
+		return ;
+	if (col + 1 == w.ws_col)
 	{
-		if (cmd->arg->cursor == cmd->arg->col)
-			return (0);
+		tputs(tgetstr("do", NULL), 1, ft_putchar_stdin);
+		tputs(tgetstr("cr", NULL), 1, ft_putchar_stdin);
+	}
+	else
 		tputs(tgetstr("nd", NULL), 1, ft_putchar_stdin);
-		cmd->arg->cursor++;
-	}
+	cmd->arg->cursor++;
+}
+
+static void 	left_call(t_cmd *cmd)
+{
+	if (!cmd->arg->cursor)
+		return ;
+	cmd->arg->cursor--;
+	tputs(tgetstr("le", NULL), 1, ft_putchar_stdin);
+}
+
+int		ft_quote_apply_arrow(t_cmd *cmd)
+{
+	if (cmd->last_key == KEY_TERM_RIGHT) 
+		right_call(cmd);
 	if (cmd->last_key == KEY_TERM_LEFT)
-	{
-		if (!cmd->arg->cursor)
-				return (0);
-		cmd->arg->cursor--;
-		tputs(tgetstr("le", NULL), 1, ft_putchar_stdin);
-	}
+		left_call(cmd);
 	return (0);
 }
