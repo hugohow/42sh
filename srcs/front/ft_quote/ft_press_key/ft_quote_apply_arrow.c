@@ -6,9 +6,8 @@ static void		right_call(t_cmd *cmd)
 	int				col;
 
 	ioctl(STDOUT_FILENO, TIOCGWINSZ, &w);
-	col = (cmd->arg->cursor + 8);
-	if (cmd->arg->cursor > w.ws_col)
-		col %= w.ws_col;
+	col = cmd->arg->cursor + 8;
+	col %= w.ws_col;
 	if (cmd->arg->cursor == cmd->arg->col)
 		return ;
 	if (col + 1 == w.ws_col)
@@ -16,7 +15,7 @@ static void		right_call(t_cmd *cmd)
 		tputs(tgetstr("do", NULL), 1, ft_putchar_stdin);
 		tputs(tgetstr("cr", NULL), 1, ft_putchar_stdin);
 	}
-	else
+	else // depassement ici
 		tputs(tgetstr("nd", NULL), 1, ft_putchar_stdin);
 	cmd->arg->cursor++;
 }
