@@ -22,6 +22,22 @@ void		ft_quote_add_printable(t_cmd *cmd, int c)
 	cmd->len = cmd->len + 1;
 }
 
+static void	check_default(t_cmd *cmd)
+{
+	struct winsize	w;
+	int				col;
+
+	ioctl(STDOUT_FILENO, TIOCGWINSZ, &w);
+	col = (cmd->arg->cursor + 8) + 1;
+	col %= w.ws_col;
+	if (!col)
+	{
+		tputs(tgetstr("do", NULL), 1, ft_putchar_stdin);
+		tputs(tgetstr("cr", NULL), 1, ft_putchar_stdin);
+	}
+	cmd->arg->cursor++;
+}
+
 int			ft_quote_apply_printable(t_cmd *cmd)
 {
 	if (!ft_isprint(cmd->last_key)
@@ -29,7 +45,8 @@ int			ft_quote_apply_printable(t_cmd *cmd)
 		return (0);
 	ft_quote_add_printable(cmd, cmd->last_key);
 	ft_quote_print_line(cmd);
-	cmd->arg->cursor++;
+	check_default(cmd);
 	cmd->arg->col++;
+
 	return (0);
 }

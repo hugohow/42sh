@@ -103,13 +103,13 @@ SRC =	srcs/main.c							\
 		srcs/front/ft_interactive_prompt.c		\
 		srcs/front/ft_interactive_read_key.c		\
 		srcs/front/ft_non_interactive_get_cmd.c		\
-		srcs/front/ft_quote/closures.c \
-		srcs/front/ft_quote/complete.c \
-		srcs/front/ft_quote/ft_press_key/ft_quote_apply_key.c \
-		srcs/front/ft_quote/ft_press_key/ft_quote_apply_enter.c \
-		srcs/front/ft_quote/ft_press_key/ft_quote_apply_arrow.c \
-		srcs/front/ft_quote/ft_press_key/ft_quote_apply_del.c \
-		srcs/front/ft_quote/ft_press_key/ft_quote_apply_printable.c \
+		srcs/front/ft_cursor/ft_move_cursor.c		\
+		srcs/front/ft_complete/ft_complete_apply_del.c		\
+		srcs/front/ft_complete/ft_complete_apply_enter.c		\
+		srcs/front/ft_complete/ft_complete_apply_key.c		\
+		srcs/front/ft_complete/ft_complete_apply_printable.c		\
+		srcs/front/ft_complete/ft_complete_apply_arrow.c		\
+		srcs/front/ft_complete/ft_complete_cmd.c		\
 		srcs/front/ft_press_key/ft_apply_ctrl_c.c		\
 		srcs/front/ft_press_key/ft_apply_ctrl_d.c		\
 		srcs/front/ft_press_key/ft_apply_del.c			\

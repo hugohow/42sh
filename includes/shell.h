@@ -93,6 +93,7 @@ void		ft_interactive_prompt(void);
 int			ft_interactive_init();
 void		ft_interactive_exit();
 int			ft_cmd_init(void);
+void		ft_move_cursor(t_cmd *cmd);
 char		*parse_dquote(void);
 
 /*

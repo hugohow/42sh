@@ -4,4 +4,6 @@
 # include "shell.h"
 
 int			check_closures(t_list *list, char *closures);
+void		right_call(t_cmd *cmd);
+
 #endif

@@ -43,13 +43,19 @@ typedef struct			s_quote
 	int		col;
 }						t_quote;
 
+typedef struct			s_context
+{
+	char	*prompt;
+	int		cursor;
+}						t_context;
+
 typedef struct			s_cmd
 {
 	t_list				*head;
 	int					last_key;
 	long long			size;
 	int					len;
-	t_quote				*arg;
+	t_context			*context;
 }						t_cmd;
 
 typedef struct termios	t_config;
