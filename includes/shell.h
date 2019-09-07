@@ -6,7 +6,7 @@
 /*   By: kesaint- <kesaint-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/06/09 00:32:39 by hhow-cho          #+#    #+#             */
-/*   Updated: 2019/09/07 14:23:58 by kesaint-         ###   ########.fr       */
+/*   Updated: 2019/09/07 17:57:27 by kesaint-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -220,6 +220,10 @@ int			ft_apply_del(t_cmd *cmd);
 int			ft_apply_printable(t_cmd *cmd);
 int			ft_apply_enter(t_cmd *cmd);
 
+
+int	        ft_get_current_column(t_context *context);
+
+void		ft_complete_add_printable(t_cmd *cmd, int c);
 char		*ft_complete_cmd(t_cmd *cmd);
 int			ft_complete_check(t_list *list, char *closures);
 void		ft_complete_print_line(t_cmd *cmd);
