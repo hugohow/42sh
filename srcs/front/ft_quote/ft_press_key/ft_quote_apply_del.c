@@ -1,7 +1,5 @@
 #include "shell.h"
 
-
-
 t_list		*ft_quote_get_line(t_list *head)
 {
 	t_list	*line;

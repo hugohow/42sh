@@ -6,7 +6,7 @@
 /*   By: kesaint- <kesaint-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/09/04 16:16:52 by kesaint-          #+#    #+#             */
-/*   Updated: 2019/09/07 15:05:02 by kesaint-         ###   ########.fr       */
+/*   Updated: 2019/09/07 16:26:24 by kesaint-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,7 +36,7 @@ static void ft_complete_init_line(t_cmd *cmd)
 
 	ioctl(STDOUT_FILENO, TIOCGWINSZ, &w);
 	offset = strlen(cmd->context->prompt);
-	row = (cmd->context->cursor + offset - 1) / w.ws_col;
+	row = (cmd->context->cursor + offset) / w.ws_col;
 	tputs(tgetstr("cr", NULL), 1, ft_putchar_stdin);
 	while (row--)
 		tputs(tgetstr("up", NULL), 1, ft_putchar_stdin);
