@@ -6,7 +6,7 @@
 /*   By: kesaint- <kesaint-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/06/09 00:32:39 by hhow-cho          #+#    #+#             */
-/*   Updated: 2019/09/07 17:57:27 by kesaint-         ###   ########.fr       */
+/*   Updated: 2019/09/07 18:54:25 by kesaint-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -66,6 +66,8 @@
 # define KEY_TERM_UP 0x415b1b
 # define KEY_TERM_RIGHT 0x435b1b
 # define KEY_TERM_DOWN  0x425b1b
+# define KEY_TERM_HOME 	0x485b1b
+# define KEY_TERM_END	0x465b1b
 # define BUILTIN_CD "cd"
 # define BUILTIN_ECHO "echo"
 # define BUILTIN_ENV "env"

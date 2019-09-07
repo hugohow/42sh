@@ -6,7 +6,7 @@
 /*   By: kesaint- <kesaint-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/09/04 15:56:17 by kesaint-          #+#    #+#             */
-/*   Updated: 2019/09/07 15:29:46 by kesaint-         ###   ########.fr       */
+/*   Updated: 2019/09/07 19:20:53 by kesaint-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -65,8 +65,41 @@ static void	ft_move_cursor_left(t_cmd *cmd)
 	cmd->context->cursor--;
 }
 
+static void		ft_move_cursor_begin(t_cmd *cmd)
+{
+	char 	*cap;
+	int 	offset;
+	int 	column;
+
+	if (!cmd->context->cursor)
+		return ;
+	column = ft_get_current_column(cmd->context);
+	cmd->context->cursor -= column;
+	tputs(tgetstr("cr", NULL), 1, ft_putchar_stdin);
+	cap = tgetstr("ch", NULL);
+	offset = ft_strlen(cmd->context->prompt);
+	tputs(tgoto(cap, 0, offset), 1, ft_putchar_stdin);
+}
+
+static void		ft_move_cursor_end(t_cmd *cmd)
+{
+	char 			*cap;
+	struct winsize	w;
+	int				offset;
+
+	ioctl(STDOUT_FILENO, TIOCGWINSZ, &w);
+	offset = cmd->context->cursor % w.ws_col;
+	cap = tgetstr("ch", NULL);
+	cmd->context->cursor = offset;
+	tputs(tgoto(cap, 0, offset), 1, ft_putchar_stdin);
+}
+
 int			ft_move_cursor(t_cmd *cmd)
 {
+	if (cmd->last_key == KEY_TERM_HOME)
+		ft_move_cursor_begin(cmd);
+	if (cmd->last_key == KEY_TERM_END)
+		ft_move_cursor_end(cmd);
 	if (cmd->last_key == KEY_TERM_RIGHT)
 		ft_move_cursor_right(cmd);
 	if (cmd->last_key == KEY_TERM_LEFT)

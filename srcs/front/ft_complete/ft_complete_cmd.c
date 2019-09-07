@@ -6,11 +6,13 @@
 /*   By: kesaint- <kesaint-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/09/04 16:07:32 by kesaint-          #+#    #+#             */
-/*   Updated: 2019/09/07 15:24:13 by kesaint-         ###   ########.fr       */
+/*   Updated: 2019/09/07 18:06:00 by kesaint-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "shell.h"
+
+// To clean/redo later
 
 static char	*ft_complete(char *prompt)
 {
@@ -41,5 +43,9 @@ char		*ft_complete_cmd(t_cmd *cmd)
 {
 	if (ft_complete_check(cmd->head, "\""))
 		return (ft_complete("dquote> "));
+	if (ft_complete_check(cmd->head, "{}"))
+		return (ft_complete("cursh> "));
+	if (ft_complete_check(cmd->head, "'"))
+		return (ft_complete("quote> "));
 	return (NULL);
 }

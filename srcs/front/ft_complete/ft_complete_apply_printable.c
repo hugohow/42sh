@@ -6,7 +6,7 @@
 /*   By: kesaint- <kesaint-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/09/04 16:32:02 by kesaint-          #+#    #+#             */
-/*   Updated: 2019/09/07 17:45:57 by kesaint-         ###   ########.fr       */
+/*   Updated: 2019/09/07 18:34:58 by kesaint-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,7 +36,7 @@ void		ft_complete_add_printable(t_cmd *cmd, int c)
 
 static int 	is_right_margin(t_cmd *cmd)
 {
-	struct winsize 	w;
+	struct winsize	w;
 	int				col;
 
 	ioctl(STDOUT_FILENO, TIOCGWINSZ, &w);
