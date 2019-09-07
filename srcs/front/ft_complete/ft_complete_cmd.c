@@ -6,7 +6,7 @@
 /*   By: kesaint- <kesaint-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/09/04 16:07:32 by kesaint-          #+#    #+#             */
-/*   Updated: 2019/09/07 14:35:44 by kesaint-         ###   ########.fr       */
+/*   Updated: 2019/09/07 15:24:13 by kesaint-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,6 +21,7 @@ static char	*ft_complete(char *prompt)
 
 	p_vars = ft_vars_get();
 	cmd = p_vars->cmd;
+	memset(&context, '\0', sizeof(t_context));
 	cmd->context = &context;
 	context.prompt = prompt;
 	context.cursor = 0;

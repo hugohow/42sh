@@ -6,7 +6,7 @@
 /*   By: kesaint- <kesaint-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/07/08 15:12:43 by hhow-cho          #+#    #+#             */
-/*   Updated: 2019/09/07 14:14:31 by kesaint-         ###   ########.fr       */
+/*   Updated: 2019/09/07 15:14:34 by kesaint-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,6 +47,7 @@ typedef struct			s_context
 {
 	char	*prompt;
 	int		cursor;
+	int		width;
 }						t_context;
 
 typedef struct			s_cmd

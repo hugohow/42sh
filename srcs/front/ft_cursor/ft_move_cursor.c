@@ -6,7 +6,7 @@
 /*   By: kesaint- <kesaint-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/09/04 15:56:17 by kesaint-          #+#    #+#             */
-/*   Updated: 2019/09/07 13:57:13 by kesaint-         ###   ########.fr       */
+/*   Updated: 2019/09/07 15:28:42 by kesaint-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,7 +31,7 @@ static void	ft_move_cursor_right(t_cmd *cmd)
 {
 	int	col;
 
-	if (cmd->context->cursor == cmd->len)
+	if (cmd->context->cursor == cmd->context->width)
 		return ;
 	col = ft_get_current_column(cmd->context);
 	if (!col)

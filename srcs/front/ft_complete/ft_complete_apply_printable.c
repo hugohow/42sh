@@ -6,7 +6,7 @@
 /*   By: kesaint- <kesaint-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/09/04 16:32:02 by kesaint-          #+#    #+#             */
-/*   Updated: 2019/09/07 14:51:47 by kesaint-         ###   ########.fr       */
+/*   Updated: 2019/09/07 15:27:08 by kesaint-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,6 +42,7 @@ int		ft_complete_apply_printable(t_cmd *cmd)
 	ft_complete_add_printable(cmd, cmd->last_key);
 	ft_complete_print_line(cmd);
 	cmd->context->cursor++;
+	cmd->context->width++;
 	//cmd->arg->col++;
 	return (0);
 }
