@@ -3,16 +3,16 @@
 /*                                                        :::      ::::::::   */
 /*   ft_complete_apply_del.c                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: kesaint- <marvin@42.fr>                    +#+  +:+       +#+        */
+/*   By: kesaint- <kesaint-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/09/04 16:16:52 by kesaint-          #+#    #+#             */
-/*   Updated: 2019/09/04 16:16:54 by kesaint-         ###   ########.fr       */
+/*   Updated: 2019/09/07 15:00:12 by kesaint-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "shell.h"
 
-t_list		*ft_quote_get_line(t_list *head)
+t_list		*ft_complete_get_line(t_list *head)
 {
 	t_list	*line;
 
@@ -27,56 +27,48 @@ t_list		*ft_quote_get_line(t_list *head)
 	return (line);
 }
 
-void		ft_quote_print_line(t_cmd *cmd)
+static void	display_cursor(t_cmd *cmd)
 {
-	t_list				*head;
-	size_t				size;
-	char				*line;
-	char				*cap;
-	struct winsize		w;
-	int					row;
+	struct winsize	w;
+	int 			row;
+	int				offset;
+	char 			*cap;
 
 	ioctl(STDOUT_FILENO, TIOCGWINSZ, &w);
-	row = ((cmd->arg->cursor + 7) / w.ws_col);
+	offset = strlen(cmd->context->prompt);
+	row = (cmd->context->cursor + offset - 1) / w.ws_col;
 	tputs(tgetstr("cr", NULL), 1, ft_putchar_stdin);
 	while (row--)
 		tputs(tgetstr("up", NULL), 1, ft_putchar_stdin);
 	cap = tgetstr("DC", NULL);
-	tputs(tgoto(cap, 7 + cmd->arg->cursor, 0), 1, ft_putchar_stdin);
-	ft_putstr_fd(cmd->arg->prompt, 0);
-	head = ft_quote_get_line(cmd->head);
+	tputs(tgoto(cap, offset + cmd->context->cursor, 0), 1, ft_putchar_stdin);
+}
+
+void		ft_complete_print_line(t_cmd *cmd)
+{
+	t_list 	*head;
+	size_t 	size;
+	char 	*line;
+
+	display_cursor(cmd);
+	head = ft_complete_get_line(cmd->head);
 	size = ft_lstlen(head);
-	if (!(line = ft_node_join(head, size)))
+	line = ft_node_join(head, size);
+	if (!line)
 		return ;
+	ft_putstr_fd(cmd->context->prompt, 0);
 	write(0, line, size);
 	free(line);
 }
 
 int			ft_complete_apply_del(t_cmd *cmd)
 {
-	t_list		*head;
-
 	if (!cmd->context->cursor)
 		return (0);
 	cmd->len -= 1;
 	if (cmd->len < 0)
 		cmd->len = 0;
-	cmd->arg->cursor--;
+	ft_complete_print_line(cmd);
+	cmd->context->cursor--;
 	return (0);
 }
-
-// int			ft_quote_apply_del(t_cmd *cmd)
-// {
-// 	t_list		*head;
-
-// 	if (!cmd->arg->cursor)
-// 		return (0);
-// 	head = ft_quote_get_line(cmd->head);
-// 	ft_lstdelnode(&head, (cmd->arg->cursor - 1));
-// 	cmd->len = cmd->len - 1;
-// 	if (cmd->len < 0)
-// 		cmd->len = 0;
-// 	ft_quote_print_line(cmd);
-// 	cmd->arg->cursor--;
-// 	return (0);
-// }

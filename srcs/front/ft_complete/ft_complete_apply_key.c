@@ -1,6 +1,6 @@
 #include "shell.h"
 
-int		ft_quote_apply_key(t_cmd *cmd)
+int		ft_complete_apply_key(t_cmd *cmd)
 {
 	int		key;
 

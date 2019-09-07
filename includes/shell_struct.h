@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   shell_struct.h                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: hhow-cho <hhow-cho@student.42.fr>          +#+  +:+       +#+        */
+/*   By: kesaint- <kesaint-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/07/08 15:12:43 by hhow-cho          #+#    #+#             */
-/*   Updated: 2019/07/11 14:49:03 by hhow-cho         ###   ########.fr       */
+/*   Updated: 2019/09/07 14:14:31 by kesaint-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,13 +35,13 @@ typedef struct			s_env
 }						t_env;
 
 
-typedef struct			s_quote
-{
-	char	*prompt;
-	int		cursor;
-	int		row;
-	int		col;
-}						t_quote;
+// typedef struct			s_quote
+// {
+// 	char	*prompt;
+// 	int		cursor;
+// 	int		row;
+// 	int		col;
+// }						t_quote;
 
 typedef struct			s_context
 {

@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: hhow-cho <hhow-cho@student.42.fr>          +#+  +:+       +#+         #
+#    By: kesaint- <kesaint-@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2019/07/04 22:12:22 by hhow-cho          #+#    #+#              #
-#    Updated: 2019/07/29 19:11:17 by hhow-cho         ###   ########.fr        #
+#    Updated: 2019/09/07 14:23:15 by kesaint-         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -104,11 +104,11 @@ SRC =	srcs/main.c							\
 		srcs/front/ft_interactive_read_key.c		\
 		srcs/front/ft_non_interactive_get_cmd.c		\
 		srcs/front/ft_cursor/ft_move_cursor.c		\
+		srcs/front/ft_complete/ft_complete_check.c \
 		srcs/front/ft_complete/ft_complete_apply_del.c		\
 		srcs/front/ft_complete/ft_complete_apply_enter.c		\
 		srcs/front/ft_complete/ft_complete_apply_key.c		\
 		srcs/front/ft_complete/ft_complete_apply_printable.c		\
-		srcs/front/ft_complete/ft_complete_apply_arrow.c		\
 		srcs/front/ft_complete/ft_complete_cmd.c		\
 		srcs/front/ft_press_key/ft_apply_ctrl_c.c		\
 		srcs/front/ft_press_key/ft_apply_ctrl_d.c		\

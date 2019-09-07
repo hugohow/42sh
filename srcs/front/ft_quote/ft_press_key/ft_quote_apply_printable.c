@@ -47,6 +47,5 @@ int			ft_quote_apply_printable(t_cmd *cmd)
 	ft_quote_print_line(cmd);
 	check_default(cmd);
 	cmd->arg->col++;
-
 	return (0);
 }

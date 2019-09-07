@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   shell.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: hhow-cho <hhow-cho@student.42.fr>          +#+  +:+       +#+        */
+/*   By: kesaint- <kesaint-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/06/09 00:32:39 by hhow-cho          #+#    #+#             */
-/*   Updated: 2019/07/29 19:11:03 by hhow-cho         ###   ########.fr       */
+/*   Updated: 2019/09/07 14:23:58 by kesaint-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -93,7 +93,7 @@ void		ft_interactive_prompt(void);
 int			ft_interactive_init();
 void		ft_interactive_exit();
 int			ft_cmd_init(void);
-void		ft_move_cursor(t_cmd *cmd);
+int			ft_move_cursor(t_cmd *cmd);
 char		*parse_dquote(void);
 
 /*
@@ -220,14 +220,16 @@ int			ft_apply_del(t_cmd *cmd);
 int			ft_apply_printable(t_cmd *cmd);
 int			ft_apply_enter(t_cmd *cmd);
 
-void		ft_quote_print_line(t_cmd *cmd);
-t_list		*ft_quote_get_line(t_list *head);
-void		ft_quote_add_printable(t_cmd *cmd, int c);
-int			ft_quote_apply_key(t_cmd *cmd);
-int			ft_quote_apply_arrow(t_cmd *cmd);
-int			ft_quote_apply_printable(t_cmd *cmd);
-int			ft_quote_apply_del(t_cmd *cmd);
-int			ft_quote_apply_enter(t_cmd *cmd);
+char		*ft_complete_cmd(t_cmd *cmd);
+int			ft_complete_check(t_list *list, char *closures);
+void		ft_complete_print_line(t_cmd *cmd);
+t_list		*ft_complete_get_line(t_list *head);
+void		ft_complete_add_printable(t_cmd *cmd, int c);
+int			ft_complete_apply_key(t_cmd *cmd);
+int			ft_complete_apply_arrow(t_cmd *cmd);
+int			ft_complete_apply_printable(t_cmd *cmd);
+int			ft_complete_apply_del(t_cmd *cmd);
+int			ft_complete_apply_enter(t_cmd *cmd);
 /*
 ** Global variables fcts
 */

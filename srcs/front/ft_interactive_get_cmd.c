@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_interactive_get_cmd.c                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: hhow-cho <hhow-cho@student.42.fr>          +#+  +:+       +#+        */
+/*   By: kesaint- <kesaint-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/06/09 01:53:37 by hhow-cho          #+#    #+#             */
-/*   Updated: 2019/07/14 01:12:25 by hhow-cho         ###   ########.fr       */
+/*   Updated: 2019/09/07 14:24:46 by kesaint-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,7 +45,7 @@ int				ft_interactive_get_cmd(char **command)
 		if (ret == 0)
 			break ;
 	}
-	parse_dquote();
+	ft_complete_cmd(p_vars->cmd);
 	ft_putstr_fd("\n\r", STDIN_FILENO);
 	free_and_assign(command);
 	return (ret);

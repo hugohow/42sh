@@ -1,18 +1,18 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_cursor.c                                        :+:      :+:    :+:   */
+/*   ft_move_cursor.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: kesaint- <marvin@42.fr>                    +#+  +:+       +#+        */
+/*   By: kesaint- <kesaint-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/09/04 15:56:17 by kesaint-          #+#    #+#             */
-/*   Updated: 2019/09/04 15:56:18 by kesaint-         ###   ########.fr       */
+/*   Updated: 2019/09/07 13:57:13 by kesaint-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "shell.h"
 
-static int	ft_get_current_column(t_context *context)
+int	ft_get_current_column(t_context *context)
 {
 	struct winsize	w;
 	int				column;
@@ -29,11 +29,11 @@ static int	ft_get_current_column(t_context *context)
 
 static void	ft_move_cursor_right(t_cmd *cmd)
 {
-	int	column;
+	int	col;
 
 	if (cmd->context->cursor == cmd->len)
 		return ;
-	column = ft_get_current_column(cmd->context);
+	col = ft_get_current_column(cmd->context);
 	if (!col)
 	{
 		tputs(tgetstr("do", NULL), 1, ft_putchar_stdin);
@@ -48,10 +48,12 @@ static void	ft_move_cursor_left(t_cmd *cmd)
 {
 	int				column;
 	char			*cap;
+	struct winsize	w;
 
+	ioctl(STDOUT_FILENO, TIOCGWINSZ, &w);
 	if (!cmd->context->cursor)
 		return ;
-	column = get_current_column(cmd->context);
+	column = ft_get_current_column(cmd->context);
 	if (column == 1)
 	{
 		cap = tgetstr("ch", NULL);
@@ -66,8 +68,8 @@ static void	ft_move_cursor_left(t_cmd *cmd)
 int			ft_move_cursor(t_cmd *cmd)
 {
 	if (cmd->last_key == KEY_TERM_RIGHT)
-		return (ft_move_cursor_right(cmd));
+		ft_move_cursor_right(cmd);
 	if (cmd->last_key == KEY_TERM_LEFT)
-		return (ft_move_cursor_left(cmd));
+		ft_move_cursor_left(cmd);
 	return (0);
 }
