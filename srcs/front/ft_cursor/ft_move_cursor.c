@@ -27,7 +27,7 @@ int	ft_get_current_column(t_context *context)
 	return (column);
 }
 
-static void	ft_move_cursor_right(t_cmd *cmd)
+void	ft_move_cursor_right(t_cmd *cmd)
 {
 	int	col;
 
@@ -44,7 +44,7 @@ static void	ft_move_cursor_right(t_cmd *cmd)
 	cmd->context->cursor++;
 }
 
-static void	ft_move_cursor_left(t_cmd *cmd)
+void		ft_move_cursor_left(t_cmd *cmd)
 {
 	int				column;
 	char			*cap;
@@ -65,7 +65,7 @@ static void	ft_move_cursor_left(t_cmd *cmd)
 	cmd->context->cursor--;
 }
 
-static void		ft_move_cursor_begin(t_cmd *cmd)
+void		ft_move_cursor_begin(t_cmd *cmd)
 {
 	char 	*cap;
 	int 	offset;
@@ -81,7 +81,7 @@ static void		ft_move_cursor_begin(t_cmd *cmd)
 	tputs(tgoto(cap, 0, offset), 1, ft_putchar_stdin);
 }
 
-static void		ft_move_cursor_end(t_cmd *cmd)
+void		ft_move_cursor_end(t_cmd *cmd)
 {
 	char 			*cap;
 	struct winsize	w;

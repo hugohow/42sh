@@ -12,21 +12,10 @@
 
 #include "shell.h"
 
-// To clean/redo later
-
-static char	*ft_complete(char *prompt)
+static char	*ft_complete(t_cmd *cmd)
 {
 	int			ret;
-	t_context 	context;
-	t_cmd		*cmd;
-	t_vars		*p_vars;
 
-	p_vars = ft_vars_get();
-	cmd = p_vars->cmd;
-	memset(&context, '\0', sizeof(t_context));
-	cmd->context = &context;
-	context.prompt = prompt;
-	context.cursor = 0;
 	ft_complete_apply_enter(cmd);	
 	while (42)
 	{
@@ -41,11 +30,26 @@ static char	*ft_complete(char *prompt)
 
 char		*ft_complete_cmd(t_cmd *cmd)
 {
+	t_context	context;
+
+	ft_memset(&context, '\0', sizeof(t_context));
 	if (ft_complete_check(cmd->head, "\""))
-		return (ft_complete("dquote> "));
+	{
+		context.prompt = "dquote> ";
+	}
 	if (ft_complete_check(cmd->head, "{}"))
-		return (ft_complete("cursh> "));
+	{
+		context.prompt = "cursh> ";
+	}
 	if (ft_complete_check(cmd->head, "'"))
-		return (ft_complete("quote> "));
+	{
+		context.prompt = "quote> ";
+	}
+	if (context.prompt)
+	{
+		cmd->context = &context;
+		ft_complete(cmd);
+		cmd->context = NULL;
+	}
 	return (NULL);
 }

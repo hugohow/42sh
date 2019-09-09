@@ -121,6 +121,8 @@ SRC =	srcs/main.c							\
 		srcs/front/utils/ft_putchar_stdin.c				\
 		srcs/front/utils/ft_node_join.c					\
 		srcs/front/utils/ft_cmd_init.c					\
+		srcs/front/utils/ft_lstdelnode.c				\
+		srcs/front/utils/ft_lstinsert_at.c				\
 		srcs/variables/ft_vars_free.c					\
 		srcs/variables/ft_vars_get.c					\
 		srcs/variables/ft_vars_get_copy_env.c				\

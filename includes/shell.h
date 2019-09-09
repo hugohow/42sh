@@ -95,8 +95,17 @@ void		ft_interactive_prompt(void);
 int			ft_interactive_init();
 void		ft_interactive_exit();
 int			ft_cmd_init(void);
-int			ft_move_cursor(t_cmd *cmd);
 char		*parse_dquote(void);
+
+/*
+**	Functions for cursor
+*/
+
+int		ft_move_cursor(t_cmd *cmd);
+void	ft_move_cursor_begin(t_cmd *cmd);
+void	ft_move_cursor_end(t_cmd *cmd);
+void	ft_move_cursor_right(t_cmd *cmd);
+void	ft_move_cursor_left(t_cmd *cmd);
 
 /*
 ** Functions for parsing
@@ -199,6 +208,8 @@ char		*ft_path_trim_free(char *abs_path);
 size_t		ft_list_size(char **list);
 void		ft_list_free(char ***p_list);
 void		ft_list_free_n(char ***p_list, size_t len);
+void		ft_lstdelnode(t_list **head, size_t pos);
+void		ft_lstinsert_at(t_list **head, t_list *node, size_t pos);
 int			ft_is_path(char *cmd);
 void		ft_print_env(t_env **str, int fds[]);
 int			ft_bin_is_accessible(char *path, int fds[]);
@@ -229,7 +240,7 @@ void		ft_complete_add_printable(t_cmd *cmd, int c);
 char		*ft_complete_cmd(t_cmd *cmd);
 int			ft_complete_check(t_list *list, char *closures);
 void		ft_complete_print_line(t_cmd *cmd);
-t_list		*ft_complete_get_line(t_list *head);
+t_list		**ft_complete_get_line(t_list *head);
 void		ft_complete_add_printable(t_cmd *cmd, int c);
 int			ft_complete_apply_key(t_cmd *cmd);
 int			ft_complete_apply_arrow(t_cmd *cmd);
