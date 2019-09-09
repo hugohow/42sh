@@ -42,6 +42,7 @@ void	ft_move_cursor_right(t_cmd *cmd)
 	else
 		tputs(tgetstr("nd", NULL), 1, ft_putchar_stdin);
 	cmd->context->cursor++;
+	fflush(stdout);
 }
 
 void		ft_move_cursor_left(t_cmd *cmd)

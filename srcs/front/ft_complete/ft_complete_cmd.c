@@ -16,7 +16,7 @@ static char	*ft_complete(t_cmd *cmd)
 {
 	int			ret;
 
-	ft_complete_apply_enter(cmd);	
+	ft_complete_apply_enter(cmd);
 	while (42)
 	{
 		ret = ft_interactive_read_key();

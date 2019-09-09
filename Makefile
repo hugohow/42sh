@@ -13,7 +13,7 @@
 
 NAME 		=		21sh
 CC			= 		gcc
-CFLAGS 		= 		-Wall -Werror -Wextra -g -g3 -Iincludes
+CFLAGS 		= 		-Wall -Werror -Wextra -g3 -Iincludes
 ifeq ($(shell uname),Darwin)
 TERMFLAG 	= 		-ltermcap
 else
@@ -133,7 +133,7 @@ all: $(NAME)
 
 %.o: %.c
 	@printf "[$(NAME)] Compiling [.:]\r"
-	@$(CC) $(CFLAGS) -c $< -o $@
+	$(CC) $(CFLAGS) -c $< -o $@
 	@printf "[$(NAME)] Compiling [:.]\r"
 
 $(NAME): $(OBJ)
