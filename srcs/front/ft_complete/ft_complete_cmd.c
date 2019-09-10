@@ -34,17 +34,11 @@ char		*ft_complete_cmd(t_cmd *cmd)
 
 	ft_memset(&context, '\0', sizeof(t_context));
 	if (ft_complete_check(cmd->head, "\""))
-	{
 		context.prompt = "dquote> ";
-	}
 	if (ft_complete_check(cmd->head, "{}"))
-	{
 		context.prompt = "cursh> ";
-	}
 	if (ft_complete_check(cmd->head, "'"))
-	{
 		context.prompt = "quote> ";
-	}
 	if (context.prompt)
 	{
 		cmd->context = &context;

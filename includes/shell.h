@@ -101,11 +101,10 @@ char		*parse_dquote(void);
 **	Functions for cursor
 */
 
-int		ft_move_cursor(t_cmd *cmd);
-void	ft_move_cursor_begin(t_cmd *cmd);
-void	ft_move_cursor_end(t_cmd *cmd);
-void	ft_move_cursor_right(t_cmd *cmd);
-void	ft_move_cursor_left(t_cmd *cmd);
+int		ft_move_cursor_begin(t_cmd *cmd);
+int		ft_move_cursor_end(t_cmd *cmd);
+int		ft_move_cursor_right(t_cmd *cmd);
+int		ft_move_cursor_left(t_cmd *cmd);
 
 /*
 ** Functions for parsing

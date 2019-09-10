@@ -12,7 +12,7 @@
 
 #include "shell.h"
 
-int	ft_get_current_column(t_context *context)
+static int	get_current_col(t_context *context)
 {
 	struct winsize	w;
 	int				column;
@@ -27,35 +27,35 @@ int	ft_get_current_column(t_context *context)
 	return (column);
 }
 
-void	ft_move_cursor_right(t_cmd *cmd)
+int		ft_move_cursor_right(t_cmd *cmd)
 {
-	int	col;
+	int		col;
 
 	if (cmd->context->cursor == cmd->context->width)
-		return ;
-	col = ft_get_current_column(cmd->context);
-	if (!col)
+		return (0);
+	col = get_current_col(cmd->context);
+	if (col)
+		tputs(tgetstr("nd", NULL), 1, ft_putchar_stdin);
+	else
 	{
 		tputs(tgetstr("do", NULL), 1, ft_putchar_stdin);
 		tputs(tgetstr("cr", NULL), 1, ft_putchar_stdin);
 	}
-	else
-		tputs(tgetstr("nd", NULL), 1, ft_putchar_stdin);
 	cmd->context->cursor++;
-	fflush(stdout);
+	return (0);
 }
 
-void		ft_move_cursor_left(t_cmd *cmd)
+int		ft_move_cursor_left(t_cmd *cmd)
 {
-	int				column;
+	int				col;
 	char			*cap;
 	struct winsize	w;
 
 	ioctl(STDOUT_FILENO, TIOCGWINSZ, &w);
 	if (!cmd->context->cursor)
-		return ;
-	column = ft_get_current_column(cmd->context);
-	if (column == 1)
+		return (0);
+	col = get_current_col(cmd->context);
+	if (col == 1)
 	{
 		cap = tgetstr("ch", NULL);
 		tputs(tgoto(cap, 0, w.ws_col), 1, ft_putchar_stdin);
@@ -64,46 +64,51 @@ void		ft_move_cursor_left(t_cmd *cmd)
 	else
 		tputs(tgetstr("le", NULL), 1, ft_putchar_stdin);
 	cmd->context->cursor--;
+	return (0);
 }
 
-void		ft_move_cursor_begin(t_cmd *cmd)
+int			ft_move_cursor_begin(t_cmd *cmd)
 {
-	char 	*cap;
-	int 	offset;
-	int 	column;
-
-	if (!cmd->context->cursor)
-		return ;
-	column = ft_get_current_column(cmd->context);
-	cmd->context->cursor -= column;
-	tputs(tgetstr("cr", NULL), 1, ft_putchar_stdin);
-	cap = tgetstr("ch", NULL);
-	offset = ft_strlen(cmd->context->prompt);
-	tputs(tgoto(cap, 0, offset), 1, ft_putchar_stdin);
-}
-
-void		ft_move_cursor_end(t_cmd *cmd)
-{
-	char 			*cap;
 	struct winsize	w;
+	int				cursor;
 	int				offset;
+	char			*cap;
 
 	ioctl(STDOUT_FILENO, TIOCGWINSZ, &w);
-	offset = cmd->context->cursor % w.ws_col;
+	offset = ft_strlen(cmd->context->prompt);
+	cursor = cmd->context->cursor;
+	cursor += offset;
+	if (cursor > w.ws_col)
+	{
+		offset = 0;
+		cmd->context->cursor -= (cursor % w.ws_col);
+	}
+	else
+		cmd->context->cursor = 0;
+	tputs(tgetstr("cr", NULL), 1, ft_putchar_stdin);
 	cap = tgetstr("ch", NULL);
-	cmd->context->cursor = offset;
 	tputs(tgoto(cap, 0, offset), 1, ft_putchar_stdin);
+	return (0);
 }
 
-int			ft_move_cursor(t_cmd *cmd)
+int			ft_move_cursor_end(t_cmd *cmd)
 {
-	if (cmd->last_key == KEY_TERM_HOME)
-		ft_move_cursor_begin(cmd);
-	if (cmd->last_key == KEY_TERM_END)
-		ft_move_cursor_end(cmd);
-	if (cmd->last_key == KEY_TERM_RIGHT)
-		ft_move_cursor_right(cmd);
-	if (cmd->last_key == KEY_TERM_LEFT)
-		ft_move_cursor_left(cmd);
+	struct winsize	w;
+	int				offset;
+	char			*cap;
+
+	ioctl(STDOUT_FILENO, TIOCGWINSZ, &w);
+	offset = (cmd->context->cursor + w.ws_col);
+	if (offset < cmd->context->width)
+	{
+		cap = tgetstr("ch", NULL);
+		cmd->context->cursor = w.ws_col;
+		tputs(tgoto(cap, 0, w.ws_col), 1, ft_putchar_stdin);
+		return (0);
+	}
+	offset = (cmd->context->width - cmd->context->cursor);
+	cmd->context->cursor += offset;
+	cap = tgetstr("RI", NULL);
+	tputs(tgoto(cap, 0, offset), 1, ft_putchar_stdin);
 	return (0);
 }

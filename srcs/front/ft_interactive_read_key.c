@@ -21,6 +21,7 @@ int	ft_interactive_read_key(void)
 	int		nread;
 	char	seq[4];
 
+	ft_memset(seq, '\0', 4);
 	while ((nread = read(STDIN_FILENO, &seq[0], 1)) != 1)
 	{
 		if (nread == -1)
