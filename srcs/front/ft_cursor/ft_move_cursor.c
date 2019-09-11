@@ -67,48 +67,89 @@ int		ft_move_cursor_left(t_cmd *cmd)
 	return (0);
 }
 
-int			ft_move_cursor_begin(t_cmd *cmd)
+int				ft_move_cursor_begin(t_cmd *cmd)
 {
 	struct winsize	w;
-	int				cursor;
 	int				offset;
+	int				row;
 	char			*cap;
 
 	ioctl(STDOUT_FILENO, TIOCGWINSZ, &w);
 	offset = ft_strlen(cmd->context->prompt);
-	cursor = cmd->context->cursor;
-	cursor += offset;
-	if (cursor > w.ws_col)
-	{
-		offset = 0;
-		cmd->context->cursor -= (cursor % w.ws_col);
-	}
-	else
-		cmd->context->cursor = 0;
+	row = (cmd->context->cursor + offset);
+	row /= w.ws_col;
 	tputs(tgetstr("cr", NULL), 1, ft_putchar_stdin);
+	if (row)
+	{
+		cap = tgetstr("UP", NULL);
+		tputs(tgoto(cap, 0, row), 1, ft_putchar_stdin);
+	}
 	cap = tgetstr("ch", NULL);
 	tputs(tgoto(cap, 0, offset), 1, ft_putchar_stdin);
-	return (0);
+	cmd->context->cursor = 0;
+	return (0);	
 }
 
-int			ft_move_cursor_end(t_cmd *cmd)
+int				ft_move_cursor_end(t_cmd *cmd)
 {
-	struct winsize	w;
-	int				offset;
-	char			*cap;
-
-	ioctl(STDOUT_FILENO, TIOCGWINSZ, &w);
-	offset = (cmd->context->cursor + w.ws_col);
-	if (offset < cmd->context->width)
-	{
-		cap = tgetstr("ch", NULL);
-		cmd->context->cursor = w.ws_col;
-		tputs(tgoto(cap, 0, w.ws_col), 1, ft_putchar_stdin);
+	if (cmd->context->cursor == cmd->context->width)
 		return (0);
-	}
-	offset = (cmd->context->width - cmd->context->cursor);
-	cmd->context->cursor += offset;
-	cap = tgetstr("RI", NULL);
-	tputs(tgoto(cap, 0, offset), 1, ft_putchar_stdin);
+	
 	return (0);
 }
+
+// Bonus
+
+// int			ft_move_cursor_cursor_begin(t_cmd *cmd)
+// {
+// 	struct winsize	w;
+// 	int				cursor;
+// 	int				offset;
+// 	char			*cap;
+
+// 	ioctl(STDOUT_FILENO, TIOCGWINSZ, &w);
+// 	offset = ft_strlen(cmd->context->prompt);
+// 	cursor = cmd->context->cursor;
+// 	cursor += offset;
+// 	if (!(cursor % w.ws_col))
+// 		return (0);
+// 	if (cursor > w.ws_col)
+// 	{
+// 		offset = 0;
+// 		cmd->context->cursor -= (cursor % w.ws_col);
+// 	}
+// 	else
+// 		cmd->context->cursor = 0;
+// 	tputs(tgetstr("cr", NULL), 1, ft_putchar_stdin);
+// 	cap = tgetstr("ch", NULL);
+// 	tputs(tgoto(cap, 0, offset), 1, ft_putchar_stdin);
+// 	return (0);
+// }
+
+// int			ft_move_cursor_end(t_cmd *cmd)
+// {
+// 	int				offset;
+// 	char			*cap;
+// 	int				col;
+// 	struct winsize	w;
+
+// 	if (cmd->context->cursor >= cmd->context->width)
+// 		return (0);
+// 	col = get_current_col(cmd->context);
+// 	if (!col)
+// 		return (0);
+// 	ioctl(STDOUT_FILENO, TIOCGWINSZ, &w);
+// 	offset = (cmd->context->cursor + w.ws_col);
+// 	if (offset < cmd->context->width)
+// 	{
+// 		cap = tgetstr("ch", NULL);
+// 		cmd->context->cursor = w.ws_col;
+// 		tputs(tgoto(cap, 0, w.ws_col - 1), 1, ft_putchar_stdin);
+// 		return (0);
+// 	}
+// 	offset = (cmd->context->width - cmd->context->cursor);
+// 	cmd->context->cursor += offset;
+// 	cap = tgetstr("RI", NULL);
+// 	tputs(tgoto(cap, 0, offset), 1, ft_putchar_stdin);
+// 	return (0);
+// }

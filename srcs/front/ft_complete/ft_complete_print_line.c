@@ -37,8 +37,11 @@ static void ft_complete_init_line(t_cmd *cmd)
 	offset = strlen(cmd->context->prompt);
 	row = (cmd->context->cursor + offset) / w.ws_col;
 	tputs(tgetstr("cr", NULL), 1, ft_putchar_stdin);
-	while (row--)
-		tputs(tgetstr("up", NULL), 1, ft_putchar_stdin);
+	if (row)
+	{
+		cap = tgetstr("UP", NULL);
+		tputs(tgoto(cap, 0, row), 1, ft_putchar_stdin);
+	}
 	cap = tgetstr("DC", NULL);
 	tputs(tgoto(cap, offset + cmd->context->cursor, 0), 1, ft_putchar_stdin);
 }
